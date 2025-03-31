@@ -426,9 +426,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .profile-image-container {
-    width: 300px;
-    height: 400px;
-    margin: 3rem auto;
+    width: 280px;
+    height: 350px;
+    margin: 2rem auto;
   }
   
   .about-card,
@@ -439,6 +439,14 @@ h1, h2, h3, h4, h5, h6 {
   .skill-badge {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-image-container {
+    width: 240px;
+    height: 300px;
+    margin: 1.5rem auto;
   }
 }
 
@@ -456,10 +464,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s ease;
   animation: floatImage 5s ease-in-out infinite;
   box-shadow: var(--shadow-2);
-}
-
-.profile-image-container:hover {
-  transform: rotate(0deg) scale(1.02);
+  aspect-ratio: 3/4;
 }
 
 .profile-image {
@@ -470,6 +475,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 25px;
   transition: all 0.5s ease;
   filter: contrast(1.05) brightness(1.05);
+  will-change: transform;
 }
 
 .profile-image-container::before {

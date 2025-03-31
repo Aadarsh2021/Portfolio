@@ -210,9 +210,12 @@ const App: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <img 
-                  src="/assets/profile.jpg" 
+                  src={process.env.PUBLIC_URL + '/assets/profile.jpg'} 
                   alt="Aadarsh Thakur" 
                   className="profile-image"
+                  loading="lazy"
+                  width="380"
+                  height="480"
                 />
               </motion.div>
             </Col>

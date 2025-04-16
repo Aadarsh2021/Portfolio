@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
-import { BsCodeSquare, BsLaptop, BsGear } from 'react-icons/bs';
+import { BsLaptop, BsGear } from 'react-icons/bs';
 
 interface Project {
   title: string;

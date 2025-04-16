@@ -905,6 +905,18 @@ h1, h2, h3, h4, h5, h6 {
 .skill-badge:nth-child(3) { animation-delay: 0.6s; }
 
 /* Enhanced Navbar Toggle Animation */
+.navbar-toggler {
+  border: none !important;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 .navbar-toggler-icon {
   position: relative;
   width: 24px;
@@ -912,6 +924,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.3s ease;
 }
 
 .navbar-toggler-icon span {
@@ -920,6 +933,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 2px;
   background: var(--text-primary);
   transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 .navbar-toggler-icon.open span:nth-child(1) {
@@ -928,10 +942,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-toggler-icon.open span:nth-child(2) {
   opacity: 0;
+  transform: scale(0);
 }
 
 .navbar-toggler-icon.open span:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
+}
+
+.navbar-toggler:hover .navbar-toggler-icon span {
+  background: var(--primary);
 }
 
 /* Enhanced Section Transitions */

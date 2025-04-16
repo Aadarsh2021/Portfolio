@@ -19,18 +19,19 @@ const projects: Project[] = [
     icon: BsGear
   },
   {
-    title: "Knapsack Security",
-    description: "A patented security system implementing advanced encryption algorithms.",
-    technologies: ["Python", "Cryptography", "Security"],
-    icon: BsCodeSquare
-  },
-  {
     title: "Portfolio Website",
     description: "A modern, responsive portfolio website built with React and TypeScript, featuring smooth animations and a clean design.",
     technologies: ["React", "TypeScript", "Bootstrap", "Framer Motion"],
     icon: BsLaptop
+  },
+  {
+    title: "Smart City Traffic Detection",
+    description: "A deep learning-based computer vision system to detect and analyze urban traffic using YOLOv5. Deployed for smart city automation with real-time inference.",
+    technologies: ["Python", "YOLOv5", "OpenCV", "PyTorch", "Flask"],
+    icon: BsGear
   }
 ];
+
 
 const Projects: React.FC = () => {
   const renderIcon = (IconComponent: IconType, size: number) => {

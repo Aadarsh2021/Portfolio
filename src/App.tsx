@@ -80,11 +80,11 @@ const App: React.FC = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="border-0"
           >
-            <span className={`navbar-toggler-icon ${isMenuOpen ? 'open' : ''}`}>
+            <div className={`navbar-toggler-icon ${isMenuOpen ? 'open' : ''}`}>
               <span></span>
               <span></span>
               <span></span>
-            </span>
+            </div>
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -210,7 +210,7 @@ const App: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <img 
-                  src="./assets/profile.jpg" 
+                  src="/assets/profile.jpg" 
                   alt="Aadarsh Thakur" 
                   className="profile-image"
                   loading="lazy"
@@ -225,6 +225,7 @@ const App: React.FC = () => {
 
       <AnimatePresence>
         <motion.section 
+          key="about"
           id="about" 
           className="about-section section-padding"
           initial={{ opacity: 0 }}
@@ -236,6 +237,7 @@ const App: React.FC = () => {
         </motion.section>
 
         <motion.section 
+          key="experience"
           id="experience" 
           className="experience-section section-padding"
           initial={{ opacity: 0 }}
@@ -247,6 +249,7 @@ const App: React.FC = () => {
         </motion.section>
 
         <motion.section 
+          key="projects"
           id="projects" 
           className="projects-section section-padding"
           initial={{ opacity: 0 }}
@@ -258,6 +261,7 @@ const App: React.FC = () => {
         </motion.section>
 
         <motion.section 
+          key="certifications"
           id="certifications" 
           className="certifications-section section-padding"
           initial={{ opacity: 0 }}
@@ -269,6 +273,7 @@ const App: React.FC = () => {
         </motion.section>
 
         <motion.section 
+          key="contact"
           id="contact" 
           className="contact-section section-padding"
           initial={{ opacity: 0 }}

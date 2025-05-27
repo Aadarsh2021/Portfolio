@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
               className="d-flex justify-content-center justify-content-lg-end align-items-center gap-4 mb-3"
                     >
                       <motion.a
-                href="https://github.com/aadarshthakur"
+                href="https://github.com/Aadarsh2021"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                       </motion.a>
 
                     <motion.a
-                href="https://linkedin.com/in/aadarshthakur"
+                href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
                       target="_blank"
                       rel="noopener noreferrer"
                 className="social-link"
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                     </motion.a>
               
               <motion.a
-                href="mailto:aadarsh@example.com"
+                href="mailto:thakuraadarsh1@gmail.com"
                 className="social-link"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}

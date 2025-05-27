@@ -88,7 +88,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 transition={{ duration: 0.8, delay: 1.0 }}
               >
                 <a 
-                  href="https://github.com/aadarshthakur" 
+                  href="https://github.com/Aadarsh2021" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -98,7 +98,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 </a>
                 
                 <a 
-                  href="https://linkedin.com/in/aadarshthakur" 
+                  href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-link"
@@ -108,7 +108,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 </a>
                 
                 <a 
-                  href="mailto:aadarsh@example.com"
+                  href="mailto:thakuraadarsh1@gmail.com"
                   className="social-link"
                   aria-label="Email Contact"
                 >

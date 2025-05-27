@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Navbar, Nav, Button, Row, Col } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconType } from 'react-icons';
-import { 
-  BsGithub, 
-  BsLinkedin, 
-  BsEnvelope, 
-  BsFileEarmarkText
-} from 'react-icons/bs';
+import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
-import Projects from './components/Projects';
+// import Projects from './components/Projects';
+import AdvancedProjects from './components/AdvancedProjects';
 import Certifications from './components/Certifications';
-import Contact from './components/Contact';
+import EnhancedContact from './components/EnhancedContact';
+import Footer from './components/Footer';
+import ThemeToggle from './components/ThemeToggle';
+import SEOHead from './components/SEOHead';
+import AdvancedDashboard from './components/AdvancedDashboard';
+import ErrorBoundary from './components/ErrorBoundary';
+import { NotificationProvider } from './components/NotificationSystem';
+import { PageTransition } from './components/LoadingSystem';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { useAnalytics } from './hooks/useAnalytics';
+import { useAccessibility } from './hooks/useAccessibility';
 import './styles/animations.css';
+import './styles/themes.css';
+import './styles/perfect-portfolio.css';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  
+  // Advanced hooks
+  const { trackPageView, trackUserInteraction } = useAnalytics();
+  const { announce } = useAccessibility();
 
   useEffect(() => {
+    // Track initial page view
+    trackPageView('portfolio-home');
+    announce('Portfolio loaded successfully');
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
@@ -32,7 +48,11 @@ const App: React.FC = () => {
         if (element) {
           const { top, bottom } = element.getBoundingClientRect();
           if (top <= 100 && bottom >= 100) {
+            if (activeSection !== section) {
             setActiveSection(section);
+              trackPageView(`section-${section}`);
+              announce(`Navigated to ${section} section`);
+            }
             break;
           }
         }
@@ -41,9 +61,12 @@ const App: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [trackPageView, announce, activeSection]);
 
   const handleDownloadResume = () => {
+    trackUserInteraction('resume-download', 'click');
+    announce('Downloading resume');
+    
     const link = document.createElement('a');
     link.href = '/assets/Aadarsh_Thakur_Resume.pdf';
     link.download = 'Aadarsh_Thakur_Resume.pdf';
@@ -53,238 +76,226 @@ const App: React.FC = () => {
   };
 
   const handleContactMe = () => {
+    trackUserInteraction('contact-button', 'click');
+    announce('Navigating to contact section');
+    
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const renderIcon = (IconComponent: IconType, size: number, className?: string) => {
-    const Icon = IconComponent as React.ComponentType<{ size: number; className?: string }>;
-    return <Icon size={size} className={className} />;
-  };
-
   return (
-    <div className="app">
-      <Navbar 
-        expand="lg" 
-        fixed="top" 
-        className={`navbar-custom ${isScrolled ? 'scrolled' : ''}`}
-      >
-        <Container>
-          <Navbar.Brand href="#hero" className="brand-text">
-            AT
-          </Navbar.Brand>
-          <Navbar.Toggle 
-            aria-controls="basic-navbar-nav" 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="border-0"
-          >
-            <div className={`navbar-toggler-icon ${isMenuOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <NotificationProvider>
+          <SEOHead />
+          <PageTransition>
+            <div className="app" id="main-content">
+        <Navbar 
+          expand="lg" 
+          fixed="top" 
+          className={`navbar-custom ${isScrolled ? 'scrolled' : ''}`}
+        >
+          <Container>
+            <Navbar.Brand href="#hero" className="brand-text">
+              AT
+            </Navbar.Brand>
+              <div className="d-flex align-items-center">
+                <button
+                  onClick={() => setIsDashboardOpen(true)}
+                  className="btn btn-outline-primary me-2 d-none d-md-block"
+                  title="Open Analytics Dashboard"
+                >
+                  📊
+                </button>
+                <ThemeToggle />
+            <Navbar.Toggle 
+              aria-controls="basic-navbar-nav" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="border-0 ms-2"
+            >
+              <div className={`navbar-toggler-icon ${isMenuOpen ? 'open' : ''}`}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </Navbar.Toggle>
+              </div>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto">
+                <Nav.Link 
+                  href="#hero" 
+                  className={activeSection === 'hero' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Nav.Link>
+                <Nav.Link 
+                  href="#about" 
+                  className={activeSection === 'about' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
+                </Nav.Link>
+                <Nav.Link 
+                  href="#experience" 
+                  className={activeSection === 'experience' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Experience
+                </Nav.Link>
+                <Nav.Link 
+                  href="#projects" 
+                  className={activeSection === 'projects' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Projects
+                </Nav.Link>
+                <Nav.Link 
+                  href="#certifications" 
+                  className={activeSection === 'certifications' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Certifications
+                </Nav.Link>
+                <Nav.Link 
+                  href="#contact" 
+                  className={activeSection === 'contact' ? 'active' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Contact
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
+        <ErrorBoundary fallback={
+          <div className="hero-section d-flex align-items-center justify-content-center">
+            <div className="text-center">
+              <h2>Unable to load hero section</h2>
+              <p>Please refresh the page</p>
             </div>
-          </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link 
-                href="#hero" 
-                className={activeSection === 'hero' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Nav.Link>
-              <Nav.Link 
-                href="#about" 
-                className={activeSection === 'about' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Nav.Link>
-              <Nav.Link 
-                href="#experience" 
-                className={activeSection === 'experience' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Experience
-              </Nav.Link>
-              <Nav.Link 
-                href="#projects" 
-                className={activeSection === 'projects' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projects
-              </Nav.Link>
-              <Nav.Link 
-                href="#certifications" 
-                className={activeSection === 'certifications' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Certifications
-              </Nav.Link>
-              <Nav.Link 
-                href="#contact" 
-                className={activeSection === 'contact' ? 'active' : ''}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+          </div>
+        }>
+          <Hero 
+            onDownloadResume={handleDownloadResume}
+            onContactMe={handleContactMe}
+          />
+        </ErrorBoundary>
 
-      <section id="hero" className="hero-section">
-        <div className="hero-content">
-          <Row className="align-items-center">
-            <Col lg={8}>
-              <motion.h1 
-                className="hero-title"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                Aadarsh Thakur
-              </motion.h1>
-              <motion.p 
-                className="hero-subtitle"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Final Year Computer Science Engineering Student
-              </motion.p>
-              <motion.div 
-                className="hero-buttons"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <Button 
-                  variant="gradient" 
-                  className="btn-gradient"
-                  onClick={handleDownloadResume}
-                >
-                  {renderIcon(BsFileEarmarkText, 20, "me-2")}
-                  Download Resume
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="btn-outline"
-                  onClick={handleContactMe}
-                >
-                  {renderIcon(BsEnvelope, 20, "me-2")}
-                  Contact Me
-                </Button>
-              </motion.div>
-              <motion.div 
-                className="social-links mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <a 
-                  href="https://github.com/Aadarsh2021" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  {renderIcon(BsGithub, 24)}
-                </a>
-                <a 
-                  href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  {renderIcon(BsLinkedin, 24)}
-                </a>
-              </motion.div>
-            </Col>
-            <Col lg={4}>
-              <motion.div 
-                className="profile-image-container"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <img 
-                  src="/assets/profile.jpg" 
-                  alt="Aadarsh Thakur" 
-                  className="profile-image"
-                  loading="lazy"
-                  width="380"
-                  height="480"
-                />
-              </motion.div>
-            </Col>
-          </Row>
-      </div>
-      </section>
+        <AnimatePresence>
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load about section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="about"
+              id="about" 
+              className="about-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <About />
+            </motion.section>
+          </ErrorBoundary>
 
-      <AnimatePresence>
-        <motion.section 
-          key="about"
-          id="about" 
-          className="about-section section-padding"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <About />
-        </motion.section>
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load experience section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="experience"
+              id="experience" 
+              className="experience-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Experience />
+            </motion.section>
+          </ErrorBoundary>
 
-        <motion.section 
-          key="experience"
-          id="experience" 
-          className="experience-section section-padding"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <Experience />
-        </motion.section>
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load projects section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="projects"
+              id="projects" 
+              className="projects-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <AdvancedProjects />
+            </motion.section>
+          </ErrorBoundary>
 
-        <motion.section 
-          key="projects"
-          id="projects" 
-          className="projects-section section-padding"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <Projects />
-        </motion.section>
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load certifications section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="certifications"
+              id="certifications" 
+              className="certifications-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Certifications />
+            </motion.section>
+          </ErrorBoundary>
 
-        <motion.section 
-          key="certifications"
-          id="certifications" 
-          className="certifications-section section-padding"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <Certifications />
-        </motion.section>
-
-        <motion.section 
-          key="contact"
-          id="contact" 
-          className="contact-section section-padding"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <Contact />
-        </motion.section>
-      </AnimatePresence>
-      </div>
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load contact section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="contact"
+              id="contact" 
+              className="contact-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <EnhancedContact />
+            </motion.section>
+          </ErrorBoundary>
+        </AnimatePresence>
+        
+        <ErrorBoundary fallback={
+          <div className="text-center p-4">
+            <small>Footer unavailable</small>
+          </div>
+        }>
+          <Footer />
+        </ErrorBoundary>
+        </div>
+          </PageTransition>
+          
+          <ErrorBoundary fallback={null}>
+            <AdvancedDashboard 
+              isVisible={isDashboardOpen}
+              onClose={() => setIsDashboardOpen(false)}
+            />
+          </ErrorBoundary>
+        </NotificationProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 

@@ -1,0 +1,5 @@
+[33m05bfb2c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Added Smart City Traffic Detection project
+[33mee106fa[m Fix image path and Vercel configuration for better asset handling
+[33m48c0657[m Fix image display and responsiveness issues: - Update image path to use process.env.PUBLIC_URL - Add proper image loading attributes - Improve responsive design for different screen sizes - Update Vercel configuration for asset handling
+[33m338831b[m Add react-intersection-observer dependency
+[33mf313f52[m Add Vercel configuration

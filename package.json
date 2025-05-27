@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@tanstack/react-query": "^5.77.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,23 +14,37 @@
     "@types/node": "^16.18.70",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "@types/three": "^0.160.0",
     "bootstrap": "^5.3.2",
     "framer-motion": "^10.18.0",
+    "gsap": "^3.12.5",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.12",
+    "react-helmet-async": "^2.0.5",
+    "react-hotkeys-hook": "^4.4.4",
     "react-icons": "^5.0.1",
     "react-intersection-observer": "^9.16.0",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-scripts": "5.0.1",
+    "react-use": "^17.4.2",
+    "react-virtualized": "^9.22.5",
+    "three": "^0.160.1",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-webpack-plugin": "^7.0.0",
+    "zustand": "^4.5.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "vercel-build": "npm run build"
+    "vercel-build": "npm run build",
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "lighthouse": "npm run build && npx lighthouse-ci autorun"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +65,12 @@
     ]
   },
   "devDependencies": {
-    "@types/react-copy-to-clipboard": "^5.0.7"
+    "@types/react-copy-to-clipboard": "^5.0.7",
+    "@types/react-lazy-load-image-component": "^1.6.3",
+    "@types/react-virtualized": "^9.21.29",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.4"
   }
 }

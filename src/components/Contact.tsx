@@ -1,8 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { BsGithub, BsLinkedin, BsEnvelope, BsCheckCircle } from 'react-icons/bs';
 import { IconType } from 'react-icons';
+import { 
+  BsEnvelope, 
+  BsLinkedin, 
+  BsGithub,
+  BsCheckCircle
+} from 'react-icons/bs';
 import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {

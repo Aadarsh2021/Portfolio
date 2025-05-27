@@ -41,7 +41,7 @@ const projects: Project[] = [
     icon: BsGear,
     image: "/images/farmease.jpg",
     githubUrl: "https://github.com/Aadarsh2021/farmease",
-    liveUrl: "https://farmease-demo.vercel.app",
+    liveUrl: "https://major-devanshsrivastava0205s-projects.vercel.app/",
     status: 'completed',
     featured: true,
     year: 2024

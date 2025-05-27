@@ -5,6 +5,7 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 ## ✨ Advanced Features
 
 ### 🎨 **Modern Design System**
+
 - **Dual Theme Support** - Smooth dark/light mode transitions with system preference detection
 - **Glass Morphism Effects** - Modern frosted glass UI components
 - **Advanced Animations** - Framer Motion with staggered animations and micro-interactions
@@ -12,6 +13,7 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 - **Custom CSS Variables** - Systematic color and spacing tokens
 
 ### ⚡ **Performance & Optimization**
+
 - **Progressive Web App (PWA)** - Offline functionality and app-like experience
 - **Performance Monitoring** - Real-time Web Vitals tracking
 - **Lazy Loading** - Optimized image and component loading
@@ -19,6 +21,7 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 - **SEO Optimization** - Structured data, meta tags, and Open Graph
 
 ### 🔧 **Advanced Functionality**
+
 - **Project Filtering** - Real-time search and category filtering
 - **Scroll Spy Navigation** - Active section tracking
 - **Interactive 3D Elements** - Three.js integration (ready)
@@ -26,6 +29,7 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 - **Modern Hooks** - Custom React hooks for performance and UX
 
 ### 🛡️ **Developer Experience**
+
 - **Code Quality** - ESLint, Prettier, and TypeScript strict mode
 - **Performance Scripts** - Lighthouse CI and bundle analysis
 - **Modern Architecture** - Context providers and custom hooks
@@ -34,12 +38,14 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 ## 🛠️ Technologies Used
 
 ### **Core Stack**
+
 - React 18 with TypeScript
 - Bootstrap 5 + Custom CSS Variables
 - Framer Motion for animations
 - EmailJS for contact functionality
 
 ### **Advanced Integrations**
+
 - React Three Fiber (3D graphics)
 - React Helmet Async (SEO)
 - React Query (data fetching)
@@ -47,12 +53,14 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 - GSAP (advanced animations)
 
 ### **Performance & PWA**
+
 - Workbox (service worker)
 - React Intersection Observer
 - React Virtualized (large lists)
 - React Lazy Load Image Component
 
 ### **Development Tools**
+
 - TypeScript strict mode
 - ESLint + Prettier
 - Lighthouse CI
@@ -61,18 +69,21 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 ## 📱 Sections & Features
 
 ### **🎯 Hero Section**
+
 - Animated introduction with Framer Motion
 - Professional profile image with hover effects
 - Call-to-action buttons with micro-interactions
 - Social media integration
 
 ### **👨‍💻 About Section**
+
 - Skills showcase with interactive badges
 - Educational background
 - Professional experience timeline
 - Downloadable resume
 
 ### **💼 Advanced Projects Showcase**
+
 - **Real-time Search** - Filter projects by name, description, or technology
 - **Category Filtering** - Web, Mobile, Blockchain, AI/ML categories
 - **Status Indicators** - Completed, In Progress, Planned
@@ -81,11 +92,13 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 - **Featured Projects** - Highlighted important work
 
 ### **🎓 Certifications**
+
 - Professional certifications display
 - Achievement badges
 - Verification links
 
 ### **📧 Contact Form**
+
 - EmailJS integration for direct messaging
 - Form validation and error handling
 - Success/error feedback
@@ -94,36 +107,43 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 ## 🚀 Getting Started
 
 ### **Prerequisites**
-- Node.js 16+ 
+
+- Node.js 16+
 - npm or yarn
 
 ### **Installation**
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/Aadarsh2021/portfolio-project.git
 cd portfolio-project
 ```
 
-2. **Install dependencies**
+2.**Install dependencies**
+
 ```bash
 npm install
 ```
 
-3. **Environment Setup**
+3.**Environment Setup**
+
 Create a `.env` file with your EmailJS credentials:
+
 ```env
 REACT_APP_EMAILJS_SERVICE_ID=your_service_id
 REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
 REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-4. **Start development server**
+4.**Start development server**
+
 ```bash
 npm start
 ```
 
-5. **Build for production**
+5.**Build for production**
+
 ```bash
 npm run build
 ```
@@ -144,7 +164,9 @@ npm run vercel-build
 ## 🎨 Customization Guide
 
 ### **Theme Customization**
+
 Modify CSS variables in `src/styles/themes.css`:
+
 ```css
 :root {
   --primary-hue: 248;        /* Primary color hue */
@@ -154,11 +176,13 @@ Modify CSS variables in `src/styles/themes.css`:
 ```
 
 ### **Content Updates**
+
 - Update project data in `src/components/AdvancedProjects.tsx`
 - Modify personal information in `src/App.tsx`
 - Update SEO data in `src/components/SEOHead.tsx`
 
 ### **Adding New Features**
+
 1. Create components in `src/components/`
 2. Add custom hooks in `src/hooks/`
 3. Update theme variables in `src/styles/themes.css`
@@ -167,6 +191,7 @@ Modify CSS variables in `src/styles/themes.css`:
 ## 📊 Performance Features
 
 ### **Web Vitals Monitoring**
+
 - First Contentful Paint (FCP)
 - Largest Contentful Paint (LCP)
 - First Input Delay (FID)
@@ -174,6 +199,7 @@ Modify CSS variables in `src/styles/themes.css`:
 - Time to First Byte (TTFB)
 
 ### **PWA Capabilities**
+
 - Offline functionality
 - Install prompts
 - Background sync
@@ -210,9 +236,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Aadarsh Thakur**
-- Email: thakuraadarsh1@gmail.com
-- Portfolio: [aadarsh-portfolio.vercel.app](https://aadarsh-portfolio.vercel.app)
+### Aadarsh Thakur
+
+- Email:thakuraadarsh1@gmail.com
+- Portfolio: [portfolio-khaki-omega-43.vercel.app](http://portfolio-khaki-omega-43.vercel.app)
 - GitHub: [@Aadarsh2021](https://github.com/Aadarsh2021)
 - LinkedIn: [aadarsh-thakur](https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/)
 

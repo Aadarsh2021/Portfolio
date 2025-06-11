@@ -33,15 +33,15 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "FarmEase",
-    description: "A blockchain-based e-commerce platform for agricultural products featuring smart contract payments.",
-    longDescription: "FarmEase is a comprehensive blockchain-based e-commerce platform designed specifically for agricultural products. It features smart contract payments, transparent transactions, automated order fulfillment, and direct farmer-to-consumer connections. The platform ensures fair pricing, reduces intermediaries, and provides supply chain transparency.",
-    technologies: ["React", "Solidity", "Web3.js", "Node.js", "MongoDB", "Ethereum"],
-    category: 'blockchain',
+    title: "FarmEase - Agricultural E-commerce Platform",
+    description: "A comprehensive e-commerce platform for agricultural products featuring organic vegetables, fruits, seeds, and farming tools with 24/7 support.",
+    longDescription: "FarmEase is a modern agricultural e-commerce platform offering premium organic vegetables, fresh fruits, certified seeds, fertilizers, and farming equipment. Features include category-based shopping, seasonal deals, secure payment processing, free shipping, easy returns, and 24/7 customer support. The platform connects farmers directly with consumers, ensuring fresh, quality products delivered to your doorstep.",
+    technologies: ["React", "JavaScript", "CSS", "Bootstrap", "E-commerce", "Responsive Design"],
+    category: 'web',
     icon: BsGear,
     image: "/images/farmease.jpg",
     githubUrl: "https://github.com/Aadarsh2021/farmease",
-    liveUrl: "https://major-devanshsrivastava0205s-projects.vercel.app/",
+    liveUrl: "https://farm-phi-jade.vercel.app/",
     status: 'completed',
     featured: true,
     year: 2024
@@ -56,7 +56,7 @@ const projects: Project[] = [
     icon: BsLaptop,
     image: "/images/portfolio.jpg",
     githubUrl: "https://github.com/Aadarsh2021/portfolio",
-    liveUrl: "http://portfolio-khaki-omega-43.vercel.app",
+    liveUrl: "https://portfolio-khaki-omega-43.vercel.app/",
     status: 'completed',
     featured: true,
     year: 2024

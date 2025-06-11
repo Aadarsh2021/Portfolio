@@ -11,6 +11,9 @@ import EnhancedContact from './components/EnhancedContact';
 import Testimonials from './components/Testimonials';
 import Blog from './components/Blog';
 import EnhancedSkills from './components/EnhancedSkills';
+import ScrollToTop from './components/ScrollToTop';
+import SocialLinks from './components/SocialLinks';
+import ResumeDownload from './components/ResumeDownload';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import SEOHead from './components/SEOHead';
@@ -204,6 +207,9 @@ const App: React.FC = () => {
               transition={{ duration: 0.8 }}
             >
               <About />
+              <div className="mt-5">
+                <ResumeDownload />
+              </div>
             </motion.section>
           </ErrorBoundary>
 
@@ -340,7 +346,12 @@ const App: React.FC = () => {
           </div>
         }>
           <Footer />
+          <div className="py-4">
+            <SocialLinks />
+          </div>
         </ErrorBoundary>
+        
+        <ScrollToTop />
         </div>
           </PageTransition>
           

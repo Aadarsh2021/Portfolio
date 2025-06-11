@@ -40,7 +40,7 @@ const projects: Project[] = [
     category: 'web',
     icon: BsGear,
     image: "/assets/farmease.png",
-    githubUrl: "https://github.com/Aadarsh2021/farmease",
+    githubUrl: "https://github.com/Aadarsh2021/farm",
     liveUrl: "https://farm-phi-jade.vercel.app/",
     status: 'completed',
     featured: true,

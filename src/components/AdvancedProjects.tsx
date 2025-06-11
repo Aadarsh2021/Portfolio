@@ -55,7 +55,7 @@ const projects: Project[] = [
     technologies: ["Python", "YOLOv5", "OpenCV", "PyTorch", "Flask", "TensorFlow"],
     category: 'ai',
     icon: BsGear,
-    image: "https://via.placeholder.com/400x250/6366f1/ffffff?text=Traffic+Detection",
+    image: "/assets/Smart.png",
     githubUrl: "https://github.com/Aadarsh2021/traffic-detection",
     status: 'completed',
     featured: false,

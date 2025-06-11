@@ -8,6 +8,9 @@ import Experience from './components/Experience';
 import AdvancedProjects from './components/AdvancedProjects';
 import Certifications from './components/Certifications';
 import EnhancedContact from './components/EnhancedContact';
+import Testimonials from './components/Testimonials';
+import Blog from './components/Blog';
+import EnhancedSkills from './components/EnhancedSkills';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import SEOHead from './components/SEOHead';
@@ -224,6 +227,24 @@ const App: React.FC = () => {
 
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
+              <h3>Unable to load skills section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="skills"
+              id="skills" 
+              className="skills-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <EnhancedSkills />
+            </motion.section>
+          </ErrorBoundary>
+
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
               <h3>Unable to load projects section</h3>
             </div>
           }>
@@ -237,6 +258,42 @@ const App: React.FC = () => {
               transition={{ duration: 0.8 }}
             >
               <AdvancedProjects />
+            </motion.section>
+          </ErrorBoundary>
+
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load testimonials section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="testimonials"
+              id="testimonials" 
+              className="testimonials-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Testimonials />
+            </motion.section>
+          </ErrorBoundary>
+
+          <ErrorBoundary fallback={
+            <div className="section-padding text-center">
+              <h3>Unable to load blog section</h3>
+            </div>
+          }>
+            <motion.section 
+              key="blog"
+              id="blog" 
+              className="blog-section section-padding"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Blog />
             </motion.section>
           </ErrorBoundary>
 

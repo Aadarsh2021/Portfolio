@@ -54,7 +54,7 @@ const projects: Project[] = [
     technologies: ["React", "TypeScript", "Bootstrap", "Framer Motion", "EmailJS"],
     category: 'web',
     icon: BsLaptop,
-    image: "/assets/porfolio.png",
+    image: "/assets/portfolio.png",
     githubUrl: "https://github.com/Aadarsh2021/portfolio",
     liveUrl: "https://portfolio-khaki-omega-43.vercel.app/",
     status: 'completed',

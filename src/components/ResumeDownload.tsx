@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const ResumeDownload: React.FC = () => {
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/assets/Aadarsh_new_resume.pdf';
+    link.href = '/public/assets/Aadarsh_new_resume.pdf';
     link.download = 'Aadarsh_Thakur_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);

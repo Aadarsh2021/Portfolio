@@ -31,7 +31,21 @@ interface Project {
 }
 
 const projects: Project[] = [
-
+  {
+    id: 1,
+    title: "FarmEase - Agricultural E-commerce Platform",
+    description: "A comprehensive e-commerce platform for agricultural products featuring organic vegetables, fruits, seeds, and farming tools with 24/7 support.",
+    longDescription: "FarmEase is a modern agricultural e-commerce platform offering premium organic vegetables, fresh fruits, certified seeds, fertilizers, and farming equipment. Features include category-based shopping, seasonal deals, secure payment processing, free shipping, easy returns, and 24/7 customer support. The platform connects farmers directly with consumers, ensuring fresh, quality products delivered to your doorstep.",
+    technologies: ["React", "JavaScript", "CSS", "Bootstrap", "E-commerce", "Responsive Design"],
+    category: 'web',
+    icon: BsGear,
+    image: "/assets/farmease.png",
+    githubUrl: "https://github.com/Aadarsh2021/farm",
+    liveUrl: "https://farm-phi-jade.vercel.app/",
+    status: 'completed',
+    featured: true,
+    year: 2024
+  },
   {
     id: 2,
     title: "Personal Portfolio Website",

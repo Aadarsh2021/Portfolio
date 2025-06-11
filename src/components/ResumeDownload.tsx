@@ -3,14 +3,38 @@ import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 
 const ResumeDownload: React.FC = () => {
-      const handleDownload = () => {
+  const handleDownload = async () => {
+    try {
+      // First try to fetch the file to ensure it exists
+      const response = await fetch('/assets/Aadarsh_new_resume.pdf');
+      if (!response.ok) {
+        throw new Error('Resume file not found');
+      }
+      
+      // Create blob from response
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create download link
       const link = document.createElement('a');
-      link.href = '/assets/Aadarsh_new_resume.pdf';
+      link.href = url;
       link.download = 'Aadarsh_Thakur_Resume.pdf';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      link.style.display = 'none';
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up
+      window.URL.revokeObjectURL(url);
+      
+      console.log('Resume download initiated successfully');
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback: open in new tab
+      window.open('/assets/Aadarsh_new_resume.pdf', '_blank');
+    }
   };
 
   return (
@@ -23,7 +47,7 @@ const ResumeDownload: React.FC = () => {
       <Button
         onClick={handleDownload}
         size="lg"
-        className="resume-download-btn"
+        className="resume-download-btn me-3"
         style={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           border: 'none',
@@ -44,6 +68,24 @@ const ResumeDownload: React.FC = () => {
         }}
       >
         📄 Download Resume
+      </Button>
+      
+      <Button
+        as="a"
+        href="/assets/Aadarsh_new_resume.pdf"
+        download="Aadarsh_Thakur_Resume.pdf"
+        target="_blank"
+        variant="outline-primary"
+        size="lg"
+        style={{
+          borderRadius: '50px',
+          padding: '12px 30px',
+          fontSize: '16px',
+          fontWeight: '600',
+          borderWidth: '2px'
+        }}
+      >
+        📋 View Resume
       </Button>
       
       <motion.p 

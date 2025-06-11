@@ -13,7 +13,6 @@ import Blog from './components/Blog';
 import EnhancedSkills from './components/EnhancedSkills';
 import ScrollToTop from './components/ScrollToTop';
 import SocialLinks from './components/SocialLinks';
-import ResumeDownload from './components/ResumeDownload';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import SEOHead from './components/SEOHead';
@@ -69,16 +68,41 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [trackPageView, announce, activeSection]);
 
-  const handleDownloadResume = () => {
+  const handleDownloadResume = async () => {
     trackUserInteraction('resume-download', 'click');
     announce('Downloading resume');
     
-    const link = document.createElement('a');
-    link.href = '/assets/Aadarsh_Thakur_Resume.pdf';
-    link.download = 'Aadarsh_Thakur_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // First try to fetch the file to ensure it exists
+      const response = await fetch('/assets/Aadarsh_new_resume.pdf');
+      if (!response.ok) {
+        throw new Error('Resume file not found');
+      }
+      
+      // Create blob from response
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Aadarsh_Thakur_Resume.pdf';
+      link.style.display = 'none';
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up
+      window.URL.revokeObjectURL(url);
+      
+      console.log('Resume download initiated successfully');
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback: open in new tab
+      window.open('/assets/Aadarsh_new_resume.pdf', '_blank');
+    }
   };
 
   const handleContactMe = () => {
@@ -207,9 +231,6 @@ const App: React.FC = () => {
               transition={{ duration: 0.8 }}
             >
               <About />
-              <div className="mt-5">
-                <ResumeDownload />
-              </div>
             </motion.section>
           </ErrorBoundary>
 

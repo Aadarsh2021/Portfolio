@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { BsCalendar, BsClock, BsArrowRight, BsEye } from 'react-icons/bs';
 
 const Blog: React.FC = () => {
   const blogPosts = [
@@ -109,11 +108,11 @@ const Blog: React.FC = () => {
                   <Card.Body className="d-flex flex-column">
                     <div className="blog-meta mb-3">
                       <div className="d-flex align-items-center text-muted small">
-                        <BsCalendar className="me-1" />
+                        <span className="me-1">📅</span>
                         <span className="me-3">{formatDate(post.date)}</span>
-                        <BsClock className="me-1" />
+                        <span className="me-1">⏰</span>
                         <span className="me-3">{post.readTime}</span>
-                        <BsEye className="me-1" />
+                        <span className="me-1">👁️</span>
                         <span>{post.views} views</span>
                       </div>
                     </div>
@@ -135,7 +134,7 @@ const Blog: React.FC = () => {
                       variant="outline-primary" 
                       className="mt-auto d-flex align-items-center"
                     >
-                      Read More <BsArrowRight className="ms-2" />
+                      Read More <span className="ms-2">→</span>
                     </Button>
                   </Card.Body>
                 </Card>

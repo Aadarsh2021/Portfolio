@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { BsQuote, BsStar, BsStarFill } from 'react-icons/bs';
+// import { BsQuote } from 'react-icons/bs';
 
 const Testimonials: React.FC = () => {
   const testimonials = [
@@ -54,12 +54,8 @@ const Testimonials: React.FC = () => {
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className="star">
-        {index < rating ? (
-          <BsStarFill className="text-warning" />
-        ) : (
-          <BsStar className="text-warning" />
-        )}
+      <span key={index} className="star text-warning">
+        {index < rating ? "★" : "☆"}
       </span>
     ));
   };
@@ -83,7 +79,7 @@ const Testimonials: React.FC = () => {
                 <Card className="h-100 testimonial-card glass-effect">
                   <Card.Body className="d-flex flex-column">
                     <div className="quote-icon mb-3">
-                      <BsQuote size={30} className="text-primary" />
+                      <span className="text-primary" style={{ fontSize: '30px' }}>"</span>
                     </div>
                     
                     <blockquote className="flex-grow-1 mb-4">

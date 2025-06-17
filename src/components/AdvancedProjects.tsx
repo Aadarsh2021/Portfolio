@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Container, Row, Col, Card, Button, Form, InputGroup, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, InputGroup, Badge } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { 
@@ -150,8 +150,8 @@ const AdvancedProjects: React.FC = () => {
         
         {/* Search and Filter Controls */}
         <Row className="mb-4">
-          <Col md={6}>
-            <InputGroup className="mb-3">
+          <Col md={6} xs={12} className="mb-3 mb-md-0">
+            <InputGroup>
               <InputGroup.Text>
                 {renderIcon(BsSearch, 16)}
               </InputGroup.Text>
@@ -161,17 +161,19 @@ const AdvancedProjects: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
+                style={{ fontSize: '16px', minHeight: '48px' }}
               />
             </InputGroup>
           </Col>
-          <Col md={6}>
-            <div className="d-flex align-items-center gap-3">
+          <Col md={6} xs={12}>
+            <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
               <Form.Check
                 type="switch"
                 id="featured-switch"
                 label="Featured Only"
                 checked={showFeaturedOnly}
                 onChange={(e) => setShowFeaturedOnly(e.target.checked)}
+                style={{ minHeight: '44px' }}
               />
             </div>
           </Col>
@@ -180,20 +182,19 @@ const AdvancedProjects: React.FC = () => {
         {/* Category Filter */}
         <Row className="mb-4">
           <Col>
-            <div className="category-filters d-flex flex-wrap gap-2 justify-content-center">
+            <div className="category-filters d-flex flex-nowrap d-md-flex flex-md-wrap gap-2 justify-content-start justify-content-md-center overflow-auto pb-2 pb-md-0">
               {categories.map((category) => {
                 const isActive = selectedCategory === category.key;
                 return (
-                  <Button
+                  <button
                     key={category.key}
-                    variant={isActive ? "primary" : "outline-primary"}
-                    size="sm"
+                    className={`btn btn-${isActive ? "primary" : "outline-primary"} btn-sm category-btn flex-shrink-0 touch-feedback`}
                     onClick={() => setSelectedCategory(category.key)}
-                    className="category-btn"
+                    style={{ minHeight: '44px', whiteSpace: 'nowrap' }}
                   >
                     {renderIcon(category.icon, 16, "me-2")}
                     {category.label}
-                  </Button>
+                  </button>
                 );
               })}
             </div>
@@ -204,7 +205,7 @@ const AdvancedProjects: React.FC = () => {
         <Row className="g-4">
           <AnimatePresence>
             {filteredProjects.map((project) => (
-              <Col key={project.id} lg={4} md={6}>
+              <Col key={project.id} lg={4} md={6} xs={12}>
                 <motion.div
                   variants={itemVariants}
                   initial="hidden"
@@ -214,42 +215,42 @@ const AdvancedProjects: React.FC = () => {
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card className="h-100 project-card glass-effect">
+                  <Card className="h-100 project-card glass-effect touch-feedback">
                     <div className="project-image-container">
                       <Card.Img 
                         variant="top" 
                         src={project.image} 
                         alt={project.title}
                         className="project-image"
+                        loading="lazy"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = 'https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+Image';
                         }}
                       />
                       <div className="project-overlay">
-                        <div className="project-links">
-                          <Button
-                            variant="light"
-                            size="sm"
+                        <div className="project-links d-flex flex-column flex-sm-row gap-2">
+                          <a
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="me-2"
+                            className="btn btn-light btn-sm touch-feedback"
+                            style={{ minHeight: '44px', minWidth: '100px' }}
                           >
                             {renderIcon(BsGithub, 16, "me-1")}
                             Code
-                          </Button>
+                          </a>
                           {project.liveUrl && (
-                            <Button
-                              variant="primary"
-                              size="sm"
+                            <a
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
+                              className="btn btn-primary btn-sm touch-feedback"
+                              style={{ minHeight: '44px', minWidth: '100px' }}
                             >
                               {renderIcon(BsEye, 16, "me-1")}
                               Live Demo
-                            </Button>
+                            </a>
                           )}
                         </div>
                       </div>

@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import './styles/animations.css';
+@import './styles/mobile-responsive.css';
 
 :root {
   --primary-color: #4f46e5;

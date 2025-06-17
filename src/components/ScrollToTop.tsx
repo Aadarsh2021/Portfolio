@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ScrollToTop: React.FC = () => {
@@ -33,30 +32,23 @@ const ScrollToTop: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.3 }}
-          style={{
-            position: 'fixed',
-            bottom: '30px',
-            right: '30px',
-            zIndex: 1000
-          }}
+          className="scroll-to-top-btn"
         >
-          <Button
-            variant="primary"
-            size="lg"
+          <div
+            className="scroll-to-top-button touch-feedback"
             onClick={scrollToTop}
-            className="rounded-circle shadow-lg"
-            style={{
-              width: '60px',
-              height: '60px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              border: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+            role="button"
+            tabIndex={0}
+            aria-label="Scroll to top"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToTop();
+              }
             }}
           >
-            <span style={{ fontSize: '24px', fontWeight: 'bold' }}>↑</span>
-          </Button>
+            <span className="scroll-arrow">↑</span>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

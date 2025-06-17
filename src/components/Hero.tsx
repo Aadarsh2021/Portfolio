@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { BsGithub, BsLinkedin, BsEnvelope, BsFileEarmarkText } from 'react-icons/bs';
@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
     <section id="hero" className="hero-section">
       <Container>
         <Row className="align-items-center min-vh-100">
-          <Col lg={8} className="order-2 order-lg-1">
+          <Col lg={8} md={12} className="order-2 order-lg-1 text-center text-lg-start">
             <div className="hero-content">
                 <motion.h1
                 className="hero-title"
@@ -57,32 +57,32 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 </motion.p>
               
                 <motion.div
-                className="hero-buttons"
+                className="hero-buttons d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                <Button 
-                  className="btn-gradient me-4 mb-3"
+                <button 
+                  className="btn btn-gradient btn-lg me-sm-4 mb-3 touch-feedback"
                   onClick={onContactMe}
-                  size="lg"
+                  style={{ minHeight: '48px', minWidth: '200px' }}
                 >
                   {renderIcon(BsEnvelope, "me-2")}
                   Get In Touch
-                </Button>
+                </button>
                 
-                <Button 
-                  className="btn-outline mb-3"
+                <button 
+                  className="btn btn-outline btn-lg mb-3 touch-feedback"
                   onClick={onDownloadResume}
-                  size="lg"
+                  style={{ minHeight: '48px', minWidth: '200px' }}
                 >
                   {renderIcon(BsFileEarmarkText, "me-2")}
                   Download Resume
-                </Button>
+                </button>
               </motion.div>
 
               <motion.div
-                className="social-links"
+                className="social-links d-flex justify-content-center justify-content-lg-start"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
@@ -91,8 +91,9 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                   href="https://github.com/Aadarsh2021" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="social-link touch-feedback"
                   aria-label="GitHub Profile"
+                  style={{ minHeight: '48px', minWidth: '48px' }}
                 >
                   {renderIcon(BsGithub)}
                 </a>
@@ -101,16 +102,18 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                   href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="social-link touch-feedback"
                   aria-label="LinkedIn Profile"
+                  style={{ minHeight: '48px', minWidth: '48px' }}
                 >
                   {renderIcon(BsLinkedin)}
                 </a>
                 
                 <a 
                   href="mailto:thakuraadarsh1@gmail.com"
-                  className="social-link"
+                  className="social-link touch-feedback"
                   aria-label="Email Contact"
+                  style={{ minHeight: '48px', minWidth: '48px' }}
                 >
                   {renderIcon(BsEnvelope)}
                 </a>

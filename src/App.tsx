@@ -8,9 +8,11 @@ import Experience from './components/Experience';
 import AdvancedProjects from './components/AdvancedProjects';
 import Certifications from './components/Certifications';
 import EnhancedContact from './components/EnhancedContact';
-import Testimonials from './components/Testimonials';
-import Blog from './components/Blog';
+
+
 import EnhancedSkills from './components/EnhancedSkills';
+import ParticleBackground from './components/ParticleBackground';
+import AnalyticsModal from './components/AnalyticsModal';
 import ScrollToTop from './components/ScrollToTop';
 import SocialLinks from './components/SocialLinks';
 import Footer from './components/Footer';
@@ -22,6 +24,7 @@ import { NotificationProvider } from './components/NotificationSystem';
 import { PageTransition } from './components/LoadingSystem';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { useAnalytics } from './hooks/useAnalytics';
+import MobileEnhancer from './components/MobileEnhancer';
 import { useAccessibility } from './hooks/useAccessibility';
 import './styles/animations.css';
 import './styles/themes.css';
@@ -32,6 +35,7 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
   
   // Advanced hooks
   const { trackPageView, trackUserInteraction } = useAnalytics();
@@ -120,8 +124,9 @@ const App: React.FC = () => {
       <ThemeProvider>
         <NotificationProvider>
           <SEOHead />
-          <PageTransition>
-            <div className="app" id="main-content">
+          <MobileEnhancer>
+            <PageTransition>
+              <div className="app" id="main-content">
         <Navbar 
           expand="lg" 
           fixed="top" 
@@ -133,13 +138,20 @@ const App: React.FC = () => {
             </Navbar.Brand>
               <div className="d-flex align-items-center">
                 <button
+                  onClick={() => setIsAnalyticsModalOpen(true)}
+                  className="btn btn-outline-primary me-2 d-none d-md-block"
+                  title="View Analytics Dashboard"
+                >
+                  📊 Analytics
+                </button>
+                <ThemeToggle />
+                {/* <button
                   onClick={() => setIsDashboardOpen(true)}
                   className="btn btn-outline-primary me-2 d-none d-md-block"
                   title="Open Analytics Dashboard"
                 >
                   📊
-                </button>
-                <ThemeToggle />
+                </button> */}
             <Navbar.Toggle 
               aria-controls="basic-navbar-nav" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -209,10 +221,13 @@ const App: React.FC = () => {
             </div>
           </div>
         }>
-          <Hero 
-            onDownloadResume={handleDownloadResume}
-            onContactMe={handleContactMe}
-          />
+          <div style={{ position: 'relative' }}>
+            <ParticleBackground />
+            <Hero 
+              onDownloadResume={handleDownloadResume}
+              onContactMe={handleContactMe}
+            />
+          </div>
         </ErrorBoundary>
 
         <AnimatePresence>
@@ -288,41 +303,9 @@ const App: React.FC = () => {
             </motion.section>
           </ErrorBoundary>
 
-          <ErrorBoundary fallback={
-            <div className="section-padding text-center">
-              <h3>Unable to load testimonials section</h3>
-            </div>
-          }>
-            <motion.section 
-              key="testimonials"
-              id="testimonials" 
-              className="testimonials-section section-padding"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <Testimonials />
-            </motion.section>
-          </ErrorBoundary>
 
-          <ErrorBoundary fallback={
-            <div className="section-padding text-center">
-              <h3>Unable to load blog section</h3>
-            </div>
-          }>
-            <motion.section 
-              key="blog"
-              id="blog" 
-              className="blog-section section-padding"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <Blog />
-            </motion.section>
-          </ErrorBoundary>
+
+
 
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
@@ -359,6 +342,8 @@ const App: React.FC = () => {
               <EnhancedContact />
             </motion.section>
           </ErrorBoundary>
+
+
         </AnimatePresence>
         
         <ErrorBoundary fallback={
@@ -373,13 +358,30 @@ const App: React.FC = () => {
         </ErrorBoundary>
         
         <ScrollToTop />
+        
+        {/* Mobile Analytics Button */}
+        <button
+          className="mobile-analytics-btn d-md-none"
+          onClick={() => setIsAnalyticsModalOpen(true)}
+          title="View Analytics"
+        >
+          📊
+        </button>
         </div>
-          </PageTransition>
+            </PageTransition>
+          </MobileEnhancer>
           
           <ErrorBoundary fallback={null}>
             <AdvancedDashboard 
               isVisible={isDashboardOpen}
               onClose={() => setIsDashboardOpen(false)}
+            />
+          </ErrorBoundary>
+
+          <ErrorBoundary fallback={null}>
+            <AnalyticsModal
+              isOpen={isAnalyticsModalOpen}
+              onClose={() => setIsAnalyticsModalOpen(false)}
             />
           </ErrorBoundary>
         </NotificationProvider>

@@ -39,9 +39,9 @@
     "zustand": "^4.5.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "vercel-build": "npm run build",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
@@ -66,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "@types/react-virtualized": "^9.21.29",

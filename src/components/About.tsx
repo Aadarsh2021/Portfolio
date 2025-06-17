@@ -66,7 +66,7 @@ const About: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     }
   };
@@ -77,7 +77,7 @@ const About: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut"
     }
     }
@@ -89,7 +89,7 @@ const About: React.FC = () => {
       <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
         >
           <Row className="justify-content-center">
@@ -205,13 +205,13 @@ const About: React.FC = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ 
-                              duration: 0.3, 
-                              delay: index * 0.1,
+                              duration: 0.2, 
+                              delay: index * 0.05,
                               ease: "easeOut"
                             }}
                             whileHover={{ 
                               scale: 1.05,
-                              transition: { duration: 0.2 }
+                              transition: { duration: 0.1 }
                             }}
                           >
                     {skill}

@@ -106,72 +106,74 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <Container>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.h2 variants={itemVariants} className="display-4 mb-4 text-white">
-          Experience & <span className="text-gradient">Education</span>
-        </motion.h2>
+    <section id="experience" className="experience-section">
+      <Container>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 variants={itemVariants} className="display-4 mb-4 text-white">
+            Experience & <span className="text-gradient">Education</span>
+          </motion.h2>
 
-        <Row className="g-4">
-          <Col lg={6}>
-            <motion.div variants={itemVariants}>
-              <h3 className="h4 mb-4 text-white">
-                {BsBriefcase({ size: 24, className: "me-2" })}
-                Internships
-              </h3>
-              {internships.map((internship, index) => (
-                <Card key={index} className="mb-4 glass-effect">
-                  <Card.Body>
-                    <Card.Title className="text-white">{internship.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-light">{internship.company}</Card.Subtitle>
-                    <Card.Text className="text-muted mb-3">{internship.period}</Card.Text>
-                    <Card.Text className="text-white">{internship.description}</Card.Text>
-                    <ul className="list-unstyled">
-                      {internship.achievements.map((achievement, i) => (
-                        <li key={i} className="text-light mb-2">
-                          • {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card.Body>
-                </Card>
-              ))}
-            </motion.div>
-          </Col>
+          <Row className="g-4">
+            <Col lg={6}>
+              <motion.div variants={itemVariants}>
+                <h3 className="h4 mb-4 text-white">
+                  {BsBriefcase({ size: 24, className: "me-2" })}
+                  Internships
+                </h3>
+                {internships.map((internship, index) => (
+                  <Card key={index} className="mb-4 glass-effect">
+                    <Card.Body>
+                      <Card.Title className="text-white">{internship.title}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-light">{internship.company}</Card.Subtitle>
+                      <Card.Text className="text-muted mb-3">{internship.period}</Card.Text>
+                      <Card.Text className="text-white">{internship.description}</Card.Text>
+                      <ul className="list-unstyled">
+                        {internship.achievements.map((achievement, i) => (
+                          <li key={i} className="text-light mb-2">
+                            • {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </motion.div>
+            </Col>
 
-          <Col lg={6}>
-            <motion.div variants={itemVariants}>
-              <h3 className="h4 mb-4 text-white">
-                {BsMortarboard({ size: 24, className: "me-2" })}
-                Education
-              </h3>
-              {education.map((edu, index) => (
-                <Card key={index} className="mb-4 glass-effect">
-                  <Card.Body>
-                    <Card.Title className="text-white">{edu.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-light">{edu.school}</Card.Subtitle>
-                    <Card.Text className="text-muted mb-3">{edu.period}</Card.Text>
-                    <Card.Text className="text-white">{edu.description}</Card.Text>
-                    <ul className="list-unstyled">
-                      {edu.achievements.map((achievement, i) => (
-                        <li key={i} className="text-light mb-2">
-                          • {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card.Body>
-                </Card>
-              ))}
-            </motion.div>
-          </Col>
-        </Row>
-      </motion.div>
-    </Container>
+            <Col lg={6}>
+              <motion.div variants={itemVariants}>
+                <h3 className="h4 mb-4 text-white">
+                  {BsMortarboard({ size: 24, className: "me-2" })}
+                  Education
+                </h3>
+                {education.map((edu, index) => (
+                  <Card key={index} className="mb-4 glass-effect">
+                    <Card.Body>
+                      <Card.Title className="text-white">{edu.title}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-light">{edu.school}</Card.Subtitle>
+                      <Card.Text className="text-muted mb-3">{edu.period}</Card.Text>
+                      <Card.Text className="text-white">{edu.description}</Card.Text>
+                      <ul className="list-unstyled">
+                        {edu.achievements.map((achievement, i) => (
+                          <li key={i} className="text-light mb-2">
+                            • {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </motion.div>
+            </Col>
+          </Row>
+        </motion.div>
+      </Container>
+    </section>
   );
 };
 

@@ -138,7 +138,7 @@ const AdvancedProjects: React.FC = () => {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
@@ -146,7 +146,7 @@ const AdvancedProjects: React.FC = () => {
       y: -15,
       scale: 1.02,
       transition: {
-        duration: 0.3,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -159,14 +159,14 @@ const AdvancedProjects: React.FC = () => {
       y: 0,
       filter: 'blur(0px)',
       transition: {
-        duration: 0.8,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
     hover: {
       scale: 1.04,
       boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
-      transition: { duration: 0.3 }
+      transition: { duration: 0.1 }
     }
   };
 
@@ -176,21 +176,21 @@ const AdvancedProjects: React.FC = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.4,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
     hover: {
       scale: 1.05,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
         ease: "easeInOut"
       }
     },
     tap: {
       scale: 0.95,
       transition: {
-        duration: 0.1
+        duration: 0.05
       }
     }
   };
@@ -201,7 +201,7 @@ const AdvancedProjects: React.FC = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
@@ -209,14 +209,14 @@ const AdvancedProjects: React.FC = () => {
       scale: 1.1,
       y: -2,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
   };
 
   return (
-    <section id="projects" className="projects-section section-padding">
+    <section id="projects" className="projects-section">
       <Container>
         <motion.div
           initial="hidden"

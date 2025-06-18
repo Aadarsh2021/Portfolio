@@ -10,10 +10,10 @@ const Certifications: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99],
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.02,
+        delayChildren: 0.01
       }
     }
   };
@@ -22,7 +22,10 @@ const Certifications: React.FC = () => {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      y: 0
+      y: 0,
+      transition: {
+        duration: 0.2
+      }
     }
   };
 
@@ -33,14 +36,14 @@ const Certifications: React.FC = () => {
       y: 0,
       filter: 'blur(0px)',
       transition: {
-        duration: 0.8,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
     hover: {
       scale: 1.04,
       boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
-      transition: { duration: 0.3 }
+      transition: { duration: 0.1 }
     }
   };
 
@@ -121,132 +124,134 @@ const Certifications: React.FC = () => {
   ];
 
   return (
-    <Container>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.h2 variants={itemVariants} className="display-4 mb-4 text-white">
-          Certifications & <span className="text-gradient">Achievements</span>
-        </motion.h2>
+    <section id="certifications" className="certifications-section">
+      <Container>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 variants={itemVariants} className="display-4 mb-4 text-white">
+            Certifications & <span className="text-gradient">Achievements</span>
+          </motion.h2>
 
-        <Row className="g-4">
-          <Col lg={6}>
-            <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
-              {BsAward({ size: 24, className: "me-2" })}
-              Certifications
-            </motion.h3>
-            {certifications.map((cert, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="mb-4 glass-effect">
-                  <Card.Body>
-                    <div className="d-flex align-items-center mb-3">
-                      <div className="cert-icon me-3">
-                        {BsAward({ size: 24, className: "text-primary" })}
+          <Row className="g-4">
+            <Col lg={6}>
+              <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
+                {BsAward({ size: 24, className: "me-2" })}
+                Certifications
+              </motion.h3>
+              {certifications.map((cert, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="mb-4 glass-effect">
+                    <Card.Body>
+                      <div className="d-flex align-items-center mb-3">
+                        <div className="cert-icon me-3">
+                          {BsAward({ size: 24, className: "text-primary" })}
+                        </div>
+                        <div>
+                          <Card.Title className="text-white mb-1">{cert.title}</Card.Title>
+                          <Card.Subtitle className="text-light">
+                            {BsBuilding({ size: 16, className: "me-2" })}
+                            {cert.issuer}
+                          </Card.Subtitle>
+                        </div>
                       </div>
-                      <div>
-                        <Card.Title className="text-white mb-1">{cert.title}</Card.Title>
-                        <Card.Subtitle className="text-light">
-                          {BsBuilding({ size: 16, className: "me-2" })}
-                          {cert.issuer}
-                        </Card.Subtitle>
-                      </div>
-                    </div>
-                    <div className="mb-3">
-                      {BsCalendar({ size: 16, className: "me-2 text-muted" })}
-                      <span className="text-muted">{cert.period}</span>
-                    </div>
-                    <Card.Text className="text-white mb-3">{cert.description}</Card.Text>
-                    {cert.certificateId && (
                       <div className="mb-3">
-                        <strong className="text-light">Certificate ID:</strong>{" "}
-                        <span className="text-muted">{cert.certificateId}</span>
+                        {BsCalendar({ size: 16, className: "me-2 text-muted" })}
+                        <span className="text-muted">{cert.period}</span>
                       </div>
-                    )}
-                    <div className="skills-container">
-                      <h6 className="text-light mb-2">Key Skills:</h6>
-                      <div className="d-flex flex-wrap gap-2">
-                        {cert.skills.map((skill, i) => (
-                          <span key={i} className="badge bg-primary">
-                            {skill}
-                          </span>
-                        ))}
+                      <Card.Text className="text-white mb-3">{cert.description}</Card.Text>
+                      {cert.certificateId && (
+                        <div className="mb-3">
+                          <strong className="text-light">Certificate ID:</strong>{" "}
+                          <span className="text-muted">{cert.certificateId}</span>
+                        </div>
+                      )}
+                      <div className="skills-container">
+                        <h6 className="text-light mb-2">Key Skills:</h6>
+                        <div className="d-flex flex-wrap gap-2">
+                          {cert.skills.map((skill, i) => (
+                            <span key={i} className="badge bg-primary">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </motion.div>
-            ))}
-          </Col>
+                    </Card.Body>
+                  </Card>
+                </motion.div>
+              ))}
+            </Col>
 
-          <Col lg={6}>
-            <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
-              {BsTrophy({ size: 24, className: "me-2" })}
-              Achievements & Patents
-            </motion.h3>
-            
-            {achievements.map((achievement, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="mb-4 glass-effect">
-                  <Card.Body>
-                    <div className="d-flex align-items-center mb-3">
-                      <div className="achievement-icon me-3">
-                        {BsTrophy({ size: 24, className: "text-primary" })}
+            <Col lg={6}>
+              <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
+                {BsTrophy({ size: 24, className: "me-2" })}
+                Achievements & Patents
+              </motion.h3>
+              
+              {achievements.map((achievement, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="mb-4 glass-effect">
+                    <Card.Body>
+                      <div className="d-flex align-items-center mb-3">
+                        <div className="achievement-icon me-3">
+                          {BsTrophy({ size: 24, className: "text-primary" })}
+                        </div>
+                        <div>
+                          <Card.Title className="text-white mb-1">{achievement.title}</Card.Title>
+                          <Card.Subtitle className="text-light">{achievement.position}</Card.Subtitle>
+                        </div>
                       </div>
-                      <div>
-                        <Card.Title className="text-white mb-1">{achievement.title}</Card.Title>
-                        <Card.Subtitle className="text-light">{achievement.position}</Card.Subtitle>
+                      <Card.Text className="text-white mb-3">{achievement.description}</Card.Text>
+                      <div className="highlights-list">
+                        <h6 className="text-light mb-2">Highlights:</h6>
+                        <ul className="list-unstyled mb-0">
+                          {achievement.highlights.map((highlight, i) => (
+                            <li key={i} className="d-flex align-items-center mb-2">
+                              {BsCheckCircle({ size: 16, className: "text-primary me-2" })}
+                              <span className="text-light">{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </div>
-                    <Card.Text className="text-white mb-3">{achievement.description}</Card.Text>
-                    <div className="highlights-list">
-                      <h6 className="text-light mb-2">Highlights:</h6>
-                      <ul className="list-unstyled mb-0">
-                        {achievement.highlights.map((highlight, i) => (
-                          <li key={i} className="d-flex align-items-center mb-2">
-                            {BsCheckCircle({ size: 16, className: "text-primary me-2" })}
-                            <span className="text-light">{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </motion.div>
-            ))}
+                    </Card.Body>
+                  </Card>
+                </motion.div>
+              ))}
 
-            <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
-              {BsLightbulb({ size: 24, className: "me-2" })}
-              Patents
-            </motion.h3>
-            
-            {patents.map((patent, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                <Card className="mb-4 glass-effect">
-                  <Card.Body>
-                    <Card.Title className="text-white mb-3">{patent.title}</Card.Title>
-                    <Card.Text className="text-white mb-3">{patent.description}</Card.Text>
-                    <div className="features-list">
-                      <h6 className="text-light mb-2">Key Features:</h6>
-                      <ul className="list-unstyled mb-0">
-                        {patent.features.map((feature, i) => (
-                          <li key={i} className="d-flex align-items-center mb-2">
-                            {BsLightbulb({ size: 16, className: "text-primary me-2" })}
-                            <span className="text-light">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </motion.div>
-            ))}
-          </Col>
-        </Row>
-      </motion.div>
-    </Container>
+              <motion.h3 variants={itemVariants} className="h4 mb-4 text-white">
+                {BsLightbulb({ size: 24, className: "me-2" })}
+                Patents
+              </motion.h3>
+              
+              {patents.map((patent, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="mb-4 glass-effect">
+                    <Card.Body>
+                      <Card.Title className="text-white mb-3">{patent.title}</Card.Title>
+                      <Card.Text className="text-white mb-3">{patent.description}</Card.Text>
+                      <div className="features-list">
+                        <h6 className="text-light mb-2">Key Features:</h6>
+                        <ul className="list-unstyled mb-0">
+                          {patent.features.map((feature, i) => (
+                            <li key={i} className="d-flex align-items-center mb-2">
+                              {BsLightbulb({ size: 16, className: "text-primary me-2" })}
+                              <span className="text-light">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </motion.div>
+              ))}
+            </Col>
+          </Row>
+        </motion.div>
+      </Container>
+    </section>
   );
 };
 

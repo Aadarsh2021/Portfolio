@@ -80,8 +80,8 @@ const About: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.02,
+        delayChildren: 0.01
       }
     }
   };
@@ -93,7 +93,7 @@ const About: React.FC = () => {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
@@ -101,7 +101,7 @@ const About: React.FC = () => {
       y: -10,
       scale: 1.02,
       transition: {
-        duration: 0.3,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -114,7 +114,7 @@ const About: React.FC = () => {
       scale: 1,
       rotateY: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
@@ -123,7 +123,7 @@ const About: React.FC = () => {
       rotateY: 5,
       y: -5,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -135,7 +135,7 @@ const About: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.2,
         ease: "easeOut"
       }
     }
@@ -147,14 +147,14 @@ const About: React.FC = () => {
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.2,
         ease: "easeOut"
       }
     }
   };
 
   return (
-    <section id="about" className="about-section section-padding">
+    <section id="about" className="about-section">
       <Container>
         <motion.div
           initial="hidden"

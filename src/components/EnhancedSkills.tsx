@@ -101,44 +101,32 @@ const EnhancedSkills: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50, 
-      scale: 0.8,
-      filter: "blur(10px)"
-    },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      filter: "blur(0px)",
       transition: {
-        duration: 0.8,
-        ease: [0.6, 0.05, 0.01, 0.99]
+        duration: 0.2,
+        staggerChildren: 0.02,
+        delayChildren: 0.01
       }
     }
   };
 
   const skillVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -50,
-      scale: 0.8
-    },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
-      x: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
     hover: {
       scale: 1.05,
-      y: -5,
       transition: {
-        duration: 0.3,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -162,7 +150,7 @@ const EnhancedSkills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="skills-section py-5">
+    <section id="skills" className="skills-section">
       <Container>
         <motion.div
           className="text-center mb-5"

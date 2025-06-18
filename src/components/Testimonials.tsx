@@ -72,56 +72,58 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <Container>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.h2 variants={cardVariants} className="section-title text-center mb-5">
-          What People Say
-        </motion.h2>
-        
-        <Row className="g-4">
-          {testimonials.map((testimonial) => (
-            <Col key={testimonial.id} lg={4} md={6}>
-              <motion.div variants={cardVariants}>
-                <Card className="h-100 testimonial-card glass-effect">
-                  <Card.Body className="d-flex flex-column">
-                    <div className="quote-icon mb-3">
-                      <span className="text-primary" style={{ fontSize: '30px' }}>"</span>
-                    </div>
-                    
-                    <blockquote className="flex-grow-1 mb-4">
-                      <p className="mb-0 fst-italic">"{testimonial.content}"</p>
-                    </blockquote>
-                    
-                    <div className="testimonial-rating mb-3">
-                      {renderStars(testimonial.rating)}
-                    </div>
-                    
-                    <div className="testimonial-author d-flex align-items-center">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="rounded-circle me-3"
-                        width="50"
-                        height="50"
-                      />
-                      <div>
-                        <h6 className="mb-0 fw-bold">{testimonial.name}</h6>
-                        <small className="text-muted">{testimonial.role}</small>
+    <section id="testimonials" className="testimonials-section">
+      <Container>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.h2 variants={cardVariants} className="section-title text-center mb-5">
+            What People Say
+          </motion.h2>
+          
+          <Row className="g-4">
+            {testimonials.map((testimonial) => (
+              <Col key={testimonial.id} lg={4} md={6}>
+                <motion.div variants={cardVariants}>
+                  <Card className="h-100 testimonial-card glass-effect">
+                    <Card.Body className="d-flex flex-column">
+                      <div className="quote-icon mb-3">
+                        <span className="text-primary" style={{ fontSize: '30px' }}>"</span>
                       </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </motion.div>
-            </Col>
-          ))}
-        </Row>
-      </motion.div>
-    </Container>
+                      
+                      <blockquote className="flex-grow-1 mb-4">
+                        <p className="mb-0 fst-italic">"{testimonial.content}"</p>
+                      </blockquote>
+                      
+                      <div className="testimonial-rating mb-3">
+                        {renderStars(testimonial.rating)}
+                      </div>
+                      
+                      <div className="testimonial-author d-flex align-items-center">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="rounded-circle me-3"
+                          width="50"
+                          height="50"
+                        />
+                        <div>
+                          <h6 className="mb-0 fw-bold">{testimonial.name}</h6>
+                          <small className="text-muted">{testimonial.role}</small>
+                        </div>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+        </motion.div>
+      </Container>
+    </section>
   );
 };
 

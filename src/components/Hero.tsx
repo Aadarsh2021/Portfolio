@@ -44,8 +44,8 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.2
+        staggerChildren: 0.01,
+        delayChildren: 0.01
       }
     }
   };
@@ -61,9 +61,9 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      filter: "blur(0px)",
+      filter: "none",
       transition: {
-        duration: 0.8,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     }
@@ -80,8 +80,8 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.02,
+        delayChildren: 0.01
       }
     }
   };
@@ -99,7 +99,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 1,
       filter: "blur(0px)",
       transition: {
-        duration: 1.2,
+        duration: 0.2,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     }
@@ -116,7 +116,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 1,
       rotateY: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
@@ -124,7 +124,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 1.1,
       rotateY: 10,
       transition: {
-        duration: 0.3,
+        duration: 0.1,
         ease: "easeInOut"
       }
     },
@@ -132,7 +132,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 0.95,
       rotateY: -5,
       transition: {
-        duration: 0.1
+        duration: 0.05
       }
     }
   };
@@ -150,7 +150,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 1,
       rotateZ: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.2,
         ease: "easeOut"
       }
     },
@@ -159,7 +159,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       scale: 1.2,
       rotateZ: 360,
       transition: {
-        duration: 0.4,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -178,7 +178,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       rotateY: 0,
       filter: "blur(0px) brightness(1)",
       transition: {
-        duration: 1.5,
+        duration: 0.3,
         ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
@@ -187,7 +187,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       rotateY: 15,
       filter: "blur(0px) brightness(1.1)",
       transition: {
-        duration: 0.5,
+        duration: 0.1,
         ease: "easeInOut"
       }
     }
@@ -239,7 +239,12 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       <motion.span
         key={index}
         variants={letterVariants}
-        style={{ display: 'inline-block' }}
+        style={{
+          display: 'inline-block',
+          color: '#fff',
+          textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+          fontWeight: 900
+        }}
       >
         {char === ' ' ? '\u00A0' : char}
       </motion.span>
@@ -356,15 +361,12 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 variants={textVariants}
                 ref={titleRef}
                 style={{
-                  fontSize: 'var(--font-size-7xl)',
+                  fontSize: '3.5rem',
                   fontWeight: 900,
                   lineHeight: 1.1,
-                  marginBottom: 'var(--space-6)',
-                  background: 'linear-gradient(135deg, var(--primary), var(--secondary), var(--accent))',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textShadow: '0 0 30px rgba(99, 102, 241, 0.5)'
+                  marginBottom: '2rem',
+                  color: '#ffffff',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)'
                 }}
               >
                 Hi, I'm {splitText("Aadarsh Thakur")}
@@ -602,7 +604,11 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
               style={{
                 position: 'relative',
                 display: 'inline-block',
-                perspective: '1200px'
+                perspective: '1200px',
+                width: '100%',
+                maxWidth: '350px',
+                aspectRatio: '1',
+                margin: '0 auto'
               }}
             >
               <motion.img 
@@ -611,10 +617,11 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 className="profile-image"
                 loading="eager"
                 style={{
-                  width: '350px',
-                  height: '350px',
+                  width: '100%',
+                  height: '100%',
                   borderRadius: 'var(--radius-3xl)',
                   objectFit: 'cover',
+                  objectPosition: 'center top',
                   boxShadow: 'var(--shadow-2xl), 0 0 50px rgba(99, 102, 241, 0.5)',
                   border: '6px solid var(--glass-border)',
                   background: 'var(--glass-bg)',
@@ -684,53 +691,6 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
           </Col>
         </Row>
       </Container>
-      
-      {/* Ultra-Enhanced Scroll Indicator */}
-      <motion.div 
-        className="scroll-indicator"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 3 }}
-        style={{
-          position: 'absolute',
-          bottom: 'var(--space-8)',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          color: 'var(--text-muted)',
-          fontSize: 'var(--font-size-sm)',
-          cursor: 'pointer',
-          zIndex: 3
-        }}
-        whileHover={{ y: 10, scale: 1.1 }}
-      >
-        <motion.span 
-          style={{ marginBottom: 'var(--space-3)' }}
-          animate={{ 
-            opacity: [0.3, 1, 0.3],
-            y: [0, -5, 0]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          Scroll Down
-        </motion.span>
-        <motion.div
-          animate={{ 
-            y: [0, 20, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-          style={{
-            width: '3px',
-            height: '40px',
-            background: 'linear-gradient(to bottom, var(--primary), var(--secondary), transparent)',
-            borderRadius: 'var(--radius-full)',
-            boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)'
-          }}
-        />
-      </motion.div>
     </section>
   );
 };

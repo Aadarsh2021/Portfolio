@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ScrollToTop: React.FC = () => {

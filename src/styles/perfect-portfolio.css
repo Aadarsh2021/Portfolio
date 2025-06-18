@@ -100,6 +100,10 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Mobile-specific variables */
+  --mobile-space-lg: 1.5rem;
+  --mobile-transition: 0.2s ease-out;
 }
 
 /* ===== DARK THEME VARIABLES ===== */
@@ -956,25 +960,32 @@ body {
   /* Show analytics button on mobile in a different way */
   .mobile-analytics-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
+    bottom: var(--mobile-space-lg);
+    right: var(--mobile-space-lg);
+    z-index: 1050;
     background: var(--primary);
     color: white;
-    border: none;
+    border: 3px solid #fff;
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow-lg);
+    width: 64px;
+    height: 64px;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18), var(--shadow-xl);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all var(--mobile-transition);
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
   }
   
   .mobile-analytics-btn:hover {
     background: var(--primary-hover);
     transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22), var(--shadow-2xl);
   }
 }
 

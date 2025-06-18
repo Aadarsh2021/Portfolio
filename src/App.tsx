@@ -365,7 +365,10 @@ const App: React.FC = () => {
           onClick={() => setIsAnalyticsModalOpen(true)}
           title="View Analytics"
         >
-          📊
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
+            <path d="M7 12h2v5H7zm4-3h2v8h-2zm4-3h2v11h-2z"/>
+          </svg>
         </button>
         </div>
             </PageTransition>

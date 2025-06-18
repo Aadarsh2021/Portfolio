@@ -13,6 +13,9 @@ interface DashboardProps {
   onClose: () => void;
 }
 
+const PLAUSIBLE_API_KEY = 'sXafqhh5CqZ_-SM8kpNrZOa4Z_8USejgILIHLOz2Qzed0vyPXGR-IFQWOduLuydp';
+const PLAUSIBLE_SITE_ID = 'portfolio-khaki-omega-43.vercel.app';
+
 const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => {
   const { getSessionData, getEngagementScore } = useAnalytics();
   const { performanceScore, metrics } = usePerformance();
@@ -21,6 +24,9 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
   
   const [sessionData, setSessionData] = useState(getSessionData());
   const [engagementScore, setEngagementScore] = useState(getEngagementScore());
+  const [plausibleStats, setPlausibleStats] = useState<{ visitors: number; pageviews: number } | null>(null);
+  const [plausibleLoading, setPlausibleLoading] = useState(false);
+  const [plausibleError, setPlausibleError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isVisible) {
@@ -29,7 +35,31 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
         setEngagementScore(getEngagementScore());
       }, 1000);
 
-      return () => clearInterval(interval);
+      setPlausibleLoading(true);
+      fetch(
+        `https://plausible.io/api/v1/stats/aggregate?site_id=${PLAUSIBLE_SITE_ID}&period=7d&metrics=visitors,pageviews`,
+        {
+          headers: {
+            Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setPlausibleStats({
+            visitors: data.results.visitors.value,
+            pageviews: data.results.pageviews.value,
+          });
+          setPlausibleLoading(false);
+        })
+        .catch((err) => {
+          setPlausibleError('Failed to fetch real analytics');
+          setPlausibleLoading(false);
+        });
+
+      return () => {
+        clearInterval(interval);
+      };
     }
   }, [isVisible, getSessionData, getEngagementScore]);
 
@@ -206,6 +236,24 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
             <div style={{ color: 'var(--text-secondary)', fontSize: '1rem', opacity: 0.85 }}>
               Real-time analytics powered by <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Vercel</a>.
             </div>
+          </div>
+
+          {/* Real Plausible Analytics Stats */}
+          <div style={{ textAlign: 'center', margin: '1.5rem 0 1rem 0' }}>
+            {plausibleLoading ? (
+              <span style={{ color: 'var(--text-secondary)' }}>Loading real analytics…</span>
+            ) : plausibleError ? (
+              <span style={{ color: 'red' }}>{plausibleError}</span>
+            ) : plausibleStats ? (
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.2rem', fontWeight: 600 }}>
+                <div>
+                  <span role="img" aria-label="visitors">👥</span> Visitors (7d): <span style={{ color: 'var(--primary)' }}>{plausibleStats.visitors}</span>
+                </div>
+                <div>
+                  <span role="img" aria-label="pageviews">👁️</span> Page Views (7d): <span style={{ color: 'var(--primary)' }}>{plausibleStats.pageviews}</span>
+                </div>
+              </div>
+            ) : null}
           </div>
 
           {/* Content */}

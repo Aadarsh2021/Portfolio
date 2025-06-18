@@ -29,6 +29,7 @@ import { useAccessibility } from './hooks/useAccessibility';
 import './styles/animations.css';
 import './styles/themes.css';
 import './styles/perfect-portfolio.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -372,6 +373,7 @@ const App: React.FC = () => {
         </button>
         </div>
             </PageTransition>
+            <Analytics />
           </MobileEnhancer>
           
           <ErrorBoundary fallback={null}>

@@ -172,6 +172,42 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
             </button>
           </div>
 
+          {/* Vercel Analytics Button and Note */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem 0 0.5rem 0'
+          }}>
+            <a
+              href="https://vercel.com/aadarsh2021s-projects/portfolio/analytics"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-lg"
+              style={{
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                borderRadius: '2rem',
+                boxShadow: '0 4px 16px rgba(99,102,241,0.12)',
+                marginBottom: '0.5rem',
+                padding: '0.75rem 2.5rem',
+                letterSpacing: '0.02em',
+                background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                color: 'white',
+                border: 'none',
+                transition: 'all 0.2s',
+                textDecoration: 'none',
+                display: 'inline-block'
+              }}
+            >
+              View Real Analytics
+            </a>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '1rem', opacity: 0.85 }}>
+              Real-time analytics powered by <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Vercel</a>.
+            </div>
+          </div>
+
           {/* Content */}
           <div 
             style={{

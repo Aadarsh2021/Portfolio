@@ -527,25 +527,28 @@ select {
     bottom: var(--mobile-space-lg);
     right: var(--mobile-space-lg);
     z-index: 1050;
-    width: var(--touch-target-large);
-    height: var(--touch-target-large);
+    width: 64px;
+    height: 64px;
+    min-width: 56px;
+    min-height: 56px;
     border-radius: 50%;
     background: var(--primary);
     color: white;
-    border: none;
-    font-size: var(--mobile-font-xl);
-    box-shadow: var(--shadow-xl);
+    border: 3px solid #fff;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18), var(--shadow-xl);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--mobile-transition);
+    overflow: visible;
   }
   
   .mobile-analytics-btn:hover,
   .mobile-analytics-btn:active {
     transform: scale(1.1);
     background: var(--primary-hover);
-    box-shadow: var(--shadow-2xl);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22), var(--shadow-2xl);
   }
   
   .mobile-analytics-btn::before {
@@ -557,6 +560,14 @@ select {
     background: var(--primary);
     opacity: 0.3;
     animation: pulse 2s infinite;
+  }
+
+  /* Add this for ScrollToTop button to avoid overlap */
+  .scroll-to-top-btn {
+    position: fixed !important;
+    bottom: calc(var(--mobile-space-lg) + 72px) !important; /* move up above analytics btn */
+    right: var(--mobile-space-lg) !important;
+    z-index: 1060 !important;
   }
 }
 
@@ -796,6 +807,14 @@ select {
     font-size: var(--mobile-font-base);
     padding: var(--mobile-space-sm) var(--mobile-space-lg);
   }
+  
+  .mobile-analytics-btn {
+    right: 8px;
+    bottom: 8px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
 }
 
 /* ===== MOBILE PRINT STYLES ===== */
@@ -816,4 +835,23 @@ select {
   .glass-effect::before {
     display: none !important;
   }
+}
+
+.scroll-to-top-btn button {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  transition: background 0.3s;
+}
+.scroll-to-top-btn button:active {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 } 

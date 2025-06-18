@@ -43,7 +43,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "vercel-build": "npm run build",
+    "vercel-build": "craco build",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "lighthouse": "npm run build && npx lighthouse-ci autorun"
   },

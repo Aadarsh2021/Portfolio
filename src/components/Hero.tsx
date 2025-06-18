@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { BsGithub, BsLinkedin, BsEnvelope, BsFileEarmarkText } from 'react-icons/bs';
 
@@ -10,8 +10,6 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
-  const { scrollY } = useScroll();
-  
   // Advanced motion values for interactive effects
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

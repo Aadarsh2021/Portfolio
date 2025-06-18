@@ -6,9 +6,9 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss, SiFramer, 
   SiPython, SiTensorflow, SiPandas, SiNumpy, SiScikitlearn,
   SiMysql, SiGit, SiGithub, SiVercel, SiPostman,
-  SiDocker, SiGooglecloud, SiJupyter, SiGooglecolab
+  SiJupyter, SiGooglecolab
 } from 'react-icons/si';
-import { BsCpu, BsFileEarmarkCode, BsCloud, BsCodeSlash, BsDatabase, BsGlobe, BsEye, BsGraphUp } from 'react-icons/bs';
+import { BsCpu, BsCodeSlash, BsDatabase, BsGlobe, BsEye, BsGraphUp } from 'react-icons/bs';
 
 interface Skill {
   name: string;

@@ -40,23 +40,34 @@ const Blog: React.FC = () => {
   ];
 
   const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
+        duration: 1,
+        ease: [0.6, 0.05, 0.01, 0.99],
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.8,
+        ease: [0.6, 0.05, 0.01, 0.99]
+      }
+    },
+    hover: {
+      scale: 1.04,
+      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+      transition: { duration: 0.3 }
     }
   };
 
@@ -76,7 +87,7 @@ const Blog: React.FC = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.h2 variants={itemVariants} className="section-title text-center mb-5">
+        <motion.h2 variants={cardVariants} className="section-title text-center mb-5">
           Latest Blog Posts
         </motion.h2>
         
@@ -84,7 +95,7 @@ const Blog: React.FC = () => {
           {blogPosts.map((post) => (
             <Col key={post.id} lg={4} md={6}>
               <motion.div 
-                variants={itemVariants}
+                variants={cardVariants}
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
@@ -143,7 +154,7 @@ const Blog: React.FC = () => {
           ))}
         </Row>
         
-        <motion.div variants={itemVariants} className="text-center mt-5">
+        <motion.div variants={cardVariants} className="text-center mt-5">
           <button type="button" className="btn btn-primary btn-lg">
             View All Posts
           </button>

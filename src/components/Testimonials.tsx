@@ -32,23 +32,34 @@ const Testimonials: React.FC = () => {
   ];
 
   const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
+        duration: 1,
+        ease: [0.6, 0.05, 0.01, 0.99],
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.8,
+        ease: [0.6, 0.05, 0.01, 0.99]
+      }
+    },
+    hover: {
+      scale: 1.04,
+      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+      transition: { duration: 0.3 }
     }
   };
 
@@ -68,14 +79,14 @@ const Testimonials: React.FC = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <motion.h2 variants={itemVariants} className="section-title text-center mb-5">
+        <motion.h2 variants={cardVariants} className="section-title text-center mb-5">
           What People Say
         </motion.h2>
         
         <Row className="g-4">
           {testimonials.map((testimonial) => (
             <Col key={testimonial.id} lg={4} md={6}>
-              <motion.div variants={itemVariants}>
+              <motion.div variants={cardVariants}>
                 <Card className="h-100 testimonial-card glass-effect">
                   <Card.Body className="d-flex flex-column">
                     <div className="quote-icon mb-3">

@@ -117,14 +117,16 @@ const AdvancedProjects: React.FC = () => {
     }
   };
 
-  // Enhanced animation variants
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
+        duration: 1,
+        ease: [0.6, 0.05, 0.01, 0.99],
         staggerChildren: 0.15,
-        delayChildren: 0.1
+        delayChildren: 0.2
       }
     }
   };
@@ -151,21 +153,20 @@ const AdvancedProjects: React.FC = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, rotateY: -15 },
+    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
     visible: {
       opacity: 1,
-      rotateY: 0,
+      y: 0,
+      filter: 'blur(0px)',
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.8,
+        ease: [0.6, 0.05, 0.01, 0.99]
       }
     },
     hover: {
-      rotateY: 5,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
+      scale: 1.04,
+      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+      transition: { duration: 0.3 }
     }
   };
 

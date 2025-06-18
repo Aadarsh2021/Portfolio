@@ -48,7 +48,8 @@ const EnhancedContact: React.FC = () => {
   const [submitAttempted, setSubmitAttempted] = useState(false);
 
   const renderIcon = useCallback((IconComponent: IconType, size: number) => {
-    return React.createElement(IconComponent, { size });
+    const Icon = IconComponent as React.ComponentType<{ size: number }>;
+    return <Icon size={size} />;
   }, []);
 
   // Real-time validation

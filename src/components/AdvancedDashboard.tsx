@@ -29,12 +29,8 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
   const [plausibleError, setPlausibleError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isVisible) {
-      const interval = setInterval(() => {
-        setSessionData(getSessionData());
-        setEngagementScore(getEngagementScore());
-      }, 1000);
-
+    let interval: NodeJS.Timeout | null = null;
+    const fetchPlausibleStats = () => {
       setPlausibleLoading(true);
       fetch(
         `https://plausible.io/api/v1/stats/aggregate?site_id=${PLAUSIBLE_SITE_ID}&period=7d&metrics=visitors,pageviews`,
@@ -56,6 +52,23 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
           setPlausibleError('Failed to fetch real analytics');
           setPlausibleLoading(false);
         });
+    };
+
+    if (isVisible) {
+      fetchPlausibleStats();
+      interval = setInterval(fetchPlausibleStats, 2000); // 2 seconds
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
+      const interval = setInterval(() => {
+        setSessionData(getSessionData());
+        setEngagementScore(getEngagementScore());
+      }, 1000);
 
       return () => {
         clearInterval(interval);
@@ -239,13 +252,13 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
           </div>
 
           {/* Real Plausible Analytics Stats */}
-          <div style={{ textAlign: 'center', margin: '1.5rem 0 1rem 0' }}>
+          <div style={{ textAlign: 'center', margin: '1.5rem 0 2.5rem 0' }}>
             {plausibleLoading ? (
               <span style={{ color: 'var(--text-secondary)' }}>Loading real analytics…</span>
             ) : plausibleError ? (
               <span style={{ color: 'red' }}>{plausibleError}</span>
             ) : plausibleStats ? (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.2rem', fontWeight: 600 }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.5rem', fontWeight: 700 }}>
                 <div>
                   <span role="img" aria-label="visitors">👥</span> Visitors (7d): <span style={{ color: 'var(--primary)' }}>{plausibleStats.visitors}</span>
                 </div>
@@ -265,133 +278,8 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
             }}
           >
             <Container fluid>
-              {/* Overview Cards */}
-              <Row className="g-4 mb-5">
-                <Col lg={3} md={6}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <Card 
-                      className="glass-effect h-100"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--primary), var(--primary-hover))',
-                        border: 'none',
-                        color: 'white'
-                      }}
-                    >
-                      <Card.Body className="p-4">
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div>
-                            <p style={{ fontSize: 'var(--font-size-sm)', opacity: 0.9, margin: 0 }}>
-                              Session Duration
-                            </p>
-                            <h3 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, margin: 0 }}>
-                              {formatDuration(Date.now() - sessionData.startTime)}
-                            </h3>
-                          </div>
-                          {renderIcon(FiClock, 32)}
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </motion.div>
-                </Col>
-
-                <Col lg={3} md={6}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <Card 
-                      className="glass-effect h-100"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--accent), var(--accent-hover))',
-                        border: 'none',
-                        color: 'white'
-                      }}
-                    >
-                      <Card.Body className="p-4">
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div>
-                            <p style={{ fontSize: 'var(--font-size-sm)', opacity: 0.9, margin: 0 }}>
-                              Engagement Score
-                            </p>
-                            <h3 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, margin: 0 }}>
-                              {engagementScore}/10
-                            </h3>
-                          </div>
-                          {renderIcon(FiTrendingUp, 32)}
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </motion.div>
-                </Col>
-
-                <Col lg={3} md={6}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <Card 
-                      className="glass-effect h-100"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--secondary), var(--secondary-hover))',
-                        border: 'none',
-                        color: 'white'
-                      }}
-                    >
-                      <Card.Body className="p-4">
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div>
-                            <p style={{ fontSize: 'var(--font-size-sm)', opacity: 0.9, margin: 0 }}>
-                              Page Views
-                            </p>
-                            <h3 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, margin: 0 }}>
-                              {sessionData.pageViews}
-                            </h3>
-                          </div>
-                          {renderIcon(FiEye, 32)}
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </motion.div>
-                </Col>
-
-                <Col lg={3} md={6}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <Card className="glass-effect h-100">
-                      <Card.Body className="p-4">
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div>
-                            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-muted)', margin: 0 }}>
-                              Performance
-                            </p>
-                            <h3 
-                              style={{ 
-                                fontSize: 'var(--font-size-2xl)', 
-                                fontWeight: 700, 
-                                margin: 0,
-                                color: getScoreColor(performanceScore)
-                              }}
-                            >
-                              {performanceScore}%
-                            </h3>
-                          </div>
-                          {renderIcon(FiActivity, 32, "text-primary")}
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </motion.div>
-                </Col>
-              </Row>
-
+              {/* Overview Cards REMOVED: Session Duration, Engagement Score, Page Views */}
+              {/* You can keep Performance Metrics and Accessibility if you want */}
               {/* Performance Metrics */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

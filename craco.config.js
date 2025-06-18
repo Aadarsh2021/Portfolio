@@ -1,24 +1,31 @@
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
-      // Ignore source map warnings for @mediapipe
-      if (webpackConfig.module && webpackConfig.module.rules) {
-        webpackConfig.module.rules.push({
-          test: /\.mjs$/,
-          include: /node_modules\/@mediapipe/,
-          type: 'javascript/auto',
-        });
-      }
+      // Exclude node_modules from source-map-loader
+      webpackConfig.module.rules.forEach((rule) => {
+        if (rule.oneOf) {
+          rule.oneOf.forEach((oneOfRule) => {
+            if (
+              oneOfRule.loader &&
+              oneOfRule.loader.includes('source-map-loader')
+            ) {
+              oneOfRule.exclude = /node_modules/;
+            }
+          });
+        }
+      });
 
-      // Configure webpack to ignore source map warnings
+      // (Keep ignoreWarnings as a fallback)
       webpackConfig.ignoreWarnings = [
-        {
-          module: /node_modules\/@mediapipe/,
-        },
-        /Failed to parse source map/,
+        (warning) =>
+          warning.message &&
+          warning.message.includes('Failed to parse source map') &&
+          warning.module &&
+          warning.module.resource &&
+          warning.module.resource.includes('node_modules')
       ];
 
       return webpackConfig;
-    },
-  },
+    }
+  }
 }; 

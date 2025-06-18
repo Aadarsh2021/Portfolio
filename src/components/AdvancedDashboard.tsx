@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Badge, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, ProgressBar } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiActivity, FiUsers, FiClock, FiTrendingUp, FiEye, FiSettings, FiX, FiDownload, FiTrash2 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
@@ -154,10 +154,10 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
                 Advanced Analytics Dashboard
               </h2>
             </div>
-            <Button
-              variant="outline-secondary"
-              size="sm"
+            <button
+              type="button"
               onClick={onClose}
+              className="btn btn-outline-secondary btn-sm"
               style={{
                 borderRadius: 'var(--radius-full)',
                 width: '40px',
@@ -169,7 +169,7 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
               }}
             >
               {renderIcon(FiX, 20)}
-            </Button>
+            </button>
           </div>
 
           {/* Content */}
@@ -539,21 +539,20 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
                 transition={{ delay: 0.8 }}
                 className="d-flex flex-wrap gap-3"
               >
-                <Button
+                <button
                   className="btn-gradient d-flex align-items-center gap-2"
                   onClick={handleExportData}
                 >
                   {renderIcon(FiDownload, 16)}
                   Export Data
-                </Button>
-                <Button
-                  variant="outline-danger"
-                  className="d-flex align-items-center gap-2"
+                </button>
+                <button
+                  className="btn btn-outline-danger d-flex align-items-center gap-2"
                   onClick={handleClearData}
                 >
                   {renderIcon(FiTrash2, 16)}
                   Clear Data
-                </Button>
+                </button>
               </motion.div>
             </Container>
           </div>

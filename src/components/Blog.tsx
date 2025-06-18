@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 
 const Blog: React.FC = () => {
@@ -130,12 +130,12 @@ const Blog: React.FC = () => {
                       ))}
                     </div>
                     
-                    <Button 
-                      variant="outline-primary" 
-                      className="mt-auto d-flex align-items-center"
+                    <button 
+                      type="button"
+                      className="btn btn-outline-primary mt-auto d-flex align-items-center"
                     >
                       Read More <span className="ms-2">→</span>
-                    </Button>
+                    </button>
                   </Card.Body>
                 </Card>
               </motion.div>
@@ -144,9 +144,9 @@ const Blog: React.FC = () => {
         </Row>
         
         <motion.div variants={itemVariants} className="text-center mt-5">
-          <Button variant="primary" size="lg">
+          <button type="button" className="btn btn-primary btn-lg">
             View All Posts
-          </Button>
+          </button>
         </motion.div>
       </motion.div>
     </Container>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Badge, ProgressBar } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiActivity, FiUsers, FiClock, FiTrendingUp, FiEye, FiSettings, FiX, FiDownload, FiTrash2 } from 'react-icons/fi';
+import { FiActivity, FiUsers, FiTrendingUp, FiSettings, FiX, FiDownload, FiTrash2 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { usePerformance } from '../hooks/usePerformance';
@@ -18,12 +18,11 @@ const PLAUSIBLE_SITE_ID = 'portfolio-khaki-omega-43.vercel.app';
 
 const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => {
   const { getSessionData, getEngagementScore } = useAnalytics();
-  const { performanceScore, metrics } = usePerformance();
+  const { metrics } = usePerformance();
   const { preferences } = useAccessibility();
   const { success, info } = useNotifications();
   
   const [sessionData, setSessionData] = useState(getSessionData());
-  const [engagementScore, setEngagementScore] = useState(getEngagementScore());
   const [plausibleStats, setPlausibleStats] = useState<{ visitors: number; pageviews: number } | null>(null);
   const [plausibleLoading, setPlausibleLoading] = useState(false);
   const [plausibleError, setPlausibleError] = useState<string | null>(null);
@@ -67,34 +66,13 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
     if (isVisible) {
       const interval = setInterval(() => {
         setSessionData(getSessionData());
-        setEngagementScore(getEngagementScore());
       }, 1000);
 
       return () => {
         clearInterval(interval);
       };
     }
-  }, [isVisible, getSessionData, getEngagementScore]);
-
-  const formatDuration = (ms: number) => {
-    const seconds = Math.floor(ms / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    
-    if (hours > 0) {
-      return `${hours}h ${minutes % 60}m`;
-    } else if (minutes > 0) {
-      return `${minutes}m ${seconds % 60}s`;
-    } else {
-      return `${seconds}s`;
-    }
-  };
-
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return 'var(--accent)';
-    if (score >= 60) return 'var(--secondary)';
-    return '#dc3545';
-  };
+  }, [isVisible, getSessionData]);
 
   const handleExportData = () => {
     const data = {

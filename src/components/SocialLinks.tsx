@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 
 const SocialLinks: React.FC = () => {
@@ -60,16 +59,16 @@ const SocialLinks: React.FC = () => {
     >
       {socialLinks.map((link) => (
         <motion.div key={link.name} variants={itemVariants}>
-          <Button
+          <a
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            variant="outline-primary"
-            className="d-flex align-items-center gap-2 social-btn"
+            className="btn btn-outline-primary d-flex align-items-center gap-2 social-btn"
             style={{
               borderColor: link.color,
               color: link.color,
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              textDecoration: 'none'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = link.color;
@@ -82,7 +81,7 @@ const SocialLinks: React.FC = () => {
           >
             <span style={{ fontSize: '18px' }}>{link.icon}</span>
             {link.name}
-          </Button>
+          </a>
         </motion.div>
       ))}
     </motion.div>

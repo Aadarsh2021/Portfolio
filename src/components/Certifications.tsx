@@ -29,24 +29,6 @@ const Certifications: React.FC = () => {
     }
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.2,
-        ease: [0.6, 0.05, 0.01, 0.99]
-      }
-    },
-    hover: {
-      scale: 1.04,
-      boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
-      transition: { duration: 0.1 }
-    }
-  };
-
   const certifications = [
     {
       title: "Machine Learning Certification",

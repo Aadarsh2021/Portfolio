@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { 
@@ -29,6 +29,26 @@ interface ValidationErrors {
   subject?: string;
   message?: string;
 }
+
+const SubmitButton = ({ isSubmitting, renderIcon }: { isSubmitting: boolean; renderIcon: (icon: IconType, size: number) => JSX.Element }): React.ReactElement => {
+  return (
+    <button
+      type="submit"
+      className="w-100 btn-gradient btn btn-primary btn-lg"
+      disabled={isSubmitting}
+    >
+      <div className="d-flex align-items-center justify-content-center">
+        {isSubmitting && (
+          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />
+        )}
+        <span className="d-flex align-items-center">
+          {!isSubmitting && renderIcon(BsEnvelope, 18)}
+          <span className="ms-2">{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+        </span>
+      </div>
+    </button>
+  );
+};
 
 const EnhancedContact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -456,25 +476,7 @@ const EnhancedContact: React.FC = () => {
                   </small>
                 </div>
 
-                <Button 
-                  variant="primary" 
-                  type="submit" 
-                  className="w-100 btn-gradient"
-                  disabled={isSubmitting}
-                  size="lg"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      {renderIcon(BsEnvelope, 18)}
-                      <span className="ms-2">Send Message</span>
-                    </>
-                  )}
-                </Button>
+                <SubmitButton isSubmitting={isSubmitting} renderIcon={renderIcon} />
               </Form>
 
               <motion.div variants={itemVariants} className="text-center mt-5">

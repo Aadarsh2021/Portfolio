@@ -558,41 +558,6 @@ select {
     opacity: 0.3;
     animation: pulse 2s infinite;
   }
-  
-  /* Mobile Button Layout - No Overlap */
-  .scroll-to-top-btn {
-    position: fixed !important;
-    bottom: 30px !important;
-    left: 20px !important;
-    z-index: 1000 !important;
-  }
-  
-  .scroll-to-top-btn .btn {
-    width: 56px !important;
-    height: 56px !important;
-    min-height: 44px !important;
-    min-width: 44px !important;
-    background: var(--glass-bg) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid var(--glass-border) !important;
-    color: var(--primary) !important;
-    font-size: 18px !important;
-    transition: all 0.3s ease !important;
-  }
-  
-  .scroll-to-top-btn .btn:hover,
-  .scroll-to-top-btn .btn:focus {
-    background: var(--primary) !important;
-    color: white !important;
-    transform: scale(1.1) translateY(-2px) !important;
-    box-shadow: var(--shadow-xl) !important;
-  }
-  
-  .mobile-analytics-btn {
-    bottom: 30px !important;
-    right: 20px !important;
-    z-index: 1001 !important;
-  }
 }
 
 /* ===== MOBILE PERFORMANCE OPTIMIZATIONS ===== */
@@ -830,26 +795,6 @@ select {
   .btn-outline {
     font-size: var(--mobile-font-base);
     padding: var(--mobile-space-sm) var(--mobile-space-lg);
-  }
-  
-  /* Smaller floating buttons for smallest screens */
-  .mobile-analytics-btn {
-    width: 48px !important;
-    height: 48px !important;
-    bottom: 20px !important;
-    right: 15px !important;
-    font-size: 1rem !important;
-  }
-  
-  .scroll-to-top-btn {
-    bottom: 20px !important;
-    left: 15px !important;
-  }
-  
-  .scroll-to-top-btn .btn {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 16px !important;
   }
 }
 

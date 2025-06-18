@@ -17,7 +17,7 @@ const PLAUSIBLE_API_KEY = 'sXafqhh5CqZ_-SM8kpNrZOa4Z_8USejgILIHLOz2Qzed0vyPXGR-I
 const PLAUSIBLE_SITE_ID = 'portfolio-khaki-omega-43.vercel.app';
 
 const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => {
-  const { getSessionData, getEngagementScore } = useAnalytics();
+  const { getSessionData } = useAnalytics();
   const { metrics } = usePerformance();
   const { preferences } = useAccessibility();
   const { success, info } = useNotifications();

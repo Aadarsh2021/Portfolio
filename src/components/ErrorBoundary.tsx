@@ -1,8 +1,12 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { BsExclamationTriangle, BsArrowClockwise, BsHouse } from 'react-icons/bs';
 import { IconType } from 'react-icons';
+import { 
+  BsExclamationTriangle, 
+  BsArrowClockwise, 
+  BsHouse 
+} from 'react-icons/bs';
 
 interface Props {
   children: ReactNode;
@@ -158,34 +162,31 @@ ${this.state.error?.stack}
                   </Alert>
 
                   <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <Button
-                      variant="primary"
-                      size="lg"
+                    <button
+                      type="button"
                       onClick={this.handleRetry}
-                      className="btn-gradient d-flex align-items-center gap-2"
+                      className="btn btn-primary btn-lg btn-gradient d-flex align-items-center gap-2"
                     >
                       {this.renderIcon(BsArrowClockwise, 20)}
                       Try Again
-                    </Button>
+                    </button>
 
-                    <Button
-                      variant="outline-primary"
-                      size="lg"
+                    <button
+                      type="button"
                       onClick={this.handleGoHome}
-                      className="btn-outline d-flex align-items-center gap-2"
+                      className="btn btn-outline-primary btn-lg btn-outline d-flex align-items-center gap-2"
                     >
                       {this.renderIcon(BsHouse, 20)}
                       Go Home
-                    </Button>
+                    </button>
 
-                    <Button
-                      variant="outline-secondary"
-                      size="lg"
+                    <button
+                      type="button"
                       onClick={this.handleReportError}
-                      className="btn-outline d-flex align-items-center gap-2"
+                      className="btn btn-outline-secondary btn-lg btn-outline d-flex align-items-center gap-2"
                     >
                       Report Issue
-                    </Button>
+                    </button>
                   </div>
 
                   {process.env.NODE_ENV === 'development' && this.state.errorInfo && (

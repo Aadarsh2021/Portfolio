@@ -117,199 +117,400 @@ const AdvancedProjects: React.FC = () => {
     }
   };
 
+  // Enhanced animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.5
+        duration: 0.6,
+        ease: [0.6, 0.05, 0.01, 0.99]
+      }
+    },
+    hover: {
+      y: -15,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, rotateY: -15 },
+    visible: {
+      opacity: 1,
+      rotateY: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      rotateY: 5,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    },
+    tap: {
+      scale: 0.95,
+      transition: {
+        duration: 0.1
+      }
+    }
+  };
+
+  const badgeVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      scale: 1.1,
+      y: -2,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
       }
     }
   };
 
   return (
-    <Container>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={containerVariants}
-      >
-        <h2 className="section-title text-center mb-5">Featured Projects</h2>
-        
-        {/* Search and Filter Controls */}
-        <Row className="mb-4">
-          <Col md={6} xs={12} className="mb-3 mb-md-0">
-            <InputGroup>
-              <InputGroup.Text>
-                {renderIcon(BsSearch, 16)}
-              </InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
-                style={{ fontSize: '16px', minHeight: '48px' }}
-              />
-            </InputGroup>
-          </Col>
-          <Col md={6} xs={12}>
-            <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-              <Form.Check
-                type="switch"
-                id="featured-switch"
-                label="Featured Only"
-                checked={showFeaturedOnly}
-                onChange={(e) => setShowFeaturedOnly(e.target.checked)}
-                style={{ minHeight: '44px' }}
-              />
-            </div>
-          </Col>
-        </Row>
-
-        {/* Category Filter */}
-        <Row className="mb-4">
-          <Col>
-            <div className="category-filters d-flex flex-nowrap d-md-flex flex-md-wrap gap-2 justify-content-start justify-content-md-center overflow-auto pb-2 pb-md-0">
-              {categories.map((category) => {
-                const isActive = selectedCategory === category.key;
-                return (
-                  <button
-                    key={category.key}
-                    className={`btn btn-${isActive ? "primary" : "outline-primary"} btn-sm category-btn flex-shrink-0 touch-feedback`}
-                    onClick={() => setSelectedCategory(category.key)}
-                    style={{ minHeight: '44px', whiteSpace: 'nowrap' }}
-                  >
-                    {renderIcon(category.icon, 16, "me-2")}
-                    {category.label}
-                  </button>
-                );
-              })}
-            </div>
-          </Col>
-        </Row>
-
-        {/* Projects Grid */}
-        <Row className="g-4">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <Col key={project.id} lg={4} md={6} xs={12}>
+    <section id="projects" className="projects-section section-padding">
+      <Container>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
+          <motion.h2 
+            className="section-title text-center mb-5"
+            variants={itemVariants}
+            style={{
+              fontSize: 'var(--font-size-4xl)',
+              fontWeight: 800,
+              background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+          >
+            Featured Projects
+          </motion.h2>
+          
+          {/* Enhanced Search and Filter Controls */}
+          <motion.div variants={itemVariants}>
+            <Row className="mb-4">
+              <Col md={6} xs={12} className="mb-3 mb-md-0">
                 <motion.div
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  layout
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
-                  <Card className="h-100 project-card glass-effect touch-feedback">
-                    <div className="project-image-container">
-                      <Card.Img 
-                        variant="top" 
-                        src={project.image} 
-                        alt={project.title}
-                        className="project-image"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = 'https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+Image';
-                        }}
-                      />
-                      <div className="project-overlay">
-                        <div className="project-links d-flex flex-column flex-sm-row gap-2">
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-light btn-sm touch-feedback"
-                            style={{ minHeight: '44px', minWidth: '100px' }}
-                          >
-                            {renderIcon(BsGithub, 16, "me-1")}
-                            Code
-                          </a>
-                          {project.liveUrl && (
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="btn btn-primary btn-sm touch-feedback"
-                              style={{ minHeight: '44px', minWidth: '100px' }}
-                            >
-                              {renderIcon(BsEye, 16, "me-1")}
-                              Live Demo
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <Card.Body className="d-flex flex-column">
-                      <div className="d-flex justify-content-between align-items-start mb-2">
-                        <div className="project-icon">
-                          {renderIcon(project.icon, 24)}
-                        </div>
-                        <div className="d-flex gap-2">
-                          <Badge bg={getStatusColor(project.status)}>
-                            {project.status.replace('-', ' ')}
-                          </Badge>
-                          {project.featured && (
-                            <Badge bg="warning" text="dark">Featured</Badge>
-                          )}
-                        </div>
-                      </div>
-                      <Card.Title className="mb-2">{project.title}</Card.Title>
-                      <Card.Text className="flex-grow-1 mb-3">
-                        {project.description}
-                      </Card.Text>
-                      <div className="mt-auto">
-                        <div className="mb-3">
-                          {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                            <Badge key={techIndex} bg="primary" className="me-1 mb-1">
-                              {tech}
-                            </Badge>
-                          ))}
-                          {project.technologies.length > 4 && (
-                            <Badge bg="secondary" className="me-1 mb-1">
-                              +{project.technologies.length - 4} more
-                            </Badge>
-                          )}
-                        </div>
-                        <small className="text-muted">
-                          {renderIcon(BsGear, 12, "me-1")} {project.year}
-                        </small>
-                      </div>
-                    </Card.Body>
-                  </Card>
+                  <InputGroup>
+                    <InputGroup.Text style={{
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                      color: 'var(--text-primary)'
+                    }}>
+                      {renderIcon(BsSearch, 16)}
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      placeholder="Search projects..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="search-input"
+                      style={{ 
+                        fontSize: '16px', 
+                        minHeight: '48px',
+                        background: 'var(--glass-bg)',
+                        border: '1px solid var(--glass-border)',
+                        color: 'var(--text-primary)'
+                      }}
+                    />
+                  </InputGroup>
                 </motion.div>
               </Col>
-            ))}
-          </AnimatePresence>
-        </Row>
-
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-5"
-          >
-            <h4 className="text-muted">No projects found</h4>
-            <p className="text-muted">Try adjusting your search terms or filters.</p>
+              <Col md={6} xs={12}>
+                <motion.div 
+                  className="d-flex align-items-center justify-content-center justify-content-md-start gap-3"
+                  variants={buttonVariants}
+                >
+                  <Form.Check
+                    type="switch"
+                    id="featured-switch"
+                    label="Featured Only"
+                    checked={showFeaturedOnly}
+                    onChange={(e) => setShowFeaturedOnly(e.target.checked)}
+                    style={{ minHeight: '44px' }}
+                  />
+                </motion.div>
+              </Col>
+            </Row>
           </motion.div>
-        )}
-      </motion.div>
-    </Container>
+
+          {/* Enhanced Category Filter */}
+          <motion.div variants={itemVariants}>
+            <Row className="mb-4">
+              <Col>
+                <div className="category-filters d-flex flex-nowrap d-md-flex flex-md-wrap gap-2 justify-content-start justify-content-md-center overflow-auto pb-2 pb-md-0">
+                  {categories.map((category, index) => {
+                    const isActive = selectedCategory === category.key;
+                    return (
+                      <motion.button
+                        key={category.key}
+                        className={`btn btn-${isActive ? "primary" : "outline-primary"} btn-sm category-btn flex-shrink-0 touch-feedback`}
+                        onClick={() => setSelectedCategory(category.key)}
+                        style={{ 
+                          minHeight: '44px', 
+                          whiteSpace: 'nowrap',
+                          borderRadius: 'var(--radius-lg)',
+                          fontWeight: 600
+                        }}
+                        variants={buttonVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        {renderIcon(category.icon, 16, "me-2")}
+                        {category.label}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </Col>
+            </Row>
+          </motion.div>
+
+          {/* Enhanced Projects Grid */}
+          <Row className="g-4">
+            <AnimatePresence mode="wait">
+              {filteredProjects.map((project, index) => (
+                <Col key={project.id} lg={4} md={6} xs={12}>
+                  <motion.div
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    layout
+                    whileHover="hover"
+                    transition={{ 
+                      duration: 0.6,
+                      delay: index * 0.1,
+                      ease: [0.6, 0.05, 0.01, 0.99]
+                    }}
+                  >
+                    <motion.div
+                      variants={cardVariants}
+                      whileHover="hover"
+                      style={{ perspective: '1000px' }}
+                    >
+                      <Card className="h-100 project-card glass-effect touch-feedback">
+                        <div className="project-image-container" style={{ position: 'relative', overflow: 'hidden' }}>
+                          <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.6 }}
+                          >
+                            <Card.Img 
+                              variant="top" 
+                              src={project.image} 
+                              alt={project.title}
+                              className="project-image"
+                              loading="lazy"
+                              style={{
+                                width: '100%',
+                                height: '200px',
+                                objectFit: 'cover',
+                                transition: 'transform 0.6s ease'
+                              }}
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.src = 'https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+Image';
+                              }}
+                            />
+                          </motion.div>
+                          <motion.div 
+                            className="project-overlay"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              background: 'rgba(0, 0, 0, 0.8)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backdropFilter: 'blur(5px)'
+                            }}
+                          >
+                            <div className="project-links d-flex flex-column flex-sm-row gap-2">
+                              <motion.a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-light btn-sm touch-feedback"
+                                style={{ minHeight: '44px', minWidth: '100px' }}
+                                variants={buttonVariants}
+                                whileHover="hover"
+                                whileTap="tap"
+                              >
+                                {renderIcon(BsGithub, 16, "me-1")}
+                                Code
+                              </motion.a>
+                              {project.liveUrl && (
+                                <motion.a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="btn btn-primary btn-sm touch-feedback"
+                                  style={{ minHeight: '44px', minWidth: '100px' }}
+                                  variants={buttonVariants}
+                                  whileHover="hover"
+                                  whileTap="tap"
+                                >
+                                  {renderIcon(BsEye, 16, "me-1")}
+                                  Live Demo
+                                </motion.a>
+                              )}
+                            </div>
+                          </motion.div>
+                        </div>
+                        <Card.Body className="d-flex flex-column p-4">
+                          <div className="d-flex justify-content-between align-items-start mb-3">
+                            <motion.div 
+                              className="project-icon"
+                              whileHover={{ rotate: 360 }}
+                              transition={{ duration: 0.6 }}
+                              style={{
+                                padding: 'var(--space-2)',
+                                borderRadius: 'var(--radius-lg)',
+                                background: 'var(--glass-bg)',
+                                border: '1px solid var(--glass-border)'
+                              }}
+                            >
+                              {renderIcon(project.icon, 24, "text-primary")}
+                            </motion.div>
+                            <div className="d-flex gap-2">
+                              <motion.div variants={badgeVariants} whileHover="hover">
+                                <Badge bg={getStatusColor(project.status)}>
+                                  {project.status.replace('-', ' ')}
+                                </Badge>
+                              </motion.div>
+                              {project.featured && (
+                                <motion.div variants={badgeVariants} whileHover="hover">
+                                  <Badge bg="warning" text="dark">Featured</Badge>
+                                </motion.div>
+                              )}
+                            </div>
+                          </div>
+                          <Card.Title className="mb-3" style={{
+                            fontSize: 'var(--font-size-xl)',
+                            fontWeight: 700,
+                            color: 'var(--text-primary)'
+                          }}>
+                            {project.title}
+                          </Card.Title>
+                          <Card.Text className="flex-grow-1 mb-4" style={{
+                            fontSize: 'var(--font-size-base)',
+                            color: 'var(--text-secondary)',
+                            lineHeight: 1.6
+                          }}>
+                            {project.description}
+                          </Card.Text>
+                          <div className="mt-auto">
+                            <div className="mb-3">
+                              {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                                <motion.span key={techIndex} variants={badgeVariants} whileHover="hover">
+                                  <Badge bg="primary" className="me-1 mb-1" style={{
+                                    fontSize: 'var(--font-size-xs)',
+                                    padding: 'var(--space-1) var(--space-2)'
+                                  }}>
+                                    {tech}
+                                  </Badge>
+                                </motion.span>
+                              ))}
+                              {project.technologies.length > 4 && (
+                                <motion.span variants={badgeVariants} whileHover="hover">
+                                  <Badge bg="secondary" className="me-1 mb-1" style={{
+                                    fontSize: 'var(--font-size-xs)',
+                                    padding: 'var(--space-1) var(--space-2)'
+                                  }}>
+                                    +{project.technologies.length - 4} more
+                                  </Badge>
+                                </motion.span>
+                              )}
+                            </div>
+                            <small className="text-muted" style={{ fontSize: 'var(--font-size-sm)' }}>
+                              {renderIcon(BsGear, 12, "me-1")} {project.year}
+                            </small>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </motion.div>
+                  </motion.div>
+                </Col>
+              ))}
+            </AnimatePresence>
+          </Row>
+
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center py-5"
+            >
+              <h4 className="text-muted">No projects found</h4>
+              <p className="text-muted">Try adjusting your search terms or filters.</p>
+            </motion.div>
+          )}
+        </motion.div>
+      </Container>
+    </section>
   );
 };
 

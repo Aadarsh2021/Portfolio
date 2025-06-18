@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { 
   BsCode, 
@@ -12,9 +12,22 @@ import {
 } from 'react-icons/bs';
 
 const About: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
   const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'Java',
-    'MongoDB', 'PostgreSQL', 'AWS', 'Docker', 'Git', 'GraphQL'
+    // Languages
+    'Python',
+    // Web Development
+    'HTML', 'CSS', 'React.js', 'Tailwind CSS', 'Framer Motion',
+    // AI / Machine Learning
+    'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'Scikit-learn',
+    // Data Tools
+    'Pandas', 'NumPy', 'Matplotlib',
+    // Databases
+    'MySQL',
+    // Other Tools
+    'Git', 'GitHub', 'Vercel'
   ];
 
   const renderIcon = (IconComponent: IconType, size: number, style?: React.CSSProperties) => {
@@ -61,42 +74,109 @@ const About: React.FC = () => {
     }
   ];
 
+  // Enhanced animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.1
       }
     }
   };
 
   const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, 0.05, 0.01, 0.99]
+      }
+    },
+    hover: {
+      y: -10,
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8, rotateY: -15 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      scale: 1.1,
+      rotateY: 5,
+      y: -5,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const statsVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.6,
         ease: "easeOut"
+      }
     }
+  };
+
+  const numberVariants = {
+    hidden: { scale: 0.5, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
     }
   };
 
   return (
-    <section className="about-section">
-    <Container>
-      <motion.div
+    <section id="about" className="about-section section-padding">
+      <Container>
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
+          style={{ y }}
         >
           <Row className="justify-content-center">
             <Col lg={8} className="text-center mb-5">
               <motion.h2 
                 className="section-title"
                 variants={cardVariants}
+                style={{
+                  fontSize: 'var(--font-size-4xl)',
+                  fontWeight: 800,
+                  marginBottom: 'var(--space-6)',
+                  background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
               >
                 About Me
               </motion.h2>
@@ -122,14 +202,49 @@ const About: React.FC = () => {
           <Row className="g-4 mb-5">
             {aboutCards.map((card, index) => (
               <Col lg={4} md={6} key={index}>
-                <motion.div variants={cardVariants}>
-                  <Card className="about-card h-100">
+                <motion.div 
+                  variants={cardVariants}
+                  whileHover="hover"
+                >
+                  <Card className="about-card h-100 glass-effect">
                     <Card.Body className="p-4">
-                      <div className="about-card-title">
-                        {renderIcon(card.icon, 28, { color: card.color })}
-                        <h4>{card.title}</h4>
-                      </div>
-                      <div className="about-card-content">
+                      <motion.div 
+                        className="about-card-title"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 'var(--space-3)',
+                          marginBottom: 'var(--space-4)'
+                        }}
+                      >
+                        <motion.div
+                          style={{
+                            padding: 'var(--space-2)',
+                            borderRadius: 'var(--radius-lg)',
+                            background: `${card.color}20`,
+                            border: `1px solid ${card.color}40`
+                          }}
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          {renderIcon(card.icon, 28, { color: card.color })}
+                        </motion.div>
+                        <h4 style={{
+                          fontSize: 'var(--font-size-xl)',
+                          fontWeight: 700,
+                          color: 'var(--text-primary)',
+                          margin: 0
+                        }}>
+                          {card.title}
+                        </h4>
+                      </motion.div>
+                      <div className="about-card-content" style={{
+                        fontSize: 'var(--font-size-base)',
+                        color: 'var(--text-secondary)',
+                        lineHeight: 1.7
+                      }}>
                         {card.description}
                       </div>
                     </Card.Body>
@@ -144,11 +259,18 @@ const About: React.FC = () => {
               <motion.div 
                 variants={cardVariants}
                 className="glass-effect p-5"
+                style={{
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
+                  borderRadius: 'var(--radius-2xl)',
+                  backdropFilter: 'blur(20px)'
+                }}
               >
                 <Row className="align-items-center">
                   <Col lg={6}>
-                    <h3 
+                    <motion.h3 
                       className="mb-4"
+                      variants={cardVariants}
                       style={{
                         fontSize: 'var(--font-size-2xl)',
                         fontWeight: 700,
@@ -160,8 +282,9 @@ const About: React.FC = () => {
                       }}
                     >
                       My Journey
-              </h3>
-                    <p 
+                    </motion.h3>
+                    <motion.p 
+                      variants={cardVariants}
                       style={{
                         fontSize: 'var(--font-size-base)',
                         color: 'var(--text-secondary)',
@@ -172,8 +295,9 @@ const About: React.FC = () => {
                       My journey in technology began with curiosity and has evolved into a passion 
                       for creating meaningful digital experiences. I believe in writing clean, 
                       maintainable code and staying updated with the latest industry trends.
-                    </p>
-                    <p 
+                    </motion.p>
+                    <motion.p 
+                      variants={cardVariants}
                       style={{
                         fontSize: 'var(--font-size-base)',
                         color: 'var(--text-secondary)',
@@ -182,10 +306,10 @@ const About: React.FC = () => {
                     >
                       When I'm not coding, you'll find me exploring new technologies, contributing 
                       to open-source projects, or sharing knowledge with the developer community.
-                    </p>
+                    </motion.p>
                   </Col>
                   <Col lg={6}>
-                    <div>
+                    <motion.div variants={cardVariants}>
                       <h4 
                         className="mb-4"
                         style={{
@@ -196,54 +320,78 @@ const About: React.FC = () => {
                       >
                         Technical Skills
                       </h4>
-              <div className="skill-list">
+                      <div className="skill-list" style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: 'var(--space-2)'
+                      }}>
                         {skills.map((skill, index) => (
                           <motion.span
                             key={skill}
                             className="skill-badge"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ 
-                              duration: 0.2, 
-                              delay: index * 0.05,
-                              ease: "easeOut"
-                            }}
-                            whileHover={{ 
-                              scale: 1.05,
-                              transition: { duration: 0.1 }
+                            variants={skillVariants}
+                            whileHover="hover"
+                            style={{
+                              padding: 'var(--space-2) var(--space-3)',
+                              borderRadius: 'var(--radius-full)',
+                              background: 'var(--glass-bg)',
+                              border: '1px solid var(--glass-border)',
+                              color: 'var(--text-primary)',
+                              fontSize: 'var(--font-size-sm)',
+                              fontWeight: 500,
+                              cursor: 'pointer',
+                              backdropFilter: 'blur(10px)',
+                              transition: 'all 0.3s ease'
                             }}
                           >
-                    {skill}
+                            {skill}
                           </motion.span>
-                ))}
-              </div>
-            </div>
-          </Col>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </Col>
                 </Row>
               </motion.div>
             </Col>
           </Row>
 
-          {/* Stats Section */}
+          {/* Enhanced Stats Section */}
           <Row className="mt-5">
             <Col lg={12}>
               <motion.div 
-                variants={cardVariants}
-                className="glass-effect p-4"
+                variants={statsVariants}
+                className="glass-effect p-5"
+                style={{
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
+                  borderRadius: 'var(--radius-2xl)',
+                  backdropFilter: 'blur(20px)'
+                }}
               >
                 <Row className="text-center">
                   <Col md={3} sm={6} className="mb-4 mb-md-0">
-                    <div>
-                      <h3 
+                    <motion.div
+                      variants={numberVariants}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.h3 
                         className="text-gradient mb-2"
                         style={{
                           fontSize: 'var(--font-size-3xl)',
-                          fontWeight: 800
+                          fontWeight: 800,
+                          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text'
                         }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
                       >
                         50+
-              </h3>
+                      </motion.h3>
                       <p 
                         style={{
                           fontSize: 'var(--font-size-base)',
@@ -253,19 +401,31 @@ const About: React.FC = () => {
                       >
                         Projects Completed
                       </p>
-              </div>
+                    </motion.div>
                   </Col>
                   <Col md={3} sm={6} className="mb-4 mb-md-0">
-                    <div>
-                      <h3 
+                    <motion.div
+                      variants={numberVariants}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.h3 
                         className="text-gradient mb-2"
                         style={{
                           fontSize: 'var(--font-size-3xl)',
-                          fontWeight: 800
+                          fontWeight: 800,
+                          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text'
                         }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       >
                         3+
-                      </h3>
+                      </motion.h3>
                       <p 
                         style={{
                           fontSize: 'var(--font-size-base)',
@@ -275,19 +435,31 @@ const About: React.FC = () => {
                       >
                         Years Experience
                       </p>
-            </div>
-          </Col>
+                    </motion.div>
+                  </Col>
                   <Col md={3} sm={6} className="mb-4 mb-md-0">
-                    <div>
-                      <h3 
+                    <motion.div
+                      variants={numberVariants}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.h3 
                         className="text-gradient mb-2"
                         style={{
                           fontSize: 'var(--font-size-3xl)',
-                          fontWeight: 800
+                          fontWeight: 800,
+                          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text'
                         }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
                       >
                         15+
-              </h3>
+                      </motion.h3>
                       <p 
                         style={{
                           fontSize: 'var(--font-size-base)',
@@ -297,19 +469,31 @@ const About: React.FC = () => {
                       >
                         Technologies
                       </p>
-                  </div>
+                    </motion.div>
                   </Col>
                   <Col md={3} sm={6}>
-                    <div>
-                      <h3 
+                    <motion.div
+                      variants={numberVariants}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <motion.h3 
                         className="text-gradient mb-2"
                         style={{
                           fontSize: 'var(--font-size-3xl)',
-                          fontWeight: 800
+                          fontWeight: 800,
+                          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text'
                         }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
                       >
                         100%
-                      </h3>
+                      </motion.h3>
                       <p 
                         style={{
                           fontSize: 'var(--font-size-base)',
@@ -319,14 +503,14 @@ const About: React.FC = () => {
                       >
                         Client Satisfaction
                       </p>
-            </div>
+                    </motion.div>
                   </Col>
                 </Row>
               </motion.div>
-          </Col>
-        </Row>
-      </motion.div>
-    </Container>
+            </Col>
+          </Row>
+        </motion.div>
+      </Container>
     </section>
   );
 };

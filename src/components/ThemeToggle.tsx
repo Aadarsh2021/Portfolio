@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { BsSun, BsMoon } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
@@ -18,11 +17,10 @@ const ThemeToggle: React.FC = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <Button
-        variant="outline"
-        size="sm"
+      <button
+        type="button"
         onClick={toggleTheme}
-        className="theme-toggle-btn"
+        className="btn btn-outline btn-sm theme-toggle-btn"
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
         <motion.div
@@ -38,7 +36,7 @@ const ThemeToggle: React.FC = () => {
             renderIcon(BsSun, 18)
           )}
         </motion.div>
-      </Button>
+      </button>
     </motion.div>
   );
 };

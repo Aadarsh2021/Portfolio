@@ -196,7 +196,6 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
         
         // Calculate total visitors for percentage calculations
         const totalVisitors = aggregateData.results.visitors.value;
-        const totalPageViews = aggregateData.results.pageviews.value;
         
         setPlausibleStats({
           visitors: aggregateData.results.visitors.value,

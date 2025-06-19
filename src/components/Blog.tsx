@@ -81,6 +81,118 @@ const Blog: React.FC = () => {
 
   return (
     <section id="blog" className="blog-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .blog-section {
+              padding: 3rem 0;
+            }
+            .section-title {
+              font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
+              margin-bottom: 2rem !important;
+            }
+            .blog-card {
+              margin-bottom: 1.5rem !important;
+            }
+            .blog-card .card-title {
+              font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
+              margin-bottom: 0.75rem !important;
+            }
+            .blog-card .card-text {
+              font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+              line-height: 1.5 !important;
+              margin-bottom: 1rem !important;
+            }
+            .blog-meta {
+              font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
+              margin-bottom: 1rem !important;
+            }
+            .blog-tags .badge {
+              font-size: clamp(0.7rem, 2vw, 0.8rem) !important;
+              padding: 0.3rem 0.5rem !important;
+              margin: 0.2rem !important;
+            }
+            .blog-card .btn {
+              font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+              padding: 0.5rem 1rem !important;
+            }
+            .blog-image {
+              height: 180px !important;
+            }
+            .btn-lg {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              padding: 0.75rem 1.5rem !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .blog-section {
+              padding: 2rem 0;
+            }
+            .section-title {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .blog-card .card-title {
+              font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
+            }
+            .blog-card .card-text {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .blog-meta {
+              font-size: clamp(0.7rem, 1.8vw, 0.75rem) !important;
+            }
+            .blog-tags .badge {
+              font-size: clamp(0.65rem, 1.8vw, 0.75rem) !important;
+              padding: 0.25rem 0.4rem !important;
+            }
+            .blog-image {
+              height: 160px !important;
+            }
+          }
+          
+          .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          }
+          
+          .blog-card {
+            transition: all 0.3s ease;
+            border: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+          }
+          
+          .blog-image-container {
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .blog-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+          }
+          
+          .blog-card:hover .blog-image {
+            transform: scale(1.05);
+          }
+          
+          .blog-category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
+          
+          .blog-tags .badge {
+            transition: all 0.3s ease;
+          }
+          
+          .blog-tags .badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           variants={containerVariants}

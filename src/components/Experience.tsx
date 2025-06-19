@@ -107,6 +107,82 @@ const Experience: React.FC = () => {
 
   return (
     <section id="experience" className="experience-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .experience-section {
+              padding: 3rem 0;
+            }
+            .display-4 {
+              font-size: clamp(2rem, 6vw, 3.5rem) !important;
+              margin-bottom: 2rem !important;
+            }
+            .h4 {
+              font-size: clamp(1.3rem, 4vw, 1.5rem) !important;
+              margin-bottom: 1.5rem !important;
+            }
+            .glass-effect {
+              margin-bottom: 1.5rem !important;
+              padding: 1.5rem !important;
+            }
+            .card-title {
+              font-size: clamp(1.1rem, 3vw, 1.25rem) !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .card-subtitle {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .card-text {
+              font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+              line-height: 1.5 !important;
+              margin-bottom: 1rem !important;
+            }
+            .list-unstyled li {
+              font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+              line-height: 1.4 !important;
+              margin-bottom: 0.5rem !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .experience-section {
+              padding: 2rem 0;
+            }
+            .display-4 {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .h4 {
+              font-size: clamp(1.2rem, 3.5vw, 1.4rem) !important;
+            }
+            .glass-effect {
+              padding: 1.25rem !important;
+            }
+            .card-title {
+              font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
+            }
+            .card-text {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .list-unstyled li {
+              font-size: clamp(0.75rem, 2.2vw, 0.85rem) !important;
+            }
+          }
+          
+          .glass-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+          }
+          
+          .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           variants={containerVariants}

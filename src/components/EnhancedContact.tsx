@@ -268,256 +268,363 @@ const EnhancedContact: React.FC = () => {
   };
 
   return (
-    <Container>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="section-title text-center mb-5">Get in Touch</h2>
-        <Row className="justify-content-center">
-          <Col md={8} lg={6}>
-            <div className="contact-card glass-effect">
-              <Form ref={form} onSubmit={handleSubmit} noValidate>
-                {/* Honeypot field for spam protection */}
-                <div style={{ display: 'none' }}>
-                  <Form.Control
-                    type="text"
-                    name="honeypot"
-                    value={formData.honeypot}
-                    onChange={handleChange}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
-                </div>
-
-                <Row>
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
-                      <Form.Label className="d-flex align-items-center gap-2">
-                        {renderIcon(BsPerson, 16)}
-                        Name *
-                      </Form.Label>
-                      <InputGroup>
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          placeholder="Your full name"
-                          required
-                          className={getFieldStatus('name')}
-                          aria-describedby="name-feedback"
-                        />
-                        <AnimatePresence>
-                          {getFieldStatus('name') === 'is-valid' && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              exit={{ opacity: 0, scale: 0.8 }}
-                              className="input-group-text bg-success text-white"
-                            >
-                              {renderIcon(BsCheckCircle, 16)}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </InputGroup>
-                      <AnimatePresence>
-                        {validationErrors.name && (touchedFields.has('name') || submitAttempted) && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="invalid-feedback d-block"
-                            id="name-feedback"
-                          >
-                            {renderIcon(BsExclamationCircle, 14)} {validationErrors.name}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </Form.Group>
-                  </Col>
-
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
-                      <Form.Label className="d-flex align-items-center gap-2">
-                        {renderIcon(BsEnvelope, 16)}
-                        Email *
-                      </Form.Label>
-                      <InputGroup>
-                        <Form.Control
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          placeholder="your.email@example.com"
-                          required
-                          className={getFieldStatus('email')}
-                          aria-describedby="email-feedback"
-                        />
-                        <AnimatePresence>
-                          {getFieldStatus('email') === 'is-valid' && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              exit={{ opacity: 0, scale: 0.8 }}
-                              className="input-group-text bg-success text-white"
-                            >
-                              {renderIcon(BsCheckCircle, 16)}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </InputGroup>
-                      <AnimatePresence>
-                        {validationErrors.email && (touchedFields.has('email') || submitAttempted) && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="invalid-feedback d-block"
-                            id="email-feedback"
-                          >
-                            {renderIcon(BsExclamationCircle, 14)} {validationErrors.email}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Form.Group className="mb-4">
-                  <Form.Label className="d-flex align-items-center gap-2">
-                    {renderIcon(BsChatText, 16)}
-                    Subject *
-                  </Form.Label>
-                  <InputGroup>
+    <section id="contact" className="contact-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .contact-section {
+              padding: 3rem 0;
+            }
+            .section-title {
+              font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
+              margin-bottom: 2rem !important;
+            }
+            .contact-info {
+              margin-bottom: 2rem !important;
+            }
+            .contact-card {
+              padding: 1.5rem !important;
+              margin-bottom: 1rem !important;
+            }
+            .contact-card .card-title {
+              font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
+              margin-bottom: 0.75rem !important;
+            }
+            .contact-card .card-text {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              line-height: 1.5 !important;
+            }
+            .form-label {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .form-control, .form-select {
+              font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+              padding: 0.75rem !important;
+              margin-bottom: 1rem !important;
+            }
+            .form-textarea {
+              min-height: 120px !important;
+            }
+            .btn-gradient {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              padding: 0.75rem !important;
+              min-height: 48px !important;
+            }
+            .social-links {
+              gap: 1rem !important;
+              margin-top: 2rem !important;
+            }
+            .social-link {
+              min-height: 48px !important;
+              min-width: 48px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .contact-section {
+              padding: 2rem 0;
+            }
+            .section-title {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .contact-card {
+              padding: 1.25rem !important;
+            }
+            .contact-card .card-title {
+              font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
+            }
+            .contact-card .card-text {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .form-control, .form-select {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+              padding: 0.6rem !important;
+            }
+            .btn-gradient {
+              font-size: clamp(0.85rem, 2.2vw, 0.95rem) !important;
+              padding: 0.6rem !important;
+            }
+          }
+          
+          .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+          }
+          
+          .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          }
+          
+          .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+          }
+          
+          .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            transition: all 0.3s ease;
+          }
+          
+          .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+          }
+        `}
+      </style>
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title text-center mb-5">Get in Touch</h2>
+          <Row className="justify-content-center">
+            <Col md={8} lg={6}>
+              <div className="contact-card glass-effect">
+                <Form ref={form} onSubmit={handleSubmit} noValidate>
+                  {/* Honeypot field for spam protection */}
+                  <div style={{ display: 'none' }}>
                     <Form.Control
                       type="text"
-                      name="subject"
-                      value={formData.subject}
+                      name="honeypot"
+                      value={formData.honeypot}
                       onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="What's this about?"
-                      required
-                      className={getFieldStatus('subject')}
-                      aria-describedby="subject-feedback"
+                      tabIndex={-1}
+                      autoComplete="off"
                     />
-                    <AnimatePresence>
-                      {getFieldStatus('subject') === 'is-valid' && (
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.8 }}
-                          className="input-group-text bg-success text-white"
-                        >
-                          {renderIcon(BsCheckCircle, 16)}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </InputGroup>
-                  <AnimatePresence>
-                    {validationErrors.subject && (touchedFields.has('subject') || submitAttempted) && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="invalid-feedback d-block"
-                        id="subject-feedback"
-                      >
-                        {renderIcon(BsExclamationCircle, 14)} {validationErrors.subject}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </Form.Group>
+                  </div>
 
-                <Form.Group className="mb-4">
-                  <Form.Label className="d-flex align-items-center gap-2">
-                    {renderIcon(BsChatText, 16)}
-                    Message *
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    rows={5}
-                    placeholder="Tell me about your project, question, or just say hello..."
-                    required
-                    className={getFieldStatus('message')}
-                    aria-describedby="message-feedback"
-                  />
-                  <div className="d-flex justify-content-between align-items-center mt-2">
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="d-flex align-items-center gap-2">
+                          {renderIcon(BsPerson, 16)}
+                          Name *
+                        </Form.Label>
+                        <InputGroup>
+                          <Form.Control
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            placeholder="Your full name"
+                            required
+                            className={getFieldStatus('name')}
+                            aria-describedby="name-feedback"
+                          />
+                          <AnimatePresence>
+                            {getFieldStatus('name') === 'is-valid' && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                className="input-group-text bg-success text-white"
+                              >
+                                {renderIcon(BsCheckCircle, 16)}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </InputGroup>
+                        <AnimatePresence>
+                          {validationErrors.name && (touchedFields.has('name') || submitAttempted) && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="invalid-feedback d-block"
+                              id="name-feedback"
+                            >
+                              {renderIcon(BsExclamationCircle, 14)} {validationErrors.name}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </Form.Group>
+                    </Col>
+
+                    <Col md={6}>
+                      <Form.Group className="mb-4">
+                        <Form.Label className="d-flex align-items-center gap-2">
+                          {renderIcon(BsEnvelope, 16)}
+                          Email *
+                        </Form.Label>
+                        <InputGroup>
+                          <Form.Control
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            placeholder="your.email@example.com"
+                            required
+                            className={getFieldStatus('email')}
+                            aria-describedby="email-feedback"
+                          />
+                          <AnimatePresence>
+                            {getFieldStatus('email') === 'is-valid' && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                className="input-group-text bg-success text-white"
+                              >
+                                {renderIcon(BsCheckCircle, 16)}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </InputGroup>
+                        <AnimatePresence>
+                          {validationErrors.email && (touchedFields.has('email') || submitAttempted) && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="invalid-feedback d-block"
+                              id="email-feedback"
+                            >
+                              {renderIcon(BsExclamationCircle, 14)} {validationErrors.email}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+
+                  <Form.Group className="mb-4">
+                    <Form.Label className="d-flex align-items-center gap-2">
+                      {renderIcon(BsChatText, 16)}
+                      Subject *
+                    </Form.Label>
+                    <InputGroup>
+                      <Form.Control
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="What's this about?"
+                        required
+                        className={getFieldStatus('subject')}
+                        aria-describedby="subject-feedback"
+                      />
+                      <AnimatePresence>
+                        {getFieldStatus('subject') === 'is-valid' && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            className="input-group-text bg-success text-white"
+                          >
+                            {renderIcon(BsCheckCircle, 16)}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </InputGroup>
                     <AnimatePresence>
-                      {validationErrors.message && (touchedFields.has('message') || submitAttempted) && (
+                      {validationErrors.subject && (touchedFields.has('subject') || submitAttempted) && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           className="invalid-feedback d-block"
-                          id="message-feedback"
+                          id="subject-feedback"
                         >
-                          {renderIcon(BsExclamationCircle, 14)} {validationErrors.message}
+                          {renderIcon(BsExclamationCircle, 14)} {validationErrors.subject}
                         </motion.div>
                       )}
                     </AnimatePresence>
-                    <small className="text-muted">
-                      {formData.message.length}/1000 characters
+                  </Form.Group>
+
+                  <Form.Group className="mb-4">
+                    <Form.Label className="d-flex align-items-center gap-2">
+                      {renderIcon(BsChatText, 16)}
+                      Message *
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      rows={5}
+                      placeholder="Tell me about your project, question, or just say hello..."
+                      required
+                      className={getFieldStatus('message')}
+                      aria-describedby="message-feedback"
+                    />
+                    <div className="d-flex justify-content-between align-items-center mt-2">
+                      <AnimatePresence>
+                        {validationErrors.message && (touchedFields.has('message') || submitAttempted) && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="invalid-feedback d-block"
+                            id="message-feedback"
+                          >
+                            {renderIcon(BsExclamationCircle, 14)} {validationErrors.message}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <small className="text-muted">
+                        {formData.message.length}/1000 characters
+                      </small>
+                    </div>
+                  </Form.Group>
+
+                  <div className="d-flex align-items-center mb-4">
+                    {renderIcon(BsShield, 16)}
+                    <small className="text-muted ms-2">
+                      Your information is secure and will never be shared.
                     </small>
                   </div>
-                </Form.Group>
 
-                <div className="d-flex align-items-center mb-4">
-                  {renderIcon(BsShield, 16)}
-                  <small className="text-muted ms-2">
-                    Your information is secure and will never be shared.
-                  </small>
-                </div>
+                  <SubmitButton isSubmitting={isSubmitting} renderIcon={renderIcon} />
+                </Form>
 
-                <SubmitButton isSubmitting={isSubmitting} renderIcon={renderIcon} />
-              </Form>
-
-              <motion.div variants={itemVariants} className="text-center mt-5">
-                <p className="mb-3">Or connect with me directly:</p>
-                <div className="d-flex justify-content-center gap-4">
-                  <motion.a
-                    href="https://github.com/Aadarsh2021"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="social-link"
-                    aria-label="GitHub Profile"
-                  >
-                    {renderIcon(BsGithub, 24)}
-                  </motion.a>
-                  <motion.a
-                    href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="social-link"
-                    aria-label="LinkedIn Profile"
-                  >
-                    {renderIcon(BsLinkedin, 24)}
-                  </motion.a>
-                  <motion.a
-                    onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=thakuraadarsh1@gmail.com&su=Contact%20from%20Portfolio&body=Hello%20Aadarsh%2C%0A%0AI%20am%20reaching%20out%20regarding%20', '_blank')}
-                    style={{ cursor: 'pointer' }}
-                    whileHover={{ scale: 1.1 }}
-                    className="social-link"
-                    aria-label="Send Email"
-                  >
-                    {renderIcon(BsEnvelope, 24)}
-                  </motion.a>
-                </div>
-              </motion.div>
-            </div>
-          </Col>
-        </Row>
-      </motion.div>
-    </Container>
+                <motion.div variants={itemVariants} className="text-center mt-5">
+                  <p className="mb-3">Or connect with me directly:</p>
+                  <div className="d-flex justify-content-center gap-4">
+                    <motion.a
+                      href="https://github.com/Aadarsh2021"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      className="social-link"
+                      aria-label="GitHub Profile"
+                    >
+                      {renderIcon(BsGithub, 24)}
+                    </motion.a>
+                    <motion.a
+                      href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      className="social-link"
+                      aria-label="LinkedIn Profile"
+                    >
+                      {renderIcon(BsLinkedin, 24)}
+                    </motion.a>
+                    <motion.a
+                      onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=thakuraadarsh1@gmail.com&su=Contact%20from%20Portfolio&body=Hello%20Aadarsh%2C%0A%0AI%20am%20reaching%20out%20regarding%20', '_blank')}
+                      style={{ cursor: 'pointer' }}
+                      whileHover={{ scale: 1.1 }}
+                      className="social-link"
+                      aria-label="Send Email"
+                    >
+                      {renderIcon(BsEnvelope, 24)}
+                    </motion.a>
+                  </div>
+                </motion.div>
+              </div>
+            </Col>
+          </Row>
+        </motion.div>
+      </Container>
+    </section>
   );
 };
 

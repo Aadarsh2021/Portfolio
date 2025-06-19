@@ -73,6 +73,85 @@ const Testimonials: React.FC = () => {
 
   return (
     <section id="testimonials" className="testimonials-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .testimonials-section {
+              padding: 3rem 0;
+            }
+            .section-title {
+              font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
+              margin-bottom: 2rem !important;
+            }
+            .testimonial-card {
+              margin-bottom: 1.5rem !important;
+              padding: 1.5rem !important;
+            }
+            .testimonial-card blockquote p {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              line-height: 1.6 !important;
+            }
+            .testimonial-author h6 {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+            }
+            .testimonial-author small {
+              font-size: clamp(0.75rem, 2vw, 0.8rem) !important;
+            }
+            .testimonial-author img {
+              width: 40px !important;
+              height: 40px !important;
+            }
+            .quote-icon span {
+              font-size: clamp(24px, 6vw, 30px) !important;
+            }
+            .star {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .testimonials-section {
+              padding: 2rem 0;
+            }
+            .section-title {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .testimonial-card {
+              padding: 1.25rem !important;
+            }
+            .testimonial-card blockquote p {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .testimonial-author h6 {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .testimonial-author small {
+              font-size: clamp(0.7rem, 1.8vw, 0.75rem) !important;
+            }
+            .testimonial-author img {
+              width: 35px !important;
+              height: 35px !important;
+            }
+          }
+          
+          .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          }
+          
+          .testimonial-card {
+            transition: all 0.3s ease;
+            border: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+          }
+          
+          .star {
+            font-size: 1.1rem;
+            margin-right: 2px;
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           variants={containerVariants}

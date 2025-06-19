@@ -241,13 +241,13 @@ const EnhancedAnalytics: React.FC = () => {
           percentage: Math.round((item.visitors / totalVisitors) * 100),
           color: index === 0 ? "#6366f1" : index === 1 ? "#8b5cf6" : "#06b6d4"
         })),
-        performanceMetrics: {
-          loadTime: 1.2,
-          fcp: 0.8,
-          lcp: 1.4,
-          cls: 0.05
-        },
-        realtimeData: {
+    performanceMetrics: {
+      loadTime: 1.2,
+      fcp: 0.8,
+      lcp: 1.4,
+      cls: 0.05
+    },
+    realtimeData: {
           activeUsers: Math.floor(Math.random() * 20) + 5,
           currentPage: pagesData.results[0]?.page || "/",
           referrers: sourcesData.results.map((item: any) => ({
@@ -271,17 +271,17 @@ const EnhancedAnalytics: React.FC = () => {
 
   useEffect(() => {
     if (analyticsData) {
-      const interval = setInterval(() => {
+    const interval = setInterval(() => {
         setAnalyticsData(prev => prev ? ({
-          ...prev,
-          realtimeData: {
-            ...prev.realtimeData,
-            activeUsers: Math.floor(Math.random() * 20) + 5
-          }
+        ...prev,
+        realtimeData: {
+          ...prev.realtimeData,
+          activeUsers: Math.floor(Math.random() * 20) + 5
+        }
         }) : null);
-      }, 5000);
+    }, 5000);
 
-      return () => clearInterval(interval);
+    return () => clearInterval(interval);
     }
   }, [analyticsData]);
 
@@ -397,27 +397,47 @@ const EnhancedAnalytics: React.FC = () => {
   }
 
   return (
-    <Container fluid className="analytics-dashboard p-4" style={{ color: 'var(--text-primary)' }}>
+    <Container fluid className="analytics-dashboard p-3 p-md-4" style={{ color: 'var(--text-primary)' }}>
       <style>
         {`
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
+          
+          @media (max-width: 768px) {
+            .analytics-dashboard .metric-card {
+              margin-bottom: 1rem;
+            }
+            
+            .analytics-dashboard .card {
+              margin-bottom: 1rem;
+            }
+            
+            .analytics-dashboard .display-6 {
+              font-size: 2rem !important;
+            }
+          }
         `}
       </style>
       <Row className="mb-4">
         <Col>
-          <div className="d-flex justify-content-between align-items-center">
-            <h2 className="text-gradient mb-0" style={{ color: 'var(--text-primary)' }}>Portfolio Analytics</h2>
-            <div className="d-flex gap-2">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+            <h2 className="text-gradient mb-0" style={{ 
+              color: 'var(--text-primary)',
+              fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+              lineHeight: 1.2
+            }}>Portfolio Analytics</h2>
+            <div className="d-flex gap-2 flex-wrap">
               <button className="btn btn-outline-primary btn-sm" onClick={exportData}>
                 {renderIcon(BsDownload, { className: "me-2" })}
-                Export Data
+                <span className="d-none d-sm-inline">Export Data</span>
+                <span className="d-sm-none">Export</span>
               </button>
               <button className="btn btn-outline-secondary btn-sm">
                 {renderIcon(BsShare, { className: "me-2" })}
-                Share Report
+                <span className="d-none d-sm-inline">Share Report</span>
+                <span className="d-sm-none">Share</span>
               </button>
             </div>
           </div>
@@ -425,50 +445,50 @@ const EnhancedAnalytics: React.FC = () => {
       </Row>
 
       {/* Key Metrics */}
-      <Row className="mb-4">
-        <Col md={3}>
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <Card className="metric-card glass-effect text-center">
-              <Card.Body>
-                {renderIcon(BsEye, { size: 32, className: "text-primary mb-2" })}
-                <h3 className="display-6 mb-1">{analyticsData.pageViews.toLocaleString()}</h3>
-                <p className="text-muted mb-0">Page Views</p>
+      <Row className="mb-4 g-3">
+        <Col md={3} sm={6} xs={12}>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Card className="metric-card glass-effect text-center h-100">
+              <Card.Body className="p-3 p-md-4">
+                {renderIcon(BsEye, { size: 'clamp(24px, 6vw, 32px)', className: "text-primary mb-2" })}
+                <h3 className="display-6 mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>{analyticsData.pageViews.toLocaleString()}</h3>
+                <p className="text-muted mb-0" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>Page Views</p>
                 <Badge bg="success" className="mt-2">+12.5%</Badge>
               </Card.Body>
             </Card>
           </motion.div>
         </Col>
-        <Col md={3}>
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <Card className="metric-card glass-effect text-center">
-              <Card.Body>
-                {renderIcon(BsCursor, { size: 32, className: "text-secondary mb-2" })}
-                <h3 className="display-6 mb-1">{analyticsData.uniqueVisitors.toLocaleString()}</h3>
-                <p className="text-muted mb-0">Unique Visitors</p>
+        <Col md={3} sm={6} xs={12}>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Card className="metric-card glass-effect text-center h-100">
+              <Card.Body className="p-3 p-md-4">
+                {renderIcon(BsCursor, { size: 'clamp(24px, 6vw, 32px)', className: "text-secondary mb-2" })}
+                <h3 className="display-6 mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>{analyticsData.uniqueVisitors.toLocaleString()}</h3>
+                <p className="text-muted mb-0" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>Unique Visitors</p>
                 <Badge bg="success" className="mt-2">+8.3%</Badge>
               </Card.Body>
             </Card>
           </motion.div>
         </Col>
-        <Col md={3}>
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <Card className="metric-card glass-effect text-center">
-              <Card.Body>
-                {renderIcon(BsClockHistory, { size: 32, className: "text-accent mb-2" })}
-                <h3 className="display-6 mb-1">{analyticsData.avgSessionDuration}</h3>
-                <p className="text-muted mb-0">Avg. Session</p>
+        <Col md={3} sm={6} xs={12}>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Card className="metric-card glass-effect text-center h-100">
+              <Card.Body className="p-3 p-md-4">
+                {renderIcon(BsClockHistory, { size: 'clamp(24px, 6vw, 32px)', className: "text-accent mb-2" })}
+                <h3 className="display-6 mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>{analyticsData.avgSessionDuration}</h3>
+                <p className="text-muted mb-0" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>Avg. Session</p>
                 <Badge bg="warning" className="mt-2">+5.7%</Badge>
               </Card.Body>
             </Card>
           </motion.div>
         </Col>
-        <Col md={3}>
-          <motion.div whileHover={{ scale: 1.02 }}>
-            <Card className="metric-card glass-effect text-center">
-              <Card.Body>
-                {renderIcon(BsSpeedometer2, { size: 32, className: "text-info mb-2" })}
-                <h3 className="display-6 mb-1">{analyticsData.bounceRate}%</h3>
-                <p className="text-muted mb-0">Bounce Rate</p>
+        <Col md={3} sm={6} xs={12}>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Card className="metric-card glass-effect text-center h-100">
+              <Card.Body className="p-3 p-md-4">
+                {renderIcon(BsSpeedometer2, { size: 'clamp(24px, 6vw, 32px)', className: "text-info mb-2" })}
+                <h3 className="display-6 mb-1" style={{ fontSize: 'clamp(1.5rem, 4vw, 3rem)' }}>{analyticsData.bounceRate}%</h3>
+                <p className="text-muted mb-0" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>Bounce Rate</p>
                 <Badge bg="success" className="mt-2">-3.2%</Badge>
               </Card.Body>
             </Card>

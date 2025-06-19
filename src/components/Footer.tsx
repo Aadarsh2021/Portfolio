@@ -14,6 +14,81 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="footer">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .footer {
+              padding: 2rem 0 !important;
+            }
+            .footer h5 {
+              font-size: clamp(1.2rem, 4vw, var(--font-size-lg)) !important;
+              margin-bottom: 0.75rem !important;
+            }
+            .footer-content {
+              font-size: clamp(0.8rem, 2.5vw, var(--font-size-sm)) !important;
+              line-height: 1.5 !important;
+            }
+            .social-link {
+              width: 36px !important;
+              height: 36px !important;
+              font-size: clamp(0.9rem, 2.5vw, var(--font-size-base)) !important;
+            }
+            .footer .row {
+              text-align: center !important;
+            }
+            .footer .col-lg-6:first-child {
+              margin-bottom: 1.5rem !important;
+            }
+            .footer .d-flex {
+              justify-content: center !important;
+              margin-bottom: 1rem !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .footer {
+              padding: 1.5rem 0 !important;
+            }
+            .footer h5 {
+              font-size: clamp(1.1rem, 3.5vw, 1.3rem) !important;
+            }
+            .footer-content {
+              font-size: clamp(0.75rem, 2.2vw, 0.85rem) !important;
+            }
+            .social-link {
+              width: 32px !important;
+              height: 32px !important;
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+          }
+          
+          .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+          }
+          
+          .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+          }
+          
+          .social-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+          }
+        `}
+      </style>
       <Container>
         <Row className="align-items-center">
           <Col lg={6} className="text-center text-lg-start mb-3 mb-lg-0">

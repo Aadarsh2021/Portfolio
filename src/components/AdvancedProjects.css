@@ -1,0 +1,215 @@
+.projects-container {
+  padding: 2rem 0;
+}
+
+.filter-controls {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.1));
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(10px);
+}
+
+.filter-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.filter-label {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-select {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.filter-select:focus {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.15));
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
+  color: var(--text-primary);
+}
+
+.featured-switch {
+  margin-top: 0.5rem;
+}
+
+.featured-switch .form-check-label {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.results-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+  border-radius: 8px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+}
+
+.results-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.clear-filters-btn {
+  background: none;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.clear-filters-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.category-btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.1));
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+}
+
+.category-btn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  border-color: var(--primary);
+}
+
+.category-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.project-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-image-container:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-image-container:hover .project-image {
+  transform: scale(1.1);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--primary);
+}
+
+.tech-badge {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+}
+
+.project-icon {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .filter-controls {
+    padding: 1rem;
+  }
+  
+  .category-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .results-summary {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .filter-select {
+    font-size: 0.85rem;
+  }
+} 

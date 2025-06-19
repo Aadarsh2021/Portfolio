@@ -250,7 +250,84 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
   };
 
   return (
-    <section id="hero" className="hero-section" ref={containerRef}>
+    <section 
+      id="hero" 
+      className="hero-section position-relative overflow-hidden"
+      ref={containerRef}
+      style={{
+        background: 'linear-gradient(135deg, var(--bg-primary), var(--bg-secondary))',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative'
+      }}
+    >
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .hero-section {
+              padding: 2rem 0;
+              min-height: 100vh;
+            }
+            .hero-title {
+              font-size: clamp(2rem, 8vw, 3.5rem) !important;
+              line-height: 1.1 !important;
+              margin-bottom: 1rem !important;
+            }
+            .hero-subtitle {
+              font-size: clamp(1.2rem, 4vw, var(--font-size-3xl)) !important;
+              margin-bottom: 1.5rem !important;
+            }
+            .hero-description {
+              font-size: clamp(1rem, 3vw, var(--font-size-xl)) !important;
+              margin-bottom: 2rem !important;
+              line-height: 1.6 !important;
+            }
+            .hero-buttons {
+              flex-direction: column !important;
+              gap: 1rem !important;
+            }
+            .hero-buttons .btn {
+              min-width: 100% !important;
+              min-height: 48px !important;
+              font-size: clamp(0.9rem, 3vw, var(--font-size-lg)) !important;
+            }
+            .social-links {
+              gap: 1rem !important;
+              margin-top: 2rem !important;
+            }
+            .social-link {
+              min-height: 48px !important;
+              min-width: 48px !important;
+            }
+            .floating-shape {
+              display: none !important;
+            }
+            .hero-image {
+              width: 250px !important;
+              height: 250px !important;
+              margin: 2rem auto !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .hero-title {
+              font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+            }
+            .hero-subtitle {
+              font-size: clamp(1rem, 3.5vw, 1.5rem) !important;
+            }
+            .hero-description {
+              font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+            }
+          }
+          
+          .touch-feedback:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
+          }
+        `}
+      </style>
       {/* Advanced Particle System */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
         {[...Array(50)].map((_, i) => (

@@ -155,6 +155,80 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="about-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .about-section {
+              padding: 3rem 0;
+            }
+            .section-title {
+              font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
+              margin-bottom: 1.5rem !important;
+            }
+            .lead {
+              font-size: clamp(1rem, 3vw, var(--font-size-lg)) !important;
+              line-height: 1.6 !important;
+              margin-bottom: 2rem !important;
+            }
+            .about-card {
+              margin-bottom: 1.5rem !important;
+              padding: 1.5rem !important;
+            }
+            .about-card .card-title {
+              font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
+              margin-bottom: 0.75rem !important;
+            }
+            .about-card .card-text {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              line-height: 1.5 !important;
+            }
+            .skill-tag {
+              font-size: clamp(0.8rem, 2vw, 0.9rem) !important;
+              padding: 0.5rem 0.75rem !important;
+              margin: 0.25rem !important;
+            }
+            .stats-card {
+              padding: 1.5rem !important;
+              margin-bottom: 1rem !important;
+            }
+            .stats-number {
+              font-size: clamp(2rem, 6vw, 3rem) !important;
+            }
+            .stats-label {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .about-section {
+              padding: 2rem 0;
+            }
+            .section-title {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .lead {
+              font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+            }
+            .about-card {
+              padding: 1.25rem !important;
+            }
+            .skill-tag {
+              font-size: clamp(0.75rem, 1.8vw, 0.85rem) !important;
+              padding: 0.4rem 0.6rem !important;
+            }
+          }
+          
+          .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          }
+          
+          .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           initial="hidden"

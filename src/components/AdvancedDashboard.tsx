@@ -295,6 +295,34 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
+          
+          @media (max-width: 768px) {
+            .dashboard-overlay {
+              padding: 0 !important;
+            }
+            .dashboard-container {
+              max-width: 100vw !important;
+              border-radius: var(--radius-lg) !important;
+              padding: 0 !important;
+            }
+            .dashboard-container h2 {
+              font-size: 1.3rem !important;
+            }
+            .dashboard-container .btn {
+              min-width: 36px;
+              min-height: 36px;
+              font-size: 1rem;
+            }
+            .dashboard-container .glass-effect {
+              padding: 1rem !important;
+            }
+            .dashboard-container .progress-bar {
+              height: 8px !important;
+            }
+            .dashboard-container .category-title {
+              font-size: 1.1rem !important;
+            }
+          }
         `}
       </style>
       <AnimatePresence>
@@ -448,11 +476,11 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
                   <div>{plausibleError}</div>
                 </div>
               ) : (
-                <div>
+              <div>
                   {plausibleStats ? (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                        <div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                  <div>
                           <span role="img" aria-label="pageviews">📊</span> Page Views: <span style={{ color: 'var(--primary)' }}>{plausibleStats.pageviews.toLocaleString()}</span>
                         </div>
                         <div>
@@ -462,19 +490,19 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
                       <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.2rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>
                         <div>
                           <span role="img" aria-label="session">⏱️</span> Avg Session: <span style={{ color: 'var(--info)' }}>{plausibleStats.sessionDuration}m {Math.round((plausibleStats.sessionDuration % 1) * 60)}s</span>
-                        </div>
-                        <div>
+                  </div>
+                  <div>
                           <span role="img" aria-label="bounce">📈</span> Bounce Rate: <span style={{ color: 'var(--warning)' }}>{plausibleStats.bounceRate}%</span>
-                        </div>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                        <div style={{ 
-                          width: '8px', 
-                          height: '8px', 
-                          borderRadius: '50%', 
-                          backgroundColor: 'var(--success)',
-                          animation: 'pulse 2s infinite'
-                        }}></div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                  <div style={{ 
+                    width: '8px', 
+                    height: '8px', 
+                    borderRadius: '50%', 
+                    backgroundColor: 'var(--success)',
+                    animation: 'pulse 2s infinite'
+                  }}></div>
                         <span>Real Plausible Analytics Data</span>
                       </div>
                     </>
@@ -544,111 +572,111 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
                 </div>
               ) : (
                 <>
-                  <Row className="g-4 mb-4">
-                    <Col md={6}>
-                      <Card className="glass-effect h-100">
-                        <Card.Body className="p-4">
-                          <h5 className="mb-3 d-flex align-items-center gap-2">
-                            <span role="img" aria-label="traffic">🚦</span>
-                            Traffic Sources
-                          </h5>
-                          <div className="d-flex flex-column gap-2">
+              <Row className="g-4 mb-4">
+                <Col md={6}>
+                  <Card className="glass-effect h-100">
+                    <Card.Body className="p-4">
+                      <h5 className="mb-3 d-flex align-items-center gap-2">
+                        <span role="img" aria-label="traffic">🚦</span>
+                        Traffic Sources
+                      </h5>
+                      <div className="d-flex flex-column gap-2">
                             {plausibleStats?.trafficSources && plausibleStats.trafficSources.length > 0 ? (
                               plausibleStats.trafficSources.map((source, index) => (
                                 <div key={index} className="d-flex justify-content-between align-items-center">
                                   <span>{source.source}</span>
                                   <Badge bg={index === 0 ? "primary" : "secondary"}>{source.visitors} visitors</Badge>
-                                </div>
+                        </div>
                               ))
                             ) : (
                               <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
                                 No traffic data available
-                              </div>
+                        </div>
                             )}
-                          </div>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                    <Col md={6}>
-                      <Card className="glass-effect h-100">
-                        <Card.Body className="p-4">
-                          <h5 className="mb-3 d-flex align-items-center gap-2">
-                            <span role="img" aria-label="devices">💻</span>
-                            Device Breakdown
-                          </h5>
-                          <div className="d-flex flex-column gap-2">
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={6}>
+                  <Card className="glass-effect h-100">
+                    <Card.Body className="p-4">
+                      <h5 className="mb-3 d-flex align-items-center gap-2">
+                        <span role="img" aria-label="devices">💻</span>
+                        Device Breakdown
+                      </h5>
+                      <div className="d-flex flex-column gap-2">
                             {plausibleStats?.deviceBreakdown && plausibleStats.deviceBreakdown.length > 0 ? (
                               plausibleStats.deviceBreakdown.map((device, index) => (
                                 <div key={index} className="d-flex justify-content-between align-items-center">
                                   <span>{device.device}</span>
                                   <Badge bg={index === 0 ? "success" : "secondary"}>{device.percentage}%</Badge>
-                                </div>
+                        </div>
                               ))
                             ) : (
                               <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
                                 No device data available
-                              </div>
+                        </div>
                             )}
-                          </div>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  </Row>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
 
-                  <Row className="g-4 mb-4">
-                    <Col md={6}>
-                      <Card className="glass-effect h-100">
-                        <Card.Body className="p-4">
-                          <h5 className="mb-3 d-flex align-items-center gap-2">
-                            <span role="img" aria-label="pages">📄</span>
-                            Top Pages
-                          </h5>
-                          <div className="d-flex flex-column gap-2">
+              <Row className="g-4 mb-4">
+                <Col md={6}>
+                  <Card className="glass-effect h-100">
+                    <Card.Body className="p-4">
+                      <h5 className="mb-3 d-flex align-items-center gap-2">
+                        <span role="img" aria-label="pages">📄</span>
+                        Top Pages
+                      </h5>
+                      <div className="d-flex flex-column gap-2">
                             {plausibleStats?.topPages && plausibleStats.topPages.length > 0 ? (
                               plausibleStats.topPages.map((page, index) => (
                                 <div key={index} className="d-flex justify-content-between align-items-center">
                                   <span>{page.page}</span>
                                   <Badge bg={index === 0 ? "primary" : "secondary"}>{page.views} views</Badge>
-                                </div>
+                        </div>
                               ))
                             ) : (
                               <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
                                 No page data available
-                              </div>
+                        </div>
                             )}
-                          </div>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                    <Col md={6}>
-                      <Card className="glass-effect h-100">
-                        <Card.Body className="p-4">
-                          <h5 className="mb-3 d-flex align-items-center gap-2">
-                            <span role="img" aria-label="bounce">📊</span>
-                            Engagement Metrics
-                          </h5>
-                          <div className="d-flex flex-column gap-2">
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={6}>
+                  <Card className="glass-effect h-100">
+                    <Card.Body className="p-4">
+                      <h5 className="mb-3 d-flex align-items-center gap-2">
+                        <span role="img" aria-label="bounce">📊</span>
+                        Engagement Metrics
+                      </h5>
+                      <div className="d-flex flex-column gap-2">
                             {plausibleStats ? (
                               <>
-                                <div className="d-flex justify-content-between align-items-center">
-                                  <span>Bounce Rate</span>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>Bounce Rate</span>
                                   <Badge bg="warning">{plausibleStats.bounceRate}%</Badge>
-                                </div>
-                                <div className="d-flex justify-content-between align-items-center">
-                                  <span>Avg. Session</span>
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>Avg. Session</span>
                                   <Badge bg="info">~{plausibleStats.sessionDuration}m {Math.round((plausibleStats.sessionDuration % 1) * 60)}s</Badge>
                                 </div>
                               </>
                             ) : (
                               <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
                                 No engagement data available
-                              </div>
+                        </div>
                             )}
-                          </div>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  </Row>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
                 </>
               )}
             </div>

@@ -107,6 +107,108 @@ const Certifications: React.FC = () => {
 
   return (
     <section id="certifications" className="certifications-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .certifications-section {
+              padding: 3rem 0;
+            }
+            .display-4 {
+              font-size: clamp(2rem, 6vw, 3.5rem) !important;
+              margin-bottom: 2rem !important;
+            }
+            .h4 {
+              font-size: clamp(1.3rem, 4vw, 1.5rem) !important;
+              margin-bottom: 1.5rem !important;
+            }
+            .glass-effect {
+              margin-bottom: 1.5rem !important;
+              padding: 1.5rem !important;
+            }
+            .card-title {
+              font-size: clamp(1.1rem, 3vw, 1.25rem) !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .card-subtitle {
+              font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .card-text {
+              font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+              line-height: 1.5 !important;
+              margin-bottom: 1rem !important;
+            }
+            .badge {
+              font-size: clamp(0.7rem, 2vw, 0.8rem) !important;
+              padding: 0.3rem 0.5rem !important;
+              margin: 0.2rem !important;
+            }
+            .list-unstyled li {
+              font-size: clamp(0.8rem, 2.5vw, 0.9rem) !important;
+              line-height: 1.4 !important;
+              margin-bottom: 0.5rem !important;
+            }
+            .cert-icon, .achievement-icon {
+              min-width: 40px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .certifications-section {
+              padding: 2rem 0;
+            }
+            .display-4 {
+              font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+            }
+            .h4 {
+              font-size: clamp(1.2rem, 3.5vw, 1.4rem) !important;
+            }
+            .glass-effect {
+              padding: 1.25rem !important;
+            }
+            .card-title {
+              font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
+            }
+            .card-text {
+              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+            }
+            .badge {
+              font-size: clamp(0.65rem, 1.8vw, 0.75rem) !important;
+              padding: 0.25rem 0.4rem !important;
+            }
+            .list-unstyled li {
+              font-size: clamp(0.75rem, 2.2vw, 0.85rem) !important;
+            }
+            .cert-icon, .achievement-icon {
+              min-width: 35px !important;
+            }
+          }
+          
+          .glass-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+          }
+          
+          .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          
+          .badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          }
+          
+          .cert-icon, .achievement-icon {
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           variants={containerVariants}

@@ -23,7 +23,15 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
   const { success, info } = useNotifications();
   
   const [sessionData, setSessionData] = useState(getSessionData());
-  const [plausibleStats, setPlausibleStats] = useState<{ visitors: number; pageviews: number } | null>(null);
+  const [plausibleStats, setPlausibleStats] = useState<{
+    visitors: number;
+    pageviews: number;
+    sessionDuration: number;
+    bounceRate: number;
+    topPages: Array<{ page: string; views: number }>;
+    deviceBreakdown: Array<{ device: string; percentage: number }>;
+    trafficSources: Array<{ source: string; visitors: number }>;
+  } | null>(null);
   const [plausibleLoading, setPlausibleLoading] = useState(false);
   const [plausibleError, setPlausibleError] = useState<string | null>(null);
 
@@ -38,8 +46,11 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
         }
         setPlausibleError(null);
         
-        const response = await fetch(
-          `https://plausible.io/api/v1/stats/aggregate?site_id=${PLAUSIBLE_SITE_ID}&period=7d&metrics=visitors,pageviews`,
+        console.log('Fetching Plausible data for site:', PLAUSIBLE_SITE_ID);
+        
+        // Fetch aggregate stats (visitors, pageviews, session duration, bounce rate)
+        const aggregateResponse = await fetch(
+          `https://plausible.io/api/v1/stats/aggregate?site_id=${PLAUSIBLE_SITE_ID}&period=day&metrics=visitors,pageviews,bounce_rate,visit_duration`,
           {
             headers: {
               Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
@@ -47,20 +58,168 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
           }
         );
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        console.log('Aggregate response status:', aggregateResponse.status);
+        
+        if (!aggregateResponse.ok) {
+          const errorText = await aggregateResponse.text();
+          console.error('API Error Response:', errorText);
+          throw new Error(`HTTP error! status: ${aggregateResponse.status} - ${errorText}`);
         }
         
-        const data = await response.json();
+        const aggregateData = await aggregateResponse.json();
+        console.log('Aggregate data received:', aggregateData);
+        
+        // Check if we have valid data structure
+        if (!aggregateData.results) {
+          throw new Error('Invalid API response format');
+        }
+        
+        // Handle case where there's no data yet (new site)
+        if (!aggregateData.results.visitors || aggregateData.results.visitors.value === 0) {
+          // Try 7-day period as fallback
+          const fallbackResponse = await fetch(
+            `https://plausible.io/api/v1/stats/aggregate?site_id=${PLAUSIBLE_SITE_ID}&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration`,
+            {
+              headers: {
+                Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+              },
+            }
+          );
+          
+          if (fallbackResponse.ok) {
+            const fallbackData = await fallbackResponse.json();
+            if (fallbackData.results && fallbackData.results.visitors && fallbackData.results.visitors.value > 0) {
+              // Use 7-day data if available
+              aggregateData.results = fallbackData.results;
+            } else {
+              setPlausibleStats({
+                visitors: 0,
+                pageviews: 0,
+                sessionDuration: 0,
+                bounceRate: 0,
+                topPages: [],
+                deviceBreakdown: [],
+                trafficSources: []
+              });
+              setPlausibleLoading(false);
+              return;
+            }
+          } else {
+            setPlausibleStats({
+              visitors: 0,
+              pageviews: 0,
+              sessionDuration: 0,
+              bounceRate: 0,
+              topPages: [],
+              deviceBreakdown: [],
+              trafficSources: []
+            });
+            setPlausibleLoading(false);
+            return;
+          }
+        }
+        
+        // Fetch top pages (try day first, then 7d)
+        const pagesResponse = await fetch(
+          `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=day&property=event:page&limit=5`,
+          {
+            headers: {
+              Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+            },
+          }
+        );
+        
+        let pagesData = pagesResponse.ok ? await pagesResponse.json() : { results: [] };
+        
+        // If no day data, try 7d
+        if (!pagesData.results || pagesData.results.length === 0) {
+          const fallbackPagesResponse = await fetch(
+            `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=7d&property=event:page&limit=5`,
+            {
+              headers: {
+                Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+              },
+            }
+          );
+          pagesData = fallbackPagesResponse.ok ? await fallbackPagesResponse.json() : { results: [] };
+        }
+        
+        // Fetch device breakdown (try day first, then 7d)
+        const devicesResponse = await fetch(
+          `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=day&property=visit:device`,
+          {
+            headers: {
+              Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+            },
+          }
+        );
+        
+        let devicesData = devicesResponse.ok ? await devicesResponse.json() : { results: [] };
+        
+        // If no day data, try 7d
+        if (!devicesData.results || devicesData.results.length === 0) {
+          const fallbackDevicesResponse = await fetch(
+            `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=7d&property=visit:device`,
+            {
+              headers: {
+                Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+              },
+            }
+          );
+          devicesData = fallbackDevicesResponse.ok ? await fallbackDevicesResponse.json() : { results: [] };
+        }
+        
+        // Fetch traffic sources (try day first, then 7d)
+        const sourcesResponse = await fetch(
+          `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=day&property=visit:source`,
+          {
+            headers: {
+              Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+            },
+          }
+        );
+        
+        let sourcesData = sourcesResponse.ok ? await sourcesResponse.json() : { results: [] };
+        
+        // If no day data, try 7d
+        if (!sourcesData.results || sourcesData.results.length === 0) {
+          const fallbackSourcesResponse = await fetch(
+            `https://plausible.io/api/v1/stats/breakdown?site_id=${PLAUSIBLE_SITE_ID}&period=7d&property=visit:source`,
+            {
+              headers: {
+                Authorization: `Bearer ${PLAUSIBLE_API_KEY}`,
+              },
+            }
+          );
+          sourcesData = fallbackSourcesResponse.ok ? await fallbackSourcesResponse.json() : { results: [] };
+        }
+        
+        // Calculate total visitors for percentage calculations
+        const totalVisitors = aggregateData.results.visitors.value;
+        const totalPageViews = aggregateData.results.pageviews.value;
         
         setPlausibleStats({
-          visitors: data.results.visitors.value,
-          pageviews: data.results.pageviews.value,
+          visitors: aggregateData.results.visitors.value,
+          pageviews: aggregateData.results.pageviews.value,
+          sessionDuration: Math.round(aggregateData.results.visit_duration.value / 60), // Convert to minutes
+          bounceRate: Math.round(aggregateData.results.bounce_rate.value * 100), // Convert to percentage
+          topPages: pagesData.results.map((item: any) => ({
+            page: item.page,
+            views: item.visitors
+          })),
+          deviceBreakdown: devicesData.results.map((item: any) => ({
+            device: item.device,
+            percentage: Math.round((item.visitors / totalVisitors) * 100)
+          })),
+          trafficSources: sourcesData.results.map((item: any) => ({
+            source: item.source,
+            visitors: item.visitors
+          }))
         });
         setPlausibleLoading(false);
       } catch (err) {
         console.error('Error fetching Plausible stats:', err);
-        setPlausibleError('Failed to fetch real analytics');
+        setPlausibleError(err instanceof Error ? err.message : 'Failed to fetch analytics data');
         setPlausibleLoading(false);
       }
     };
@@ -131,6 +290,11 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
             0% { opacity: 1; }
             50% { opacity: 0.5; }
             100% { opacity: 1; }
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
           }
         `}
       </style>
@@ -257,119 +421,237 @@ const AdvancedDashboard: React.FC<DashboardProps> = ({ isVisible, onClose }) => 
 
             {/* Real Vercel Analytics Stats */}
             <div style={{ textAlign: 'center', margin: '1.5rem 0 2.5rem 0' }}>
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                  <div>
-                    <span role="img" aria-label="visitors">👥</span> Visitors (7d): <span style={{ color: 'var(--primary)' }}>6</span>
-                  </div>
-                  <div>
-                    <span role="img" aria-label="pageviews">👁️</span> Page Views (7d): <span style={{ color: 'var(--primary)' }}>10</span>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              {plausibleLoading ? (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>
                   <div style={{ 
-                    width: '8px', 
-                    height: '8px', 
+                    width: '12px', 
+                    height: '12px', 
                     borderRadius: '50%', 
-                    backgroundColor: 'var(--success)',
-                    animation: 'pulse 2s infinite'
+                    border: '2px solid var(--primary)',
+                    borderTop: '2px solid transparent',
+                    animation: 'spin 1s linear infinite'
                   }}></div>
-                  <span>Real Vercel Analytics Data</span>
+                  <span>Loading analytics data...</span>
                 </div>
-              </div>
+              ) : plausibleError ? (
+                <div style={{ 
+                  padding: '1rem', 
+                  background: 'rgba(220, 53, 69, 0.1)', 
+                  border: '1px solid rgba(220, 53, 69, 0.3)', 
+                  borderRadius: 'var(--radius-lg)',
+                  color: 'var(--danger)',
+                  fontSize: '0.9rem'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                    <span role="img" aria-label="error">⚠️</span>
+                    <span style={{ fontWeight: 600 }}>Analytics Error</span>
+                  </div>
+                  <div>{plausibleError}</div>
+                </div>
+              ) : (
+                <div>
+                  {plausibleStats ? (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                        <div>
+                          <span role="img" aria-label="pageviews">📊</span> Page Views: <span style={{ color: 'var(--primary)' }}>{plausibleStats.pageviews.toLocaleString()}</span>
+                        </div>
+                        <div>
+                          <span role="img" aria-label="visitors">👥</span> Visitors: <span style={{ color: 'var(--primary)' }}>{plausibleStats.visitors.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem', fontSize: '1.2rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>
+                        <div>
+                          <span role="img" aria-label="session">⏱️</span> Avg Session: <span style={{ color: 'var(--info)' }}>{plausibleStats.sessionDuration}m {Math.round((plausibleStats.sessionDuration % 1) * 60)}s</span>
+                        </div>
+                        <div>
+                          <span role="img" aria-label="bounce">📈</span> Bounce Rate: <span style={{ color: 'var(--warning)' }}>{plausibleStats.bounceRate}%</span>
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ 
+                          width: '8px', 
+                          height: '8px', 
+                          borderRadius: '50%', 
+                          backgroundColor: 'var(--success)',
+                          animation: 'pulse 2s infinite'
+                        }}></div>
+                        <span>Real Plausible Analytics Data</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ 
+                      padding: '1rem', 
+                      background: 'rgba(220, 53, 69, 0.1)', 
+                      border: '1px solid rgba(220, 53, 69, 0.3)', 
+                      borderRadius: 'var(--radius-lg)',
+                      color: 'var(--danger)',
+                      fontSize: '0.9rem',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <span role="img" aria-label="error">⚠️</span>
+                        <span style={{ fontWeight: 600 }}>No Analytics Data</span>
+                      </div>
+                      <div>Analytics data is not available</div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Real Analytics Data */}
             <div style={{ padding: '0 2rem 2rem 2rem' }}>
-              <Row className="g-4 mb-4">
-                <Col md={6}>
-                  <Card className="glass-effect h-100">
-                    <Card.Body className="p-4">
-                      <h5 className="mb-3 d-flex align-items-center gap-2">
-                        <span role="img" aria-label="traffic">🚦</span>
-                        Traffic Sources
-                      </h5>
-                      <div className="d-flex flex-column gap-2">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>vercel.com</span>
-                          <Badge bg="primary">1 visitor</Badge>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Direct</span>
-                          <Badge bg="secondary">5 visitors</Badge>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={6}>
-                  <Card className="glass-effect h-100">
-                    <Card.Body className="p-4">
-                      <h5 className="mb-3 d-flex align-items-center gap-2">
-                        <span role="img" aria-label="devices">💻</span>
-                        Device Breakdown
-                      </h5>
-                      <div className="d-flex flex-column gap-2">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Desktop</span>
-                          <Badge bg="success">100%</Badge>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Mobile</span>
-                          <Badge bg="secondary">0%</Badge>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Tablet</span>
-                          <Badge bg="secondary">0%</Badge>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
+              {plausibleError ? (
+                <div style={{ 
+                  padding: '2rem', 
+                  background: 'rgba(220, 53, 69, 0.1)', 
+                  border: '1px solid rgba(220, 53, 69, 0.3)', 
+                  borderRadius: 'var(--radius-lg)',
+                  color: 'var(--danger)',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                    <span role="img" aria-label="error">⚠️</span>
+                    <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>Analytics Unavailable</span>
+                  </div>
+                  <div style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>{plausibleError}</div>
+                  <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                    Please check your Plausible configuration or try again later.
+                  </div>
+                </div>
+              ) : !plausibleStats || (plausibleStats.visitors === 0 && plausibleStats.pageviews === 0) ? (
+                <div style={{ 
+                  padding: '2rem', 
+                  background: 'rgba(59, 130, 246, 0.1)', 
+                  border: '1px solid rgba(59, 130, 246, 0.3)', 
+                  borderRadius: 'var(--radius-lg)',
+                  color: 'var(--info)',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+                    <span role="img" aria-label="info">📊</span>
+                    <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>No Analytics Data Yet</span>
+                  </div>
+                  <div style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+                    Your Plausible analytics are set up correctly, but there's no data yet.
+                  </div>
+                  <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>
+                    Analytics will appear here once visitors start coming to your site.
+                  </div>
+                  <div style={{ marginTop: '1rem', fontSize: '0.8rem', opacity: 0.7 }}>
+                    Site ID: {PLAUSIBLE_SITE_ID}
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Row className="g-4 mb-4">
+                    <Col md={6}>
+                      <Card className="glass-effect h-100">
+                        <Card.Body className="p-4">
+                          <h5 className="mb-3 d-flex align-items-center gap-2">
+                            <span role="img" aria-label="traffic">🚦</span>
+                            Traffic Sources
+                          </h5>
+                          <div className="d-flex flex-column gap-2">
+                            {plausibleStats?.trafficSources && plausibleStats.trafficSources.length > 0 ? (
+                              plausibleStats.trafficSources.map((source, index) => (
+                                <div key={index} className="d-flex justify-content-between align-items-center">
+                                  <span>{source.source}</span>
+                                  <Badge bg={index === 0 ? "primary" : "secondary"}>{source.visitors} visitors</Badge>
+                                </div>
+                              ))
+                            ) : (
+                              <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
+                                No traffic data available
+                              </div>
+                            )}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                    <Col md={6}>
+                      <Card className="glass-effect h-100">
+                        <Card.Body className="p-4">
+                          <h5 className="mb-3 d-flex align-items-center gap-2">
+                            <span role="img" aria-label="devices">💻</span>
+                            Device Breakdown
+                          </h5>
+                          <div className="d-flex flex-column gap-2">
+                            {plausibleStats?.deviceBreakdown && plausibleStats.deviceBreakdown.length > 0 ? (
+                              plausibleStats.deviceBreakdown.map((device, index) => (
+                                <div key={index} className="d-flex justify-content-between align-items-center">
+                                  <span>{device.device}</span>
+                                  <Badge bg={index === 0 ? "success" : "secondary"}>{device.percentage}%</Badge>
+                                </div>
+                              ))
+                            ) : (
+                              <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
+                                No device data available
+                              </div>
+                            )}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
 
-              <Row className="g-4 mb-4">
-                <Col md={6}>
-                  <Card className="glass-effect h-100">
-                    <Card.Body className="p-4">
-                      <h5 className="mb-3 d-flex align-items-center gap-2">
-                        <span role="img" aria-label="pages">📄</span>
-                        Top Pages
-                      </h5>
-                      <div className="d-flex flex-column gap-2">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>/ (Home)</span>
-                          <Badge bg="primary">1 visitor</Badge>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Other pages</span>
-                          <Badge bg="secondary">5 visitors</Badge>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={6}>
-                  <Card className="glass-effect h-100">
-                    <Card.Body className="p-4">
-                      <h5 className="mb-3 d-flex align-items-center gap-2">
-                        <span role="img" aria-label="bounce">📊</span>
-                        Engagement Metrics
-                      </h5>
-                      <div className="d-flex flex-column gap-2">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Bounce Rate</span>
-                          <Badge bg="warning">83%</Badge>
-                        </div>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span>Avg. Session</span>
-                          <Badge bg="info">~3m 24s</Badge>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
+                  <Row className="g-4 mb-4">
+                    <Col md={6}>
+                      <Card className="glass-effect h-100">
+                        <Card.Body className="p-4">
+                          <h5 className="mb-3 d-flex align-items-center gap-2">
+                            <span role="img" aria-label="pages">📄</span>
+                            Top Pages
+                          </h5>
+                          <div className="d-flex flex-column gap-2">
+                            {plausibleStats?.topPages && plausibleStats.topPages.length > 0 ? (
+                              plausibleStats.topPages.map((page, index) => (
+                                <div key={index} className="d-flex justify-content-between align-items-center">
+                                  <span>{page.page}</span>
+                                  <Badge bg={index === 0 ? "primary" : "secondary"}>{page.views} views</Badge>
+                                </div>
+                              ))
+                            ) : (
+                              <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
+                                No page data available
+                              </div>
+                            )}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                    <Col md={6}>
+                      <Card className="glass-effect h-100">
+                        <Card.Body className="p-4">
+                          <h5 className="mb-3 d-flex align-items-center gap-2">
+                            <span role="img" aria-label="bounce">📊</span>
+                            Engagement Metrics
+                          </h5>
+                          <div className="d-flex flex-column gap-2">
+                            {plausibleStats ? (
+                              <>
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <span>Bounce Rate</span>
+                                  <Badge bg="warning">{plausibleStats.bounceRate}%</Badge>
+                                </div>
+                                <div className="d-flex justify-content-between align-items-center">
+                                  <span>Avg. Session</span>
+                                  <Badge bg="info">~{plausibleStats.sessionDuration}m {Math.round((plausibleStats.sessionDuration % 1) * 60)}s</Badge>
+                                </div>
+                              </>
+                            ) : (
+                              <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', padding: '1rem' }}>
+                                No engagement data available
+                              </div>
+                            )}
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </>
+              )}
             </div>
 
             {/* Content */}

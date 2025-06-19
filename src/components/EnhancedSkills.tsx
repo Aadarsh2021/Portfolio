@@ -209,7 +209,7 @@ const EnhancedSkills: React.FC = () => {
                 {skills
                   .filter(skill => skill.category === category)
                   .map((skill, skillIndex) => (
-                    <Col key={skill.name} lg={4} md={6} sm={12}>
+                    <Col key={skill.name} lg={6} md={6} sm={12}>
                       <motion.div
                         className="skill-card"
                         variants={skillVariants}
@@ -223,7 +223,8 @@ const EnhancedSkills: React.FC = () => {
                           boxShadow: 'var(--shadow-lg)',
                           height: '100%',
                           position: 'relative',
-                          overflow: 'hidden'
+                          overflow: 'hidden',
+                          minWidth: '280px'
                         }}
                       >
                         <motion.div
@@ -241,7 +242,7 @@ const EnhancedSkills: React.FC = () => {
                           transition={{ duration: 0.8, delay: 0.2 }}
                         />
                         
-                        <div className="d-flex align-items-center mb-3">
+                        <div className="d-flex align-items-start mb-3">
                           <div 
                             className="skill-icon me-3"
                             style={{
@@ -254,14 +255,15 @@ const EnhancedSkills: React.FC = () => {
                               justifyContent: 'center',
                               color: 'white',
                               fontSize: 'var(--font-size-xl)',
-                              boxShadow: `0 0 20px ${skill.color}40`
+                              boxShadow: `0 0 20px ${skill.color}40`,
+                              flexShrink: 0
                             }}
                           >
                             {renderIcon(skill.icon)}
                           </div>
-                          <div>
+                          <div style={{ flex: 1, minWidth: 0 }}>
                             <h4 
-                              className="skill-name mb-1"
+                              className="skill-name mb-2"
                               style={{
                                 fontSize: 'var(--font-size-lg)',
                                 fontWeight: 600,
@@ -272,18 +274,29 @@ const EnhancedSkills: React.FC = () => {
                               {skill.name}
                             </h4>
                             <div className="skill-level">
-                              <div className="d-flex justify-content-between align-items-center mb-1">
+                              <div className="d-flex justify-content-between align-items-center mb-2" style={{ gap: 'var(--space-3)' }}>
                                 <span style={{
                                   fontSize: 'var(--font-size-sm)',
                                   color: 'var(--text-secondary)',
-                                  fontWeight: 500
+                                  fontWeight: 500,
+                                  letterSpacing: '0.5px',
+                                  textTransform: 'uppercase',
+                                  padding: '4px 0',
+                                  whiteSpace: 'nowrap'
                                 }}>
                                   Proficiency
                                 </span>
                                 <span style={{
                                   fontSize: 'var(--font-size-sm)',
                                   color: skill.color,
-                                  fontWeight: 600
+                                  fontWeight: 700,
+                                  padding: '6px 12px',
+                                  borderRadius: 'var(--radius-sm)',
+                                  background: `${skill.color}15`,
+                                  border: `1px solid ${skill.color}30`,
+                                  minWidth: '50px',
+                                  textAlign: 'center',
+                                  whiteSpace: 'nowrap'
                                 }}>
                                   {skill.level}%
                                 </span>
@@ -291,10 +304,11 @@ const EnhancedSkills: React.FC = () => {
                               <div 
                                 className="progress-bar"
                                 style={{
-                                  height: '8px',
+                                  height: '10px',
                                   background: 'var(--glass-border)',
                                   borderRadius: 'var(--radius-full)',
-                                  overflow: 'hidden'
+                                  overflow: 'hidden',
+                                  marginTop: 'var(--space-2)'
                                 }}
                               >
                                 <motion.div

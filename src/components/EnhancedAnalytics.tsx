@@ -486,14 +486,20 @@ const EnhancedAnalytics: React.FC = () => {
             <Card.Body>
               {analyticsData.topPages.map((page, index) => (
                 <div key={page.page} className="mb-3">
-                  <div className="d-flex justify-content-between align-items-center mb-1">
-                    <span className="fw-medium">{page.page}</span>
-                    <small className="text-muted">{page.views} views</small>
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <span className="fw-medium" style={{ fontSize: 'var(--font-size-sm)' }}>{page.page}</span>
+                    <small className="text-muted" style={{
+                      fontSize: 'var(--font-size-xs)',
+                      padding: '2px 6px',
+                      borderRadius: 'var(--radius-sm)',
+                      background: 'var(--bg-secondary)',
+                      fontWeight: 500
+                    }}>{page.views} views</small>
                   </div>
                   <ProgressBar 
                     now={page.percentage} 
                     variant={index === 0 ? 'primary' : index === 1 ? 'secondary' : 'info'}
-                    style={{ height: '8px' }}
+                    style={{ height: '8px', borderRadius: 'var(--radius-full)' }}
                   />
                 </div>
               ))}
@@ -516,13 +522,21 @@ const EnhancedAnalytics: React.FC = () => {
                     {device.device === 'Tablet' && renderIcon(BsTablet, { size: 24 })}
                   </div>
                   <div className="flex-grow-1">
-                    <div className="d-flex justify-content-between align-items-center mb-1">
-                      <span>{device.device}</span>
-                      <strong>{device.percentage}%</strong>
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <span style={{ fontWeight: 500 }}>{device.device}</span>
+                      <strong style={{
+                        fontSize: 'var(--font-size-sm)',
+                        color: device.color,
+                        fontWeight: 700,
+                        padding: '4px 8px',
+                        borderRadius: 'var(--radius-sm)',
+                        background: `${device.color}15`,
+                        border: `1px solid ${device.color}30`
+                      }}>{device.percentage}%</strong>
                     </div>
                     <ProgressBar 
                       now={device.percentage} 
-                      style={{ backgroundColor: device.color, height: '6px' }}
+                      style={{ backgroundColor: device.color, height: '8px', borderRadius: 'var(--radius-full)' }}
                     />
                   </div>
                 </div>

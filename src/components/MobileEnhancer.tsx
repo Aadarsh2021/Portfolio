@@ -112,6 +112,35 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     } : null);
   }, [touchState]);
 
+  const handleSwipeAction = useCallback((direction: string) => {
+    const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
+    const currentIndex = sections.indexOf(currentSection);
+    
+    switch (direction) {
+      case 'left':
+        // Navigate to next section
+        const nextIndex = (currentIndex + 1) % sections.length;
+        document.getElementById(sections[nextIndex])?.scrollIntoView({ behavior: 'smooth' });
+        break;
+        
+      case 'right':
+        // Navigate to previous section
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : sections.length - 1;
+        document.getElementById(sections[prevIndex])?.scrollIntoView({ behavior: 'smooth' });
+        break;
+        
+      case 'up':
+        // Show quick actions
+        setShowQuickActions(true);
+        break;
+        
+      case 'down':
+        // Hide quick actions
+        setShowQuickActions(false);
+        break;
+    }
+  }, [currentSection]);
+
   const handleTouchEnd = useCallback((e: TouchEvent) => {
     if (!touchState) return;
     
@@ -141,36 +170,7 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     if (isSwipe && direction) {
       handleSwipeAction(direction);
     }
-  }, [touchState]);
-
-  const handleSwipeAction = (direction: string) => {
-    const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
-    const currentIndex = sections.indexOf(currentSection);
-    
-    switch (direction) {
-      case 'left':
-        // Navigate to next section
-        const nextIndex = (currentIndex + 1) % sections.length;
-        document.getElementById(sections[nextIndex])?.scrollIntoView({ behavior: 'smooth' });
-        break;
-        
-      case 'right':
-        // Navigate to previous section
-        const prevIndex = currentIndex > 0 ? currentIndex - 1 : sections.length - 1;
-        document.getElementById(sections[prevIndex])?.scrollIntoView({ behavior: 'smooth' });
-        break;
-        
-      case 'up':
-        // Show quick actions
-        setShowQuickActions(true);
-        break;
-        
-      case 'down':
-        // Hide quick actions
-        setShowQuickActions(false);
-        break;
-    }
-  };
+  }, [touchState, handleSwipeAction]);
 
   // Add touch event listeners
   useEffect(() => {

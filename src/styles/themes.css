@@ -61,8 +61,8 @@
   /* Neutral Colors - Enhanced Contrast */
   --text-primary: #ffffff;
   --text-secondary: #f1f5f9;
-  --text-tertiary: #cbd5e1;
-  --text-muted: #94a3b8;
+  --text-tertiary: #e2e8f0;
+  --text-muted: #cbd5e1;
   
   /* Background Colors - Improved Depth */
   --bg-primary: #0f172a;
@@ -118,8 +118,8 @@
   /* Neutral Colors - Improved Contrast */
   --text-primary: #0f172a;
   --text-secondary: #1e293b;
-  --text-tertiary: #475569;
-  --text-muted: #64748b;
+  --text-tertiary: #334155;
+  --text-muted: #475569;
   
   /* Background Colors - Softer Gradients */
   --bg-primary: #ffffff;
@@ -800,4 +800,24 @@ body {
   .animate-bounce-in {
     animation: none !important;
   }
+} 
+
+/* Gradient Text Enhancement */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--text-primary); /* Fallback */
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  color: var(--text-primary);
+  opacity: 0;
 } 

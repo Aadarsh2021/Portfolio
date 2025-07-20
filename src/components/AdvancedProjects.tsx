@@ -228,8 +228,8 @@ const AdvancedProjects: React.FC = () => {
         >
           <Row className="mb-4">
             <Col>
-              <h2 className="text-center mb-4">Projects</h2>
-              <p className="text-center text-muted mb-5">
+              <h2 className="text-center mb-4 gradient-text" data-text="Projects">Projects</h2>
+              <p className="text-center mb-5" style={{ color: 'var(--text-primary)' }}>
                 Explore my latest projects and technical work
               </p>
             </Col>

@@ -240,16 +240,13 @@ const About: React.FC = () => {
           <Row className="justify-content-center">
             <Col lg={8} className="text-center mb-5">
               <motion.h2 
-                className="section-title"
+                className="section-title gradient-text"
                 variants={cardVariants}
+                data-text="About Me"
                 style={{
                   fontSize: 'var(--font-size-4xl)',
                   fontWeight: 800,
                   marginBottom: 'var(--space-6)',
-                  background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
                 }}
               >
                 About Me

@@ -149,7 +149,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary fallback={
+      <div className="error-boundary-root">
+        <h2>Something went wrong with the application</h2>
+        <button onClick={() => window.location.reload()}>Refresh Page</button>
+      </div>
+    }>
       <ThemeProvider>
         <NotificationProvider>
           <SEOHead />
@@ -926,11 +931,13 @@ const App: React.FC = () => {
           <div className="hero-section d-flex align-items-center justify-content-center">
             <div className="text-center">
               <h2>Unable to load hero section</h2>
-              <p>Please refresh the page</p>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           </div>
         }>
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} id="hero">
             <ParticleBackground />
             <Hero 
               onDownloadResume={handleDownloadResume}
@@ -943,6 +950,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load about section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -961,6 +971,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load experience section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -979,6 +992,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load skills section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -997,6 +1013,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load projects section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -1019,6 +1038,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load certifications section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -1037,6 +1059,9 @@ const App: React.FC = () => {
           <ErrorBoundary fallback={
             <div className="section-padding text-center">
               <h3>Unable to load contact section</h3>
+              <button onClick={() => window.location.reload()} className="btn btn-primary mt-3">
+                Retry
+              </button>
             </div>
           }>
             <motion.section 
@@ -1061,45 +1086,30 @@ const App: React.FC = () => {
           </div>
         }>
           <Footer />
-          <div className="py-4">
-            <SocialLinks />
-          </div>
+          <ScrollToTop />
+          <SocialLinks />
         </ErrorBoundary>
         
-        <ScrollToTop />
-        
-        {/* Mobile Analytics Button */}
-        <button
-          className="mobile-analytics-btn d-md-none"
-          onClick={() => setIsAnalyticsModalOpen(true)}
-          title="View Analytics"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
-            <path d="M7 12h2v5H7zm4-3h2v8h-2zm4-3h2v11h-2z"/>
-          </svg>
-        </button>
-        </div>
-            </PageTransition>
-            <Analytics />
-          </MobileEnhancer>
-          
-          <ErrorBoundary fallback={null}>
-            <AdvancedDashboard 
-              isVisible={isDashboardOpen}
-              onClose={() => setIsDashboardOpen(false)}
-            />
-          </ErrorBoundary>
+        <ErrorBoundary fallback={null}>
+          <AdvancedDashboard
+            isVisible={isDashboardOpen}
+            onClose={() => setIsDashboardOpen(false)}
+          />
+        </ErrorBoundary>
 
-          <ErrorBoundary fallback={null}>
-            <AnalyticsModal
-              isOpen={isAnalyticsModalOpen}
-              onClose={() => setIsAnalyticsModalOpen(false)}
-            />
-          </ErrorBoundary>
-        </NotificationProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+        <ErrorBoundary fallback={null}>
+          <AnalyticsModal
+            show={isAnalyticsModalOpen}
+            onHide={() => setIsAnalyticsModalOpen(false)}
+          />
+        </ErrorBoundary>
+      </div>
+    </PageTransition>
+  </MobileEnhancer>
+  <Analytics />
+</NotificationProvider>
+</ThemeProvider>
+</ErrorBoundary>
   );
 };
 

@@ -1,31 +1,44 @@
 module.exports = {
   webpack: {
     configure: (webpackConfig) => {
-      // Exclude node_modules from source-map-loader
-      webpackConfig.module.rules.forEach((rule) => {
-        if (rule.oneOf) {
-          rule.oneOf.forEach((oneOfRule) => {
-            if (
-              oneOfRule.loader &&
-              oneOfRule.loader.includes('source-map-loader')
-            ) {
-              oneOfRule.exclude = /node_modules/;
+      // Add source map loader configuration
+      webpackConfig.module.rules.push({
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+        use: {
+          loader: 'source-map-loader',
+          options: {
+            filterSourceMappingUrl: (url, resourcePath) => {
+              // Ignore source maps for @mediapipe packages
+              if (/@mediapipe/.test(resourcePath)) {
+                return false;
+              }
+              return true;
             }
-          });
+          }
         }
       });
 
-      // (Keep ignoreWarnings as a fallback)
+      // Add ignore warnings configuration
       webpackConfig.ignoreWarnings = [
-        (warning) =>
-          warning.message &&
-          warning.message.includes('Failed to parse source map') &&
-          warning.module &&
-          warning.module.resource &&
-          warning.module.resource.includes('node_modules')
+        {
+          module: /@mediapipe/,
+        },
+        {
+          module: /tasks-vision/,
+        },
+        function ignoreSourcemapsloaderWarnings(warning) {
+          return (
+            warning.module &&
+            warning.module.resource.includes('node_modules') &&
+            warning.details &&
+            warning.details.includes('source-map-loader')
+          );
+        },
       ];
 
       return webpackConfig;
-    }
-  }
+    },
+  },
 }; 

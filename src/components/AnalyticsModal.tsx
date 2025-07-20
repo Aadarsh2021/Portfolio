@@ -4,17 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import EnhancedAnalytics from './EnhancedAnalytics';
 
 interface AnalyticsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  show: boolean;
+  onHide: () => void;
 }
 
-const AnalyticsModal: React.FC<AnalyticsModalProps> = ({ isOpen, onClose }) => {
+const AnalyticsModal: React.FC<AnalyticsModalProps> = ({ show, onHide }) => {
   return (
     <AnimatePresence>
-      {isOpen && (
+      {show && (
         <Modal
-          show={isOpen}
-          onHide={onClose}
+          show={show}
+          onHide={onHide}
           size="xl"
           centered
           backdrop="static"
@@ -34,7 +34,7 @@ const AnalyticsModal: React.FC<AnalyticsModalProps> = ({ isOpen, onClose }) => {
               <button
                 type="button"
                 className="custom-close-btn"
-                onClick={onClose}
+                onClick={onHide}
                 aria-label="Close"
               >
                 ✕

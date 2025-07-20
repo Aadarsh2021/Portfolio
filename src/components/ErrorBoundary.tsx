@@ -10,7 +10,7 @@ import {
 
 interface Props {
   children: ReactNode;
-  fallback?: ReactNode;
+  fallback: ReactNode | null;
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
 }
 

@@ -11,7 +11,7 @@ const SocialLinks: React.FC = () => {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/aadarsh-thakur',
+      url: 'https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/',
       icon: '💼',
       color: '#0077B5'
     },

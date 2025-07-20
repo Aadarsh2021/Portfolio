@@ -151,6 +151,86 @@ const EnhancedSkills: React.FC = () => {
 
   return (
     <section id="skills" className="skills-section">
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .skills-section {
+              padding: 2rem 0;
+            }
+            
+            .skill-card {
+              margin-bottom: 1rem !important;
+              padding: 1rem !important;
+            }
+            
+            .skill-icon {
+              width: 40px !important;
+              height: 40px !important;
+              font-size: 1rem !important;
+            }
+            
+            .skill-name {
+              font-size: 1rem !important;
+              line-height: 1.3 !important;
+            }
+            
+            .category-title {
+              font-size: 1.5rem !important;
+              margin-bottom: 1rem !important;
+            }
+            
+            .section-title {
+              font-size: 2rem !important;
+              margin-bottom: 1rem !important;
+            }
+            
+            .section-subtitle {
+              font-size: 1rem !important;
+              margin-bottom: 2rem !important;
+            }
+            
+            .progress-bar {
+              height: 8px !important;
+            }
+            
+            .skill-level span {
+              font-size: 0.75rem !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .skills-section {
+              padding: 1.5rem 0;
+            }
+            
+            .skill-card {
+              padding: 0.75rem !important;
+            }
+            
+            .skill-icon {
+              width: 35px !important;
+              height: 35px !important;
+              font-size: 0.875rem !important;
+            }
+            
+            .skill-name {
+              font-size: 0.9rem !important;
+            }
+            
+            .category-title {
+              font-size: 1.25rem !important;
+            }
+            
+            .section-title {
+              font-size: 1.75rem !important;
+            }
+            
+            .section-subtitle {
+              font-size: 0.9rem !important;
+            }
+          }
+        `}
+      </style>
       <Container>
         <motion.div
           className="text-center mb-5"
@@ -361,4 +441,4 @@ const EnhancedSkills: React.FC = () => {
   );
 };
 
-export default EnhancedSkills; 
+export default EnhancedSkills;

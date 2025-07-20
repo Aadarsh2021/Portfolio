@@ -124,7 +124,7 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     const duration = Date.now() - touchState.duration;
     const absDeltaX = Math.abs(touchState.deltaX);
     const absDeltaY = Math.abs(touchState.deltaY);
-    const isSwipe = duration < 300 && (absDeltaX > 50 || absDeltaY > 50);
+    const isSwipe = duration < 300 && (absDeltaX > 100 || absDeltaY > 100); // Increased threshold
     
     let direction: 'left' | 'right' | 'up' | 'down' | null = null;
     
@@ -143,8 +143,8 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
       direction
     } : null);
 
-    // Handle swipe actions
-    if (isSwipe && direction) {
+    // Handle swipe actions only for intentional swipes
+    if (isSwipe && direction && absDeltaX > 100) { // Only handle horizontal swipes
       handleSwipeAction(direction);
     }
   }, [touchState]);
@@ -153,7 +153,7 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     switch (direction) {
       case 'left':
         // Navigate to next section
-        const sections = ['hero', 'about', 'projects', 'contact'];
+        const sections = ['hero', 'about', 'experience', 'skills', 'projects', 'certifications', 'contact'];
         const currentSection = sections.find(section => {
           const element = document.getElementById(section);
           return element && window.scrollY >= element.offsetTop - 100;
@@ -165,7 +165,7 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
         
       case 'right':
         // Navigate to previous section
-        const sectionsBack = ['hero', 'about', 'projects', 'contact'];
+        const sectionsBack = ['hero', 'about', 'experience', 'skills', 'projects', 'certifications', 'contact'];
         const currentSectionBack = sectionsBack.find(section => {
           const element = document.getElementById(section);
           return element && window.scrollY >= element.offsetTop - 100;
@@ -175,15 +175,7 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
         document.getElementById(sectionsBack[prevIndex])?.scrollIntoView({ behavior: 'smooth' });
         break;
         
-      case 'up':
-        // Show mobile optimizations panel
-        setShowMobileOptimizations(true);
-        break;
-        
-      case 'down':
-        // Hide mobile optimizations panel
-        setShowMobileOptimizations(false);
-        break;
+      // Removed automatic up/down swipe handling for mobile optimizations
     }
   };
 

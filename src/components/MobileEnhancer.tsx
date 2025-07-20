@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import MobileNavigation from './MobileNavigation';
 
 interface MobileEnhancerProps {
   children: React.ReactNode;
@@ -22,16 +21,17 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
   const [touchState, setTouchState] = useState<TouchState | null>(null);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showQuickActions, setShowQuickActions] = useState(false);
-  const [currentSection, setCurrentSection] = useState('hero');
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [networkSpeed, setNetworkSpeed] = useState<'slow' | 'fast'>('fast');
+  const [showMobileOptimizations, setShowMobileOptimizations] = useState(false);
 
   // Detect mobile device
   useEffect(() => {
     const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor;
+      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
       const isSmallScreen = window.innerWidth <= 768;
-      setIsMobile(isSmallScreen);
+      setIsMobile(isMobileDevice || isSmallScreen);
     };
 
     checkMobile();
@@ -55,29 +55,35 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     };
   }, []);
 
-  // Scroll progress tracking
+  // Network status monitoring
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      setScrollProgress(progress);
-
-      // Update current section
-      const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setCurrentSection(current);
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
     };
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Network speed detection
+  useEffect(() => {
+    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+    
+    if (connection) {
+      const updateNetworkSpeed = () => {
+        const effectiveType = connection.effectiveType;
+        setNetworkSpeed(effectiveType === 'slow-2g' || effectiveType === '2g' ? 'slow' : 'fast');
+      };
+      
+      updateNetworkSpeed();
+      connection.addEventListener('change', updateNetworkSpeed);
+      
+      return () => connection.removeEventListener('change', updateNetworkSpeed);
+    }
   }, []);
 
   // Touch gesture handling
@@ -112,35 +118,6 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     } : null);
   }, [touchState]);
 
-  const handleSwipeAction = useCallback((direction: string) => {
-    const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
-    const currentIndex = sections.indexOf(currentSection);
-    
-    switch (direction) {
-      case 'left':
-        // Navigate to next section
-        const nextIndex = (currentIndex + 1) % sections.length;
-        document.getElementById(sections[nextIndex])?.scrollIntoView({ behavior: 'smooth' });
-        break;
-        
-      case 'right':
-        // Navigate to previous section
-        const prevIndex = currentIndex > 0 ? currentIndex - 1 : sections.length - 1;
-        document.getElementById(sections[prevIndex])?.scrollIntoView({ behavior: 'smooth' });
-        break;
-        
-      case 'up':
-        // Show quick actions
-        setShowQuickActions(true);
-        break;
-        
-      case 'down':
-        // Hide quick actions
-        setShowQuickActions(false);
-        break;
-    }
-  }, [currentSection]);
-
   const handleTouchEnd = useCallback((e: TouchEvent) => {
     if (!touchState) return;
     
@@ -170,7 +147,45 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     if (isSwipe && direction) {
       handleSwipeAction(direction);
     }
-  }, [touchState, handleSwipeAction]);
+  }, [touchState]);
+
+  const handleSwipeAction = (direction: string) => {
+    switch (direction) {
+      case 'left':
+        // Navigate to next section
+        const sections = ['hero', 'about', 'projects', 'contact'];
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section);
+          return element && window.scrollY >= element.offsetTop - 100;
+        });
+        const currentIndex = sections.indexOf(currentSection || 'hero');
+        const nextIndex = (currentIndex + 1) % sections.length;
+        document.getElementById(sections[nextIndex])?.scrollIntoView({ behavior: 'smooth' });
+        break;
+        
+      case 'right':
+        // Navigate to previous section
+        const sectionsBack = ['hero', 'about', 'projects', 'contact'];
+        const currentSectionBack = sectionsBack.find(section => {
+          const element = document.getElementById(section);
+          return element && window.scrollY >= element.offsetTop - 100;
+        });
+        const currentIndexBack = sectionsBack.indexOf(currentSectionBack || 'hero');
+        const prevIndex = currentIndexBack > 0 ? currentIndexBack - 1 : sectionsBack.length - 1;
+        document.getElementById(sectionsBack[prevIndex])?.scrollIntoView({ behavior: 'smooth' });
+        break;
+        
+      case 'up':
+        // Show mobile optimizations panel
+        setShowMobileOptimizations(true);
+        break;
+        
+      case 'down':
+        // Hide mobile optimizations panel
+        setShowMobileOptimizations(false);
+        break;
+    }
+  };
 
   // Add touch event listeners
   useEffect(() => {
@@ -192,14 +207,19 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     if (isMobile) {
       document.body.classList.add('mobile-device');
       document.body.classList.add(`orientation-${orientation}`);
+      document.body.classList.add(`network-${networkSpeed}`);
+      
+      if (!isOnline) {
+        document.body.classList.add('offline');
+      }
     }
     
     return () => {
-      document.body.classList.remove('mobile-device', 'orientation-portrait', 'orientation-landscape');
+      document.body.classList.remove('mobile-device', 'orientation-portrait', 'orientation-landscape', 'network-slow', 'network-fast', 'offline');
     };
-  }, [isMobile, orientation]);
+  }, [isMobile, orientation, networkSpeed, isOnline]);
 
-  // Haptic feedback
+  // Haptic feedback for supported devices
   const triggerHapticFeedback = (type: 'light' | 'medium' | 'heavy' = 'light') => {
     if ('vibrate' in navigator) {
       const patterns = {
@@ -211,6 +231,33 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     }
   };
 
+  // Performance optimization for mobile
+  useEffect(() => {
+    if (isMobile && networkSpeed === 'slow') {
+      // Reduce animations and effects for slow networks
+      document.body.classList.add('reduced-motion');
+      
+      // Lazy load non-critical images
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            img.src = img.dataset.src || '';
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+      
+      return () => {
+        images.forEach(img => imageObserver.unobserve(img));
+      };
+    }
+  }, [isMobile, networkSpeed]);
+
   if (!isMobile) {
     return <>{children}</>;
   }
@@ -219,107 +266,24 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
     <div className="mobile-enhanced">
       {children}
       
-      {/* Progress Bar */}
-      <motion.div
-        className="mobile-progress-bar"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
-          zIndex: 1001,
-          transformOrigin: 'left'
-        }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: scrollProgress / 100 }}
-        transition={{ duration: 0.1 }}
-      />
-
-      {/* Floating Action Button */}
-      <motion.button
-        className="mobile-fab"
-        style={{
-          position: 'fixed',
-          bottom: '2rem',
-          right: '2rem',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-          border: 'none',
-          color: 'white',
-          fontSize: '1.5rem',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-          zIndex: 1000,
-          cursor: 'pointer'
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => {
-          setShowQuickActions(!showQuickActions);
-          triggerHapticFeedback('light');
-        }}
-      >
-        ⚡
-      </motion.button>
-
-      {/* Quick Actions Panel */}
-      <AnimatePresence>
-        {showQuickActions && (
-          <motion.div
-            className="mobile-quick-actions"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            style={{
-              position: 'fixed',
-              bottom: '5rem',
-              right: '2rem',
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(20px)',
-              borderRadius: '16px',
-              padding: '1rem',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-              zIndex: 999,
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['hero', 'about', 'projects', 'skills', 'experience', 'contact'].map((section) => (
-                <motion.button
-                  key={section}
-                  className={`quick-action-btn ${currentSection === section ? 'active' : ''}`}
-                  onClick={() => {
-                    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-                    triggerHapticFeedback('light');
-                  }}
-                  style={{
-                    padding: '0.75rem',
-                    borderRadius: '12px',
-                    border: 'none',
-                    background: currentSection === section 
-                      ? 'linear-gradient(135deg, var(--primary), var(--secondary))'
-                      : 'rgba(255, 255, 255, 0.8)',
-                    color: currentSection === section ? 'white' : 'var(--text-primary)',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s'
-                  }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+      {/* Mobile Status Indicators */}
+      <div className="mobile-status-bar">
+        {!isOnline && (
+          <div className="offline-indicator">
+            <span>📶</span>
+            <span>Offline Mode</span>
+          </div>
         )}
-      </AnimatePresence>
+        
+        {networkSpeed === 'slow' && (
+          <div className="slow-network-indicator">
+            <span>🐌</span>
+            <span>Optimizing for slow connection</span>
+          </div>
+        )}
+      </div>
 
-      {/* Swipe Indicator */}
+      {/* Swipe Gesture Indicator */}
       <AnimatePresence>
         {touchState?.isSwipe && (
           <motion.div
@@ -332,13 +296,12 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+              background: 'var(--primary)',
               color: 'white',
               padding: '1rem',
               borderRadius: '50%',
               zIndex: 9999,
-              fontSize: '1.5rem',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+              fontSize: '1.5rem'
             }}
           >
             {touchState.direction === 'left' && '👈'}
@@ -349,105 +312,244 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
         )}
       </AnimatePresence>
 
-             {/* Bottom Navigation */}
-       <MobileNavigation 
-         currentSection={currentSection}
-         onSectionChange={setCurrentSection}
-       />
-
-       {/* Mobile Menu Overlay */}
-       <AnimatePresence>
-         {showMobileMenu && (
+      {/* Mobile Optimization Panel */}
+      <AnimatePresence>
+        {showMobileOptimizations && (
           <motion.div
-            className="mobile-menu-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="mobile-optimization-panel"
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
             style={{
               position: 'fixed',
-              top: 0,
+              bottom: 0,
               left: 0,
               right: 0,
-              bottom: 0,
-              background: 'rgba(0, 0, 0, 0.8)',
-              zIndex: 1002,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '1rem 1rem 0 0',
+              padding: '1.5rem',
+              zIndex: 1000
             }}
-            onClick={() => setShowMobileMenu(false)}
           >
-            <motion.div
-              className="mobile-menu-content"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              style={{
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(20px)',
-                borderRadius: '20px',
-                padding: '2rem',
-                maxWidth: '90vw',
-                textAlign: 'center'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 style={{ marginBottom: '1rem', color: 'var(--primary)' }}>Mobile Menu</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'].map((item) => (
-                  <motion.button
-                    key={item}
-                    className="mobile-menu-item"
-                    onClick={() => {
-                      const section = item.toLowerCase();
-                      document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-                      setShowMobileMenu(false);
-                      triggerHapticFeedback('light');
-                    }}
-                    style={{
-                      padding: '1rem',
-                      borderRadius: '12px',
-                      border: 'none',
-                      background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-                      color: 'white',
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
+            <h3 style={{ margin: '0 0 1rem 0', fontSize: '1.2rem' }}>Mobile Optimizations</h3>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1rem' }}>
+              <button
+                className="optimization-btn"
+                onClick={() => {
+                  document.body.classList.toggle('high-contrast');
+                  triggerHapticFeedback('light');
+                }}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid var(--border-primary)',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.875rem',
+                  cursor: 'pointer'
+                }}
+              >
+                🎨 High Contrast
+              </button>
+              
+              <button
+                className="optimization-btn"
+                onClick={() => {
+                  document.body.classList.toggle('large-text');
+                  triggerHapticFeedback('light');
+                }}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid var(--border-primary)',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.875rem',
+                  cursor: 'pointer'
+                }}
+              >
+                🔍 Large Text
+              </button>
+              
+              <button
+                className="optimization-btn"
+                onClick={() => {
+                  document.body.classList.toggle('reduced-motion');
+                  triggerHapticFeedback('light');
+                }}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid var(--border-primary)',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.875rem',
+                  cursor: 'pointer'
+                }}
+              >
+                ⚡ Reduce Motion
+              </button>
+              
+              <button
+                className="optimization-btn"
+                onClick={() => {
+                  setShowMobileOptimizations(false);
+                  triggerHapticFeedback('medium');
+                }}
+                style={{
+                  padding: '0.75rem',
+                  borderRadius: '0.5rem',
+                  border: '1px solid var(--border-primary)',
+                  background: 'var(--primary)',
+                  color: 'white',
+                  fontSize: '0.875rem',
+                  cursor: 'pointer'
+                }}
+              >
+                ✖️ Close
+              </button>
+            </div>
+            
+            <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+              Swipe up to show • Swipe down to hide • Swipe left/right to navigate
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mobile Help Tooltip */}
+      <div 
+        className="mobile-help-button"
+        onClick={() => setShowMobileOptimizations(!showMobileOptimizations)}
+        style={{
+          position: 'fixed',
+          top: '50%',
+          right: 0,
+          transform: 'translateY(-50%) translateX(50%)',
+          background: 'var(--primary)',
+          color: 'white',
+          width: '40px',
+          height: '60px',
+          borderRadius: '1rem 0 0 1rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 999,
+          cursor: 'pointer',
+          fontSize: '1rem',
+          border: 'none',
+          boxShadow: 'var(--shadow-lg)'
+        }}
+      >
+        ⚙️
+      </div>
 
       <style>{`
         .mobile-enhanced {
           touch-action: manipulation;
         }
         
-        .mobile-progress-bar {
-          will-change: transform;
+        .mobile-status-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1001;
+          display: flex;
+          gap: 0.5rem;
+          padding: 0.5rem;
+          font-size: 0.75rem;
         }
         
-        .mobile-fab {
-          will-change: transform;
+        .offline-indicator,
+        .slow-network-indicator {
+          background: var(--bg-secondary);
+          color: var(--text-primary);
+          padding: 0.25rem 0.5rem;
+          border-radius: 0.25rem;
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          border: 1px solid var(--border-primary);
         }
         
-        .quick-action-btn:hover {
-          transform: scale(1.05);
-        }
-        
-        .mobile-menu-item:hover {
-          transform: scale(1.05);
+        .swipe-indicator {
+          pointer-events: none;
         }
         
         /* Mobile-specific optimizations */
+        .mobile-device.reduced-motion * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        
+        .mobile-device.high-contrast {
+          --primary: #0066cc;
+          --secondary: #ff6600;
+          --accent: #009900;
+          --text-primary: #000000;
+          --text-secondary: #333333;
+          --bg-primary: #ffffff;
+          --bg-secondary: #f5f5f5;
+        }
+        
+        .mobile-device.large-text {
+          font-size: 18px !important;
+        }
+        
+        .mobile-device.large-text .hero-title {
+          font-size: 3rem !important;
+        }
+        
+        .mobile-device.large-text .section-title {
+          font-size: 2.5rem !important;
+        }
+        
+        .mobile-device.network-slow .particle-background,
+        .mobile-device.network-slow .glass-effect::before {
+          display: none !important;
+        }
+        
+        .mobile-device.offline::before {
+          content: '⚠️ You are currently offline. Some features may be limited.';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: var(--warning);
+          color: white;
+          padding: 0.5rem;
+          text-align: center;
+          z-index: 9999;
+          font-size: 0.875rem;
+        }
+        
+        .mobile-device.orientation-landscape .hero-section {
+          padding: 2rem 0 !important;
+        }
+        
+        .mobile-device.orientation-landscape .profile-image-container {
+          width: 180px !important;
+          height: 180px !important;
+        }
+        
+        /* Touch-specific enhancements */
+        .mobile-device button,
+        .mobile-device .btn,
+        .mobile-device a[role="button"] {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        
+        .mobile-device .form-control {
+          font-size: 16px !important;
+        }
+        
+        /* Performance optimizations */
         .mobile-device .particle-background {
           opacity: 0.3;
         }
@@ -456,11 +558,13 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
           image-rendering: optimizeSpeed;
         }
         
-        /* Touch feedback */
-        .mobile-device button:active,
-        .mobile-device .btn:active,
-        .mobile-device a:active {
-          transform: scale(0.98);
+        .mobile-device.network-slow img {
+          filter: blur(1px);
+          transition: filter 0.3s;
+        }
+        
+        .mobile-device.network-slow img:hover {
+          filter: none;
         }
       `}</style>
     </div>

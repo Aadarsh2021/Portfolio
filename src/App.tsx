@@ -29,7 +29,6 @@ import { useAccessibility } from './hooks/useAccessibility';
 import './styles/animations.css';
 import './styles/themes.css';
 import './styles/perfect-portfolio.css';
-import './styles/mobile-responsive.css';
 import { Analytics } from '@vercel/analytics/react';
 
 const App: React.FC = () => {

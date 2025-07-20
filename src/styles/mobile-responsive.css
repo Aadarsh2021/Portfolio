@@ -305,19 +305,211 @@ select {
 /* ===== MOBILE SECTION LAYOUTS ===== */
 @media (max-width: 767.98px) {
   .section-padding {
-    padding: var(--mobile-space-2xl) 0;
+    padding: var(--space-10) 0;
   }
   
   .section-title {
-    font-size: var(--mobile-font-3xl);
-    margin-bottom: var(--mobile-space-xl);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-6);
     text-align: center;
-    padding: 0 var(--mobile-space-md);
+    padding: 0 var(--space-3);
+  }
+  
+  .section-subtitle {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-6);
+    padding: 0 var(--space-3);
   }
   
   .container {
-    padding-left: var(--mobile-space-md);
-    padding-right: var(--mobile-space-md);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  
+  /* Section-specific mobile spacing */
+  .hero-section {
+    padding: var(--space-10) 0 var(--space-12) 0;
+    min-height: 100vh;
+  }
+  
+  .about-section,
+  .projects-section,
+  .skills-section,
+  .experience-section,
+  .certifications-section,
+  .blog-section,
+  .testimonials-section,
+  .contact-section {
+    padding: var(--space-10) 0;
+  }
+  
+  /* Card spacing on mobile */
+  .card {
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-xl);
+  }
+  
+  .card-body {
+    padding: var(--space-4);
+  }
+  
+  .card-header {
+    padding: var(--space-4) var(--space-4) 0 var(--space-4);
+  }
+  
+  .card-footer {
+    padding: 0 var(--space-4) var(--space-4) var(--space-4);
+  }
+  
+  /* Grid spacing on mobile */
+  .col, [class*="col-"] {
+    padding: var(--space-2);
+  }
+  
+  /* Row spacing on mobile */
+  .row {
+    margin-bottom: var(--space-4);
+  }
+  
+  /* Form spacing on mobile */
+  .form-group {
+    margin-bottom: var(--space-4);
+  }
+  
+  .form-control {
+    padding: var(--space-3);
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Button spacing on mobile */
+  .btn {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+    min-height: 44px; /* Touch target minimum */
+  }
+  
+  .btn + .btn {
+    margin-left: var(--space-2);
+  }
+  
+  /* List spacing on mobile */
+  .list-group-item {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Modal spacing on mobile */
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: var(--space-4);
+  }
+  
+  /* Alert spacing on mobile */
+  .alert {
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  
+  /* Badge spacing on mobile */
+  .badge {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Progress bar spacing on mobile */
+  .progress {
+    height: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  
+  /* Table spacing on mobile */
+  .table th,
+  .table td {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Navigation spacing on mobile */
+  .nav-link {
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Pagination spacing on mobile */
+  .page-link {
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Breadcrumb spacing on mobile */
+  .breadcrumb {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Tooltip spacing on mobile */
+  .tooltip-inner {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Popover spacing on mobile */
+  .popover-header,
+  .popover-body {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Dropdown spacing on mobile */
+  .dropdown-menu {
+    padding: var(--space-1);
+  }
+  
+  .dropdown-item {
+    padding: var(--space-2) var(--space-3);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Accordion spacing on mobile */
+  .accordion-button,
+  .accordion-body {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  /* Carousel spacing on mobile */
+  .carousel-item {
+    padding: var(--space-4) 0;
+  }
+  
+  .carousel-caption {
+    padding: var(--space-4);
+    margin: var(--space-2);
+  }
+  
+  /* Spinner spacing on mobile */
+  .spinner-border,
+  .spinner-grow {
+    margin: var(--space-2);
+  }
+  
+  /* Placeholder spacing on mobile */
+  .placeholder {
+    margin-bottom: var(--space-3);
+  }
+  
+  /* Offcanvas spacing on mobile */
+  .offcanvas-header,
+  .offcanvas-body {
+    padding: var(--space-4);
+  }
+  
+  /* Toast spacing on mobile */
+  .toast-header,
+  .toast-body {
+    padding: var(--space-3) var(--space-4);
   }
 }
 

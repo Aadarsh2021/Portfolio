@@ -419,21 +419,22 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
         style={{
           position: 'fixed',
           top: '50%',
-          right: 0,
-          transform: 'translateY(-50%) translateX(50%)',
+          right: '10px',
+          transform: 'translateY(-50%)',
           background: 'var(--primary)',
           color: 'white',
-          width: '40px',
-          height: '60px',
-          borderRadius: '1rem 0 0 1rem',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 999,
           cursor: 'pointer',
-          fontSize: '1rem',
+          fontSize: '1.2rem',
           border: 'none',
-          boxShadow: 'var(--shadow-lg)'
+          boxShadow: 'var(--shadow-lg)',
+          transition: 'all 0.3s ease'
         }}
       >
         ⚙️

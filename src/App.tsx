@@ -8,18 +8,17 @@ import Experience from './components/Experience';
 import AdvancedProjects from './components/AdvancedProjects';
 import Certifications from './components/Certifications';
 import EnhancedContact from './components/EnhancedContact';
+import ScrollToTop from './components/ScrollToTop';
 
 
 import EnhancedSkills from './components/EnhancedSkills';
 import ParticleBackground from './components/ParticleBackground';
 import AnalyticsModal from './components/AnalyticsModal';
-import ScrollToTop from './components/ScrollToTop';
-import SocialLinks from './components/SocialLinks';
+import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import SEOHead from './components/SEOHead';
 import AdvancedDashboard from './components/AdvancedDashboard';
-import ErrorBoundary from './components/ErrorBoundary';
 import { NotificationProvider } from './components/NotificationSystem';
 import { PageTransition } from './components/LoadingSystem';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -1086,9 +1085,9 @@ const App: React.FC = () => {
           </div>
         }>
           <Footer />
-          <ScrollToTop />
-          <SocialLinks />
         </ErrorBoundary>
+        
+        <ScrollToTop />
         
         <ErrorBoundary fallback={null}>
           <AdvancedDashboard

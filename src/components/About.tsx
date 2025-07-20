@@ -160,23 +160,33 @@ const About: React.FC = () => {
           @media (max-width: 768px) {
             .about-section {
               padding: 3rem 0;
+              touch-action: manipulation;
             }
             .section-title {
               font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
               margin-bottom: 1.5rem !important;
+              text-align: center !important;
             }
             .lead {
               font-size: clamp(1rem, 3vw, var(--font-size-lg)) !important;
               line-height: 1.6 !important;
               margin-bottom: 2rem !important;
+              text-align: center !important;
             }
             .about-card {
               margin-bottom: 1.5rem !important;
               padding: 1.5rem !important;
+              border-radius: 16px !important;
+              transition: all 0.2s ease !important;
+            }
+            .about-card:active {
+              transform: scale(0.98) !important;
+              transition: transform 0.1s ease !important;
             }
             .about-card .card-title {
               font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
               margin-bottom: 0.75rem !important;
+              font-weight: 600 !important;
             }
             .about-card .card-text {
               font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
@@ -186,16 +196,31 @@ const About: React.FC = () => {
               font-size: clamp(0.8rem, 2vw, 0.9rem) !important;
               padding: 0.5rem 0.75rem !important;
               margin: 0.25rem !important;
+              border-radius: 8px !important;
+              transition: all 0.2s ease !important;
+            }
+            .skill-tag:active {
+              transform: scale(0.95) !important;
+              transition: transform 0.1s ease !important;
             }
             .stats-card {
               padding: 1.5rem !important;
               margin-bottom: 1rem !important;
+              border-radius: 16px !important;
             }
             .stats-number {
               font-size: clamp(2rem, 6vw, 3rem) !important;
+              font-weight: 700 !important;
             }
             .stats-label {
               font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
+              font-weight: 500 !important;
+            }
+            .about-icon {
+              width: 60px !important;
+              height: 60px !important;
+              font-size: 1.5rem !important;
+              border-radius: 12px !important;
             }
           }
           
@@ -205,16 +230,49 @@ const About: React.FC = () => {
             }
             .section-title {
               font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+              margin-bottom: 1rem !important;
             }
             .lead {
               font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+              margin-bottom: 1.5rem !important;
             }
             .about-card {
               padding: 1.25rem !important;
+              margin-bottom: 1rem !important;
             }
             .skill-tag {
               font-size: clamp(0.75rem, 1.8vw, 0.85rem) !important;
               padding: 0.4rem 0.6rem !important;
+              margin: 0.2rem !important;
+            }
+            .about-icon {
+              width: 50px !important;
+              height: 50px !important;
+              font-size: 1.25rem !important;
+            }
+            .stats-card {
+              padding: 1.25rem !important;
+            }
+          }
+          
+          @media (max-width: 360px) {
+            .section-title {
+              font-size: clamp(1.6rem, 4.5vw, 2.2rem) !important;
+            }
+            .lead {
+              font-size: clamp(0.85rem, 2.2vw, 1rem) !important;
+            }
+            .about-card {
+              padding: 1rem !important;
+            }
+            .skill-tag {
+              font-size: clamp(0.7rem, 1.6vw, 0.8rem) !important;
+              padding: 0.35rem 0.5rem !important;
+            }
+            .about-icon {
+              width: 45px !important;
+              height: 45px !important;
+              font-size: 1.1rem !important;
             }
           }
           
@@ -226,6 +284,16 @@ const About: React.FC = () => {
           .skill-tag:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          }
+          
+          /* Mobile-specific touch optimizations */
+          @media (hover: none) and (pointer: coarse) {
+            .about-card:hover {
+              transform: none !important;
+            }
+            .skill-tag:hover {
+              transform: none !important;
+            }
           }
         `}
       </style>

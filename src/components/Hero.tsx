@@ -268,37 +268,57 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
             .hero-section {
               padding: 2rem 0;
               min-height: 100vh;
+              touch-action: manipulation;
             }
             .hero-title {
               font-size: clamp(2rem, 8vw, 3.5rem) !important;
               line-height: 1.1 !important;
               margin-bottom: 1rem !important;
+              text-align: center !important;
             }
             .hero-subtitle {
               font-size: clamp(1.2rem, 4vw, var(--font-size-3xl)) !important;
               margin-bottom: 1.5rem !important;
+              text-align: center !important;
             }
             .hero-description {
               font-size: clamp(1rem, 3vw, var(--font-size-xl)) !important;
               margin-bottom: 2rem !important;
               line-height: 1.6 !important;
+              text-align: center !important;
             }
             .hero-buttons {
               flex-direction: column !important;
               gap: 1rem !important;
+              align-items: center !important;
             }
             .hero-buttons .btn {
-              min-width: 100% !important;
-              min-height: 48px !important;
+              min-width: 200px !important;
+              min-height: 52px !important;
               font-size: clamp(0.9rem, 3vw, var(--font-size-lg)) !important;
+              border-radius: 12px !important;
+              font-weight: 600 !important;
+              transition: all 0.2s ease !important;
+            }
+            .hero-buttons .btn:active {
+              transform: scale(0.95) !important;
+              transition: transform 0.1s ease !important;
             }
             .social-links {
               gap: 1rem !important;
               margin-top: 2rem !important;
+              justify-content: center !important;
             }
             .social-link {
-              min-height: 48px !important;
-              min-width: 48px !important;
+              min-height: 52px !important;
+              min-width: 52px !important;
+              border-radius: 12px !important;
+              font-size: 1.2rem !important;
+              transition: all 0.2s ease !important;
+            }
+            .social-link:active {
+              transform: scale(0.9) !important;
+              transition: transform 0.1s ease !important;
             }
             .floating-shape {
               display: none !important;
@@ -307,24 +327,87 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
               width: 250px !important;
               height: 250px !important;
               margin: 2rem auto !important;
+              border-radius: 20px !important;
+            }
+            .particle-system {
+              opacity: 0.3 !important;
             }
           }
           
           @media (max-width: 480px) {
+            .hero-section {
+              padding: 1.5rem 0 !important;
+            }
             .hero-title {
               font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+              margin-bottom: 0.75rem !important;
             }
             .hero-subtitle {
               font-size: clamp(1rem, 3.5vw, 1.5rem) !important;
+              margin-bottom: 1rem !important;
             }
             .hero-description {
               font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+              margin-bottom: 1.5rem !important;
+            }
+            .hero-buttons .btn {
+              min-width: 180px !important;
+              min-height: 48px !important;
+              font-size: clamp(0.85rem, 2.8vw, 1rem) !important;
+            }
+            .social-link {
+              min-height: 48px !important;
+              min-width: 48px !important;
+              font-size: 1.1rem !important;
+            }
+            .hero-image {
+              width: 200px !important;
+              height: 200px !important;
+              margin: 1.5rem auto !important;
+            }
+          }
+          
+          @media (max-width: 360px) {
+            .hero-title {
+              font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+            }
+            .hero-subtitle {
+              font-size: clamp(0.9rem, 3vw, 1.3rem) !important;
+            }
+            .hero-description {
+              font-size: clamp(0.8rem, 2.2vw, 1rem) !important;
+            }
+            .hero-buttons .btn {
+              min-width: 160px !important;
+              min-height: 44px !important;
+            }
+            .social-link {
+              min-height: 44px !important;
+              min-width: 44px !important;
+              font-size: 1rem !important;
+            }
+            .hero-image {
+              width: 180px !important;
+              height: 180px !important;
             }
           }
           
           .touch-feedback:active {
             transform: scale(0.95);
             transition: transform 0.1s ease;
+          }
+          
+          /* Mobile-specific touch optimizations */
+          @media (hover: none) and (pointer: coarse) {
+            .hero-buttons .btn:hover {
+              transform: none !important;
+            }
+            .social-link:hover {
+              transform: none !important;
+            }
+            .floating-shape:hover {
+              transform: none !important;
+            }
           }
         `}
       </style>

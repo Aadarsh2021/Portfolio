@@ -274,10 +274,12 @@ const EnhancedContact: React.FC = () => {
           @media (max-width: 768px) {
             .contact-section {
               padding: 3rem 0;
+              touch-action: manipulation;
             }
             .section-title {
               font-size: clamp(2rem, 6vw, var(--font-size-4xl)) !important;
               margin-bottom: 2rem !important;
+              text-align: center !important;
             }
             .contact-info {
               margin-bottom: 2rem !important;
@@ -285,10 +287,17 @@ const EnhancedContact: React.FC = () => {
             .contact-card {
               padding: 1.5rem !important;
               margin-bottom: 1rem !important;
+              border-radius: 16px !important;
+              transition: all 0.2s ease !important;
+            }
+            .contact-card:active {
+              transform: scale(0.98) !important;
+              transition: transform 0.1s ease !important;
             }
             .contact-card .card-title {
               font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
               margin-bottom: 0.75rem !important;
+              font-weight: 600 !important;
             }
             .contact-card .card-text {
               font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
@@ -297,27 +306,58 @@ const EnhancedContact: React.FC = () => {
             .form-label {
               font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
               margin-bottom: 0.5rem !important;
+              font-weight: 500 !important;
             }
             .form-control, .form-select {
-              font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+              font-size: 16px !important; /* Prevents zoom on iOS */
               padding: 0.75rem !important;
               margin-bottom: 1rem !important;
+              border-radius: 12px !important;
+              border: 2px solid var(--glass-border) !important;
+              transition: all 0.2s ease !important;
+            }
+            .form-control:focus, .form-select:focus {
+              border-color: var(--primary) !important;
+              box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+              transform: translateY(-1px) !important;
             }
             .form-textarea {
               min-height: 120px !important;
+              resize: vertical !important;
             }
             .btn-gradient {
               font-size: clamp(0.9rem, 2.5vw, 1rem) !important;
               padding: 0.75rem !important;
-              min-height: 48px !important;
+              min-height: 52px !important;
+              border-radius: 12px !important;
+              font-weight: 600 !important;
+              transition: all 0.2s ease !important;
+            }
+            .btn-gradient:active {
+              transform: scale(0.95) !important;
+              transition: transform 0.1s ease !important;
             }
             .social-links {
               gap: 1rem !important;
               margin-top: 2rem !important;
+              justify-content: center !important;
             }
             .social-link {
-              min-height: 48px !important;
-              min-width: 48px !important;
+              min-height: 52px !important;
+              min-width: 52px !important;
+              border-radius: 12px !important;
+              font-size: 1.2rem !important;
+              transition: all 0.2s ease !important;
+            }
+            .social-link:active {
+              transform: scale(0.9) !important;
+              transition: transform 0.1s ease !important;
+            }
+            .contact-icon {
+              width: 60px !important;
+              height: 60px !important;
+              font-size: 1.5rem !important;
+              border-radius: 12px !important;
             }
           }
           
@@ -327,9 +367,11 @@ const EnhancedContact: React.FC = () => {
             }
             .section-title {
               font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+              margin-bottom: 1.5rem !important;
             }
             .contact-card {
               padding: 1.25rem !important;
+              margin-bottom: 0.75rem !important;
             }
             .contact-card .card-title {
               font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
@@ -338,12 +380,49 @@ const EnhancedContact: React.FC = () => {
               font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
             }
             .form-control, .form-select {
-              font-size: clamp(0.8rem, 2.2vw, 0.9rem) !important;
+              font-size: 16px !important;
               padding: 0.6rem !important;
+              margin-bottom: 0.75rem !important;
             }
             .btn-gradient {
               font-size: clamp(0.85rem, 2.2vw, 0.95rem) !important;
               padding: 0.6rem !important;
+              min-height: 48px !important;
+            }
+            .social-link {
+              min-height: 48px !important;
+              min-width: 48px !important;
+              font-size: 1.1rem !important;
+            }
+            .contact-icon {
+              width: 50px !important;
+              height: 50px !important;
+              font-size: 1.25rem !important;
+            }
+          }
+          
+          @media (max-width: 360px) {
+            .section-title {
+              font-size: clamp(1.6rem, 4.5vw, 2.2rem) !important;
+            }
+            .contact-card {
+              padding: 1rem !important;
+            }
+            .form-control, .form-select {
+              padding: 0.5rem !important;
+            }
+            .btn-gradient {
+              min-height: 44px !important;
+            }
+            .social-link {
+              min-height: 44px !important;
+              min-width: 44px !important;
+              font-size: 1rem !important;
+            }
+            .contact-icon {
+              width: 45px !important;
+              height: 45px !important;
+              font-size: 1.1rem !important;
             }
           }
           
@@ -368,9 +447,17 @@ const EnhancedContact: React.FC = () => {
             transition: all 0.3s ease;
           }
           
-          .btn-gradient:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+          /* Mobile-specific touch optimizations */
+          @media (hover: none) and (pointer: coarse) {
+            .contact-card:hover {
+              transform: none !important;
+            }
+            .social-link:hover {
+              transform: none !important;
+            }
+            .btn-gradient:hover {
+              transform: none !important;
+            }
           }
         `}
       </style>

@@ -5,7 +5,7 @@ interface MobileEnhancerProps {
 }
 
 const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 991.98);
+  // Remove unused isMobile state since we're using classes directly
   const [isLowPerformance, setIsLowPerformance] = useState(false);
   const [isHighContrast, setIsHighContrast] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
@@ -15,7 +15,6 @@ const MobileEnhancer: React.FC<MobileEnhancerProps> = ({ children }) => {
   useEffect(() => {
     // Device detection
     const checkDevice = () => {
-      setIsMobile(window.innerWidth <= 991.98);
       setOrientation(window.screen.orientation.type);
     };
       

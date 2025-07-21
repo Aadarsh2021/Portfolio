@@ -65,9 +65,9 @@ const EnhancedAnalytics: React.FC = () => {
 
   useEffect(() => {
     const fetchLocalAnalytics = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+    try {
+      setLoading(true);
+      setError(null);
 
         // Get performance metrics
         const performanceMetrics = {
@@ -86,7 +86,7 @@ const EnhancedAnalytics: React.FC = () => {
         const sessionData = JSON.parse(localStorage.getItem('portfolio_analytics') || '{"pageViews":{}}');
         const currentTime = new Date().getTime();
         const sessionStart = sessionData.startTime || currentTime;
-        
+      
         // Calculate total page views with proper typing
         const pageViews: PageViews = sessionData.pageViews || {};
         const totalPageViews: number = Object.values(pageViews).reduce((sum, count) => sum + (count || 0), 0);
@@ -103,14 +103,14 @@ const EnhancedAnalytics: React.FC = () => {
             page,
             views: views || 0,
             percentage: totalPageViews > 0 ? Math.round((views || 0) / totalPageViews * 100) : 0
-          })),
+        })),
           deviceBreakdown: [
             { device: 'Desktop', percentage: isDesktop ? 100 : 0, color: '#6366f1' },
             { device: 'Mobile', percentage: isMobile ? 100 : 0, color: '#8b5cf6' },
             { device: 'Tablet', percentage: isTablet ? 100 : 0, color: '#06b6d4' }
           ].filter(device => device.percentage > 0),
           performanceMetrics,
-          realtimeData: {
+    realtimeData: {
             activeUsers: 1,
             currentPage: window.location.pathname,
             referrers: [
@@ -120,13 +120,13 @@ const EnhancedAnalytics: React.FC = () => {
         };
 
         setAnalyticsData(mockAnalyticsData);
-        setLoading(false);
-      } catch (err) {
+      setLoading(false);
+    } catch (err) {
         console.error('Error fetching analytics:', err);
         setError('Unable to load analytics data');
-        setLoading(false);
-      }
-    };
+      setLoading(false);
+    }
+  };
 
     fetchLocalAnalytics();
 
@@ -187,14 +187,14 @@ const EnhancedAnalytics: React.FC = () => {
                 <div className="d-flex align-items-center mb-3">
                   {renderIcon(BsEye, { className: "text-primary", size: 24 })}
                   <h6 className="mb-0 ms-2">Page Views</h6>
-                </div>
+            </div>
                 <div className="d-flex align-items-baseline">
                   <h3 className="mb-0">{analyticsData.pageViews.toLocaleString()}</h3>
                   <Badge bg="success" className="ms-2 d-flex align-items-center">
                     {renderIcon(BsArrowUp, { size: 12, className: "me-1" })}
                     New
                   </Badge>
-                </div>
+          </div>
                 <small className="text-muted">Total views this session</small>
                 <ProgressBar 
                   now={100} 
@@ -321,20 +321,20 @@ const EnhancedAnalytics: React.FC = () => {
                       <div className="fw-bold">{analyticsData.bounceRate}%</div>
                     </div>
                   </div>
-                </Col>
+        </Col>
                 <Col md={4}>
                   <div className="d-flex align-items-center mb-3">
                     {renderIcon(BsGeoAlt, { className: "text-success me-2", size: 20 })}
                     <div>
                       <div className="text-muted small">Source</div>
                       <div className="fw-bold">{analyticsData.realtimeData.referrers[0].source}</div>
-                    </div>
+                </div>
                   </div>
-                </Col>
+        </Col>
                 <Col md={4}>
                   <div className="d-flex align-items-center mb-3">
                     {renderIcon(BsEye, { className: "text-info me-2", size: 20 })}
-                    <div>
+              <div>
                       <div className="text-muted small">Current Page</div>
                       <div className="fw-bold">{analyticsData.realtimeData.currentPage}</div>
                     </div>

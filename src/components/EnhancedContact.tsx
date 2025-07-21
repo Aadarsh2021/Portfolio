@@ -506,6 +506,7 @@ const EnhancedContact: React.FC = () => {
                           <AnimatePresence>
                             {getFieldStatus('name') === 'is-valid' && (
                               <motion.div
+                                key="name-success-icon"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
@@ -519,6 +520,7 @@ const EnhancedContact: React.FC = () => {
                         <AnimatePresence>
                           {validationErrors.name && (touchedFields.has('name') || submitAttempted) && (
                             <motion.div
+                              key="name-error-message"
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
@@ -553,6 +555,7 @@ const EnhancedContact: React.FC = () => {
                           <AnimatePresence>
                             {getFieldStatus('email') === 'is-valid' && (
                               <motion.div
+                                key="email-success-icon"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
@@ -566,6 +569,7 @@ const EnhancedContact: React.FC = () => {
                         <AnimatePresence>
                           {validationErrors.email && (touchedFields.has('email') || submitAttempted) && (
                             <motion.div
+                              key="email-error-message"
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
@@ -600,6 +604,7 @@ const EnhancedContact: React.FC = () => {
                       <AnimatePresence>
                         {getFieldStatus('subject') === 'is-valid' && (
                           <motion.div
+                            key="subject-success-icon"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
@@ -613,6 +618,7 @@ const EnhancedContact: React.FC = () => {
                     <AnimatePresence>
                       {validationErrors.subject && (touchedFields.has('subject') || submitAttempted) && (
                         <motion.div
+                          key="subject-error-message"
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
@@ -646,6 +652,7 @@ const EnhancedContact: React.FC = () => {
                       <AnimatePresence>
                         {validationErrors.message && (touchedFields.has('message') || submitAttempted) && (
                           <motion.div
+                            key="message-error-message"
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}

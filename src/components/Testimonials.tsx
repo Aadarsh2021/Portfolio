@@ -333,8 +333,8 @@ const Testimonials: React.FC = () => {
             .avatar-container {
               width: 45px !important;
               height: 45px !important;
-            }
-            
+          }
+          
             .avatar-fallback {
               font-size: 0.9rem !important;
             }
@@ -371,14 +371,14 @@ const Testimonials: React.FC = () => {
                         <p className="testimonial-text mb-0">
                           {testimonial.content}
                         </p>
-                        
+                      
                         <div className="testimonial-rating">
-                          {renderStars(testimonial.rating)}
-                        </div>
-                        
+                        {renderStars(testimonial.rating)}
+                      </div>
+                      
                         <div className="testimonial-author">
                           {renderAvatar(testimonial)}
-                          <div>
+                        <div>
                             <h6 className="mb-0">{testimonial.name}</h6>
                             <small>{testimonial.role}</small>
                           </div>

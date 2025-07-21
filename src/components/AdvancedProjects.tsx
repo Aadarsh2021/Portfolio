@@ -352,7 +352,7 @@ const AdvancedProjects: React.FC = () => {
 
           <Row>
             <Col>
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.div
                   key={`${selectedCategory}-${selectedStatus}-${selectedComplexity}-${showFeaturedOnly}-${sortBy}`}
                   variants={containerVariants}

@@ -108,6 +108,7 @@ const SimpleBlog: React.FC = () => {
               filteredPosts.map((post, index) => (
                 <Col lg={4} md={6} key={post.id} className="mb-4">
                   <motion.div
+                    key={`blog-post-${post.id}`}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -30 }}
@@ -153,6 +154,7 @@ const SimpleBlog: React.FC = () => {
             ) : (
               <Col>
                 <motion.div
+                  key="no-posts-found"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="text-center py-5"

@@ -380,7 +380,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                     fontWeight: 600
                   }}
                 >
-                  Passionate about creating scalable solutions and bringing innovative ideas to life.
+                Passionate about creating scalable solutions and bringing innovative ideas to life.
                 </span>
               </motion.p>
               

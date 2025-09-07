@@ -12,10 +12,10 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "Aadarsh Thakur - Full Stack Developer Portfolio",
-  description = "Modern portfolio showcasing web development skills, projects, and experience. Specializing in React, TypeScript, Node.js, and modern web technologies.",
-  keywords = "portfolio, web developer, full stack developer, React, TypeScript, Node.js, JavaScript, frontend, backend, software engineer",
+  description = "Aadarsh Thakur - Computer Science Engineering Student & Full Stack Developer. Expert in React, TypeScript, AI/ML, Blockchain, and modern web technologies. View my projects including Smart City Traffic Monitoring and Farm-Ease agricultural platform.",
+  keywords = "Aadarsh Thakur, portfolio, web developer, full stack developer, React, TypeScript, Node.js, JavaScript, frontend, backend, software engineer, computer science, AI, machine learning, blockchain, smart city, traffic monitoring, agricultural technology, YOLOv7, ByteTrack, TensorFlow, Python, Flask, MongoDB, Vercel",
   image = "/assets/og-image.png",
-  url = "http://portfolio-khaki-omega-43.vercel.app",
+  url = "https://portfolio-khaki-omega-43.vercel.app",
   type = "website"
 }) => {
   const structuredData = {
@@ -38,7 +38,20 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "JavaScript",
       "Frontend Development",
       "Backend Development",
-      "Software Engineering"
+      "Software Engineering",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Computer Vision",
+      "YOLOv7",
+      "ByteTrack",
+      "Blockchain",
+      "Smart City Technology",
+      "Agricultural Technology",
+      "Python",
+      "TensorFlow",
+      "OpenCV",
+      "MongoDB",
+      "Flask"
     ],
     "alumniOf": {
       "@type": "EducationalOrganization",

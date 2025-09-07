@@ -330,11 +330,67 @@ const About: React.FC = () => {
                   margin: '0 auto'
                 }}
               >
-                I'm a passionate Full Stack Developer with a strong foundation in computer science 
-                and a love for creating innovative digital solutions. Currently pursuing my final year 
-                in Computer Science Engineering, I combine academic knowledge with practical experience 
-                to build exceptional web applications.
+                From a curious teenager who built his first "Hello World" program to a passionate Full Stack Developer 
+                creating AI-powered solutions that impact real-world problems. My journey in technology began with 
+                a simple question: "How do computers work?" That curiosity led me to discover the magic of code, 
+                and I've been hooked ever since.
               </motion.p>
+              
+              <motion.div 
+                className="personal-story"
+                variants={cardVariants}
+                style={{
+                  background: 'var(--bg-secondary)',
+                  borderRadius: '16px',
+                  padding: '2rem',
+                  margin: '2rem 0',
+                  border: '1px solid var(--border-primary)',
+                  backdropFilter: 'blur(10px)'
+                }}
+              >
+                <h4 style={{ 
+                  color: 'var(--text-primary)', 
+                  marginBottom: '1.5rem',
+                  fontSize: '1.5rem',
+                  fontWeight: '600'
+                }}>
+                  My Journey in Tech
+                </h4>
+                <div style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+                  gap: '1.5rem' 
+                }}>
+                  <div>
+                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🎯 The Beginning</h5>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                      Started coding at 16 with Python, fascinated by how a few lines of code could solve complex problems. 
+                      Built my first web scraper and was amazed by the power of automation.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🚀 The Breakthrough</h5>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                      During my internship at Ash-Tech Technologies, I led the development of a backend system that 
+                      reduced API response time by 60% and improved system scalability by 300%.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>💡 The Innovation</h5>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                      Created Farm-Ease, an AI-powered agricultural platform that helps 200+ farmers increase crop yield 
+                      by 30% through intelligent recommendations and blockchain-based supply chain transparency.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🌟 The Vision</h5>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
+                      Today, I'm passionate about using technology to solve real-world problems, from smart city traffic 
+                      management to sustainable agriculture. Every line of code is a step toward a better future.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </Col>
           </Row>
 

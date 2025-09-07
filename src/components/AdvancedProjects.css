@@ -209,6 +209,195 @@
   color: var(--primary);
 }
 
+/* Enhanced Project Card Styles */
+.featured-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #000;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+  z-index: 2;
+}
+
+.metrics-section {
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--border-primary);
+}
+
+.metrics-title {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metrics-title::before {
+  content: "📊";
+  font-size: 1rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.metric-item:last-child {
+  border-bottom: none;
+}
+
+.metric-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.metric-value {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.key-features {
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--border-primary);
+}
+
+.features-title {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.features-title::before {
+  content: "✨";
+  font-size: 1rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.feature-item svg {
+  color: var(--primary);
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+.project-details {
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid var(--border-primary);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  font-size: 0.8rem;
+}
+
+.detail-row:not(:last-child) {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.detail-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Enhanced hover effects */
+.project-card:hover .metrics-section {
+  background: var(--primary);
+  color: white;
+}
+
+.project-card:hover .metrics-section .metrics-title,
+.project-card:hover .metrics-section .metric-label {
+  color: white;
+}
+
+.project-card:hover .metrics-section .metric-value {
+  color: #ffd700;
+}
+
+.project-card:hover .key-features {
+  background: var(--primary);
+  color: white;
+}
+
+.project-card:hover .key-features .features-title {
+  color: white;
+}
+
+.project-card:hover .key-features .feature-item {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.project-card:hover .key-features .feature-item svg {
+  color: #ffd700;
+}
+
+.project-card:hover .project-details {
+  background: var(--primary);
+  color: white;
+}
+
+.project-card:hover .project-details .detail-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-card:hover .project-details .detail-value {
+  color: white;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .filter-controls {
     padding: 1rem;
@@ -227,5 +416,43 @@
   
   .filter-select {
     font-size: 0.85rem;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-badge {
+    top: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .metrics-section,
+  .key-features,
+  .project-details {
+    padding: 0.75rem;
+  }
+  
+  .metric-item,
+  .feature-item,
+  .detail-row {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-card .card-body {
+    padding: 1rem;
+  }
+  
+  .project-card .card-footer {
+    padding: 0.75rem 1rem;
+  }
+  
+  .tech-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
   }
 } 

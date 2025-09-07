@@ -522,6 +522,7 @@ const App: React.FC = () => {
                     <span className="sidebar-nav-text">Testimonials</span>
                   </a>
                   
+                  
                   <a 
                     href="#contact" 
                     className={`sidebar-nav-link ${activeSection === 'contact' ? 'active' : ''}`}
@@ -780,6 +781,7 @@ const App: React.FC = () => {
                         <Testimonials />
                       </motion.section>
                     </ErrorBoundary>
+
 
                     {/* Contact Section */}
                     <ErrorBoundary fallback={

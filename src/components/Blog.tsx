@@ -17,7 +17,8 @@ const Blog: React.FC = () => {
       likes: 89,
       featured: true,
       difficulty: "Advanced",
-      githubUrl: "https://github.com/Aadarsh2021/farm-ease",
+      githubUrl: "https://github.com/BitBlock9310/FarmEase-Frontend",
+      
       liveUrl: "https://farm-phi-jade.vercel.app/"
     },
     {
@@ -33,7 +34,7 @@ const Blog: React.FC = () => {
       likes: 156,
       featured: true,
       difficulty: "Advanced",
-      githubUrl: "https://github.com/Aadarsh2021/smart-traffic",
+      githubUrl: "https://github.com/Aadarsh2021/Smart-City-System",
       liveUrl: "https://smart-traffic-demo.vercel.app/"
     },
     {
@@ -65,7 +66,7 @@ const Blog: React.FC = () => {
       likes: 45,
       featured: false,
       difficulty: "Intermediate",
-      githubUrl: "https://github.com/Aadarsh2021/backend-optimization",
+      githubUrl: "https://github.com/Aadarsh2021/Smart-City-System",
       liveUrl: null
     },
     {
@@ -81,7 +82,7 @@ const Blog: React.FC = () => {
       likes: 78,
       featured: false,
       difficulty: "Advanced",
-      githubUrl: "https://github.com/Aadarsh2021/crop-yield-prediction",
+      githubUrl: "https://github.com/BitBlock9310/FarmEase-Frontend",
       liveUrl: null
     },
     {

@@ -330,10 +330,10 @@ const About: React.FC = () => {
                   margin: '0 auto'
                 }}
               >
-                From a curious teenager who built his first "Hello World" program to a passionate Full Stack Developer 
-                creating AI-powered solutions that impact real-world problems. My journey in technology began with 
-                a simple question: "How do computers work?" That curiosity led me to discover the magic of code, 
-                and I've been hooked ever since.
+                From a curious teenager who built his first "Hello World" program to a Computer Science Engineering Graduate 
+                and Backend Developer Intern at ASH-TECH SOLUTIONS, creating AI-powered solutions that impact real-world problems. 
+                My journey in technology began with a simple question: "How do computers work?" That curiosity led me to discover 
+                the magic of code, and I've been hooked ever since.
               </motion.p>
               
               <motion.div 
@@ -369,10 +369,10 @@ const About: React.FC = () => {
                     </p>
                   </div>
                   <div>
-                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🚀 The Breakthrough</h5>
+                    <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🎓 The Graduation</h5>
                     <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                      During my internship at Ash-Tech Technologies, I led the development of a backend system that 
-                      reduced API response time by 60% and improved system scalability by 300%.
+                      Successfully graduated with Computer Science Engineering degree and joined ASH-TECH SOLUTIONS as a Backend Developer Intern, 
+                      where I'm currently working on cutting-edge backend systems and gaining real-world industry experience.
                     </p>
                   </div>
                   <div>
@@ -385,8 +385,8 @@ const About: React.FC = () => {
                   <div>
                     <h5 style={{ color: 'var(--primary)', marginBottom: '0.75rem' }}>🌟 The Vision</h5>
                     <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0 }}>
-                      Today, I'm passionate about using technology to solve real-world problems, from smart city traffic 
-                      management to sustainable agriculture. Every line of code is a step toward a better future.
+                      Today, as a Backend Developer Intern at ASH-TECH SOLUTIONS, I'm passionate about using technology to solve real-world problems, 
+                      from smart city traffic management to sustainable agriculture. Every line of code is a step toward a better future.
                     </p>
                   </div>
                 </div>

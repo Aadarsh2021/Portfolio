@@ -12,8 +12,8 @@ interface SEOHeadProps {
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title = "Aadarsh Thakur - Full Stack Developer Portfolio",
-  description = "Aadarsh Thakur - Computer Science Engineering Student & Full Stack Developer. Expert in React, TypeScript, AI/ML, Blockchain, and modern web technologies. View my projects including Smart City Traffic Monitoring and Farm-Ease agricultural platform.",
-  keywords = "Aadarsh Thakur, portfolio, web developer, full stack developer, React, TypeScript, Node.js, JavaScript, frontend, backend, software engineer, computer science, AI, machine learning, blockchain, smart city, traffic monitoring, agricultural technology, YOLOv7, ByteTrack, TensorFlow, Python, Flask, MongoDB, Vercel",
+  description = "Aadarsh Thakur - Computer Science Engineering Graduate & Backend Developer Intern at ASH-TECH SOLUTIONS. Expert in React, TypeScript, AI/ML, Blockchain, and modern web technologies. View my projects including Smart City Traffic Monitoring and Farm-Ease agricultural platform.",
+  keywords = "Aadarsh Thakur, portfolio, web developer, full stack developer, React, TypeScript, Node.js, JavaScript, frontend, backend, software engineer, computer science, AI, machine learning, blockchain, smart city, traffic monitoring, agricultural technology, YOLOv7, ByteTrack, TensorFlow, Python, Flask, MongoDB, Vercel, ASH-TECH SOLUTIONS, backend developer intern, computer science graduate",
   image = "/assets/og-image.png",
   url = "https://portfolio-khaki-omega-43.vercel.app",
   type = "website"
@@ -22,8 +22,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Aadarsh Thakur",
-    "jobTitle": "Computer Science Engineering Student",
-    "description": "Final Year Computer Science Engineering Student specializing in full-stack web development",
+    "jobTitle": "Backend Developer Intern at ASH-TECH SOLUTIONS",
+    "description": "Computer Science Engineering Graduate and Backend Developer Intern at ASH-TECH SOLUTIONS, specializing in full-stack web development and AI/ML solutions",
     "url": url,
     "image": image,
     "sameAs": [
@@ -56,6 +56,11 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     "alumniOf": {
       "@type": "EducationalOrganization",
       "name": "Computer Science Engineering"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ASH-TECH SOLUTIONS",
+      "jobTitle": "Backend Developer Intern"
     }
   };
 

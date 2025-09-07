@@ -39,14 +39,15 @@ const Experience: React.FC = () => {
   const internships = [
     {
       title: "Backend Developer Intern",
-      company: "Ash-Tech Technologies",
+      company: "ASH-TECH SOLUTIONS",
       period: "07/2025 - Present",
-      description: "Currently working as a Backend Developer Intern, developing REST APIs and optimizing backend systems for scalability.",
+      description: "Currently working as a Backend Developer Intern at ASH-TECH SOLUTIONS, developing REST APIs and optimizing backend systems for scalability.",
       achievements: [
         "Developing REST APIs using Node.js and MongoDB",
         "Optimizing backend systems for improved scalability and performance",
         "Collaborating with development team on system architecture",
-        "Implementing best practices for backend development"
+        "Implementing best practices for backend development",
+        "Working on real-world projects with industry standards"
       ]
     },
     {

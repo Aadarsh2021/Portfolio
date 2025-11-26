@@ -1,0 +1,16 @@
+{
+  "status": "init",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000/",
+  "executionArgs": {
+    "projectName": "portfolio-project",
+    "projectPath": "C:\\Users\\thaku\\Desktop\\portfolio-project",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {
+      "API_KEY": "sk-user-3MYnwzgysk81Wgir6HclPBo8KYklbmADRj1lf7fCnR7Czn2pb86AnFDwLGzuxeQ3TICikd3s8AG4lx0aelzlzaas_e6YwW_rjmyfM8r5u5FGF28QSsDKTZN6qj0XEWgwb0M"
+    }
+  },
+  "proxy": "http://c8457f76-f934-419d-a686-0b509cc4ca8c:N3NoLPcVAeIGkRba22XIj7lfS47aJpVm@tun.testsprite.com:8080"
+}

@@ -4,14 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
-// import Projects from './components/Projects';
-import AdvancedProjects from './components/AdvancedProjects';
-import Certifications from './components/Certifications';
-import EnhancedContact from './components/EnhancedContact';
-import EnhancedSkills from './components/EnhancedSkills';
-import Blog from './components/Blog';
-import Testimonials from './components/Testimonials';
-import ParticleBackground from './components/ParticleBackground';
 import AnalyticsModal from './components/AnalyticsModal';
 import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
@@ -27,8 +19,18 @@ import { useAccessibility } from './hooks/useAccessibility';
 import './styles/animations.css';
 import './styles/themes.css';
 import './styles/perfect-portfolio.css';
+import './styles/mobile-menu.css';
 import { Analytics } from '@vercel/analytics/react';
 import ScrollToTop from './components/ScrollToTop';
+import MobileMenu from './components/MobileMenu';
+
+const AdvancedProjects = React.lazy(() => import('./components/AdvancedProjects'));
+const Certifications = React.lazy(() => import('./components/Certifications'));
+const EnhancedContact = React.lazy(() => import('./components/EnhancedContact'));
+const EnhancedSkills = React.lazy(() => import('./components/EnhancedSkills'));
+const Blog = React.lazy(() => import('./components/Blog'));
+const Testimonials = React.lazy(() => import('./components/Testimonials'));
+const ParticleBackground = React.lazy(() => import('./components/ParticleBackground'));
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,12 +53,16 @@ const App: React.FC = () => {
                               (navigator as any).connection?.effectiveType === '2g';
       const hasLowMemory = (navigator as any).deviceMemory < 4;
       
-      setIsLowPerformance(isSlowConnection || hasLowMemory || isMobileDevice);
+      const shouldBeLowPerformance = isSlowConnection || hasLowMemory || isMobileDevice;
+      setIsLowPerformance(shouldBeLowPerformance);
       
       // Add performance class to body
-      if (isLowPerformance) {
+      if (shouldBeLowPerformance) {
         document.body.classList.add('reduced-motion');
         document.body.classList.add('performance-mode');
+      } else {
+        document.body.classList.remove('reduced-motion');
+        document.body.classList.remove('performance-mode');
       }
     };
     
@@ -66,7 +72,7 @@ const App: React.FC = () => {
     return () => {
       window.removeEventListener('resize', checkPerformance);
     };
-  }, [isLowPerformance]);
+  }, []);
 
   // Handle window resize
   useEffect(() => {
@@ -134,7 +140,9 @@ const App: React.FC = () => {
     // Track initial page view
     trackPageView('portfolio-home');
     announce('Portfolio loaded successfully');
-    
+  }, [trackPageView, announce]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
@@ -147,11 +155,14 @@ const App: React.FC = () => {
           const rect = element.getBoundingClientRect();
           // Adjust the detection area to be more accurate
           if (rect.top <= 100 && rect.bottom >= 100) {
-            if (activeSection !== section) {
-              setActiveSection(section);
-              trackPageView(`section-${section}`);
-              announce(`Navigated to ${section} section`);
-            }
+            setActiveSection(prevSection => {
+              if (prevSection !== section) {
+                trackPageView(`section-${section}`);
+                announce(`Navigated to ${section} section`);
+                return section;
+              }
+              return prevSection;
+            });
             break;
           }
         }
@@ -163,7 +174,7 @@ const App: React.FC = () => {
     handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [trackPageView, announce, activeSection]);
+  }, [trackPageView, announce]);
 
   const handleDownloadResume = async () => {
     trackUserInteraction('resume-download', 'click');
@@ -618,7 +629,11 @@ const App: React.FC = () => {
                         <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                           <Hero onDownloadResume={handleDownloadResume} onContactMe={handleContactMe} />
                         </Suspense>
-                        {!isLowPerformance && <ParticleBackground />}
+                        {!isLowPerformance && (
+                          <Suspense fallback={null}>
+                            <ParticleBackground />
+                          </Suspense>
+                        )}
                       </motion.section>
                     </ErrorBoundary>
 
@@ -686,7 +701,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <EnhancedSkills />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <EnhancedSkills />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
 
@@ -708,7 +725,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <AdvancedProjects />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <AdvancedProjects />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
 
@@ -734,7 +753,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <Certifications />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <Certifications />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
 
@@ -756,7 +777,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <Blog />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <Blog />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
 
@@ -778,7 +801,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <Testimonials />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <Testimonials />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
 
@@ -801,7 +826,9 @@ const App: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                       >
-                        <EnhancedContact />
+                        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                          <EnhancedContact />
+                        </Suspense>
                       </motion.section>
                     </ErrorBoundary>
                   </AnimatePresence>
@@ -816,6 +843,8 @@ const App: React.FC = () => {
                 </ErrorBoundary>
                 
                 <ScrollToTop />
+                  
+                  {isMobile && <MobileMenu />}
                   
                   <ErrorBoundary fallback={null}>
                     <AdvancedDashboard 

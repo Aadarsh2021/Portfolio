@@ -12,7 +12,7 @@ export const useAccessibility = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Tab') {
         document.body.classList.remove('no-focus-ring');
-    }
+      }
     };
     
     document.addEventListener('mousedown', handleMouseDown);
@@ -70,10 +70,10 @@ export const useAccessibility = () => {
     const highContrastQuery = window.matchMedia('(forced-colors: active)');
     const handleHighContrastChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
-      document.documentElement.classList.add('high-contrast');
+        document.documentElement.classList.add('high-contrast');
       } else {
         document.documentElement.classList.remove('high-contrast');
-    }
+      }
     };
     
     highContrastQuery.addEventListener('change', handleHighContrastChange);

@@ -1,0 +1,586 @@
+[
+  {
+    "id": "TC001",
+    "title": "Hero Section renders with animation and interactive elements",
+    "description": "Verify that the Hero Section loads correctly with the animated introduction, profile image, call-to-action buttons, and social media links visible and functional.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the homepage"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the Hero Section is visible with animated introduction text"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the profile image is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Check call-to-action buttons are rendered and clickable"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify social media integration links are present and navigate to correct URLs"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "About Section displays skills badges and timeline correctly",
+    "description": "Validate that the About Section shows all skills as badges, educational background, and a professional experience timeline with interactive UI elements.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the About Section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify skills badges are displayed with proper labels and icons"
+      },
+      {
+        "type": "assertion",
+        "description": "Check the educational background details are present"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify professional experience timeline is rendered with correct company names, dates, and achievements"
+      },
+      {
+        "type": "action",
+        "description": "Interact with timeline UI elements to confirm interactivity"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure timeline expands/collapses or highlights on user interaction"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Advanced Projects search and filter functionality",
+    "description": "Ensure real-time search, category filtering, status indicators, and technology tags work correctly and update the project list without errors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open Advanced Projects section"
+      },
+      {
+        "type": "action",
+        "description": "Type a keyword into the project search input"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the project list updates in real-time showing only matching projects"
+      },
+      {
+        "type": "action",
+        "description": "Select a category filter from the filter options"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the project list shows only projects in the selected category"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that status indicators (e.g., completed, in-progress) appear correctly on projects"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify technology tags are displayed and correct for each project"
+      },
+      {
+        "type": "action",
+        "description": "Clear search and filters"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure the full project list is restored"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Certifications display with badges and valid verification links",
+    "description": "Verify certification items show achievement badges and that clicking verification links opens a valid verification page.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Certifications section"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that each certification has an achievement badge visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on the verification link for a certification"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the verification link opens a valid page without errors"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Interactive Blog and Testimonials sections render and allow interaction",
+    "description": "Confirm Blog posts and Testimonials are loaded, displayed properly, and test interactivity like pagination, opening full posts, and testimonial navigation.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Blog section"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure blog articles display title, summary, and publication date"
+      },
+      {
+        "type": "action",
+        "description": "Click to open a full blog post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify full blog content is displayed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Use pagination or load more functionality in Blog"
+      },
+      {
+        "type": "assertion",
+        "description": "Check new blog posts load without errors"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Testimonials section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify testimonials are displayed with author names and messages"
+      },
+      {
+        "type": "action",
+        "description": "Use navigation to move through testimonials (e.g., arrows or swipe)"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure testimonials update smoothly and remain readable"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Contact Form submits with EmailJS, handles validation and errors",
+    "description": "Test the contact form with valid and invalid inputs to verify form validation, EmailJS integration for message sending, and display of success/error notifications.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Contact Form"
+      },
+      {
+        "type": "action",
+        "description": "Submit empty form fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure validation errors are displayed for required fields"
+      },
+      {
+        "type": "action",
+        "description": "Fill the form with invalid email and incomplete information"
+      },
+      {
+        "type": "assertion",
+        "description": "Check appropriate validation error messages are shown"
+      },
+      {
+        "type": "action",
+        "description": "Fill the form with valid inputs"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify EmailJS successfully sends the message"
+      },
+      {
+        "type": "assertion",
+        "description": "Check a success notification/toast is displayed upon successful submission"
+      },
+      {
+        "type": "action",
+        "description": "Simulate EmailJS service failure or network error"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error notification is displayed and the form remains usable"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Dark/Light Theme Toggle respects system preference and persists choice",
+    "description": "Test theme toggling functionality including system preference detection on initial load and persistence of user choice across sessions.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set system theme preference to dark"
+      },
+      {
+        "type": "action",
+        "description": "Load the website"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the site loads with dark theme enabled by default"
+      },
+      {
+        "type": "action",
+        "description": "Use the theme toggle button to switch to light theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm theme changes visually to light mode"
+      },
+      {
+        "type": "action",
+        "description": "Reload the website"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the previously selected light theme persists despite system preference"
+      },
+      {
+        "type": "action",
+        "description": "Toggle back to dark theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Check visual update and persistence on reload again"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Progressive Web App offline support and install prompt",
+    "description": "Validate service worker caching enables offline functionality and PWA install prompt appears and works as expected.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the website with network connected"
+      },
+      {
+        "type": "action",
+        "description": "Open DevTools and simulate offline mode"
+      },
+      {
+        "type": "action",
+        "description": "Reload the webpage while offline"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the website loads correctly from cache without errors"
+      },
+      {
+        "type": "assertion",
+        "description": "Check core assets and pages are available offline"
+      },
+      {
+        "type": "action",
+        "description": "Trigger PWA install prompt (e.g., on first visit or via user action)"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure install prompt is shown to the user"
+      },
+      {
+        "type": "action",
+        "description": "Accept the PWA installation"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the app installs successfully and launches as standalone"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "SEO meta tags, structured data, and Open Graph tags are correctly implemented",
+    "description": "Verify all essential SEO metadata, JSON-LD structured data, and Open Graph tags are present and valid for key pages.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage and key site pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Check HTML head for presence of meta description, title, canonical tags"
+      },
+      {
+        "type": "assertion",
+        "description": "Validate JSON-LD structured data is present and correctly formatted"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Open Graph protocol tags (og:title, og:description, og:image) exist and have appropriate content"
+      },
+      {
+        "type": "action",
+        "description": "Use SEO validation tools (e.g., Google Structured Data Testing Tool) to confirm no errors"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Accessibility compliance and ARIA attributes correctness",
+    "description": "Check that all interactive components and pages meet WCAG standards with proper use of semantic HTML and ARIA attributes, supporting screen readers and keyboard navigation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate through the website using keyboard only (Tab, Shift+Tab, Enter)"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure all interactive elements are reachable and usable via keyboard"
+      },
+      {
+        "type": "action",
+        "description": "Use a screen reader to navigate key pages and components"
+      },
+      {
+        "type": "assertion",
+        "description": "Check screen reader announces labels and roles correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the presence of appropriate ARIA attributes on interactive UI elements"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure color contrast meets accessibility standards"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Animations and transitions perform smoothly without lag",
+    "description": "Test all animations and transitions such as the particle background, section animations, and interactive UI elements for smooth performance and absence of jank.",
+    "category": "performance",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the homepage with animations enabled"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify animated particle background renders without visual glitches"
+      },
+      {
+        "type": "assertion",
+        "description": "Observe call-to-action button and intro animations for smooth transitions"
+      },
+      {
+        "type": "action",
+        "description": "Interact with all animated UI elements (e.g., project filtering animations, theme toggle transitions)"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm all animations run fluidly with stable frame rates"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Error boundary catches and handles runtime errors gracefully",
+    "description": "Simulate errors in components and verify the Error Boundary component captures them and displays a user-friendly fallback UI without crashing the app.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger a runtime error in a child component (e.g., throw exception during render)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the Error Boundary displays fallback UI instead of crashing"
+      },
+      {
+        "type": "assertion",
+        "description": "Check if user can continue interacting with other parts of the app"
+      },
+      {
+        "type": "action",
+        "description": "Trigger error recovery if supported (e.g., retry button)"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the component recovers or reloads correctly"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Notification system displays and dismisses toast messages correctly",
+    "description": "Verify toast notifications appear on relevant user actions (e.g., form submissions) and can be dismissed manually or disappear automatically.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger a success notification (e.g., form submission success)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify toast message is displayed with correct content"
+      },
+      {
+        "type": "action",
+        "description": "Dismiss the notification manually"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the notification disappears from view"
+      },
+      {
+        "type": "action",
+        "description": "Trigger an error notification (e.g., failed form submission)"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure error toast is displayed properly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the notification automatically disappears after a timeout if not dismissed"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Mobile-first responsive design and collapsible mobile menu functionality",
+    "description": "Check that the website renders optimally on mobile devices and the collapsible mobile navigation menu opens, closes, and navigates smoothly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the website on various mobile devices or using responsive emulator"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify layout adapts correctly to small screen sizes"
+      },
+      {
+        "type": "action",
+        "description": "Tap the mobile menu icon to open the navigation menu"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that the mobile menu expands smoothly"
+      },
+      {
+        "type": "action",
+        "description": "Tap navigation links inside the menu"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure navigation scrolls to correct sections"
+      },
+      {
+        "type": "action",
+        "description": "Close the mobile menu by tapping outside or on close button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify menu collapses and interactive elements are accessible"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Performance monitoring reports web vitals and displays analytics modal",
+    "description": "Validate that performance metrics such as First Contentful Paint, Largest Contentful Paint, and Cumulative Layout Shift are correctly tracked and the analytics dashboard modal presents this data.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the website and trigger performance monitoring"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that web vitals data is collected without error"
+      },
+      {
+        "type": "action",
+        "description": "Open the analytics modal/dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify performance metrics (FCP, LCP, CLS) are displayed accurately"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm user interaction metrics and page views are tracked and shown"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Image optimization and lazy loading function correctly",
+    "description": "Confirm that images are loaded lazily as they enter the viewport and optimized image components serve appropriate resolutions without layout shifts.",
+    "category": "performance",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to a page with multiple images (e.g., Projects or Blog section)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify images outside viewport are not loaded immediately"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm images load as they come into view without delays"
+      },
+      {
+        "type": "assertion",
+        "description": "Check image sizes are optimized by inspecting network requests"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure no layout shift occurs when images load"
+      }
+    ]
+  }
+]

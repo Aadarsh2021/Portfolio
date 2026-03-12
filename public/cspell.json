@@ -1,0 +1,17 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Aadarsh",
+    "mediapipe",
+    "gstatic",
+    "webfonts",
+    "Ucrnllj",
+    "QOWUs"
+  ],
+  "ignoreRegExpList": [
+    "base64String",
+    "sha\\d+",
+    "version\\d+"
+  ]
+}

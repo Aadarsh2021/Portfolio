@@ -1,15 +1,13 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
-import { IconType } from 'react-icons';
-import { BsGithub, BsLinkedin, BsEnvelope, BsHeart } from 'react-icons/bs';
+import { BsGithub, BsLinkedin, BsEnvelopeFill, BsFillHeartFill } from 'react-icons/bs';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const renderIcon = (IconComponent: IconType, style?: React.CSSProperties) => {
-    const Icon = IconComponent as React.ComponentType<{ style?: React.CSSProperties }>;
-    return <Icon style={style} />;
+  const renderIcon = (IconComponent: any, style?: React.CSSProperties) => {
+    return React.createElement(IconComponent, { style });
   };
 
   return (
@@ -135,7 +133,7 @@ const Footer: React.FC = () => {
             transform: translate(-50%, -50%);
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, var(--primary)10 0%, transparent 70%);
+            background: radial-gradient(circle, var(--primary-aura-translucent) 0%, transparent 70%);
             border-radius: 50%;
             z-index: -1;
             opacity: 0;
@@ -168,7 +166,7 @@ const Footer: React.FC = () => {
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, var(--primary-aura-translucent), transparent);
             transition: left 0.5s ease;
           }
           
@@ -339,7 +337,7 @@ const Footer: React.FC = () => {
                   fontSize: 'var(--font-size-base)'
                 }}
               >
-                {renderIcon(BsEnvelope)}
+                {renderIcon(BsEnvelopeFill)}
               </motion.a>
               </motion.div>
             
@@ -358,7 +356,7 @@ const Footer: React.FC = () => {
                 gap: 'var(--space-2)'
               }}
             >
-              © {currentYear} Made with {renderIcon(BsHeart, { 
+              © {currentYear} Made with {renderIcon(BsFillHeartFill, { 
                 color: 'var(--accent)', 
                 fontSize: '14px' 
               })} by Aadarsh Thakur

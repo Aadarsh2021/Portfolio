@@ -1,0 +1,19 @@
+{
+  "overrides": [
+    {
+      "files": ["serviceWorker.js"],
+      "env": {
+        "serviceworker": true,
+        "browser": true
+      },
+      "globals": {
+        "self": "readonly"
+      },
+      "rules": {
+        "no-restricted-globals": ["error", {
+          "allow": ["self"]
+        }]
+      }
+    }
+  ]
+}

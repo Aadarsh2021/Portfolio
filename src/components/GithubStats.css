@@ -1,0 +1,39 @@
+.github-stats-container {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(var(--primary-rgb), 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: fit-content;
+  border: 1px solid var(--glass-border);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-icon {
+  font-size: 1rem;
+}
+
+.stat-icon.star {
+  color: #ffb800;
+}
+
+.stat-icon.fork {
+  color: #6366f1;
+}
+
+.stat-icon.language {
+  color: #10b981;
+}
+
+.github-stats-placeholder {
+  height: 38px;
+  margin-bottom: 16px;
+}

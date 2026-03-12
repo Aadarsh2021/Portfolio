@@ -1,6 +1,34 @@
 # https://www.robotstxt.org/robotstxt.html
+# Allow all robots complete access
 User-agent: *
 Allow: /
+
+# Specify the location of your sitemap
+Sitemap: https://portfolio-khaki-omega-43.vercel.app/sitemap.xml
+
+# Crawl-delay for all bots (optional)
+Crawl-delay: 10
+
+# Disallow admin or private areas if any exist
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*?*
+
+# Allow useful files and directories
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.ico$
+Allow: /manifest.json
+Allow: /sitemap.xml
+
+# Host directive (optional)
+Host: https://portfolio-khaki-omega-43.vercel.app
 
 # Sitemap
 Sitemap: https://portfolio-khaki-omega-43.vercel.app/sitemap.xml

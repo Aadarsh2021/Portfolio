@@ -1,0 +1,72 @@
+.aura-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.aura-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--aura-violet) 0%, var(--aura-azure) 50%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(100px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  will-change: left, top;
+  transition: width 0.5s ease, height 0.5s ease, background 0.5s ease;
+}
+
+.aura-glow.link {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--aura-emerald) 0%, var(--aura-violet) 50%, transparent 70%);
+  opacity: 0.25;
+}
+
+.aura-glow.tile {
+  width: 350px;
+  height: 350px;
+  opacity: 0.3;
+}
+
+.aura-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--primary-aura-translucent);
+  z-index: 10001;
+  will-change: left, top;
+}
+
+.aura-core {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-luminous);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10002;
+  will-change: left, top;
+}
+
+/* Hide on mobile via JS, but double-safe with CSS */
+@media (max-width: 768px) {
+  .aura-cursor-wrapper {
+    display: none;
+  }
+}
+
+/* Ensure default cursor is hidden on certain elements for full immersion */
+/* a, button, .luminous-tile {
+  cursor: none !important;
+} */

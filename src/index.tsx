@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import App from './App';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { NotificationProvider } from './components/NotificationSystem';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -11,7 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-    <App />
+      <ThemeProvider>
+        <NotificationProvider>
+          <App />
+        </NotificationProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

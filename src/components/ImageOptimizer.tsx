@@ -16,6 +16,12 @@ interface ImageOptimizerProps {
   style?: React.CSSProperties;
   sizes?: string;
   priority?: boolean;
+  blur?: boolean;
+  format?: 'webp' | 'avif' | 'original';
+  loading?: 'eager' | 'lazy';
+  fetchPriority?: 'high' | 'low' | 'auto';
+  decoding?: 'sync' | 'async' | 'auto';
+  crossOrigin?: 'anonymous' | 'use-credentials';
 }
 
 const ImageOptimizer: React.FC<ImageOptimizerProps> = ({

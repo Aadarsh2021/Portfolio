@@ -1,15 +1,25 @@
 import React from 'react';
 import { BsSun, BsMoon } from 'react-icons/bs';
 import { motion } from 'framer-motion';
-import { IconType } from 'react-icons';
 import { useTheme } from '../contexts/ThemeContext';
 
-const ThemeToggle: React.FC = () => {
+interface ThemeToggleProps {
+  onToggle?: (e: React.MouseEvent) => void;
+}
+
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ onToggle }) => {
   const { theme, toggleTheme } = useTheme();
 
-  const renderIcon = (IconComponent: IconType, size: number) => {
-    const Icon = IconComponent as React.ComponentType<{ size: number }>;
-    return <Icon size={size} />;
+  const handleToggle = (e: React.MouseEvent) => {
+    if (onToggle) {
+      onToggle(e);
+    } else {
+      toggleTheme();
+    }
+  };
+
+  const renderIcon = (IconComponent: any, size: number) => {
+    return React.createElement(IconComponent, { size });
   };
 
   return (
@@ -19,7 +29,7 @@ const ThemeToggle: React.FC = () => {
     >
       <button
         type="button"
-        onClick={toggleTheme}
+        onClick={handleToggle}
         className="btn btn-outline btn-sm theme-toggle-btn"
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >

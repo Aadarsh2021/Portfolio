@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
-import { BsGithub, BsLinkedin, BsEnvelope, BsFileEarmarkText } from 'react-icons/bs';
+import { BsGithub, BsLinkedin, BsEnvelopeFill, BsFileEarmarkText } from 'react-icons/bs';
 
 interface HeroProps {
   onDownloadResume: () => void;
@@ -77,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
   };
 
   return (
-    <div 
+    <div
       className="hero-content position-relative overflow-hidden w-100"
       ref={containerRef}
       style={{
@@ -312,7 +312,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
       <Container>
         <Row className="align-items-center min-vh-100">
           <Col lg={8} md={12} className="order-2 order-lg-1 text-center text-lg-start">
-            <motion.div 
+            <motion.div
               className="hero-content"
               variants={containerVariants}
               initial="hidden"
@@ -343,21 +343,21 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                   Aadarsh Thakur
                 </span>
               </motion.h1>
-              
+
               <motion.h2
                 className="hero-subtitle"
                 variants={itemVariants}
                 style={{
-                  fontSize: 'var(--font-size-3xl)',
+                  fontSize: 'var(--font-size-2xl)',
                   color: 'var(--text-secondary)',
                   marginBottom: 'var(--space-6)',
                   fontWeight: 600,
                   textShadow: '0 0 20px rgba(255, 255, 255, 0.3)'
                 }}
               >
-                Full Stack Developer & Software Engineer
+                Full Stack Architect at Ash-tech Solutions
               </motion.h2>
-              
+
               <motion.p
                 className="hero-description"
                 variants={itemVariants}
@@ -366,11 +366,11 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                   color: 'var(--text-secondary)',
                   marginBottom: 'var(--space-8)',
                   lineHeight: 1.8,
-                  maxWidth: '700px',
+                  maxWidth: '750px',
                   textShadow: '0 0 15px rgba(255, 255, 255, 0.2)'
                 }}
               >
-                I craft exceptional digital experiences with modern technologies.{" "}
+                I am a Full Stack Architect specializing in mission-critical enterprise platforms. I transform complex business logic into seamless, high-performance digital experiences that scale.{" "}
                 <span
                   style={{
                     background: 'linear-gradient(135deg, #6366f1, #a855f7)',
@@ -380,22 +380,22 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                     fontWeight: 600
                   }}
                 >
-                Passionate about creating scalable solutions and bringing innovative ideas to life.
+                  Expertise in React, Next.js, Node.js, and Cloud Architectures using Firebase & Supabase.
                 </span>
               </motion.p>
-              
+
               <motion.div
                 className="hero-buttons d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-4"
                 variants={itemVariants}
               >
-                <motion.button 
+                <motion.button
                   className="btn btn-gradient btn-lg"
                   onClick={onContactMe}
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
-                  style={{ 
-                    minHeight: '56px', 
+                  style={{
+                    minHeight: '56px',
                     minWidth: '220px',
                     background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
                     border: 'none',
@@ -406,18 +406,18 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                     boxShadow: 'var(--shadow-2xl), 0 0 30px rgba(99, 102, 241, 0.5)'
                   }}
                 >
-                  {renderIcon(BsEnvelope, "me-3")}
+                  {renderIcon(BsEnvelopeFill, "me-3")}
                   Get In Touch
                 </motion.button>
-                
-                <motion.button 
+
+                <motion.button
                   className="btn btn-outline btn-lg"
                   onClick={onDownloadResume}
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"
-                  style={{ 
-                    minHeight: '56px', 
+                  style={{
+                    minHeight: '56px',
                     minWidth: '220px',
                     border: '3px solid var(--primary)',
                     borderRadius: 'var(--radius-2xl)',
@@ -437,16 +437,16 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 className="social-links d-flex justify-content-center justify-content-lg-start gap-4 mt-5"
                 variants={itemVariants}
               >
-                <motion.a 
-                  href="https://github.com/Aadarsh2021" 
-                  target="_blank" 
+                <motion.a
+                  href="https://github.com/Aadarsh2021"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
                   aria-label="GitHub Profile"
                   variants={socialVariants}
                   whileHover="hover"
-                  style={{ 
-                    minHeight: '56px', 
+                  style={{
+                    minHeight: '56px',
                     minWidth: '56px',
                     display: 'flex',
                     alignItems: 'center',
@@ -462,17 +462,17 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 >
                   {renderIcon(BsGithub, "fs-4")}
                 </motion.a>
-                
-                <motion.a 
-                  href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" 
-                  target="_blank" 
+
+                <motion.a
+                  href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="social-link"
                   aria-label="LinkedIn Profile"
                   variants={socialVariants}
                   whileHover="hover"
-                  style={{ 
-                    minHeight: '56px', 
+                  style={{
+                    minHeight: '56px',
                     minWidth: '56px',
                     display: 'flex',
                     alignItems: 'center',
@@ -488,15 +488,15 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 >
                   {renderIcon(BsLinkedin, "fs-4")}
                 </motion.a>
-                
-                <motion.a 
-                  href="mailto:aadarshthakur2021@gmail.com" 
+
+                <motion.a
+                  href="mailto:thakuraadarsh1@gmail.com"
                   className="social-link"
                   aria-label="Email"
                   variants={socialVariants}
                   whileHover="hover"
-                  style={{ 
-                    minHeight: '56px', 
+                  style={{
+                    minHeight: '56px',
                     minWidth: '56px',
                     display: 'flex',
                     alignItems: 'center',
@@ -510,12 +510,12 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                     boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)'
                   }}
                 >
-                  {renderIcon(BsEnvelope, "fs-4")}
+                  {renderIcon(BsEnvelopeFill, "fs-4")}
                 </motion.a>
               </motion.div>
             </motion.div>
           </Col>
-          
+
           <Col lg={4} className="order-1 order-lg-2 text-center">
             <motion.div
               className="profile-image-container"
@@ -532,8 +532,8 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 margin: '0 auto'
               }}
             >
-              <motion.img 
-                src="/assets/profile.jpg" 
+              <motion.img
+                src="/assets/profile.jpg"
                 alt="Aadarsh Thakur - Full Stack Developer"
                 className="profile-image"
                 loading="eager"

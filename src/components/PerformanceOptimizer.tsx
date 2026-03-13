@@ -8,23 +8,7 @@ import React, { useEffect } from 'react';
  */
 const PerformanceOptimizer: React.FC = () => {
   useEffect(() => {
-    // 1. Preload critical fonts
-    const preloadFonts = () => {
-      const fonts = [
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap',
-        'https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap'
-      ];
-      
-      fonts.forEach(url => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = url;
-        document.head.appendChild(link);
-      });
-    };
-
-    // 2. Clear prefetch cache on idle
+    // 1. Clear prefetch cache on idle
     const clearPrefetchOnIdle = () => {
       if ('requestIdleCallback' in window) {
         (window as any).requestIdleCallback(() => {
@@ -45,7 +29,6 @@ const PerformanceOptimizer: React.FC = () => {
       }
     };
 
-    preloadFonts();
     clearPrefetchOnIdle();
     setAdaptiveQuality();
   }, []);

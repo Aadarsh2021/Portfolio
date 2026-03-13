@@ -12,7 +12,10 @@ const ParticleField = () => {
   const particleColor = theme === 'dark' ? "#8b5cf6" : "#6366f1";
   const lineColor = theme === 'dark' ? "rgba(139, 92, 246, 0.15)" : "rgba(99, 102, 241, 0.15)";
   
-  const count = 1000;
+  // Use adaptive counts based on global performance mode
+  const isLowPerf = document.documentElement.getAttribute('data-perf-mode') === 'low';
+  const count = isLowPerf ? 400 : 1000;
+  
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -21,30 +24,37 @@ const ParticleField = () => {
       pos[i * 3 + 2] = THREE.MathUtils.randFloatSpread(40);
     }
     return pos;
-  }, []);
+  }, [count]);
 
-  const linePositions = useMemo(() => new Float32Array(count * 6), []);
+  const linePositions = useMemo(() => new Float32Array(count * 6), [count]);
 
   useFrame((state) => {
     if (!ref.current || !meshRef.current) return;
     
-    // Slow drift
-    ref.current.rotation.y += 0.0002;
-    ref.current.rotation.x += 0.0001;
+    // Slow drift - cheaper rotation
+    ref.current.rotation.y += 0.00015;
     
-    // Mouse interaction
-    const targetX = state.mouse.x * 5;
-    const targetY = state.mouse.y * 5;
-    ref.current.position.x += (targetX - ref.current.position.x) * 0.02;
-    ref.current.position.y += (targetY - ref.current.position.y) * 0.02;
+    // Mouse interaction - skip if low performance
+    if (!isLowPerf) {
+      const targetX = state.mouse.x * 3;
+      const targetY = state.mouse.y * 3;
+      ref.current.position.x += (targetX - ref.current.position.x) * 0.01;
+      ref.current.position.y += (targetY - ref.current.position.y) * 0.01;
+    }
 
-    // Neural connectivity logic
+    // Neural connectivity logic - heavily optimized check frequency
+    // Only update connections every few frames to save CPU
+    if (state.clock.elapsedTime % 0.05 > 0.01) return; 
+
     let lineIdx = 0;
     const pos = ref.current.geometry.attributes.position.array as Float32Array;
-    const maxDist = 4;
+    const maxDist = isLowPerf ? 3 : 4;
     
-    for (let i = 0; i < count; i++) {
-      for (let j = i + 1; j < i + 5; j++) { // Only check nearby indices for perf
+    // Only check a fraction of particles for connectivity on lower perf
+    const step = isLowPerf ? 4 : 1;
+    for (let i = 0; i < count; i += step) {
+      // Connect to a small window of particles nearby in the array
+      for (let j = i + 1; j < i + (isLowPerf ? 3 : 5); j++) {
         const idx1 = i * 3;
         const idx2 = (j % count) * 3;
         

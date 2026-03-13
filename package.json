@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
+    "@types/gsap": "^1.20.2",
     "@types/jest": "^27.5.2",
     "@types/lodash": "^4.17.20",
     "@types/node": "^16.18.70",

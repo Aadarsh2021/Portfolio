@@ -31,3 +31,4 @@ const RadialWipe: React.FC<RadialWipeProps> = ({ active, x, y }) => {
 };
 
 export default RadialWipe;
+

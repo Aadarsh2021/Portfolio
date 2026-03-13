@@ -14,7 +14,6 @@ import LiveStatusTile from './components/LiveStatusTile';
 import TestimonialTile from './components/TestimonialTile';
 import EnhancedSkills from './components/EnhancedSkills';
 import EnhancedContact from './components/EnhancedContact';
-import { gsap } from 'gsap';
 import { AnimatePresence } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
 import AuraCursor from './components/AuraCursor';
@@ -26,7 +25,8 @@ import { BentoGrid, BentoTile } from './components/BentoGrid';
 import BentoHero from './components/BentoHero';
 import ThemeToggle from './components/ThemeToggle';
 import MobileMenu from './components/MobileMenu';
-import RadialWipe from './components/RadialWipe';
+import ThemeRadialWipe from './components/ThemeRadialWipe';
+import PerformanceOptimizer from './components/PerformanceOptimizer';
 
 // Lazy load larger or secondary components
 const About = React.lazy(() => import('./components/About'));
@@ -34,6 +34,8 @@ const Experience = React.lazy(() => import('./components/Experience'));
 const AdvancedProjects = React.lazy(() => import('./components/AdvancedProjects'));
 const Blog = React.lazy(() => import('./components/Blog'));
 const Certifications = React.lazy(() => import('./components/Certifications'));
+
+const gsap: any = require('gsap').gsap || require('gsap');
 
 const App: React.FC = () => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = React.useState(false);
@@ -107,6 +109,7 @@ const App: React.FC = () => {
     }>
       <>
         <SEOHead />
+        <PerformanceOptimizer />
         <ObsidianBackground />
         <AnimatePresence>
           {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
@@ -186,7 +189,7 @@ const App: React.FC = () => {
 
         <MobileMenu />
         <Footer />
-        <RadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
+        <ThemeRadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
         <Analytics />
       </>
     </ErrorBoundary>

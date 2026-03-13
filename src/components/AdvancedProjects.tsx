@@ -4,6 +4,7 @@ import {
   BsGithub, BsArrowRight, 
   BsLaptop, BsGlobe, BsGear, BsCheckCircle 
 } from 'react-icons/bs';
+import OptimizedImage from './OptimizedImage';
 
 interface Project {
   title: string;
@@ -101,14 +102,12 @@ const AdvancedProjects: React.FC = () => {
             transition={{ duration: 0.3 }}
             className="h-100 d-flex flex-column"
           >
-            <div className="project-preview-container mb-3 glass-panel overflow-hidden" style={{ borderRadius: '12px', height: '120px', background: 'var(--primary-aura-translucent)' }}>
-              <img 
+            <div className="project-preview-container mb-3 glass-panel overflow-hidden" style={{ borderRadius: '12px', height: '120px', background: 'var(--primary-aura-translucent)', position: 'relative' }}>
+              <OptimizedImage 
                 src={projects[activeIdx].img} 
                 alt={projects[activeIdx].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.6 }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/portfolio.png';
-                }}
+                className="w-100 h-100"
+                priority={activeIdx === 0}
               />
             </div>
             <div className="d-flex align-items-center gap-3 mb-3">

@@ -12,31 +12,32 @@
 
 .modal-close-high-wrapper {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   z-index: 10001;
 }
 
 .success-modal-close-premium {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  width: 50px;
-  height: 50px;
+  color: rgba(255, 255, 255, 0.5);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .success-modal-close-premium:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: rotate(90deg) scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: rotate(90deg) scale(1.15);
   border-color: var(--aura-violet, #8b5cf6);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
 }
 
 .success-modal-content-premium {

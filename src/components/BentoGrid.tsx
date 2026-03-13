@@ -128,27 +128,8 @@ export const BentoTile: React.FC<BentoTileProps> = ({
           }}
         />
 
-        <div className="tile-layer-wrapper" style={{ transformStyle: 'preserve-3d', height: '100%', width: '100%' }}>
-          {React.Children.map(children, (child, idx) => {
-            if (!React.isValidElement(child)) return child;
-            
-            // Assign depth based on index or props if we were to extend further
-            // Default: increase depth for each child to create natural stacking
-            const zDepth = (idx + 1) * 15; 
-            
-            return (
-              <div 
-                key={idx}
-                style={{ 
-                  transform: `translateZ(${zDepth}px)`, 
-                  transformStyle: 'preserve-3d',
-                  height: child.props.style?.height || 'auto'
-                }}
-              >
-                {child}
-              </div>
-            );
-          })}
+        <div className="tile-layer-wrapper" style={{ height: '100%', width: '100%' }}>
+          {children}
         </div>
       </div>
     </motion.div>

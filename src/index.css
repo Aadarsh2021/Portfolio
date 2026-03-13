@@ -58,17 +58,18 @@ body {
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
+  transform-style: flat; /* Simplified for reliability */
   display: flex;
   flex-direction: column;
+  pointer-events: auto !important;
 }
 
 .tile-content {
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  transform: translateZ(20px);
+  z-index: 5;
+  pointer-events: auto !important;
 }
 
 .tile-glow-container {
@@ -108,6 +109,7 @@ body {
   background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
   opacity: 0;
   transition: opacity 0.5s;
+  pointer-events: none;
 }
 
 .luminous-tile:hover::after {
@@ -309,4 +311,41 @@ html.lenis {
 
 .theme-wipe-overlay.active {
   clip-path: circle(150% at var(--wipe-x, 50%) var(--wipe-y, 50%));
+}
+
+/* Contact Interaction Fixes */
+/* Contact Interaction Fixes */
+.contact-form-side input,
+.contact-form-side textarea,
+.contact-form-side button,
+.contact-info-side a,
+.social-grid a,
+.project-card a,
+.nav-link,
+button {
+  position: relative !important;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.contact-bento-content,
+.contact-form-side,
+.contact-info-side,
+.contact-form-side form {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 100;
+}
+
+/* Ensure nothing blocks the whole form */
+#contact {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 50 !important;
+}
+
+/* Global sanity check for interactivity */
+.portfolio-main, .bento-master, .bento-tile {
+  pointer-events: auto !important;
 }

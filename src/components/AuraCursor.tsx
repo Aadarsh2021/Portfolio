@@ -86,14 +86,6 @@ const AuraCursor: React.FC = () => {
       
       {/* Inner Core Pulse */}
       <motion.div
-        className="aura-core"
-        style={{
-          left: dotX,
-          top: dotY,
-        }}
-        animate={{
-          scale: activeElement === 'link' ? 2 : 1,
-        }}
       />
     </div>
   );

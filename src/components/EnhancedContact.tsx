@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { BsEnvelopeFill, BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs';
 import emailjs from '@emailjs/browser';
+import SuccessModal from './SuccessModal';
 
 const EnhancedContact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
   const [isSending, setIsSending] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ const EnhancedContact: React.FC = () => {
       const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'XbrOlxZukaholZWbl';
 
       await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
-      alert('Message sent successfully!');
+      setShowSuccess(true);
       form.current.reset();
     } catch (err) {
       console.error('EmailJS Error:', err);
@@ -52,17 +54,17 @@ const EnhancedContact: React.FC = () => {
           <input 
             type="text" name="name" placeholder="Name" required 
             className="glass-panel p-3 w-100 border-0" 
-            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', color: 'var(--text-primary)' }} 
+            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', color: 'var(--text-primary)', pointerEvents: 'auto', position: 'relative', zIndex: 100 }} 
           />
           <input 
             type="email" name="email" placeholder="Email" required 
             className="glass-panel p-3 w-100 border-0" 
-            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', color: 'var(--text-primary)' }} 
+            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', color: 'var(--text-primary)', pointerEvents: 'auto', position: 'relative', zIndex: 100 }} 
           />
           <textarea 
             name="message" placeholder="Your Message" required rows={3}
             className="glass-panel p-3 w-100 border-0" 
-            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', resize: 'none', color: 'var(--text-primary)' }} 
+            style={{ borderRadius: '12px', background: 'var(--bg-surface-elevated)', fontSize: '0.9rem', resize: 'none', color: 'var(--text-primary)', pointerEvents: 'auto', position: 'relative', zIndex: 100 }} 
           />
           <button 
             type="submit" disabled={isSending}
@@ -73,6 +75,10 @@ const EnhancedContact: React.FC = () => {
           </button>
         </form>
       </div>
+      <SuccessModal 
+        isOpen={showSuccess} 
+        onClose={() => setShowSuccess(false)} 
+      />
     </div>
   );
 };

@@ -72,24 +72,26 @@ module.exports = {
         );
       }
 
-      // Add source map loader configuration
-      webpackConfig.module.rules.push({
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-        use: {
-          loader: 'source-map-loader',
-          options: {
-            filterSourceMappingUrl: (url, resourcePath) => {
-              // Ignore source maps for @mediapipe packages
-              if (/@mediapipe/.test(resourcePath)) {
-                return false;
+      // Add source map loader configuration - skip in production for speed
+      if (!isProduction) {
+        webpackConfig.module.rules.push({
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
+          use: {
+            loader: 'source-map-loader',
+            options: {
+              filterSourceMappingUrl: (url, resourcePath) => {
+                // Ignore source maps for @mediapipe packages
+                if (/@mediapipe/.test(resourcePath)) {
+                  return false;
+                }
+                return true;
               }
-              return true;
             }
           }
-        }
-      });
+        });
+      }
 
       // Add ignore warnings configuration
       webpackConfig.ignoreWarnings = [

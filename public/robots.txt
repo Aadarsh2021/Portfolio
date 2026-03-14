@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Specify the location of your sitemap
-Sitemap: https://portfolio-khaki-omega-43.vercel.app/sitemap.xml
+Sitemap: https://aadarsh-portfolio-49ac6.web.app/sitemap.xml
 
 # Crawl-delay for all bots (optional)
 Crawl-delay: 10
@@ -28,10 +28,10 @@ Allow: /manifest.json
 Allow: /sitemap.xml
 
 # Host directive (optional)
-Host: https://portfolio-khaki-omega-43.vercel.app
+Host: https://aadarsh-portfolio-49ac6.web.app
 
 # Sitemap
-Sitemap: https://portfolio-khaki-omega-43.vercel.app/sitemap.xml
+Sitemap: https://aadarsh-portfolio-49ac6.web.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

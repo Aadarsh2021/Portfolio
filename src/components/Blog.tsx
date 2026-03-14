@@ -77,19 +77,26 @@ const Blog: React.FC = () => {
         ))}
       </div>
       
-      <motion.button 
-        className="primary-aura-btn w-100 py-2 mt-3 flex-shrink-0"
-        style={{ 
-          fontSize: '0.8rem', 
-          height: '42px',
-          background: 'var(--text-primary)',
-          color: 'var(--bg-obsidian)'
-        }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+      <a 
+        href="https://medium.com/@thakuraadarsh1" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="no-underline w-100"
       >
-        View All Articles
-      </motion.button>
+        <motion.button 
+          className="primary-aura-btn w-100 py-3 mt-4 flex-shrink-0"
+          style={{ 
+            fontSize: '0.85rem', 
+            height: '48px',
+            background: 'var(--text-primary)',
+            color: 'var(--bg-obsidian)'
+          }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          View All Articles
+        </motion.button>
+      </a>
     </div>
   );
 };

@@ -239,7 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Aadarsh Thakur
 
 - Email:thakuraadarsh1@gmail.com
-- Portfolio: [portfolio-khaki-omega-43.vercel.app](http://portfolio-khaki-omega-43.vercel.app)
+- Portfolio: [aadarsh-portfolio-49ac6.web.app](https://aadarsh-portfolio-49ac6.web.app/)
 - GitHub: [@Aadarsh2021](https://github.com/Aadarsh2021)
 - LinkedIn: [aadarsh-thakur](https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/)
 
@@ -248,7 +248,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - React team for the amazing framework
 - Framer Motion for smooth animations
 - Bootstrap team for the responsive framework
-- Vercel for hosting and deployment
+- Firebase for hosting and deployment
 - All the open-source contributors
 
 ---

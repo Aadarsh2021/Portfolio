@@ -48,9 +48,9 @@ const BentoHero: React.FC = () => {
           transition={{ delay: 0.5 }}
         >
           <MagneticButton distance={0.3}>
-            <button className="primary-aura-btn">
+            <a href="#contact" className="primary-aura-btn no-underline">
               Let's Collaborate {React.createElement(BsArrowRight as any, { className: "ms-2" })}
-            </button>
+            </a>
           </MagneticButton>
           
           <MagneticButton distance={0.3}>

@@ -33,11 +33,13 @@
   
   /* Animation */
   --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
 /* Dark Theme (Default) */
@@ -79,37 +81,38 @@
 /* Light Theme */
 [data-theme="light"] {
   /* Premium Cloud Palette */
-  --bg-obsidian: #f8fafc;
+  --bg-obsidian: #fcfcfd;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #f1f5f9;
+  --bg-surface-elevated: #f8f9fb;
   
-  --text-primary: #0f172a;
-  --text-secondary: rgba(15, 23, 42, 0.7);
-  --text-dimmed: rgba(15, 23, 42, 0.4);
+  --text-primary: #121217;
+  --text-secondary: #4a4a5e;
+  --text-dimmed: #7d7d91;
   
   /* Luminous Tokens (Inverted) */
-  --aura-violet: #7c3aed;
-  --aura-azure: #2563eb;
-  --aura-emerald: #059669;
-  --border-luminous: rgba(15, 23, 42, 0.08);
-  --border-luminous-hover: rgba(15, 23, 42, 0.12);
+  --aura-violet: #6366f1;
+  --aura-azure: #3b82f6;
+  --aura-emerald: #10b981;
+  --border-luminous: rgba(0, 0, 0, 0.05);
+  --border-luminous-hover: rgba(0, 0, 0, 0.1);
   --primary-aura: #6366f1;
-  --primary-aura-translucent: rgba(99, 102, 241, 0.08);
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(15, 23, 42, 0.1);
+  --primary-aura-translucent: rgba(99, 102, 241, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
 
   /* Primary Theme Colors */
   --primary: #6366f1;
   --primary-hover: #4f46e5;
   
   /* Background Colors */
-  --bg-primary: #f8fafc;
+  --bg-primary: #fcfcfd;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
+  --bg-tertiary: #f8f9fb;
   
   /* Shadow Colors */
-  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-xl: 0 20px 50px -12px rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
 }
 
 /* Theme Transition */

@@ -4,43 +4,89 @@ import { BsArrowUpRight } from 'react-icons/bs';
 
 const Blog: React.FC = () => {
   const posts = [
-    { title: "Building FarmEase", category: "AI & Blockchain" },
-    { title: "Smart City Traffic", category: "Computer Vision" },
-    { title: "Performance at Scale", category: "Optimization" }
+    { 
+      title: "Scaling Cloud Inventory", 
+      category: "System Architecture",
+      date: "Mar 2024"
+    },
+    { 
+      title: "AI & Talent Matching", 
+      category: "Groq Intelligence",
+      date: "Feb 2024"
+    },
+    { 
+      title: "Modern Billing Architecture", 
+      category: "Enterprise SaaS",
+      date: "Jan 2024"
+    }
   ];
 
   return (
-    <div className="blog-bento-content p-4 h-100 d-flex flex-column">
+    <div className="blog-bento-content p-4 h-100 d-flex flex-column" style={{ minHeight: '100%' }}>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="aura-text mb-0">Insights</h3>
-        <span className="mono-label">Blog Posts</span>
+        <div>
+          <h3 className="aura-text mb-1" style={{ fontSize: '1.4rem' }}>Insights</h3>
+          <p className="mono-label mb-0" style={{ fontSize: '0.6rem', color: 'var(--text-dimmed)' }}>Thought Leadership</p>
+        </div>
+        <div className="glass-panel px-3 py-1 d-none d-sm-block">
+          <span className="mono-label" style={{ fontSize: '0.6rem' }}>Blog Posts</span>
+        </div>
       </div>
 
-      <div className="posts-list flex-grow-1">
+      <div className="posts-list flex-grow-1 d-flex flex-column gap-2 overflow-hidden">
         {posts.map((post, index) => (
           <motion.div 
             key={index}
-            className="post-item mb-3 pb-3"
-            style={{ borderBottom: index !== posts.length - 1 ? '1px solid var(--border-luminous)' : 'none' }}
-            initial={{ opacity: 0, x: 10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 * index }}
+            className="post-card-mini p-3 glass-effect"
+            style={{ 
+              borderRadius: '16px',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden',
+              flexShrink: 0
+            }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ y: -4, backgroundColor: 'var(--bg-surface-elevated)' }}
+            transition={{ duration: 0.5, delay: 0.1 * index, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
-                <h6 className="mb-1" style={{ fontSize: '0.9rem', color: 'var(--text-primary)' }}>{post.title}</h6>
-                <p className="mb-0" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{post.category}</p>
+            <div className="d-flex justify-content-between align-items-center gap-2">
+              <div className="flex-grow-1 overflow-hidden">
+                <div className="d-flex align-items-center gap-2 mb-1">
+                  <span className="badge-category px-2 py-0.5" style={{ 
+                    fontSize: '0.55rem', 
+                    background: 'var(--primary-aura-translucent)', 
+                    color: 'var(--aura-violet)',
+                    borderRadius: '4px',
+                    fontWeight: 600,
+                    whiteSpace: 'nowrap'
+                  }}>
+                    {post.category}
+                  </span>
+                  <span className="d-none d-md-inline" style={{ fontSize: '0.6rem', color: 'var(--text-dimmed)' }}>• {post.date}</span>
+                </div>
+                <h6 className="mb-0 text-truncate" style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 600 }}>
+                  {post.title}
+                </h6>
               </div>
-              {React.createElement(BsArrowUpRight as any, { size: 14, className: "mt-1", style: { color: 'var(--text-secondary)' } })}
+              <div className="arrow-container glass-panel p-2 d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: '28px', height: '28px', borderRadius: '8px' }}>
+                {React.createElement(BsArrowUpRight as any, { size: 12, style: { color: 'var(--text-primary)' } })}
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
       
       <motion.button 
-        className="glass-panel w-100 py-2 mt-auto"
-        whileHover={{ backgroundColor: 'var(--border-luminous)' }}
-        style={{ border: '1px solid var(--glass-border)', borderRadius: '12px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}
+        className="primary-aura-btn w-100 py-2 mt-3 flex-shrink-0"
+        style={{ 
+          fontSize: '0.8rem', 
+          height: '42px',
+          background: 'var(--text-primary)',
+          color: 'var(--bg-obsidian)'
+        }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
       >
         View All Articles
       </motion.button>

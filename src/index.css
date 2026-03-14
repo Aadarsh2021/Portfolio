@@ -139,7 +139,12 @@ body {
   transform: translateY(-8px);
   border-color: var(--border-luminous-hover);
   background: var(--bg-surface-elevated);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-premium), var(--shadow-xl);
+}
+
+/* Light mode specific depth refinement */
+[data-theme="light"] .luminous-tile {
+  box-shadow: var(--shadow-premium);
 }
 
 /* Elite Typography */

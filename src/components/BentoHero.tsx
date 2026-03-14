@@ -14,7 +14,7 @@ const BentoHero: React.FC = () => {
           className="mono-label mb-3"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           Available for new opportunities
         </motion.div>
@@ -24,7 +24,7 @@ const BentoHero: React.FC = () => {
           style={{ color: 'var(--text-primary)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           Aadarsh <span className="aura-text">Thakur</span>
         </motion.h1>
@@ -34,7 +34,7 @@ const BentoHero: React.FC = () => {
           style={{ maxWidth: '600px', color: 'var(--text-secondary)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           Full Stack Architect designing elite digital solutions. 
           Transforming complex enterprise challenges into high-performance, 
@@ -45,7 +45,7 @@ const BentoHero: React.FC = () => {
           className="hero-actions d-flex flex-wrap gap-3 align-items-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <MagneticButton distance={0.3}>
             <a href="#contact" className="primary-aura-btn no-underline">

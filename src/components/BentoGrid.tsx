@@ -39,9 +39,11 @@ export const BentoTile: React.FC<BentoTileProps> = ({
 
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
+  
+  const isLowPerf = document.documentElement.getAttribute('data-perf-mode') === 'low';
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isLowPerf) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     const width = rect.width;
@@ -62,20 +64,15 @@ export const BentoTile: React.FC<BentoTileProps> = ({
     y.set(0);
   };
 
-  const getGridStyle = () => {
-    const base = {
-      perspective: '1000px',
-      transformStyle: 'preserve-3d' as const
-    };
-
+  const getGridClass = () => {
     switch (size) {
-      case 'sm': return { ...base, gridColumn: 'span 3', gridRow: 'span 1' };
-      case 'md': return { ...base, gridColumn: 'span 6', gridRow: 'span 2' };
-      case 'lg': return { ...base, gridColumn: 'span 8', gridRow: 'span 3' };
-      case 'wide': return { ...base, gridColumn: 'span 12', gridRow: 'span 2' };
-      case 'tall': return { ...base, gridColumn: 'span 4', gridRow: 'span 4' };
-      case 'full': return { ...base, gridColumn: 'span 12' };
-      default: return { ...base, gridColumn: 'span 6', gridRow: 'span 2' };
+      case 'sm': return 'bento-sm';
+      case 'md': return 'bento-md';
+      case 'lg': return 'bento-lg';
+      case 'wide': return 'bento-wide';
+      case 'tall': return 'bento-tall';
+      case 'full': return 'bento-full';
+      default: return 'bento-md';
     }
   };
 
@@ -83,9 +80,8 @@ export const BentoTile: React.FC<BentoTileProps> = ({
     <motion.div
       ref={containerRef}
       id={id}
-      className={`luminous-tile bento-tile ${className}`}
+      className={`luminous-tile bento-tile ${getGridClass()} ${className}`}
       style={{
-        ...getGridStyle(),
         rotateX,
         rotateY
       }}

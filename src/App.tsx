@@ -9,24 +9,23 @@ import './styles/themes.css';
 import './styles/perfect-portfolio.css';
 import './styles/mobile-menu.css';
 import PageEntryLoader from './components/PageEntryLoader';
-import ObsidianBackground from './components/ObsidianBackground';
+// import ObsidianBackground from './components/ObsidianBackground'; // Lazy loaded below
 import LiveStatusTile from './components/LiveStatusTile';
 import TestimonialTile from './components/TestimonialTile';
 import EnhancedSkills from './components/EnhancedSkills';
 import EnhancedContact from './components/EnhancedContact';
 import { AnimatePresence } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
-import AuraCursor from './components/AuraCursor';
 import CommandPalette from './components/CommandPalette';
 import { useTheme } from './contexts/ThemeContext';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { useScrollSpy } from './hooks/useScrollspy';
 import { BentoGrid, BentoTile } from './components/BentoGrid';
 import BentoHero from './components/BentoHero';
-import ThemeToggle from './components/ThemeToggle';
 import MobileMenu from './components/MobileMenu';
 import ThemeRadialWipe from './components/ThemeRadialWipe';
 import PerformanceOptimizer from './components/PerformanceOptimizer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load larger or secondary components
 const About = React.lazy(() => import('./components/About'));
@@ -34,6 +33,7 @@ const Experience = React.lazy(() => import('./components/Experience'));
 const AdvancedProjects = React.lazy(() => import('./components/AdvancedProjects'));
 const Blog = React.lazy(() => import('./components/Blog'));
 const Certifications = React.lazy(() => import('./components/Certifications'));
+const ObsidianBackground = React.lazy(() => import('./components/ObsidianBackground'));
 
 const gsap: any = require('gsap').gsap || require('gsap');
 
@@ -110,21 +110,18 @@ const App: React.FC = () => {
       <>
         <SEOHead />
         <PerformanceOptimizer />
-        <ObsidianBackground />
+        <Suspense fallback={<div className="static-bg-fallback" />}>
+          <ObsidianBackground />
+        </Suspense>
         <AnimatePresence>
           {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
         </AnimatePresence>
-        <AuraCursor />
         <CommandPalette 
           isOpen={isCommandPaletteOpen}
           onClose={() => setIsCommandPaletteOpen(false)}
           onThemeToggle={toggleTheme}
         />
         
-        {/* Floating Theme Toggle */}
-        <div className="fixed-top-right p-4" style={{ zIndex: 100, pointerEvents: 'auto' }}>
-          <ThemeToggle />
-        </div>
 
         <main className="portfolio-main" style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease' }}>
           <div ref={gridRef}>
@@ -188,6 +185,7 @@ const App: React.FC = () => {
         </main>
 
         <MobileMenu />
+        <ScrollToTop />
         <Footer />
         <ThemeRadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
         <Analytics />

@@ -3,46 +3,44 @@ import { motion } from 'framer-motion';
 import { 
   SiReact, SiNodedotjs, SiPostgresql, 
   SiTailwindcss, SiSupabase, SiFirebase, SiTypescript,
-  SiNextdotjs, SiPython, SiGit, SiGithub, SiRazorpay,
-  SiGooglecloud, SiFramer
+  SiPython, SiGit
 } from 'react-icons/si';
 import { BsCpu } from 'react-icons/bs';
 
 const EnhancedSkills: React.FC = () => {
   const groups = [
     {
-      title: "Frontend Powerhouse",
+      title: "Core Languages",
       skills: [
-        { name: "React", icon: SiReact, color: "#61DAFB" },
-        { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+        { name: "JavaScript", icon: SiReact, color: "#F7DF1E" },
         { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-        { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" }
+        { name: "Python", icon: SiPython, color: "#3776AB" }
       ]
     },
     {
-      title: "Backend & Cloud",
+      title: "Frontend & Design",
+      skills: [
+        { name: "React.js", icon: SiReact, color: "#61DAFB" },
+        { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+        { name: "HTML5/CSS3", icon: SiReact, color: "#E34F26" }
+      ]
+    },
+    {
+      title: "Backend & BaaS",
       skills: [
         { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-        { name: "Python", icon: SiPython, color: "#3776AB" },
+        { name: "Express.js", icon: SiNodedotjs, color: "#000000" },
+        { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+        { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" }
+      ]
+    },
+    {
+      title: "Databases & Tools",
+      skills: [
         { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-        { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
-        { name: "Firebase", icon: SiFirebase, color: "#FFCA28" }
-      ]
-    },
-    {
-      title: "DevOps & Tools",
-      skills: [
-        { name: "Git", icon: SiGit, color: "#F05032" },
-        { name: "GitHub", icon: SiGithub, color: "#ffffff" },
-        { name: "Framer", icon: SiFramer, color: "#0055FF" }
-      ]
-    },
-    {
-      title: "Enterprise & AI",
-      skills: [
-        { name: "Groq AI", icon: BsCpu, color: "#f87171" },
-        { name: "Razorpay", icon: SiRazorpay, color: "#008ECF" },
-        { name: "Cloud APIs", icon: SiGooglecloud, color: "#4285F4" }
+        { name: "MongoDB", icon: SiPostgresql, color: "#47A248" },
+        { name: "Git/GitHub", icon: SiGit, color: "#F05032" },
+        { name: "JWT Auth", icon: BsCpu, color: "#ffffff" }
       ]
     }
   ];

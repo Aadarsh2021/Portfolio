@@ -21,25 +21,25 @@ const PageEntryLoader: React.FC<PageEntryLoaderProps> = ({ onComplete }) => {
     tl.to(textRef.current, {
       opacity: 1,
       y: 0,
-      duration: 1,
+      duration: 0.5,
       ease: "power4.out"
     })
     .to(barRef.current, {
       scaleX: 1,
-      duration: 1.5,
+      duration: 0.8,
       ease: "expo.inOut"
-    }, "-=0.5")
+    }, "-=0.3")
     .to(textRef.current, {
       y: -20,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.4,
       ease: "power4.in"
     })
     .to(containerRef.current, {
       yPercent: -100,
-      duration: 1.2,
+      duration: 0.6,
       ease: "expo.inOut"
-    }, "-=0.2");
+    }, "-=0.1");
 
     return () => {
       tl.kill();

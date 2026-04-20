@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BsGithub, BsLinkedin, BsEnvelopeFill } from 'react-icons/bs';
+import ThemeToggle from './ThemeToggle';
+import ReviewGiver from './ReviewGiver';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -65,53 +66,66 @@ const MobileMenu: React.FC = () => {
 
   return (
     <>
-      <motion.div 
-        layoutId="mobile-island"
-        className="mobile-island-trigger md:hidden"
-        onClick={toggleMenu}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        style={{ borderRadius: isOpen ? '0px' : '100px' }}
-      >
-        <div className="hamburger-box">
-          <motion.span 
-            className="hamburger-line" 
-            animate={{ 
-              rotate: isOpen ? 45 : 0,
-              y: isOpen ? 6 : 0,
-              width: '100%'
-            }}
-          />
-          <motion.span 
-            className="hamburger-line" 
-            animate={{ 
-              opacity: isOpen ? 0 : 1,
-              x: isOpen ? 20 : 0
-            }}
-          />
-          <motion.span 
-            className="hamburger-line" 
-            animate={{ 
-              rotate: isOpen ? -45 : 0,
-              y: isOpen ? -6 : 0
-            }}
-          />
-        </div>
-        <span className="font-bold text-sm tracking-widest uppercase">
-          {isOpen ? 'Close' : 'Menu'}
-        </span>
-      </motion.div>
+      <div className="mobile-island-container">
+        <motion.div 
+          className="mobile-island-trigger"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {/* Theme Toggle Part */}
+          <div className="island-part theme-part px-3">
+            <ThemeToggle />
+          </div>
+
+          <div className="island-divider" />
+
+          <div className="island-part review-part px-3">
+            <ReviewGiver />
+          </div>
+
+          <div className="island-divider" />
+
+          {/* Menu Trigger Part */}
+          <div className="island-part menu-part px-3" onClick={toggleMenu}>
+            <div className="hamburger-box">
+              <motion.span 
+                className="hamburger-line" 
+                animate={{ 
+                  rotate: isOpen ? 45 : 0,
+                  y: isOpen ? 6 : 0,
+                  width: '100%'
+                }}
+              />
+              <motion.span 
+                className="hamburger-line" 
+                animate={{ 
+                  opacity: isOpen ? 0 : 1,
+                  x: isOpen ? 20 : 0
+                }}
+              />
+              <motion.span 
+                className="hamburger-line" 
+                animate={{ 
+                  rotate: isOpen ? -45 : 0,
+                  y: isOpen ? -6 : 0
+                }}
+              />
+            </div>
+            <span className="menu-text font-bold text-xs tracking-widest uppercase">
+              {isOpen ? 'Close' : 'Menu'}
+            </span>
+          </div>
+        </motion.div>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            layoutId="mobile-island"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={containerVariants}
-            className="mobile-overlay-menu md:hidden"
-            style={{ borderRadius: '0px' }}
+            className="mobile-overlay-menu"
           >
             <nav className="mobile-nav-list">
               {navItems.map((item, idx) => (
@@ -131,18 +145,6 @@ const MobileMenu: React.FC = () => {
                 </motion.li>
               ))}
             </nav>
-
-            <motion.div className="mobile-menu-footer" variants={itemVariants}>
-              <a href="https://github.com/Aadarsh2021" target="_blank" rel="noopener noreferrer" className="social-icon-link">
-                {React.createElement(BsGithub as any, { size: 32 })}
-              </a>
-              <a href="https://linkedin.com/in/aadarsh-thakur-1bbb29230/" target="_blank" rel="noopener noreferrer" className="social-icon-link">
-                {React.createElement(BsLinkedin as any, { size: 32 })}
-              </a>
-              <a href="mailto:thakuraadarsh1@gmail.com" className="social-icon-link">
-                {React.createElement(BsEnvelopeFill as any, { size: 32 })}
-              </a>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

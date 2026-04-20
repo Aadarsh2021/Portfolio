@@ -1,26 +1,9 @@
 import React from 'react';
 
+import { portfolioData } from '../data/portfolioData';
+
 const Experience: React.FC = () => {
-  const experiences = [
-    {
-      role: "Full Stack Web Developer",
-      company: "Ash-Tech Technologies",
-      period: "SEP 2025 - PRESENT",
-      details: "Leading modernization of inventory and billing systems. Orchestrated a 300% improvement in system scalability and standardized high-performance React architectures."
-    },
-    {
-      role: "Backend Developer Intern",
-      company: "Ash-Tech Technologies",
-      period: "JUL 2025 - SEP 2025",
-      details: "Optimized server-side workflows, achieving a 60% reduction in API response times. Integrated Groq AI for automated intelligent matching systems."
-    },
-    {
-      role: "B.Tech in CS Engineering",
-      company: "G L Bajaj Group of Institutions",
-      period: "2021 - 2025",
-      details: "Honors graduate specialization in Scalable Computing and Distributed Systems. Developed deep technical foundations in Computer Architecture and Scalable Software Design."
-    }
-  ];
+  const experiences = portfolioData.experience;
 
   return (
     <div className="experience-bento-content p-4 h-100 d-flex flex-column">

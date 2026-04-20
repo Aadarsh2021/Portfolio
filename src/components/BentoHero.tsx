@@ -27,6 +27,7 @@ const BentoHero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           Aadarsh <span className="aura-text">Thakur</span>
+          <span className="visually-hidden"> | Full Stack Developer</span>
         </motion.h1>
         
         <motion.p 
@@ -36,9 +37,9 @@ const BentoHero: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          Full Stack Architect designing elite digital solutions. 
-          Transforming complex enterprise challenges into high-performance, 
-          visually stunning experiences.
+          Full Stack Developer crafting production-grade web applications. 
+          Expert in designing scalable REST APIs and secure cloud-native 
+          architectures with Node.js, Firebase, and Supabase.
         </motion.p>
         
         <motion.div 

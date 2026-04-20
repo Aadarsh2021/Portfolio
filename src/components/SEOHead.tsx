@@ -11,57 +11,61 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Aadarsh Thakur - Full Stack Developer Portfolio",
-  description = "Aadarsh Thakur - Computer Science Engineering Graduate & Backend Developer Intern at ASH-TECH SOLUTIONS. Expert in React, TypeScript, AI/ML, Blockchain, and modern web technologies. View my projects including Smart City Traffic Monitoring and Farm-Ease agricultural platform.",
-  keywords = "Aadarsh Thakur, portfolio, web developer, full stack developer, React, TypeScript, Node.js, JavaScript, frontend, backend, software engineer, computer science, AI, machine learning, blockchain, smart city, traffic monitoring, agricultural technology, YOLOv7, ByteTrack, TensorFlow, Python, Flask, MongoDB, Vercel, ASH-TECH SOLUTIONS, backend developer intern, computer science graduate",
-  image = "/assets/og-image.png",
+  title = "Aadarsh Thakur | Full-Stack Developer",
+  description = "Aadarsh Thakur is a Full Stack Developer specializing in React, Node.js, and Cloud Architectures. Exploring the intersection of Scalable Web Apps and AI/ML.",
+  keywords = "Aadarsh Thakur, Portfolio, Full Stack Developer, React, TypeScript, Node.js, Firebase, Supabase, software engineer",
+  image = "/assets/projects/portfolio.png",
   url = "https://aadarsh-portfolio-49ac6.web.app",
   type = "website"
 }) => {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Aadarsh Thakur",
-    "jobTitle": "Backend Developer Intern at ASH-TECH SOLUTIONS",
-    "description": "Computer Science Engineering Graduate and Backend Developer Intern at ASH-TECH SOLUTIONS, specializing in full-stack web development and AI/ML solutions",
-    "url": url,
-    "image": image,
-    "sameAs": [
-      "https://github.com/Aadarsh2021",
-      "https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
-    ],
-    "knowsAbout": [
-      "Web Development",
-      "React",
-      "TypeScript",
-      "Node.js",
-      "JavaScript",
-      "Frontend Development",
-      "Backend Development",
-      "Software Engineering",
-      "Artificial Intelligence",
-      "Machine Learning",
-      "Computer Vision",
-      "YOLOv7",
-      "ByteTrack",
-      "Blockchain",
-      "Smart City Technology",
-      "Agricultural Technology",
-      "Python",
-      "TensorFlow",
-      "OpenCV",
-      "MongoDB",
-      "Flask"
-    ],
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Computer Science Engineering"
-    },
-    "worksFor": {
-      "@type": "Organization",
-      "name": "ASH-TECH SOLUTIONS",
-      "jobTitle": "Backend Developer Intern"
-    }
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${url}/#person`,
+        "name": "Aadarsh Thakur",
+        "jobTitle": "Full Stack Developer",
+        "description": description,
+        "url": url,
+        "image": {
+          "@type": "ImageObject",
+          "url": `${url}/assets/projects/portfolio.png`,
+          "width": "1200",
+          "height": "630"
+        },
+        "sameAs": [
+          "https://github.com/Aadarsh2021",
+          "https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
+        ],
+        "knowsAbout": [
+          "Web Development", "React", "TypeScript", "Node.js", "Firebase", "Supabase", "Cloud Architecture"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${url}/#website`,
+        "url": url,
+        "name": "Aadarsh Thakur Portfolio",
+        "publisher": { "@id": `${url}/#person` },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}/#webpage`,
+        "url": url,
+        "name": title,
+        "isPartOf": { "@id": `${url}/#website` },
+        "about": { "@id": `${url}/#person` },
+        "description": description,
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": url }
+          ]
+        }
+      }
+    ]
   };
 
   return (

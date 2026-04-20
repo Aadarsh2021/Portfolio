@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-/* Noise Texture Overlay */
+/* Noise Texture Overlay - Simplified for Performance */
 body::before {
   content: "";
   position: fixed;
@@ -23,10 +23,9 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
+  opacity: 0.03; /* Reduced opacity for better blend without filters */
   pointer-events: none;
   z-index: 9999;
-  filter: contrast(120%) brightness(120%);
 }
 
 body {
@@ -44,9 +43,58 @@ body {
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(140px, auto);
   gap: 1.5rem;
-  padding: 1rem;
+  padding: 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .bento-master {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-master {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .luminous-tile {
+    border-radius: 20px;
+  }
+  
+  .hero-content {
+    padding: 2.5rem 1rem;
+  }
+  
+  .display-title {
+    font-size: 2.2rem !important;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-master {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .hero-content {
+    padding: 2rem 0.75rem;
+  }
+  
+  .display-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .luminous-tile {
+    border-radius: 16px;
+  }
 }
 
 .luminous-tile {
@@ -62,6 +110,7 @@ body {
   display: flex;
   flex-direction: column;
   pointer-events: auto !important;
+  will-change: transform, border-color; /* Optimization for hardware acceleration */
 }
 
 .tile-content {
@@ -140,6 +189,34 @@ body {
   border-color: var(--border-luminous-hover);
   background: var(--bg-surface-elevated);
   box-shadow: var(--shadow-premium), var(--shadow-xl);
+}
+
+/* Bento Span Definitions */
+.bento-sm { grid-column: span 3; grid-row: span 1; }
+.bento-md { grid-column: span 6; grid-row: span 2; }
+.bento-lg { grid-column: span 8; grid-row: span 3; }
+.bento-wide { grid-column: span 12; grid-row: span 2; }
+.bento-tall { grid-column: span 4; grid-row: span 4; }
+.bento-full { grid-column: span 12; }
+
+@media (max-width: 1200px) {
+  .bento-sm { grid-column: span 2; }
+  .bento-md { grid-column: span 4; }
+  .bento-lg { grid-column: span 6; }
+  .bento-tall { grid-column: span 4; }
+}
+
+@media (max-width: 768px) {
+  .bento-sm { grid-column: span 2; }
+  .bento-md { grid-column: span 4; }
+  .bento-lg { grid-column: span 4; }
+  .bento-wide { grid-column: span 4; }
+  .bento-tall { grid-column: span 4; }
+  .bento-full { grid-column: span 4; }
+  
+  /* Reset rows on mobile for smoother stacking if needed */
+  .bento-tile { grid-row: auto !important; min-height: 200px; }
+  .hero-tile { min-height: 400px; }
 }
 
 /* Light mode specific depth refinement */
@@ -253,13 +330,38 @@ h1, h2, h3 {
 }
 
 .display-title {
-  font-size: clamp(3rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {
   .display-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero-content {
+    padding: 2.5rem 1.25rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch !important;
+  }
+  
+  .hero-actions .primary-aura-btn,
+  .hero-actions .secondary-aura-btn,
+  .social-pill {
+    width: 100% !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-pill {
+    gap: 1.5rem !important;
   }
 }
 
@@ -353,4 +455,31 @@ button {
 /* Global sanity check for interactivity */
 .portfolio-main, .bento-master, .bento-tile {
   pointer-events: auto !important;
+}
+
+/* Performance Optimization: Static Fallback Background */
+.static-bg-fallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: var(--bg-obsidian);
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  transition: opacity 1s ease;
+}
+/* SEO Utils */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }

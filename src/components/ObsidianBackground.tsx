@@ -14,7 +14,7 @@ const ParticleField = () => {
   
   // Use adaptive counts based on global performance mode
   const isLowPerf = document.documentElement.getAttribute('data-perf-mode') === 'low';
-  const count = isLowPerf ? 400 : 1000;
+  const count = isLowPerf ? 300 : 800; // Reduced from 400/1000
   
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -43,8 +43,8 @@ const ParticleField = () => {
     }
 
     // Neural connectivity logic - heavily optimized check frequency
-    // Only update connections every few frames to save CPU
-    if (state.clock.elapsedTime % 0.05 > 0.01) return; 
+    // Only update connections every ~100ms to save CPU
+    if (state.clock.elapsedTime % 0.1 > 0.02) return; 
 
     let lineIdx = 0;
     const pos = ref.current.geometry.attributes.position.array as Float32Array;

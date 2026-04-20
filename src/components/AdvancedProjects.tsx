@@ -2,71 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BsGithub, BsArrowRight, BsArrowLeft,
-  BsLaptop, BsGlobe, BsGear, BsCheckCircle 
+  BsCheckCircle 
 } from 'react-icons/bs';
 import OptimizedImage from './OptimizedImage';
 import MagneticButton from './MagneticButton';
 
-interface Project {
-  title: string;
-  desc: string;
-  tags: string[];
-  links: { github: string; live: string };
-  icon: any;
-  img: string;
-  featured?: boolean;
-  metrics: string[];
-}
+import { portfolioData } from '../data/portfolioData';
 
-const projects: Project[] = [
-  {
-    title: "Escrow Inventory",
-    desc: "Enterprise stock management system with sub-second QR/Barcode scanning and real-time inventory synchronization.",
-    tags: ["React", "TypeScript", "Supabase", "Vite"],
-    links: { github: "https://github.com/Ghuge01-Cover/escrow-inventory", live: "https://escrow-inventory.web.app/" },
-    icon: BsLaptop,
-    img: "/assets/projects/inventory.png",
-    featured: true,
-    metrics: ["Sub-second QR Scanning", "99.9% Stock Accuracy", "Automated Low-Stock Alerts"]
-  },
-  {
-    title: "Taliwo.com",
-    desc: "Global recruitment & career platform featuring Groq-powered intelligent resume analysis and seamless LinkedIn integration.",
-    tags: ["React", "Groq AI", "Firebase", "Razorpay"],
-    links: { github: "https://github.com/ChinmayShringi/career-compass-launchpad", live: "https://taliwo.com" },
-    icon: BsGlobe,
-    img: "/assets/projects/taliwo.png",
-    featured: true,
-    metrics: ["AI-Powered Career Matching", "2k+ active candidates", "Razorpay Payment Integration"]
-  },
-  {
-    title: "Escrow Bill",
-    desc: "Professional GST-compliant cloud billing software with zero-latency PDF generation and secure cloud backup.",
-    tags: ["React", "PostgreSQL", "Google Drive API"],
-    links: { github: "https://github.com/escrowbms/escrow-invoice", live: "https://escrow-bill.web.app/" },
-    icon: BsGear,
-    img: "/assets/projects/escrowbill.png",
-    metrics: ["GST/VAT Compliant Reporting", "Zero-Latency Cloud Backup", "One-Click Invoicing"]
-  },
-  {
-    title: "Escrow Daily Hisab",
-    desc: "Advanced personal finance ledger for precise daily transaction tracking and automated expense analytics.",
-    tags: ["React Native", "Firebase", "Apex Charts"],
-    links: { github: "https://github.com/escrowbms/daily-hisab-calc", live: "https://escrow-daily-hisab.web.app/" },
-    icon: BsCheckCircle,
-    img: "/assets/projects/escrowcalc.png",
-    metrics: ["Automated Expense Analytics", "Interactive Data Viz", "Secure Multi-Device Sync"]
-  },
-  {
-    title: "Premium Portfolio",
-    desc: "Hyper-premium developer portfolio featuring Bento Grid 2.0 layout, 3D Obsidian particles, and proximity lighting.",
-    tags: ["React", "Three.js", "Framer Motion", "GSAP"],
-    links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
-    icon: BsGlobe,
-    img: "/logo512.png",
-    metrics: ["98/100 Lighthouse Performance", "Custom 3D Physics Engine", "Accessibility Compliant Design"]
-  }
-];
+const projects = portfolioData.projects;
 
 const AdvancedProjects: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -134,7 +77,7 @@ const AdvancedProjects: React.FC = () => {
             transition={{ duration: 0.3 }}
             className="h-100 d-flex flex-column"
           >
-            <div className="project-preview-container mb-3 glass-panel overflow-hidden" style={{ borderRadius: '12px', height: '140px', background: 'var(--primary-aura-translucent)', position: 'relative' }}>
+            <div className="project-preview-container mb-3 glass-panel overflow-hidden" style={{ borderRadius: '12px', minHeight: '160px', maxHeight: '240px', background: 'var(--primary-aura-translucent)', position: 'relative' }}>
               <OptimizedImage 
                 src={projects[activeIdx].img} 
                 alt={projects[activeIdx].title}

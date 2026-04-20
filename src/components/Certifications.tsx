@@ -1,34 +1,10 @@
 import React from 'react';
     import { motion } from 'framer-motion';
-    import { BsAward, BsTrophy, BsPatchCheck } from 'react-icons/bs';
+
+import { portfolioData } from '../data/portfolioData';
 
     const Certifications: React.FC = () => {
-      const highlights = [
-        {
-          title: "Scalability Patent",
-          issuer: "Enterprise Systems Innovation",
-          icon: BsPatchCheck,
-          detail: "Patent for high-availability distributed inventory monitoring."
-        },
-        {
-          title: "Core Engineering Expert",
-          issuer: "CutShort Certified",
-          icon: BsAward,
-          detail: "Advanced certification in full-stack performance and system design."
-        },
-        {
-          title: "IVS Hackathon",
-          issuer: "4th Position - Regional",
-          icon: BsTrophy,
-          detail: "Optimized logistics algorithm for smart-city supply chains."
-        },
-        {
-          title: "Google Cloud Build",
-          issuer: "Architecture Specialization",
-          icon: BsAward,
-          detail: "Comprehensive training in cloud-native scaling and infrastructure."
-        }
-      ];
+      const highlights = portfolioData.certifications;
 
       return (
         <div className="certifications-bento-content p-4 h-100 d-flex flex-column">

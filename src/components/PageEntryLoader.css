@@ -64,3 +64,12 @@
   background: linear-gradient(90deg, transparent, var(--primary-aura), transparent);
   transform-origin: left;
 }
+@media (max-width: 768px) {
+  .loader-brand {
+    font-size: 1.8rem;
+  }
+  .loader-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+  }
+}

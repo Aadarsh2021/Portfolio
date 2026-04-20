@@ -2,24 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BsArrowUpRight } from 'react-icons/bs';
 
+import { portfolioData } from '../data/portfolioData';
+
 const Blog: React.FC = () => {
-  const posts = [
-    { 
-      title: "Scaling Cloud Inventory", 
-      category: "System Architecture",
-      date: "Mar 2024"
-    },
-    { 
-      title: "AI & Talent Matching", 
-      category: "Groq Intelligence",
-      date: "Feb 2024"
-    },
-    { 
-      title: "Modern Billing Architecture", 
-      category: "Enterprise SaaS",
-      date: "Jan 2024"
-    }
-  ];
+  const posts = portfolioData.blogPosts;
 
   return (
     <div className="blog-bento-content p-4 h-100 d-flex flex-column" style={{ minHeight: '100%' }}>

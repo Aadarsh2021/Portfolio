@@ -411,6 +411,7 @@ const Hero: React.FC<HeroProps> = ({ onDownloadResume, onContactMe }) => {
                 </motion.button>
 
                 <motion.button
+                  id="resume-download-btn"
                   className="btn btn-outline btn-lg"
                   onClick={onDownloadResume}
                   variants={buttonVariants}

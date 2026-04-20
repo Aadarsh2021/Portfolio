@@ -55,6 +55,7 @@ const BentoHero: React.FC = () => {
           
           <MagneticButton distance={0.3}>
             <a 
+              id="resume-download-btn"
               href="/assets/Aadarsh Resume.pdf" 
               target="_blank" 
               rel="noreferrer" 

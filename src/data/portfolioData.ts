@@ -132,13 +132,13 @@ export const portfolioData = {
       title: "Scaling Cloud Inventory: How I Built a Sub-Second Scanning Engine", 
       category: "System Architecture",
       date: "Mar 2026",
-      link: "https://medium.com/@thakuraadarsh1"
+      link: "https://medium.com/@thakuraadarsh1/scaling-cloud-inventory-how-i-built-a-sub-second-scanning-engine-461bb2873767"
     },
     { 
       title: "AI & Talent Matching: The Future of Global Recruitment", 
       category: "AI & Recruitment",
       date: "Feb 2026",
-      link: "https://medium.com/@thakuraadarsh1"
+      link: "https://medium.com/@thakuraadarsh1/ai-talent-matching-the-future-of-global-recruitmen-edb6682e252f"
     }
   ],
   testimonials: [

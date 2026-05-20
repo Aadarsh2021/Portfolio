@@ -21,45 +21,53 @@ const Blog: React.FC = () => {
 
       <div className="posts-list flex-grow-1 d-flex flex-column gap-2 overflow-hidden">
         {posts.map((post, index) => (
-          <motion.div 
+          <a 
             key={index}
-            className="post-card-mini p-3 glass-effect"
-            style={{ 
-              borderRadius: '16px',
-              cursor: 'pointer',
-              position: 'relative',
-              overflow: 'hidden',
-              flexShrink: 0
-            }}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={{ y: -4, backgroundColor: 'var(--bg-surface-elevated)' }}
-            transition={{ duration: 0.5, delay: 0.1 * index, ease: [0.16, 1, 0.3, 1] }}
+            href={(post as any).link || "https://medium.com/@thakuraadarsh1"}
+            target="_blank" 
+            rel="noreferrer" 
+            className="no-underline w-100"
+            style={{ textDecoration: 'none' }}
           >
-            <div className="d-flex justify-content-between align-items-center gap-2">
-              <div className="flex-grow-1 overflow-hidden">
-                <div className="d-flex align-items-center gap-2 mb-1">
-                  <span className="badge-category px-2 py-0.5" style={{ 
-                    fontSize: '0.55rem', 
-                    background: 'var(--primary-aura-translucent)', 
-                    color: 'var(--aura-violet)',
-                    borderRadius: '4px',
-                    fontWeight: 600,
-                    whiteSpace: 'nowrap'
-                  }}>
-                    {post.category}
-                  </span>
-                  <span className="d-none d-md-inline" style={{ fontSize: '0.6rem', color: 'var(--text-dimmed)' }}>• {post.date}</span>
+            <motion.div 
+              className="post-card-mini p-3 glass-effect"
+              style={{ 
+                borderRadius: '16px',
+                cursor: 'pointer',
+                position: 'relative',
+                overflow: 'hidden',
+                flexShrink: 0
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ y: -4, backgroundColor: 'var(--bg-surface-elevated)' }}
+              transition={{ duration: 0.5, delay: 0.1 * index, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="d-flex justify-content-between align-items-center gap-2">
+                <div className="flex-grow-1 overflow-hidden">
+                  <div className="d-flex align-items-center gap-2 mb-1">
+                    <span className="badge-category px-2 py-0.5" style={{ 
+                      fontSize: '0.55rem', 
+                      background: 'var(--primary-aura-translucent)', 
+                      color: 'var(--aura-violet)',
+                      borderRadius: '4px',
+                      fontWeight: 600,
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {post.category}
+                    </span>
+                    <span className="d-none d-md-inline" style={{ fontSize: '0.6rem', color: 'var(--text-dimmed)' }}>• {post.date}</span>
+                  </div>
+                  <h6 className="mb-0 text-truncate" style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 600 }}>
+                    {post.title}
+                  </h6>
                 </div>
-                <h6 className="mb-0 text-truncate" style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 600 }}>
-                  {post.title}
-                </h6>
+                <div className="arrow-container glass-panel p-2 d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: '28px', height: '28px', borderRadius: '8px' }}>
+                  {React.createElement(BsArrowUpRight as any, { size: 12, style: { color: 'var(--text-primary)' } })}
+                </div>
               </div>
-              <div className="arrow-container glass-panel p-2 d-flex align-items-center justify-content-center flex-shrink-0" style={{ width: '28px', height: '28px', borderRadius: '8px' }}>
-                {React.createElement(BsArrowUpRight as any, { size: 12, style: { color: 'var(--text-primary)' } })}
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </a>
         ))}
       </div>
       

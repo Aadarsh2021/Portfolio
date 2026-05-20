@@ -116,8 +116,8 @@ A cutting-edge, modern portfolio website built with the latest web technologies 
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/Aadarsh2021/portfolio-project.git
-cd portfolio-project
+git clone https://github.com/Aadarsh2021/Portfolio.git
+cd Portfolio
 ```
 
 2.**Install dependencies**
@@ -177,9 +177,9 @@ Modify CSS variables in `src/styles/themes.css`:
 
 ### **Content Updates**
 
-- Update project data in `src/components/AdvancedProjects.tsx`
-- Modify personal information in `src/App.tsx`
-- Update SEO data in `src/components/SEOHead.tsx`
+All personal data, projects, experience, certifications, blog posts, testimonials, and skills are centralized in:
+- **[portfolioData.ts](file:///c:/Users/thaku/OneDrive/Desktop/Personal/portfolio-project/src/data/portfolioData.ts)**: Update this file to customize all content dynamically.
+- Update global metadata and SEO parameters in **[SEOHead.tsx](file:///c:/Users/thaku/OneDrive/Desktop/Personal/portfolio-project/src/components/SEOHead.tsx)**.
 
 ### **Adding New Features**
 

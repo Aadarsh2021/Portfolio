@@ -8,7 +8,7 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|webp|avif)",
+        "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|webp|avif|xml)",
         "headers": [
           {
             "key": "Cache-Control",
@@ -53,7 +53,7 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "!/@(sitemap.xml|robots.txt|googled88bed084629737e.html)",
         "destination": "/index.html"
       }
     ]

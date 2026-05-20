@@ -49,7 +49,9 @@ const ParticleField = () => {
       ref.current.position.y += (targetY - ref.current.position.y) * 0.02;
     }
 
-    // Neural connectivity logic
+    // Neural connectivity logic - heavily optimized check frequency
+    // Only update connections every ~100ms to save CPU
+    if (state.clock.elapsedTime % 0.1 > 0.02) return; 
     let lineIdx = 0;
     const pos = ref.current.geometry.attributes.position.array as Float32Array;
     const maxDist = isLowPerf ? 3 : 4.5;

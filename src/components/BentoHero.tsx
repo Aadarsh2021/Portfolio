@@ -26,7 +26,7 @@ const BentoHero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          Aadarsh <span className="aura-text gradient-text">Thakur</span>
+          Aadarsh <span className="aura-text">Thakur</span>
           <span className="visually-hidden"> | Full Stack Developer</span>
         </motion.h1>
         
@@ -38,7 +38,7 @@ const BentoHero: React.FC = () => {
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           Full Stack Developer crafting production-grade web applications. 
-          Expert in designing <span className="text-white">scalable REST APIs</span> and <span className="text-white">secure cloud-native</span> 
+          Expert in designing <span className="text-white">scalable REST APIs</span> and <span className="text-white">secure cloud-native</span>
           architectures with Node.js, Firebase, and Supabase.
         </motion.p>
         

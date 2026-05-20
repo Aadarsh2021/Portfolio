@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-/* Noise Texture Overlay */
+/* Noise Texture Overlay - Simplified for Performance */
 body::before {
   content: "";
   position: fixed;
@@ -23,10 +23,9 @@ body::before {
   width: 100vw;
   height: 100vh;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
+  opacity: 0.03; /* Reduced opacity for better blend without filters */
   pointer-events: none;
   z-index: 9999;
-  filter: contrast(120%) brightness(120%);
 }
 
 body {
@@ -38,30 +37,81 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Bento Grid 2.0 Foundation */
+/* Bento Grid 2.0 Foundation - Hyper-Fluid */
 .bento-master {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: minmax(140px, auto);
-  gap: 1.5rem;
-  padding: 1rem;
-  max-width: 1400px;
+  grid-auto-rows: minmax(min(140px, 15vh), auto);
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 1600px;
   margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .bento-master {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-master {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .luminous-tile {
+    border-radius: 20px;
+  }
+  
+  .hero-content {
+    padding: 2.5rem 1rem;
+  }
+  
+  .display-title {
+    font-size: 2.2rem !important;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-master {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .hero-content {
+    padding: 2rem 0.75rem;
+  }
+  
+  .display-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .luminous-tile {
+    border-radius: 16px;
+  }
 }
 
 .luminous-tile {
   position: relative;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: clamp(16px, 1.5vw, 28px);
   overflow: hidden;
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: flat; /* Simplified for reliability */
+  backdrop-filter: var(--glass-blur) var(--glass-saturate);
+  -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturate);
+  transition: border-color 0.4s var(--ease-expo), background 0.4s var(--ease-expo), transform 0.4s var(--ease-expo), box-shadow 0.4s var(--ease-expo);
+  transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
   pointer-events: auto !important;
+  will-change: transform, border-color, box-shadow;
 }
 
 .tile-content {
@@ -142,25 +192,92 @@ body {
   box-shadow: var(--shadow-premium), var(--shadow-xl);
 }
 
+/* Bento Span Definitions - Intelligent Scaling */
+.bento-sm { grid-column: span 3; grid-row: span 1; }
+.bento-md { grid-column: span 6; grid-row: span 2; }
+.bento-lg { grid-column: span 9; grid-row: span 3; }
+.bento-wide { grid-column: span 12; grid-row: span 2; }
+.bento-tall { grid-column: span 3; grid-row: span 4; }
+.bento-full { grid-column: span 12; }
+
+@media (max-width: 1200px) {
+  .bento-sm { grid-column: span 4; }
+  .bento-md { grid-column: span 8; }
+  .bento-lg { grid-column: span 8; }
+  .bento-tall { grid-column: span 4; }
+  .bento-wide { grid-column: span 8; }
+}
+
+@media (max-width: 768px) {
+  .bento-sm { grid-column: span 4; }
+  .bento-md { grid-column: span 4; }
+  .bento-lg { grid-column: span 4; }
+  .bento-wide { grid-column: span 4; }
+  .bento-tall { grid-column: span 4; }
+  .bento-full { grid-column: span 4; }
+  
+  .luminous-tile {
+    min-height: 240px;
+  }
+  
+  .hero-tile {
+    min-height: 500px;
+  }
+}
+
 /* Light mode specific depth refinement */
 [data-theme="light"] .luminous-tile {
   box-shadow: var(--shadow-premium);
 }
 
-/* Elite Typography */
+/* Elite Typography - Balanced & Fluid */
 h1, h2, h3 {
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
   text-wrap: balance;
+  color: var(--text-primary);
+}
+
+h1 { font-size: var(--font-size-6xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-2xl); }
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--aura-emerald);
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--aura-emerald);
+  border-radius: 50%;
+  animation: aura-pulse 2s infinite;
+}
+
+@keyframes aura-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
 }
 
 .mono-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   color: var(--text-dimmed);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--aura-violet), var(--aura-azure));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .primary-aura-btn {
@@ -253,13 +370,38 @@ h1, h2, h3 {
 }
 
 .display-title {
-  font-size: clamp(3rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {
   .display-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero-content {
+    padding: 2.5rem 1.25rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch !important;
+  }
+  
+  .hero-actions .primary-aura-btn,
+  .hero-actions .secondary-aura-btn,
+  .social-pill {
+    width: 100% !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-pill {
+    gap: 1.5rem !important;
   }
 }
 
@@ -353,4 +495,52 @@ button {
 /* Global sanity check for interactivity */
 .portfolio-main, .bento-master, .bento-tile {
   pointer-events: auto !important;
+}
+
+/* Performance Optimization: Static Fallback Background */
+.static-bg-fallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: var(--bg-obsidian);
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  transition: opacity 1s ease;
+}
+/* SEO Utils */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Hero Ambient Glow Animation */
+.hero-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, var(--primary), transparent 70%);
+  opacity: 0.05;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
+  animation: hero-pulse 10s ease-in-out infinite;
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.08; transform: translate(-50%, -50%) scale(1.1); }
 }

@@ -29,9 +29,9 @@ const EnhancedContact: React.FC = () => {
   };
 
   return (
-    <div className="contact-bento-content p-4 h-100 d-flex flex-column flex-md-row gap-4">
+    <div className="contact-bento-content p-3 p-md-4 h-100 d-flex flex-column flex-md-row gap-4">
       <div className="contact-info-side flex-grow-1">
-        <h3 className="aura-text mb-3">Let's Connect</h3>
+        <h3 className="aura-text mb-2 mb-md-3" style={{ fontSize: '1.5rem' }}>Let's Connect</h3>
         <p className="text-secondary small mb-4" style={{ maxWidth: '300px' }}>
           Have a project in mind or just want to say hi? I'm always open to discussing new opportunities.
         </p>

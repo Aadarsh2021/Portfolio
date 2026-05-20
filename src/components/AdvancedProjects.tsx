@@ -2,71 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BsGithub, BsArrowRight, BsArrowLeft,
-  BsLaptop, BsGlobe, BsGear, BsCheckCircle 
+  BsCheckCircle 
 } from 'react-icons/bs';
 import OptimizedImage from './OptimizedImage';
 import MagneticButton from './MagneticButton';
 
-interface Project {
-  title: string;
-  desc: string;
-  tags: string[];
-  links: { github: string; live: string };
-  icon: any;
-  img: string;
-  featured?: boolean;
-  metrics: string[];
-}
+import { portfolioData } from '../data/portfolioData';
 
-const projects: Project[] = [
-  {
-    title: "Escrow Inventory",
-    desc: "Enterprise stock management system with sub-second QR/Barcode scanning and real-time inventory synchronization.",
-    tags: ["React", "TypeScript", "Supabase", "Vite"],
-    links: { github: "https://github.com/Ghuge01-Cover/escrow-inventory", live: "https://escrow-inventory.web.app/" },
-    icon: BsLaptop,
-    img: "/assets/projects/inventory.png",
-    featured: true,
-    metrics: ["Sub-second QR Scanning", "99.9% Stock Accuracy", "Automated Low-Stock Alerts"]
-  },
-  {
-    title: "Taliwo.com",
-    desc: "Global recruitment & career platform featuring Groq-powered intelligent resume analysis and seamless LinkedIn integration.",
-    tags: ["React", "Groq AI", "Firebase", "Razorpay"],
-    links: { github: "https://github.com/ChinmayShringi/career-compass-launchpad", live: "https://taliwo.com" },
-    icon: BsGlobe,
-    img: "/assets/projects/taliwo.png",
-    featured: true,
-    metrics: ["AI-Powered Career Matching", "2k+ active candidates", "Razorpay Payment Integration"]
-  },
-  {
-    title: "Escrow Bill",
-    desc: "Professional GST-compliant cloud billing software with zero-latency PDF generation and secure cloud backup.",
-    tags: ["React", "PostgreSQL", "Google Drive API"],
-    links: { github: "https://github.com/escrowbms/escrow-invoice", live: "https://escrow-bill.web.app/" },
-    icon: BsGear,
-    img: "/assets/projects/escrowbill.png",
-    metrics: ["GST/VAT Compliant Reporting", "Zero-Latency Cloud Backup", "One-Click Invoicing"]
-  },
-  {
-    title: "Escrow Daily Hisab",
-    desc: "Advanced personal finance ledger for precise daily transaction tracking and automated expense analytics.",
-    tags: ["React Native", "Firebase", "Apex Charts"],
-    links: { github: "https://github.com/escrowbms/daily-hisab-calc", live: "https://escrow-daily-hisab.web.app/" },
-    icon: BsCheckCircle,
-    img: "/assets/projects/escrowcalc.png",
-    metrics: ["Automated Expense Analytics", "Interactive Data Viz", "Secure Multi-Device Sync"]
-  },
-  {
-    title: "Premium Portfolio",
-    desc: "Hyper-premium developer portfolio featuring Bento Grid 2.0 layout, 3D Obsidian particles, and proximity lighting.",
-    tags: ["React", "Three.js", "Framer Motion", "GSAP"],
-    links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
-    icon: BsGlobe,
-    img: "/logo512.png",
-    metrics: ["98/100 Lighthouse Performance", "Custom 3D Physics Engine", "Accessibility Compliant Design"]
-  }
-];
+const projects = portfolioData.projects;
 
 const AdvancedProjects: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -80,11 +23,11 @@ const AdvancedProjects: React.FC = () => {
   };
 
   return (
-    <div className="projects-bento-content p-4 h-100 d-flex flex-column">
+    <div className="projects-bento-content p-3 p-md-4 h-100 d-flex flex-column">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="aura-text mb-0">Featured Work</h3>
+        <h3 className="gradient-text mb-0">Featured Work</h3>
         <div className="d-flex align-items-center gap-3">
-          <div className="d-flex gap-2">
+          <div className="d-flex gap-2 d-none d-sm-flex">
             {projects.map((_, i) => (
               <button 
                 key={i}
@@ -95,29 +38,29 @@ const AdvancedProjects: React.FC = () => {
                   height: '8px', 
                   borderRadius: '50%', 
                   background: i === activeIdx ? 'var(--primary)' : 'var(--border-luminous)',
-                  transition: 'all 0.3s ease',
+                  transition: 'all 0.3s var(--ease-expo)',
                   cursor: 'pointer'
                 }}
               />
             ))}
           </div>
-          <div className="d-flex gap-2 ms-2">
+          <div className="d-flex gap-2">
             <MagneticButton>
               <button 
                 onClick={prevProject}
                 className="glass-panel p-2 border-0 d-flex align-items-center justify-content-center"
-                style={{ width: '36px', height: '36px', borderRadius: '10px', cursor: 'pointer', background: 'rgba(255,255,255,0.08)', color: 'var(--text-primary)' }}
+                style={{ width: '42px', height: '42px', borderRadius: '12px', cursor: 'pointer', background: 'var(--glass-bg)', color: 'var(--text-primary)', border: '1px solid var(--glass-border)' }}
               >
-                {React.createElement(BsArrowLeft as any, { size: 16 })}
+                {React.createElement(BsArrowLeft as any, { size: 18 })}
               </button>
             </MagneticButton>
             <MagneticButton>
               <button 
                 onClick={nextProject}
                 className="glass-panel p-2 border-0 d-flex align-items-center justify-content-center"
-                style={{ width: '36px', height: '36px', borderRadius: '10px', cursor: 'pointer', background: 'rgba(255,255,255,0.08)', color: 'var(--text-primary)' }}
+                style={{ width: '42px', height: '42px', borderRadius: '12px', cursor: 'pointer', background: 'var(--glass-bg)', color: 'var(--text-primary)', border: '1px solid var(--glass-border)' }}
               >
-                {React.createElement(BsArrowRight as any, { size: 16 })}
+                {React.createElement(BsArrowRight as any, { size: 18 })}
               </button>
             </MagneticButton>
           </div>
@@ -128,39 +71,39 @@ const AdvancedProjects: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIdx}
-            initial={{ opacity: 0, x: 10 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5, ease: "circOut" }}
             className="h-100 d-flex flex-column"
           >
-            <div className="project-preview-container mb-3 glass-panel overflow-hidden" style={{ borderRadius: '12px', height: '140px', background: 'var(--primary-aura-translucent)', position: 'relative' }}>
+            <div className="project-preview-container mb-4 glass-panel overflow-hidden" style={{ borderRadius: '16px', minHeight: '160px', maxHeight: '280px', position: 'relative', border: '1px solid var(--glass-border)' }}>
               <OptimizedImage 
                 src={projects[activeIdx].img} 
                 alt={projects[activeIdx].title}
                 className="w-100 h-100"
-                style={{ objectFit: 'cover', opacity: 0.9 }}
+                style={{ objectFit: 'cover', opacity: 0.95 }}
                 priority={activeIdx === 0}
               />
             </div>
             <div className="d-flex align-items-center gap-3 mb-3">
-              <div className="projects-icon-box p-2 glass-panel shadow-sm">
-                {React.createElement(projects[activeIdx].icon as any, { size: 24, className: "text-primary" })}
+              <div className="projects-icon-box p-3 glass-panel shadow-sm" style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '12px' }}>
+                {React.createElement(projects[activeIdx].icon as any, { size: 28, className: "text-primary" })}
               </div>
               <div>
-                <h4 className="text-primary-theme mb-0" style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>{projects[activeIdx].title}</h4>
-                {projects[activeIdx].featured && <span className="mono-label" style={{ color: 'var(--primary)', fontSize: '0.6rem' }}>FEATURED</span>}
+                <h4 className="text-primary-theme mb-0" style={{ fontSize: 'var(--font-size-xl)', fontWeight: 800, color: 'var(--text-primary)' }}>{projects[activeIdx].title}</h4>
+                {projects[activeIdx].featured && <span className="mono-label" style={{ color: 'var(--aura-azure)', fontSize: '0.65rem' }}>FEATURED SYSTEM</span>}
               </div>
             </div>
 
-            <p className="text-secondary mb-3" style={{ fontSize: '0.85rem', lineHeight: 1.5, color: 'var(--text-secondary)' }}>{projects[activeIdx].desc}</p>
+            <p className="text-secondary mb-4" style={{ fontSize: 'var(--font-size-base)', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{projects[activeIdx].desc}</p>
 
-            <div className="metrics-box mb-4 p-3 glass-panel" style={{ background: 'var(--primary-aura-translucent)', borderRadius: '12px' }}>
-              <div className="d-flex flex-column gap-2">
+            <div className="metrics-box mb-4 p-3 glass-panel" style={{ background: 'var(--bg-surface-elevated)', border: '1px solid var(--glass-border)', borderRadius: '16px' }}>
+              <div className="d-flex flex-column gap-3">
                 {projects[activeIdx].metrics.map((metric, mIdx) => (
                   <div key={mIdx} className="d-flex align-items-center gap-2">
-                    {React.createElement(BsCheckCircle as any, { size: 12, className: "text-primary" })}
-                    <span className="text-dimmed" style={{ fontSize: '0.75rem' }}>{metric}</span>
+                    {React.createElement(BsCheckCircle as any, { size: 14, className: "text-primary" })}
+                    <span className="text-secondary" style={{ fontSize: 'var(--font-size-sm)' }}>{metric}</span>
                   </div>
                 ))}
               </div>

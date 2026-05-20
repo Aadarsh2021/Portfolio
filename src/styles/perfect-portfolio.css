@@ -36,39 +36,39 @@
   --accent-800: #065f46;
   --accent-900: #064e3b;
 
-  /* Typography Scale */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
-  --font-size-7xl: 4.5rem;
+  /* Typography Scale (Now Fluid) */
+  --font-size-xs: var(--font-size-xs);
+  --font-size-sm: var(--font-size-sm);
+  --font-size-base: var(--font-size-base);
+  --font-size-lg: var(--font-size-lg);
+  --font-size-xl: var(--font-size-xl);
+  --font-size-2xl: var(--font-size-2xl);
+  --font-size-3xl: var(--font-size-3xl);
+  --font-size-4xl: var(--font-size-4xl);
+  --font-size-5xl: var(--font-size-5xl);
+  --font-size-6xl: var(--font-size-6xl);
+  --font-size-7xl: clamp(4.5rem, 4rem + 5vw, 8rem);
 
-  /* Spacing Scale */
+  /* Spacing Scale (Now Fluid) */
   --space-px: 1px;
   --space-0: 0;
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-  --space-40: 10rem; /* 160px */
-  --space-48: 12rem; /* 192px */
-  --space-56: 14rem; /* 224px */
-  --space-64: 16rem; /* 256px */
+  --space-1: var(--space-xs);
+  --space-2: var(--space-sm);
+  --space-3: calc(var(--space-sm) * 1.5);
+  --space-4: var(--space-md);
+  --space-5: calc(var(--space-md) * 1.25);
+  --space-6: calc(var(--space-md) * 1.5);
+  --space-8: var(--space-lg);
+  --space-10: calc(var(--space-lg) * 1.25);
+  --space-12: calc(var(--space-lg) * 1.5);
+  --space-16: var(--space-xl);
+  --space-20: calc(var(--space-xl) * 1.25);
+  --space-24: calc(var(--space-xl) * 1.5);
+  --space-32: var(--space-2xl);
+  --space-40: calc(var(--space-2xl) * 1.25);
+  --space-48: calc(var(--space-2xl) * 1.5);
+  --space-56: calc(var(--space-2xl) * 1.75);
+  --space-64: calc(var(--space-2xl) * 2);
 
   /* Border Radius */
   --radius-none: 0;
@@ -287,13 +287,13 @@ body {
   color: var(--bg-primary) !important;
   font-size: 1.5rem !important;
   font-weight: bold !important;
-  width: 40px !important;
-  height: 40px !important;
+  width: clamp(36px, 4vw, 48px) !important;
+  height: clamp(36px, 4vw, 48px) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.4s var(--ease-expo) !important;
   cursor: pointer !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -493,6 +493,7 @@ body {
   font-size: 16px !important;
   border-radius: 0;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Performance Optimizations for Mobile */
@@ -2345,15 +2346,7 @@ img {
 }
 
 /* Optimize fonts */
-@font-face {
-  font-display: swap;
-}
-
-/* Preload critical resources */
-.preload-critical {
-  font-display: swap;
-  font-preload: true;
-} 
+/* Optimized Font Loading handled via Link tags */
 
 /* ===== RESPONSIVE SPACING BREAKPOINTS ===== */
 

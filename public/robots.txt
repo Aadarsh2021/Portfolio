@@ -1,37 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
-# Allow all robots complete access
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
 
 # Specify the location of your sitemap
 Sitemap: https://aadarsh-portfolio-49ac6.web.app/sitemap.xml
 
-# Crawl-delay for all bots (optional)
-Crawl-delay: 10
-
-# Disallow admin or private areas if any exist
-Disallow: /admin/
-Disallow: /private/
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /*?*
-
-# Allow useful files and directories
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.gif$
-Allow: /*.svg$
-Allow: /*.ico$
-Allow: /manifest.json
-Allow: /sitemap.xml
-
-# Host directive (optional)
-Host: https://aadarsh-portfolio-49ac6.web.app
-
-# Sitemap
-Sitemap: https://aadarsh-portfolio-49ac6.web.app/sitemap.xml
-
-# Crawl-delay
+# Crawl-delay for smaller bots
 Crawl-delay: 1

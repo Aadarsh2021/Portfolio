@@ -83,7 +83,7 @@ export const portfolioData = {
       tags: ["React", "Three.js", "Framer Motion", "GSAP"],
       links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
       icon: BsGlobe,
-      img: "/logo512.png",
+      img: "/assets/projects/Portfolio.png",
       metrics: ["Optimized bundle size", "Custom 3D Physics", "Elite UI/UX Design"]
     }
   ],

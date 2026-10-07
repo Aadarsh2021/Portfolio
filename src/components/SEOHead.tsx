@@ -11,9 +11,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Aadarsh Thakur | Full-Stack Developer",
-  description = "Aadarsh Thakur is a Full Stack Developer specializing in React, Node.js, and Cloud Architectures. Exploring the intersection of Scalable Web Apps and AI/ML.",
-  keywords = "Aadarsh Thakur, Portfolio, Full Stack Developer, React, TypeScript, Node.js, Firebase, Supabase, software engineer",
+  title = "Aadarsh Thakur | Full Stack Developer | Software Developer",
+  description = "Aadarsh Thakur is a Full Stack Developer & Software Developer with 1+ year of experience building scalable web applications with React.js, Node.js, PostgreSQL, Firebase, and Supabase. M.Tech candidate in AI & Data Science at IIT Patna.",
+  keywords = "Aadarsh Thakur, Full Stack Developer, Software Developer, React, TypeScript, Node.js, Express.js, PostgreSQL, Firebase, Supabase, IIT Patna, Escrow BMS, Taliwo",
   image = "/assets/projects/portfolio.png",
   url = "https://aadarsh-portfolio-49ac6.web.app",
   type = "website"
@@ -25,7 +25,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         "@type": "Person",
         "@id": `${url}/#person`,
         "name": "Aadarsh Thakur",
-        "jobTitle": "Full Stack Developer",
+        "jobTitle": "Full Stack Developer | Software Developer",
         "description": description,
         "url": url,
         "image": {
@@ -39,7 +39,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
         ],
         "knowsAbout": [
-          "Web Development", "React", "TypeScript", "Node.js", "Firebase", "Supabase", "Cloud Architecture"
+          "Web Development", "React.js", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Firebase", "Supabase", "REST APIs", "Artificial Intelligence", "Machine Learning"
         ]
       },
       {

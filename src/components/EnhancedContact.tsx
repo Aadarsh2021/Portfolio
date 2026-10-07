@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { BsEnvelopeFill, BsArrowRight, BsGithub, BsLinkedin } from 'react-icons/bs';
+import { BsEnvelopeFill, BsArrowRight, BsGithub, BsLinkedin, BsTelephoneFill } from 'react-icons/bs';
 import emailjs from '@emailjs/browser';
 import SuccessModal from './SuccessModal';
 
@@ -37,14 +37,17 @@ const EnhancedContact: React.FC = () => {
         </p>
         
         <div className="social-grid d-flex gap-3 mb-4">
-          <a href="https://github.com/Aadarsh2021" target="_blank" rel="noreferrer" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
+          <a href="https://github.com/Aadarsh2021" target="_blank" rel="noreferrer" title="GitHub" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
             {React.createElement(BsGithub as any, { size: 20 })}
           </a>
-          <a href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" target="_blank" rel="noreferrer" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
+          <a href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/" target="_blank" rel="noreferrer" title="LinkedIn" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
             {React.createElement(BsLinkedin as any, { size: 20 })}
           </a>
-          <a href="mailto:thakuraadarsh1@gmail.com" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
+          <a href="mailto:thakuraadarsh1@gmail.com" title="Email" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
             {React.createElement(BsEnvelopeFill as any, { size: 20 })}
+          </a>
+          <a href="tel:+919310574300" title="+91 9310574300" className="glass-panel p-3 d-flex align-items-center justify-content-center" style={{ borderRadius: '16px' }}>
+            {React.createElement(BsTelephoneFill as any, { size: 18 })}
           </a>
         </div>
       </div>

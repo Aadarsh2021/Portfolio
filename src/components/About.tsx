@@ -32,7 +32,7 @@ const About: React.FC = () => {
         <div className="mt-4 pt-4" style={{ borderTop: '1px solid var(--glass-border)' }}>
           <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <span className="mono-label" style={{ color: 'var(--text-secondary)', fontSize: '0.7rem' }}>Current Focus</span>
-            <span className="small gradient-text" style={{ fontWeight: 600 }}>Building Scalable Systems</span>
+            <span className="small gradient-text" style={{ fontWeight: 600 }}>M.Tech AI & Data Science @ IIT Patna</span>
           </div>
         </div>
       </div>

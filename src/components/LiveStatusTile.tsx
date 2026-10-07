@@ -43,7 +43,7 @@ const LiveStatusTile: React.FC = () => {
       <div className="location-display mt-auto pt-3" style={{ borderTop: '1px solid var(--border-luminous)' }}>
         <div className="d-flex align-items-center gap-2">
           {React.createElement(BsGeoAlt as any, { className: "text-primary", size: 16 })}
-          <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-primary)' }}>Noida / Delhi, India</span>
+          <span style={{ fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-primary)' }}>Delhi, India</span>
         </div>
       </div>
 

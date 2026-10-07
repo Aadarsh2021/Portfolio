@@ -37,9 +37,7 @@ const BentoHero: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          Full Stack Developer crafting production-grade web applications. 
-          Expert in designing <span className="text-white">scalable REST APIs</span> and <span className="text-white">secure cloud-native</span>
-          architectures with Node.js, Firebase, and Supabase.
+          Full Stack Developer & Software Developer crafting production-grade web applications and scalable backend systems using <span className="text-white">React.js, Node.js, Express.js, PostgreSQL, Firebase, and Supabase</span>. M.Tech candidate in AI & Data Science at <span className="text-white">IIT Patna</span>.
         </motion.p>
         
         <motion.div 

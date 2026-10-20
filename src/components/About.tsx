@@ -13,7 +13,21 @@ const About: React.FC = () => {
       </div>
 
       <div className="about-details flex-grow-1 overflow-auto custom-scrollbar pe-2">
-        <h4 className="mb-3" style={{ fontSize: 'var(--font-size-xl)', fontWeight: 800, color: 'var(--text-primary)' }}>{identity.name}</h4>
+        <div className="d-flex align-items-center gap-3 mb-3">
+          <img
+            src="/assets/profile.png"
+            alt={identity.name}
+            style={{
+              width: '54px',
+              height: '54px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2px solid var(--accent-primary)',
+              boxShadow: '0 0 15px rgba(255, 42, 84, 0.3)'
+            }}
+          />
+          <h4 className="mb-0" style={{ fontSize: 'var(--font-size-xl)', fontWeight: 800, color: 'var(--text-primary)' }}>{identity.name}</h4>
+        </div>
         <p className="mb-4" style={{ fontSize: 'var(--font-size-base)', lineHeight: 1.7, color: 'var(--text-secondary)' }}>
           {portfolioData.personalInfo.bio}
         </p>

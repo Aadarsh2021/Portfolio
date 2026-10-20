@@ -161,9 +161,22 @@ const ReviewGiver: React.FC = () => {
   return (
     <div className="review-giver-container">
       <motion.button 
-        className="primary-aura-btn py-2 px-4"
-        style={{ fontSize: '0.8rem', background: 'var(--primary-aura-translucent)', border: '1px solid var(--border-luminous)', borderRadius: '12px' }}
-        whileHover={{ scale: 1.05 }}
+        className="review-giver-btn py-2 px-3"
+        style={{ 
+          fontSize: '0.82rem', 
+          fontWeight: 600,
+          background: 'rgba(255, 255, 255, 0.08)', 
+          border: '1px solid var(--glass-border)', 
+          borderRadius: '100px',
+          color: 'var(--text-primary)',
+          cursor: 'pointer',
+          letterSpacing: '0.3px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease'
+        }}
+        whileHover={{ scale: 1.05, background: 'rgba(255, 255, 255, 0.16)' }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
       >

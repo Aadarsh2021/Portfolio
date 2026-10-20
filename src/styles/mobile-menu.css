@@ -44,6 +44,12 @@
   background: var(--glass-border);
 }
 
+.review-part button,
+.review-part .review-giver-btn {
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+
 .theme-toggle-btn {
   background: transparent !important;
   border: none !important;

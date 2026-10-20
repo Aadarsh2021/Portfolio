@@ -9,12 +9,12 @@ import './styles/themes.css';
 import './styles/perfect-portfolio.css';
 import './styles/mobile-menu.css';
 import PageEntryLoader from './components/PageEntryLoader';
-// import ObsidianBackground from './components/ObsidianBackground'; // Lazy loaded below
 import LiveStatusTile from './components/LiveStatusTile';
 import TestimonialTile from './components/TestimonialTile';
 import EnhancedSkills from './components/EnhancedSkills';
 import EnhancedContact from './components/EnhancedContact';
 import { AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
 import { Analytics } from '@vercel/analytics/react';
 import CommandPalette from './components/CommandPalette';
 import { useTheme } from './contexts/ThemeContext';
@@ -26,6 +26,8 @@ import MobileMenu from './components/MobileMenu';
 import ThemeRadialWipe from './components/ThemeRadialWipe';
 import PerformanceOptimizer from './components/PerformanceOptimizer';
 import ScrollToTop from './components/ScrollToTop';
+import NetflixPortfolio from './components/NetflixUI/NetflixPortfolio';
+import BentoNavbar from './components/BentoNavbar';
 
 // Lazy load larger or secondary components
 const About = React.lazy(() => import('./components/About'));
@@ -35,13 +37,15 @@ const Blog = React.lazy(() => import('./components/Blog'));
 const Certifications = React.lazy(() => import('./components/Certifications'));
 const ObsidianBackground = React.lazy(() => import('./components/ObsidianBackground'));
 
-const gsap: any = require('gsap').gsap || require('gsap');
-
 const App: React.FC = () => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [wipePos, setWipePos] = React.useState({ x: '50%', y: '50%' });
   const [isWiping, setIsWiping] = React.useState(false);
+  const [showNetflixUI, setShowNetflixUI] = React.useState<boolean>(() => {
+    const saved = localStorage.getItem('portfolio_view_mode');
+    return saved ? saved === 'netflix' : true; // Default to Netflix style
+  });
   const gridRef = React.useRef<HTMLDivElement>(null);
   
   const { trackPageView } = useAnalytics();
@@ -100,6 +104,14 @@ const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const handleModeToggle = () => {
+    setShowNetflixUI(prev => {
+      const next = !prev;
+      localStorage.setItem('portfolio_view_mode', next ? 'netflix' : 'bento');
+      return next;
+    });
+  };
+
   return (
     <ErrorBoundary fallback={
       <div className="error-boundary-root text-center p-5">
@@ -110,84 +122,96 @@ const App: React.FC = () => {
       <>
         <SEOHead />
         <PerformanceOptimizer />
-        <Suspense fallback={<div className="static-bg-fallback" />}>
-          <ObsidianBackground />
-        </Suspense>
-        <AnimatePresence>
-          {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
-        </AnimatePresence>
-        <CommandPalette 
-          isOpen={isCommandPaletteOpen}
-          onClose={() => setIsCommandPaletteOpen(false)}
-          onThemeToggle={toggleTheme}
-        />
-        
 
-        <main className="portfolio-main" style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease' }}>
-          <div ref={gridRef}>
-            <BentoGrid>
-              {/* Row 1: Hero */}
-              <BentoTile size="full" id="home">
-                <BentoHero />
-              </BentoTile>
+        {showNetflixUI ? (
+          <NetflixPortfolio
+            onToggleMode={handleModeToggle}
+            isNetflixMode={showNetflixUI}
+          />
+        ) : (
+          <>
+            <Suspense fallback={<div className="static-bg-fallback" />}>
+              <ObsidianBackground />
+            </Suspense>
+            <AnimatePresence>
+              {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
+            </AnimatePresence>
+            <CommandPalette 
+              isOpen={isCommandPaletteOpen}
+              onClose={() => setIsCommandPaletteOpen(false)}
+              onThemeToggle={toggleTheme}
+            />
 
-              {/* Row 2: Identity & Status */}
-              <BentoTile size="tall" id="about">
-                <Suspense fallback={<div>...</div>}>
-                  <About />
-                </Suspense>
-              </BentoTile>
+            <BentoNavbar onToggleMode={handleModeToggle} />
 
-              <BentoTile size="sm">
-                <LiveStatusTile />
-              </BentoTile>
+            <main className="portfolio-main" style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease' }}>
+              <div ref={gridRef}>
+                <BentoGrid>
+                  {/* Row 1: Hero */}
+                  <BentoTile size="full" id="home">
+                    <BentoHero />
+                  </BentoTile>
 
-              <BentoTile size="sm">
-                <TestimonialTile />
-              </BentoTile>
+                  {/* Row 2: Identity & Status */}
+                  <BentoTile size="tall" id="about">
+                    <Suspense fallback={<div>...</div>}>
+                      <About />
+                    </Suspense>
+                  </BentoTile>
 
-              <BentoTile size="sm">
-                <Suspense fallback={<div>...</div>}>
-                  <Certifications />
-                </Suspense>
-              </BentoTile>
+                  <BentoTile size="sm">
+                    <LiveStatusTile />
+                  </BentoTile>
 
-              {/* Row 3: Projects & Skills */}
-              <BentoTile size="lg" id="projects">
-                <Suspense fallback={<div>...</div>}>
-                  <AdvancedProjects />
-                </Suspense>
-              </BentoTile>
+                  <BentoTile size="sm">
+                    <TestimonialTile />
+                  </BentoTile>
 
-              <BentoTile size="md" id="skills">
-                <EnhancedSkills />
-              </BentoTile>
+                  <BentoTile size="sm">
+                    <Suspense fallback={<div>...</div>}>
+                      <Certifications />
+                    </Suspense>
+                  </BentoTile>
 
-              {/* Row 4: Experience & Blog */}
-              <BentoTile size="md" id="experience">
-                <Suspense fallback={<div>...</div>}>
-                  <Experience />
-                </Suspense>
-              </BentoTile>
+                  {/* Row 3: Projects & Skills */}
+                  <BentoTile size="lg" id="projects">
+                    <Suspense fallback={<div>...</div>}>
+                      <AdvancedProjects />
+                    </Suspense>
+                  </BentoTile>
 
-              <BentoTile size="md" id="blog">
-                <Suspense fallback={<div>...</div>}>
-                  <Blog />
-                </Suspense>
-              </BentoTile>
+                  <BentoTile size="md" id="skills">
+                    <EnhancedSkills />
+                  </BentoTile>
 
-              {/* Row 5: Contact */}
-              <BentoTile size="wide" id="contact">
-                <EnhancedContact />
-              </BentoTile>
-            </BentoGrid>
-          </div>
-        </main>
+                  {/* Row 4: Experience & Blog */}
+                  <BentoTile size="md" id="experience">
+                    <Suspense fallback={<div>...</div>}>
+                      <Experience />
+                    </Suspense>
+                  </BentoTile>
 
-        <MobileMenu />
-        <ScrollToTop />
-        <Footer />
-        <ThemeRadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
+                  <BentoTile size="md" id="blog">
+                    <Suspense fallback={<div>...</div>}>
+                      <Blog />
+                    </Suspense>
+                  </BentoTile>
+
+                  {/* Row 5: Contact */}
+                  <BentoTile size="wide" id="contact">
+                    <EnhancedContact />
+                  </BentoTile>
+                </BentoGrid>
+              </div>
+            </main>
+
+            <MobileMenu />
+            <ScrollToTop />
+            <Footer />
+            <ThemeRadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
+          </>
+        )}
+
         <Analytics />
       </>
     </ErrorBoundary>

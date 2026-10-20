@@ -35,3 +35,7 @@ yarn-error.log*
 .firebase/
 firebase-debug.log*
 
+# Vite and TypeScript build artifacts
+dist/
+*.tsbuildinfo
+

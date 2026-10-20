@@ -10,15 +10,31 @@ const BentoHero: React.FC = () => {
   return (
     <BentoTile size="wide" className="hero-tile">
       <div className="hero-content p-4 p-md-5">
-        <motion.div 
-          className="mono-label mb-3 d-inline-flex align-items-center gap-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="pulse-dot"></span>
-          Available for new opportunities
-        </motion.div>
+        <div className="d-flex align-items-center gap-3 mb-4 flex-wrap">
+          <img
+            src="/assets/profile.png"
+            alt="Aadarsh Thakur"
+            style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2px solid var(--aura-azure, #60a5fa)',
+              boxShadow: '0 0 18px rgba(96, 165, 250, 0.45)',
+              flexShrink: 0
+            }}
+          />
+          <motion.div 
+            className="mono-label d-inline-flex align-items-center gap-2 px-3 py-1 glass-panel"
+            style={{ borderRadius: '100px' }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="pulse-dot"></span>
+            Available for new opportunities
+          </motion.div>
+        </div>
         
         <motion.h1 
           className="display-title mb-4"

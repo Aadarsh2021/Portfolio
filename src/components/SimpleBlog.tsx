@@ -14,54 +14,54 @@ interface BlogPost {
   featured?: boolean;
 }
 
+const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Building Scalable React Applications",
+    excerpt: "Learn the best practices for building React applications that scale with your team and user base.",
+    author: "Aadarsh Kumar",
+    date: "2024-01-15",
+    readTime: 8,
+    tags: ["React", "JavaScript", "Frontend"],
+    category: "Frontend",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Modern CSS Techniques for 2024",
+    excerpt: "Explore the latest CSS features and techniques that will transform your web designs.",
+    author: "Aadarsh Kumar",
+    date: "2024-01-10",
+    readTime: 6,
+    tags: ["CSS", "Design", "Web"],
+    category: "Design"
+  },
+  {
+    id: 3,
+    title: "TypeScript Best Practices",
+    excerpt: "Master TypeScript with these essential patterns and practices for safer, more maintainable code.",
+    author: "Aadarsh Kumar",
+    date: "2024-01-05",
+    readTime: 10,
+    tags: ["TypeScript", "JavaScript", "Development"],
+    category: "Backend"
+  }
+];
+
+const CATEGORIES = ['all', 'Frontend', 'Backend', 'Design'];
+
 const SimpleBlog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "Building Scalable React Applications",
-      excerpt: "Learn the best practices for building React applications that scale with your team and user base.",
-      author: "Aadarsh Kumar",
-      date: "2024-01-15",
-      readTime: 8,
-      tags: ["React", "JavaScript", "Frontend"],
-      category: "Frontend",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Modern CSS Techniques for 2024",
-      excerpt: "Explore the latest CSS features and techniques that will transform your web designs.",
-      author: "Aadarsh Kumar",
-      date: "2024-01-10",
-      readTime: 6,
-      tags: ["CSS", "Design", "Web"],
-      category: "Design"
-    },
-    {
-      id: 3,
-      title: "TypeScript Best Practices",
-      excerpt: "Master TypeScript with these essential patterns and practices for safer, more maintainable code.",
-      author: "Aadarsh Kumar",
-      date: "2024-01-05",
-      readTime: 10,
-      tags: ["TypeScript", "JavaScript", "Development"],
-      category: "Backend"
-    }
-  ];
-
-  const categories = ['all', 'Frontend', 'Backend', 'Design'];
-
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter(post => {
+    return BLOG_POSTS.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, selectedCategory, blogPosts]);
+  }, [searchTerm, selectedCategory]);
 
   return (
     <section id="blog" className="py-5">
@@ -89,7 +89,7 @@ const SimpleBlog: React.FC = () => {
             </div>
             
             <div className="d-flex flex-wrap gap-2 justify-content-center mb-4">
-              {categories.map(category => (
+              {CATEGORIES.map(category => (
                 <button
                   key={category}
                   className={`btn ${selectedCategory === category ? "btn-primary" : "btn-outline-primary"} btn-sm rounded-pill`}

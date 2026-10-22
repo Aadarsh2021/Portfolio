@@ -14,9 +14,11 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setActiveItem(item);
-    setActiveCategory(category);
-  }, [item, category]);
+    if (isOpen) {
+      setActiveItem(item);
+      setActiveCategory(category);
+    }
+  }, [isOpen, item, category]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -67,6 +69,14 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
     durationScale = 'Full-Stack Architecture';
     deepArchitecture = current.deepArchitecture || 'Engineered with modular component hierarchy, strict TypeScript type-safety, and optimized state management. RESTful APIs are safeguarded with token authentication, request validation, and indexed database queries for ultra-low latency.';
     relatedItems = portfolioData.projects.filter((p: any) => p.title !== title).slice(0, 3);
+  } else if (currentCat === 'profile') {
+    image = current.img || '/assets/banner.png';
+    badgeText = 'LEAD ARCHITECT • BIOGRAPHY';
+    badgeColor = '#E50914';
+    releaseYear = '2026';
+    durationScale = 'Software Engineer & Researcher';
+    deepArchitecture = 'M.Tech candidate at IIT Patna specializing in scalable distributed cloud systems, AI/ML engineering, and production web applications. Inventor with multiple published patents and proven experience building enterprise-grade architectures.';
+    relatedItems = portfolioData.experience.slice(0, 3);
   } else if (currentCat === 'experience') {
     if (current.type === 'education' || (current.role && current.role.includes('IIT'))) {
       image = '/assets/netflix/iit_patna.jpg';
@@ -380,7 +390,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                 {relatedItems.map((rel, idx) => {
                   const relTitle = rel.title || rel.name || rel.role;
                   const relDesc = rel.desc || rel.details || rel.content || rel.detail || '';
-                  const relImg = rel.img || (currentCat === 'experience' ? '/assets/netflix/cloud_backend.jpg' : currentCat === 'certification' ? '/assets/netflix/gps_patent.jpg' : '/assets/projects/clothez.png');
+                  const relImg = rel.img || (currentCat === 'profile' || currentCat === 'experience' ? '/assets/netflix/cloud_backend.jpg' : currentCat === 'certification' ? '/assets/netflix/gps_patent.jpg' : '/assets/projects/clothez.png');
 
                   return (
                     <div
@@ -388,6 +398,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                       className="netflix-mini-card"
                       onClick={() => {
                         setActiveItem(rel);
+                        setActiveCategory(currentCat === 'profile' ? 'experience' : currentCat);
                         const box = document.querySelector('.netflix-modal-box');
                         if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
                       }}

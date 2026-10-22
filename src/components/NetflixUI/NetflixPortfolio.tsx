@@ -45,7 +45,7 @@ const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNet
       {/* Hero Billboard */}
       <NetflixHero
         onPlayFeatured={() => openModal(projects[0], 'project')}
-        onMoreInfo={() => openModal({ ...personalInfo, title: personalInfo.name, subtitle: personalInfo.role, img: '/assets/banner.png', desc: personalInfo.bio }, 'experience')}
+        onMoreInfo={() => openModal({ ...personalInfo, title: personalInfo.name, subtitle: personalInfo.role, img: '/assets/banner.png', desc: personalInfo.bio }, 'profile')}
         onToggleMode={onToggleMode}
       />
 

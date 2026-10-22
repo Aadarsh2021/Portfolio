@@ -39,3 +39,7 @@ firebase-debug.log*
 dist/
 *.tsbuildinfo
 
+# Agent skills
+.agents/
+skills-lock.json
+

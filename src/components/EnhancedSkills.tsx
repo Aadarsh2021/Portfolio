@@ -4,7 +4,7 @@ import {
   SiReact, SiNodedotjs, SiPostgresql, 
   SiTailwindcss, SiSupabase, SiFirebase, SiTypescript,
   SiPython, SiGit, SiJavascript, SiHtml5,
-  SiExpress, SiMongodb, SiPostman, SiVercel, SiOpenai
+  SiExpress, SiMongodb, SiPostman, SiGooglecloud, SiOpenai
 } from 'react-icons/si';
 import { BsCpu, BsShieldLock, BsGear } from 'react-icons/bs';
 
@@ -44,11 +44,11 @@ const EnhancedSkills: React.FC = () => {
       ]
     },
     {
-      title: "Cloud & Tools",
+      title: "Cloud & Tooling",
       skills: [
         { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
         { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
-        { name: "Vercel", icon: SiVercel, color: "#FFFFFF" },
+        { name: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
         { name: "Git & GitHub", icon: SiGit, color: "#F05032" },
         { name: "Postman", icon: SiPostman, color: "#FF6C37" }
       ]

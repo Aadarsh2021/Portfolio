@@ -45,22 +45,13 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
     }
   } else if (category === 'skill') {
     title = item.name;
-    subtitle = `${(item.items || []).length} Frameworks & Tools`;
-    desc = (item.items || []).join(' • ');
+    subtitle = item.headline || (item.items || []).join(' • ');
+    desc = item.summary || (item.items || []).join(' • ');
     tags = item.items || [];
-    badge = 'TECH STACK';
-    badgeType = 'violet';
-    rating = 'Core Expertise';
-
-    if (item.name === 'AI & ML') {
-      image = '/assets/netflix/ai_talent_blog.jpg';
-      badgeType = 'cyan';
-    } else if (item.name === 'Databases' || item.name === 'Cloud & Tools') {
-      image = '/assets/netflix/cloud_inventory_blog.jpg';
-      badgeType = 'emerald';
-    } else {
-      image = '/assets/netflix/skills_tech.jpg';
-    }
+    badge = item.categoryName || 'TECH STACK';
+    badgeType = item.badgeType || 'violet';
+    rating = item.proficiency || 'Core Expertise';
+    image = item.img || '/assets/netflix/skills_tech.webp';
   } else if (category === 'certification') {
     title = item.title;
     subtitle = item.issuer || 'Award / Patent';
@@ -137,15 +128,25 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
       <div className="netflix-card-body">
         <div>
           <h3 className="netflix-card-title">{title}</h3>
-          <p className="netflix-card-desc">{subtitle || desc}</p>
+          <p
+            className="netflix-card-desc"
+            style={category === 'skill' ? { color: '#00E5FF', fontWeight: 600, letterSpacing: '0.2px' } : undefined}
+          >
+            {subtitle || desc}
+          </p>
         </div>
 
         <div className="netflix-card-tags">
-          {tags.slice(0, 3).map((t, idx) => (
+          {tags.slice(0, 4).map((t, idx) => (
             <span key={idx} className={`netflix-card-tag tag-${badgeType}`}>
               {t}
             </span>
           ))}
+          {tags.length > 4 && (
+            <span className="netflix-card-tag" style={{ opacity: 0.75, fontSize: '10px' }}>
+              +{tags.length - 4}
+            </span>
+          )}
         </div>
       </div>
     </div>

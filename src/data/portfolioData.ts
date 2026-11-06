@@ -296,12 +296,120 @@ export const portfolioData = {
     }
   ],
   skills: [
-    { name: "Languages", items: ["JavaScript", "TypeScript", "Python"] },
-    { name: "Frontend", items: ["React.js", "HTML5", "CSS3", "Tailwind CSS"] },
-    { name: "Backend", items: ["Node.js", "Express.js", "REST APIs", "Middleware", "JWT Authentication", "RBAC"] },
-    { name: "Databases", items: ["PostgreSQL", "MongoDB", "Firestore"] },
-    { name: "Cloud & Tools", items: ["Supabase", "Firebase (Cloud Functions, Auth)", "Vercel", "Git", "GitHub", "Postman"] },
-    { name: "AI & ML", items: ["AI Service/API Integration", "Machine Learning (certified)", "Python"] }
+    {
+      id: "languages",
+      name: "Programming Languages",
+      categoryName: "LANGUAGES",
+      headline: "TypeScript • JavaScript • Python",
+      summary: "Type-safe enterprise software architecture, high-efficiency JavaScript async event loops, and Python algorithms for AI/ML pipelines.",
+      level: "Proficient",
+      items: ["TypeScript", "JavaScript (ES6+)", "Python 3"],
+      featured: ["TypeScript", "JavaScript", "Python"],
+      proficiency: "Production Grade",
+      badgeType: "cyan",
+      img: "/assets/netflix/codeathon_award.webp",
+      highlights: [
+        "End-to-end type safety across React frontend and Node.js microservices",
+        "Modern ES6+ asynchronous programming, Promises, and reactive event architecture",
+        "Python data structures, automated scripts, and AI research at IIT Patna"
+      ],
+      usedIn: ["Escrow BMS", "Escrow Account Ledger", "ApexCRM", "Taliwo.com"]
+    },
+    {
+      id: "frontend",
+      name: "Frontend Engineering",
+      categoryName: "FRONTEND",
+      headline: "React 18/19 • Tailwind CSS • Vite",
+      summary: "Modern client-side engineering: concurrent rendering, responsive glassmorphism, Framer Motion animations, and 95+ Lighthouse web vitals.",
+      level: "Expert",
+      items: ["React.js", "TypeScript", "Tailwind CSS", "HTML5 & CSS3", "Framer Motion", "Vite", "Bootstrap"],
+      featured: ["React.js", "Tailwind CSS", "Framer Motion", "Vite"],
+      proficiency: "Core Specialty",
+      badgeType: "ruby",
+      img: "/assets/netflix/skills_tech.webp",
+      highlights: [
+        "React 18/19 concurrent rendering, custom hooks, and scalable component architecture",
+        "Responsive, accessible design with Tailwind CSS and buttery-smooth Framer Motion transitions",
+        "Optimistic UI updates, bundle splitting, and sub-second Largest Contentful Paint (LCP)"
+      ],
+      usedIn: ["Escrow BMS", "Escrow Bill", "ApexCRM", "Portfolio 2.0"]
+    },
+    {
+      id: "backend",
+      name: "Backend & Systems",
+      categoryName: "BACKEND",
+      headline: "Node.js • Express.js • REST APIs",
+      summary: "High-throughput server architectures, custom middleware pipelines, JWT session security, Role-Based Access Control (RBAC), and database pooling.",
+      level: "Advanced",
+      items: ["Node.js", "Express.js", "RESTful APIs", "JWT Authentication", "RBAC", "Middleware", "Supabase PostgreSQL"],
+      featured: ["Node.js", "Express.js", "REST APIs", "JWT & RBAC"],
+      proficiency: "Core Specialty",
+      badgeType: "emerald",
+      img: "/assets/netflix/cloud_backend.webp",
+      highlights: [
+        "Scalable RESTful API engineering with schema validation, rate-limiting, and error handling",
+        "Cryptographic JWT authentication and multi-tier Role-Based Access Control (RBAC)",
+        "Connection pooling and database query optimizations delivering 20–30% latency improvements"
+      ],
+      usedIn: ["Escrow BMS", "Escrow Bill", "Escrow Payroll", "Escrow Account Ledger"]
+    },
+    {
+      id: "databases",
+      name: "Databases & Storage",
+      categoryName: "DATABASES",
+      headline: "PostgreSQL • Supabase • Firestore",
+      summary: "Relational schema modeling with Row-Level Security (RLS), ACID transactions, automated audit triggers, and real-time NoSQL synchronization.",
+      level: "Advanced",
+      items: ["PostgreSQL", "Supabase RLS", "Firestore", "MongoDB", "SQL Optimization"],
+      featured: ["PostgreSQL", "Supabase RLS", "Firestore", "MongoDB"],
+      proficiency: "Enterprise Grade",
+      badgeType: "gold",
+      img: "/assets/netflix/cloud_inventory_blog.webp",
+      highlights: [
+        "Strict relational database design, foreign key cascades, and complex analytical SQL queries",
+        "Row-Level Security (RLS) policies in Supabase PostgreSQL for isolated multi-tenant data",
+        "Real-time event streaming and NoSQL state synchronization with Firebase Firestore"
+      ],
+      usedIn: ["Escrow BMS", "Escrow Account Ledger", "Revest", "ApexCRM"]
+    },
+    {
+      id: "cloud-devops",
+      name: "Cloud & Tooling",
+      categoryName: "CLOUD & DEVOPS",
+      headline: "Firebase Hosting • Supabase • Git",
+      summary: "Serverless cloud services, Firebase CDN deployments with strict COOP/HSTS security headers, automated CI/CD workflows, and API testing suites.",
+      level: "Proficient",
+      items: ["Firebase Hosting", "Firebase Cloud Functions", "Firebase Auth", "Supabase", "Git & GitHub", "Postman", "CI/CD"],
+      featured: ["Firebase Hosting", "Cloud Functions", "Git & GitHub", "Postman"],
+      proficiency: "Production Cloud",
+      badgeType: "ruby",
+      img: "/assets/netflix/gps_patent.webp",
+      highlights: [
+        "Google Firebase Hosting with immutable asset caching and custom domain SSL configurations",
+        "Serverless background automation with Firebase Cloud Functions and Supabase Auth triggers",
+        "Git version control pipelines, automated GitHub builds, and Postman API contract verification"
+      ],
+      usedIn: ["Escrow BMS", "Escrow Bill", "Portfolio 2.0", "Clothez"]
+    },
+    {
+      id: "ai-ml",
+      name: "AI & Machine Learning",
+      categoryName: "AI & ML",
+      headline: "LLM APIs • M.Tech Research @ IIT Patna",
+      summary: "Third-party LLM service integrations, prompt engineering, vector heuristics, and academic research in Artificial Intelligence & Data Science at IIT Patna.",
+      level: "Research & Applied",
+      items: ["AI Service/API Integration", "Machine Learning (Certified)", "Python", "Data Science", "IIT Patna"],
+      featured: ["LLM Integration", "Machine Learning", "Python", "Data Science"],
+      proficiency: "Academic & Production",
+      badgeType: "violet",
+      img: "/assets/netflix/ai_talent_blog.webp",
+      highlights: [
+        "M.Tech candidate in Artificial Intelligence & Data Science at IIT Patna",
+        "Integration of generative AI models and LLM inference pipelines for resume and career scoring",
+        "Applied machine learning pipelines for IoT sensor fusion and predictive intelligence"
+      ],
+      usedIn: ["Taliwo.com", "Patent 202411032824", "Patent 202411046719"]
+    }
   ]
 };
 

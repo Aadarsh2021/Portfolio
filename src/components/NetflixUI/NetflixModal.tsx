@@ -95,20 +95,19 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
     }
     relatedItems = portfolioData.experience.filter((e: any) => e.role !== title).slice(0, 3);
   } else if (currentCat === 'skill') {
-    badgeText = 'CORE COMPETENCY';
-    badgeColor = '#B388FF';
-    durationScale = 'Technical Domain';
-    desc = `Production-tested expertise in ${title} ecosystem. Aadarsh leverages these tools to architect resilient client-server systems, streamline cloud database transactions, and deploy scalable multi-tier web applications.`;
-    if (title === 'AI & ML') {
-      image = '/assets/netflix/ai_talent_blog.jpg';
-      badgeColor = '#00E5FF';
-    } else if (title === 'Databases' || title === 'Cloud & Tools') {
-      image = '/assets/netflix/cloud_inventory_blog.jpg';
-      badgeColor = '#00E676';
-    } else {
-      image = '/assets/netflix/skills_tech.jpg';
-    }
-    relatedItems = portfolioData.skills.filter((s: any) => s.name !== title).slice(0, 3);
+    title = current.name || title;
+    subtitle = current.headline || subtitle;
+    badgeText = current.categoryName || 'CORE COMPETENCY';
+    badgeColor = current.badgeType === 'cyan' ? '#00E5FF' : current.badgeType === 'ruby' ? '#FF2A54' : current.badgeType === 'emerald' ? '#00E676' : current.badgeType === 'gold' ? '#FFB300' : '#B388FF';
+    durationScale = current.proficiency || 'Production Grade';
+    releaseYear = current.level || 'Expertise';
+    statusBadge = 'Verified Domain';
+    image = current.img || '/assets/netflix/skills_tech.webp';
+    desc = current.summary || desc;
+    deepArchitecture = current.highlights ? current.highlights.join(' ') : desc;
+    metrics = current.highlights || [];
+    tags = current.items || [];
+    relatedItems = (portfolioData.skills || []).filter((s: any) => s.name !== title).slice(0, 3);
   } else if (currentCat === 'certification') {
     badgeColor = '#FFB300';
     badgeText = current.issuer && current.issuer.includes('Patent') ? 'PUBLISHED PATENT' : 'HONOR & AWARD';
@@ -360,6 +359,23 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                         style={{ fontSize: '11px', padding: '3px 8px' }}
                       >
                         {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {current.usedIn && current.usedIn.length > 0 && (
+                <div className="netflix-sidebar-item">
+                  <span className="netflix-sidebar-label">Applied in Projects</span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '4px' }}>
+                    {current.usedIn.map((proj: string, idx: number) => (
+                      <span
+                        key={idx}
+                        className="netflix-badge-pill"
+                        style={{ fontSize: '11px', color: '#00E5FF', borderColor: 'rgba(0,229,255,0.4)', background: 'rgba(0,229,255,0.08)' }}
+                      >
+                        {proj}
                       </span>
                     ))}
                   </div>

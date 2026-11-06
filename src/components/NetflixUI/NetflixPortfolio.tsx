@@ -10,9 +10,10 @@ import '../../styles/netflix.css';
 interface NetflixPortfolioProps {
   onToggleMode: () => void;
   isNetflixMode: boolean;
+  onOpenCommandPalette?: () => void;
 }
 
-const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNetflixMode }) => {
+const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNetflixMode, onOpenCommandPalette }) => {
   const { projects, experience, skills, certifications, blogPosts, testimonials, personalInfo, socialLinks } = portfolioData;
 
   const [modalState, setModalState] = useState<{
@@ -40,13 +41,18 @@ const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNet
   return (
     <div className="netflix-root">
       {/* Netflix Top Navigation */}
-      <NetflixNavbar onToggleMode={onToggleMode} isNetflixMode={isNetflixMode} />
+      <NetflixNavbar 
+        onToggleMode={onToggleMode} 
+        isNetflixMode={isNetflixMode} 
+        onOpenCommandPalette={onOpenCommandPalette} 
+      />
 
       {/* Hero Billboard */}
       <NetflixHero
         onPlayFeatured={() => openModal(projects[0], 'project')}
         onMoreInfo={() => openModal({ ...personalInfo, title: personalInfo.name, subtitle: personalInfo.role, img: '/assets/banner.webp', desc: personalInfo.bio }, 'profile')}
         onToggleMode={onToggleMode}
+        onOpenCommandPalette={onOpenCommandPalette}
       />
 
       {/* Main Content Rows */}

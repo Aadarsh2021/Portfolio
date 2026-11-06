@@ -5,9 +5,15 @@ interface NetflixHeroProps {
   onPlayFeatured: () => void;
   onMoreInfo: () => void;
   onToggleMode?: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
-const NetflixHero: React.FC<NetflixHeroProps> = ({ onPlayFeatured, onMoreInfo, onToggleMode }) => {
+const NetflixHero: React.FC<NetflixHeroProps> = ({ 
+  onPlayFeatured, 
+  onMoreInfo, 
+  onToggleMode,
+  onOpenCommandPalette 
+}) => {
   const { personalInfo } = portfolioData;
 
   return (
@@ -60,15 +66,40 @@ const NetflixHero: React.FC<NetflixHeroProps> = ({ onPlayFeatured, onMoreInfo, o
           <span className="netflix-badge-pill" style={{ borderColor: 'rgba(255, 42, 84, 0.5)', color: '#FF2A54', background: 'rgba(255, 42, 84, 0.1)', fontWeight: 700 }}>
             FULL-STACK &amp; CLOUD
           </span>
-          <span className="netflix-badge-pill">1+ YRS EXP</span>
           <span className="netflix-badge-pill" style={{ borderColor: 'rgba(0, 230, 118, 0.5)', color: '#00e676', background: 'rgba(0, 230, 118, 0.1)', fontWeight: 700 }}>
-            AVAILABLE FOR HIRE
+            ● AVAILABLE FOR HIRE
+          </span>
+          <span className="netflix-badge-pill" style={{ borderColor: 'rgba(255, 215, 0, 0.5)', color: '#FFD700', background: 'rgba(255, 215, 0, 0.1)', fontWeight: 700 }}>
+            2 PUBLISHED PATENTS
           </span>
         </div>
 
         <p className="netflix-hero-desc">
           {personalInfo.bio}
         </p>
+
+        {/* Engineering Proof-of-Work Stats Strip */}
+        <div className="netflix-hero-stats">
+          <div className="netflix-stat-item">
+            <span className="netflix-stat-val">9+</span>
+            <span className="netflix-stat-lbl">Production Apps</span>
+          </div>
+          <div className="netflix-stat-divider" />
+          <div className="netflix-stat-item">
+            <span className="netflix-stat-val">2</span>
+            <span className="netflix-stat-lbl">Published Patents</span>
+          </div>
+          <div className="netflix-stat-divider" />
+          <div className="netflix-stat-item">
+            <span className="netflix-stat-val">20–30%</span>
+            <span className="netflix-stat-lbl">DB Latency Reduced</span>
+          </div>
+          <div className="netflix-stat-divider" />
+          <div className="netflix-stat-item">
+            <span className="netflix-stat-val">IIT Patna</span>
+            <span className="netflix-stat-lbl">M.Tech AI &amp; DS</span>
+          </div>
+        </div>
 
         <div className="netflix-hero-buttons">
           <button
@@ -95,6 +126,18 @@ const NetflixHero: React.FC<NetflixHeroProps> = ({ onPlayFeatured, onMoreInfo, o
           >
             <span>&#128196;</span> View Resume
           </a>
+
+          {onOpenCommandPalette && (
+            <button
+              className="netflix-btn netflix-btn-palette"
+              onClick={onOpenCommandPalette}
+              type="button"
+              title="Open Command Palette (Ctrl+K / ⌘K)"
+            >
+              <span>⌨</span>
+              <span>Search / Menu <kbd className="netflix-hero-kbd">Ctrl+K</kbd></span>
+            </button>
+          )}
         </div>
       </div>
     </section>

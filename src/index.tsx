@@ -6,6 +6,10 @@ import App from './App';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './components/NotificationSystem';
 import reportWebVitals from './reportWebVitals';
+import { initDevEasterEgg } from './utils/devEasterEgg';
+
+// Welcome technical recruiters & CTOs in developer console
+initDevEasterEgg();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

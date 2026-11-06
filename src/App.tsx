@@ -122,10 +122,17 @@ const App: React.FC = () => {
         <SEOHead />
         <PerformanceOptimizer />
 
+        <CommandPalette 
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+          onThemeToggle={toggleTheme}
+        />
+
         {showNetflixUI ? (
           <NetflixPortfolio
             onToggleMode={handleModeToggle}
             isNetflixMode={showNetflixUI}
+            onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
           />
         ) : (
           <>
@@ -135,11 +142,6 @@ const App: React.FC = () => {
             <AnimatePresence>
               {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
             </AnimatePresence>
-            <CommandPalette 
-              isOpen={isCommandPaletteOpen}
-              onClose={() => setIsCommandPaletteOpen(false)}
-              onThemeToggle={toggleTheme}
-            />
 
             <BentoNavbar onToggleMode={handleModeToggle} />
 

@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 interface NetflixNavbarProps {
   onToggleMode: () => void;
   isNetflixMode: boolean;
+  onOpenCommandPalette?: () => void;
 }
 
-const NetflixNavbar: React.FC<NetflixNavbarProps> = ({ onToggleMode, isNetflixMode }) => {
+const NetflixNavbar: React.FC<NetflixNavbarProps> = ({ onToggleMode, isNetflixMode, onOpenCommandPalette }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -50,6 +51,21 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({ onToggleMode, isNetflixMo
       </ul>
 
       <div className="netflix-nav-actions">
+        {onOpenCommandPalette && (
+          <button
+            className="netflix-search-trigger"
+            onClick={onOpenCommandPalette}
+            title="Search projects, skills & patents (Ctrl + K / ⌘K)"
+            type="button"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <span className="netflix-search-kbd">⌘K</span>
+          </button>
+        )}
+
         <button
           className="netflix-mode-toggle"
           onClick={onToggleMode}

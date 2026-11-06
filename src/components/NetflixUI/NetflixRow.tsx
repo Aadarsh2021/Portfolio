@@ -40,6 +40,17 @@ const NetflixRow: React.FC<NetflixRowProps> = ({ title, subtitle, children }) =>
     }
   };
 
+  const handleScrollClick = (e: React.MouseEvent, direction: 'left' | 'right') => {
+    e.preventDefault();
+    e.stopPropagation();
+    scroll(direction);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div className="netflix-row">
       <div className="netflix-row-header">
@@ -48,37 +59,41 @@ const NetflixRow: React.FC<NetflixRowProps> = ({ title, subtitle, children }) =>
       </div>
 
       <div className="netflix-slider-wrapper">
-        {canScrollLeft && (
-          <button
-            className="netflix-slider-arrow left"
-            onClick={() => scroll('left')}
-            aria-label="Scroll Left"
-            type="button"
-            title="Scroll Left"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-        )}
-
         <div className="netflix-slider-track" ref={trackRef}>
           {children}
         </div>
 
-        {canScrollRight && (
-          <button
-            className="netflix-slider-arrow right"
-            onClick={() => scroll('right')}
-            aria-label="Scroll Right"
-            type="button"
-            title="Scroll Right"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        )}
+        <button
+          className={`netflix-slider-arrow left ${canScrollLeft ? 'visible' : 'disabled'}`}
+          onClick={(e) => handleScrollClick(e, 'left')}
+          onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          onPointerDown={handlePointerDown}
+          aria-label="Scroll Left"
+          type="button"
+          title="Scroll Left"
+          tabIndex={canScrollLeft ? 0 : -1}
+          disabled={!canScrollLeft}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <button
+          className={`netflix-slider-arrow right ${canScrollRight ? 'visible' : 'disabled'}`}
+          onClick={(e) => handleScrollClick(e, 'right')}
+          onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
+          onPointerDown={handlePointerDown}
+          aria-label="Scroll Right"
+          type="button"
+          title="Scroll Right"
+          tabIndex={canScrollRight ? 0 : -1}
+          disabled={!canScrollRight}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
       </div>
     </div>
   );

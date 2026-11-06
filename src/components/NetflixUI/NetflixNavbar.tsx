@@ -69,8 +69,11 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({ onToggleMode, isNetflixMo
           title="Aadarsh Thakur - GitHub Profile"
         >
           <img
-            src="/assets/profile.png"
+            src="/assets/profile.webp"
             alt="Aadarsh Thakur"
+            width={38}
+            height={38}
+            loading="eager"
             style={{
               width: '38px',
               height: '38px',

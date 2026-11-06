@@ -15,8 +15,11 @@ const About: React.FC = () => {
       <div className="about-details flex-grow-1 overflow-auto custom-scrollbar pe-2">
         <div className="d-flex align-items-center gap-3 mb-3">
           <img
-            src="/assets/profile.png"
+            src="/assets/profile.webp"
             alt={identity.name}
+            width={54}
+            height={54}
+            loading="lazy"
             style={{
               width: '54px',
               height: '54px',

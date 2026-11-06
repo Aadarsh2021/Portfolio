@@ -12,8 +12,11 @@ const BentoHero: React.FC = () => {
       <div className="hero-content p-4 p-md-5">
         <div className="d-flex align-items-center gap-3 mb-4 flex-wrap">
           <img
-            src="/assets/profile.png"
+            src="/assets/profile.webp"
             alt="Aadarsh Thakur"
+            width={56}
+            height={56}
+            loading="eager"
             style={{
               width: '56px',
               height: '56px',

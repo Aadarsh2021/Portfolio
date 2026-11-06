@@ -100,6 +100,7 @@ const Footer: React.FC = () => {
                   href="https://github.com/Aadarsh2021"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
                   className="social-link github"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -111,6 +112,7 @@ const Footer: React.FC = () => {
                   href="https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
                   className="social-link linkedin"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -120,6 +122,7 @@ const Footer: React.FC = () => {
               
                 <motion.a
                   href="mailto:thakuraadarsh1@gmail.com"
+                  aria-label="Send Email"
                   className="social-link email"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}

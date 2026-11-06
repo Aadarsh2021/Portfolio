@@ -32,6 +32,7 @@ const AdvancedProjects: React.FC = () => {
               <button 
                 key={i}
                 onClick={() => setActiveIdx(i)}
+                aria-label={`Go to project ${i + 1}`}
                 className="p-0 border-0"
                 style={{ 
                   width: '8px', 
@@ -48,6 +49,7 @@ const AdvancedProjects: React.FC = () => {
             <MagneticButton>
               <button 
                 onClick={prevProject}
+                aria-label="Previous project"
                 className="glass-panel p-2 border-0 d-flex align-items-center justify-content-center"
                 style={{ width: '42px', height: '42px', borderRadius: '12px', cursor: 'pointer', background: 'var(--glass-bg)', color: 'var(--text-primary)', border: '1px solid var(--glass-border)' }}
               >
@@ -57,6 +59,7 @@ const AdvancedProjects: React.FC = () => {
             <MagneticButton>
               <button 
                 onClick={nextProject}
+                aria-label="Next project"
                 className="glass-panel p-2 border-0 d-flex align-items-center justify-content-center"
                 style={{ width: '42px', height: '42px', borderRadius: '12px', cursor: 'pointer', background: 'var(--glass-bg)', color: 'var(--text-primary)', border: '1px solid var(--glass-border)' }}
               >

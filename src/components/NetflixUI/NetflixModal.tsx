@@ -70,7 +70,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
     deepArchitecture = current.deepArchitecture || 'Engineered with modular component hierarchy, strict TypeScript type-safety, and optimized state management. RESTful APIs are safeguarded with token authentication, request validation, and indexed database queries for ultra-low latency.';
     relatedItems = portfolioData.projects.filter((p: any) => p.title !== title).slice(0, 3);
   } else if (currentCat === 'profile') {
-    image = current.img || '/assets/banner.png';
+    image = current.img || '/assets/banner.webp';
     badgeText = 'LEAD ARCHITECT • BIOGRAPHY';
     badgeColor = '#E50914';
     releaseYear = '2026';

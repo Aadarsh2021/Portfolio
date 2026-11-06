@@ -22,8 +22,10 @@ const BentoNavbar: React.FC<BentoNavbarProps> = ({ onToggleMode }) => {
       {/* Brand Identity */}
       <a href="#home" className="bento-brand">
         <img
-          src="/assets/profile.png"
+          src="/assets/profile.webp"
           alt="Aadarsh Thakur"
+          width={36}
+          height={36}
           className="bento-brand-avatar"
         />
         <div className="bento-brand-text">

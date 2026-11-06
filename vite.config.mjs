@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
       chunkSizeWarningLimit: 1200,
       modulePreload: {
         resolveDependencies(url, deps, context) {
-          return deps.filter(dep => !dep.includes('vendor-three'));
+          return deps.filter(dep => !dep.includes('vendor-three') && !dep.includes('vendor-firebase'));
         },
       },
       rollupOptions: {

@@ -45,7 +45,7 @@ async function run() {
   await processImage(
     path.join(rootAssets, 'profile.png'),
     path.join(rootAssets, 'profile.webp'),
-    { width: 180, height: 180, fit: 'cover', quality: 85 }
+    { width: 134, height: 134, fit: 'cover', quality: 80 }
   );
 
   // Also in netflix directory if it exists
@@ -61,10 +61,10 @@ async function run() {
         const isBanner = file.includes('banner');
 
         await processImage(input, output, {
-          width: isProfile ? 180 : (isBanner ? 1400 : 700),
-          height: isProfile ? 180 : undefined,
+          width: isProfile ? 134 : (isBanner ? 1400 : 540),
+          height: isProfile ? 134 : undefined,
           fit: isProfile ? 'cover' : 'inside',
-          quality: isBanner ? 80 : 75
+          quality: isBanner ? 80 : 70
         });
       }
     }

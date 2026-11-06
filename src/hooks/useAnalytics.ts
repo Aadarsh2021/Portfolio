@@ -31,7 +31,12 @@ export const useAnalytics = () => {
   const trackPageView = useCallback((page: string) => {
     try {
       if (firebaseAnalytics) {
-        logEvent(firebaseAnalytics, 'page_view', { page_title: page });
+        const sendLog = () => logEvent(firebaseAnalytics, 'page_view', { page_title: page });
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(sendLog, { timeout: 2000 });
+        } else {
+          setTimeout(sendLog, 500);
+        }
       }
 
       // Store in local analytics

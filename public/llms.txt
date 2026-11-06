@@ -10,9 +10,9 @@
 
 ## Featured Engineering Projects
 - [Escrow BMS](https://escrow-bms-6fdeb.web.app): Unified SaaS ERP suite uniting GST invoicing, automated payroll, double-entry Khaata ledger, CRM, and daily cash counter reconciliation.
+- [Escrow Bill](https://www.bill.escrowbms.in/): Professional GST invoicing, billing management solution, Rule 46 compliance, and instant checkout.
 - [Escrow Account Ledger](https://esrow-ledger.web.app): Production double-entry accounting ledger with Monday-final immutable transaction cutoffs and keyboard-first workflow.
 - [ApexCRM](https://crm-f35c0.web.app): Enterprise CRM with interactive Drag-and-Drop Task Kanban boards, lead pipeline tracking, and won-deals auto-sync.
-- [Escrow Bill](https://www.bill.escrowbms.in/): Professional GST invoicing, billing management solution, Rule 46 compliance, and instant checkout.
 - [Escrow Payroll](https://escrow-payroll.web.app): Enterprise payroll computation engine with automated tax deductions, attendance aggregation, and PDF payslips.
 - [Taliwo](https://taliwo.com): AI-powered resume and LinkedIn career optimization platform with automated scoring.
 - [Revest](https://www.revest.co.in/): Multi-asset portfolio advisor suite with algorithmic risk rebalancing and PostgreSQL compounding analytics.

@@ -55,6 +55,22 @@ export const portfolioData = {
       deepArchitecture: "Engineered with React 18, Vite, and Supabase PostgreSQL with strict Row Level Security (RLS). Incorporates a 6-module architecture uniting GST e-invoicing, attendance-driven payroll, Khaata accounting ledger, inventory stock monitoring with automated shortage triggers, CRM lead pipelines, and daily cash counter reconciliation."
     },
     {
+      id: "escrow-bill",
+      title: "Escrow Bill",
+      desc: "Enterprise-grade GST billing, invoicing, and ERP platform with 10+ industry invoice templates (Rule 46 compliant), automobile showroom vehicle booking advances, automated HSN lookup, and UPI instant checkout.",
+      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Hosting", "Vite"],
+      links: { github: "https://github.com/escrowbms/escrow-invoice", live: "https://www.bill.escrowbms.in/" },
+      icon: BsReceiptCutoff,
+      img: "/assets/projects/escrowbill.webp",
+      featured: true,
+      metrics: [
+        "10+ customizable GST invoice templates including Classic, Export, and Thermal POS",
+        "Automobile showroom module with VIN/Chassis tracking & token advance invoicing",
+        "Rule 46 tax breakup computation (CGST, SGST, IGST) with real HSN/SAC code mapping"
+      ],
+      deepArchitecture: "High-performance billing engine with dual-tenant role routing, integrated UPI payment QR generators, WhatsApp Cloud API billing distribution, and sub-second HSN search."
+    },
+    {
       id: "escrow-ledger",
       title: "Escrow Account Ledger",
       desc: "Elite, keyboard-first double-entry accounting suite engineered to manage high-volume transactional ledgers, automate Monday Final settlements, and keep multi-party balance sheets synchronized with strict read-only audit locking.",
@@ -103,22 +119,6 @@ export const portfolioData = {
       deepArchitecture: "Architected using React 18, TypeScript, Tailwind CSS, and TanStack Query with Supabase PostgreSQL and Firebase Auth. Implements robust attendance aggregation algorithms, automated tax and deduction calculating engines, and client-side PDF payslip compilation with real-time HRMS analytics."
     },
     {
-      id: "escrow-bill",
-      title: "Escrow Bill",
-      desc: "Enterprise-grade GST billing, invoicing, and ERP platform with 10+ industry invoice templates (Rule 46 compliant), automobile showroom vehicle booking advances, automated HSN lookup, and UPI instant checkout.",
-      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Hosting", "Vite"],
-      links: { github: "https://github.com/Aadarsh2021", live: "https://www.bill.escrowbms.in/" },
-      icon: BsReceiptCutoff,
-      img: "/assets/projects/escrowbill.webp",
-      featured: true,
-      metrics: [
-        "10+ customizable GST invoice templates including Classic, Export, and Thermal POS",
-        "Automobile showroom module with VIN/Chassis tracking & token advance invoicing",
-        "Rule 46 tax breakup computation (CGST, SGST, IGST) with real HSN/SAC code mapping"
-      ],
-      deepArchitecture: "High-performance billing engine with dual-tenant role routing, integrated UPI payment QR generators, WhatsApp Cloud API billing distribution, and sub-second HSN search."
-    },
-    {
       id: "taliwo",
       title: "Taliwo.com",
       desc: "AI-powered career platform for automated resume analysis, LinkedIn profile optimization, and career recommendations by integrating third-party AI services.",
@@ -139,7 +139,7 @@ export const portfolioData = {
       title: "Revest",
       desc: "A comprehensive portfolio advisor platform offering a complete suite of financial tools and intelligent investment insights.",
       tags: ["React", "PostgreSQL", "Analytics", "Financial APIs", "Supabase"],
-      links: { github: "https://github.com/Aadarsh2021", live: "https://www.revest.co.in/" },
+      links: { github: "https://github.com/Aadarsh2021/MFAnalytics", live: "https://www.revest.co.in/" },
       icon: BsGlobe,
       img: "/assets/projects/Revest.webp",
       featured: true,

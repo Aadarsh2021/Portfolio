@@ -506,7 +506,6 @@ html.lenis {
 }
 
 /* Contact Interaction Fixes */
-/* Contact Interaction Fixes */
 .contact-form-side input,
 .contact-form-side textarea,
 .contact-form-side button,
@@ -514,7 +513,8 @@ html.lenis {
 .social-grid a,
 .project-card a,
 .nav-link,
-button {
+#contact button,
+.contact-bento-content button {
   position: relative !important;
   z-index: 999 !important;
   pointer-events: auto !important;

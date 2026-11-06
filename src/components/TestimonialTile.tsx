@@ -73,7 +73,7 @@ const TestimonialTile: React.FC = () => {
             </p>
             
             <div className="mt-auto">
-              <h6 className="text-white mb-0" style={{ fontSize: '0.9rem', fontWeight: 700 }}>{currentList[index]?.name}</h6>
+              <h6 className="mb-0" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>{currentList[index]?.name}</h6>
               <p className="text-secondary small mb-2">{currentList[index]?.role}</p>
               
               <div className="badge glass-panel px-2 py-1" style={{ fontSize: '0.65rem', color: 'var(--primary)', border: '1px solid rgba(99, 102, 241, 0.2)' }}>

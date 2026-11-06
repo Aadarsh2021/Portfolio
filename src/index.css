@@ -270,9 +270,82 @@ body {
   .hero-tile { min-height: 500px; }
 }
 
-/* Light mode specific depth refinement */
+/* Light mode specific depth & tile refinement for Bento Grid */
+[data-theme="light"] {
+  --bg-obsidian: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-dimmed: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --border-luminous: rgba(0, 0, 0, 0.08);
+  --border-luminous-hover: rgba(79, 70, 229, 0.3);
+  --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
 [data-theme="light"] .luminous-tile {
-  box-shadow: var(--shadow-premium);
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .luminous-tile:hover {
+  border-color: rgba(79, 70, 229, 0.35) !important;
+  box-shadow: 0 18px 45px rgba(79, 70, 229, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .mono-label {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-secondary {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-dimmed {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .primary-aura-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.35) !important;
+}
+
+[data-theme="light"] .primary-aura-btn:hover {
+  box-shadow: 0 6px 24px rgba(79, 70, 229, 0.5) !important;
+}
+
+[data-theme="light"] .secondary-aura-btn {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .secondary-aura-btn:hover {
+  background: #f8fafc !important;
+  border-color: #4f46e5 !important;
+}
+
+[data-theme="light"] .social-pill {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .social-icon-link {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .social-icon-link:hover {
+  color: #4f46e5 !important;
 }
 
 /* Elite Typography - Balanced & Fluid */

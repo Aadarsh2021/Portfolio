@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 interface ThemeContextType {
   theme: 'light' | 'dark';
   toggleTheme: () => void;
+  setTheme: (theme: 'light' | 'dark') => void;
   isLoading: boolean;
 }
 
@@ -50,9 +51,20 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }, 300);
   };
 
+  const setThemeExplicit = (newTheme: 'light' | 'dark') => {
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    document.documentElement.classList.add('theme-transition');
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transition');
+    }, 300);
+  };
+
   const value: ThemeContextType = {
     theme,
     toggleTheme,
+    setTheme: setThemeExplicit,
     isLoading,
   };
 

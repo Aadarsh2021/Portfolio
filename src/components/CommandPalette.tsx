@@ -89,7 +89,8 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose, onThem
     if (onThemeToggle) {
       list.push({
         id: 'theme',
-        title: 'Toggle Theme / Mode',
+        title: 'Toggle Dark / Light Mode',
+        subtitle: 'Switch between Dark (Cinematic) and Light (Bento) modes',
         icon: renderIcon(BsMoon),
         category: 'System',
         action: onThemeToggle

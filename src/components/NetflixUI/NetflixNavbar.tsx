@@ -69,12 +69,13 @@ const NetflixNavbar: React.FC<NetflixNavbarProps> = ({ onToggleMode, isNetflixMo
         <button
           className="netflix-mode-toggle"
           onClick={onToggleMode}
-          title="Switch between Cinematic OTT & Bento Grid view"
+          title="Switch to Light Mode"
           type="button"
+          aria-label="Switch to Light Mode"
         >
-          <span>&#9889;</span>
-          <span className="netflix-toggle-label-full">{isNetflixMode ? 'Switch to Bento Grid' : 'Switch to Cinematic UI'}</span>
-          <span className="netflix-toggle-label-short">{isNetflixMode ? 'Bento' : 'Cinematic'}</span>
+          <span>☀️</span>
+          <span className="netflix-toggle-label-full">Light Mode</span>
+          <span className="netflix-toggle-label-short">Light</span>
         </button>
 
         <a

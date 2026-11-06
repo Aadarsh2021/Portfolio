@@ -51,18 +51,30 @@ const App: React.FC = () => {
   const { announce } = useAccessibility();
   const themeContext = useTheme();
   
-  const handleThemeToggle = (e?: React.MouseEvent) => {
+  const handleModeToggle = (e?: React.MouseEvent) => {
     if (e) {
       setWipePos({ x: `${e.clientX}px`, y: `${e.clientY}px` });
     }
     setIsWiping(true);
     setTimeout(() => {
-      themeContext?.toggleTheme();
+      setShowNetflixUI(prev => {
+        const next = !prev;
+        const targetTheme = next ? 'dark' : 'light';
+        localStorage.setItem('portfolio_view_mode', next ? 'netflix' : 'bento');
+        localStorage.setItem('theme', targetTheme);
+        themeContext?.setTheme(targetTheme);
+        return next;
+      });
       setTimeout(() => setIsWiping(false), 800);
     }, 50);
   };
 
-  const toggleTheme = themeContext ? handleThemeToggle : () => {};
+  const toggleTheme = handleModeToggle;
+
+  useEffect(() => {
+    const targetTheme = showNetflixUI ? 'dark' : 'light';
+    themeContext?.setTheme(targetTheme);
+  }, [showNetflixUI]);
 
   useSmoothScroll();
 
@@ -103,14 +115,6 @@ const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleModeToggle = () => {
-    setShowNetflixUI(prev => {
-      const next = !prev;
-      localStorage.setItem('portfolio_view_mode', next ? 'netflix' : 'bento');
-      return next;
-    });
-  };
-
   return (
     <ErrorBoundary fallback={
       <div className="error-boundary-root text-center p-5">
@@ -143,7 +147,10 @@ const App: React.FC = () => {
               {isLoading && <PageEntryLoader onComplete={() => setIsLoading(false)} />}
             </AnimatePresence>
 
-            <BentoNavbar onToggleMode={handleModeToggle} />
+            <BentoNavbar 
+              onToggleMode={handleModeToggle} 
+              onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+            />
 
             <main className="portfolio-main" style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease' }}>
               <div ref={gridRef}>

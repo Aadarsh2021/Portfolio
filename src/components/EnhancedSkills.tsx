@@ -30,7 +30,7 @@ const EnhancedSkills: React.FC = () => {
       title: "Backend & Systems",
       skills: [
         { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-        { name: "Express.js", icon: SiExpress, color: "#E5E5E5" },
+        { name: "Express.js", icon: SiExpress, color: "#64748B" },
         { name: "REST APIs", icon: BsGear, color: "#60A5FA" },
         { name: "JWT & RBAC", icon: BsShieldLock, color: "#A78BFA" }
       ]

@@ -114,7 +114,20 @@ const AdvancedProjects: React.FC = () => {
 
             <div className="d-flex flex-wrap gap-2 mb-4">
               {projects[activeIdx].tags.map(tag => (
-                <span key={tag} className="px-2 py-1 glass-panel" style={{ fontSize: '0.65rem', borderRadius: '4px', opacity: 0.8 }}>{tag}</span>
+                <span 
+                  key={tag} 
+                  className="px-2 py-1 glass-panel" 
+                  style={{ 
+                    fontSize: '0.7rem', 
+                    fontWeight: 600,
+                    borderRadius: '6px', 
+                    color: 'var(--text-primary)',
+                    background: 'var(--bg-surface-elevated)',
+                    border: '1px solid var(--glass-border)'
+                  }}
+                >
+                  {tag}
+                </span>
               ))}
             </div>
 

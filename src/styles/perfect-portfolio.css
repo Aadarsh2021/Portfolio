@@ -2707,14 +2707,14 @@ img {
 .bento-brand-name {
   font-size: 15px;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-primary, #ffffff);
   letter-spacing: -0.3px;
   line-height: 1.2;
 }
 
 .bento-brand-role {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-dimmed, #94a3b8);
   font-weight: 600;
 }
 
@@ -2728,7 +2728,7 @@ img {
 }
 
 .bento-nav-link {
-  color: #cbd5e1;
+  color: var(--text-secondary, #cbd5e1);
   text-decoration: none;
   font-size: 13.5px;
   font-weight: 600;
@@ -2737,7 +2737,35 @@ img {
 }
 
 .bento-nav-link:hover {
-  color: #ffffff;
+  color: var(--text-primary, #ffffff);
+}
+
+/* Light Theme Styling for Bento Navbar */
+[data-theme="light"] .bento-navbar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.85) 80%, rgba(255, 255, 255, 0) 100%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .bento-navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .bento-brand-name {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .bento-brand-role {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .bento-nav-link {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .bento-nav-link:hover {
+  color: #0f172a !important;
 }
 
 .bento-nav-actions {

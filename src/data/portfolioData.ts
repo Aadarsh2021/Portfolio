@@ -1,6 +1,6 @@
 import { 
   BsLaptop, BsGlobe, BsCodeSlash, BsCloudFill, BsAward, BsPatchCheck, BsTrophy,
-  BsJournalCheck, BsPeople, BsKanban, BsReceiptCutoff, BsBoxSeam
+  BsJournalCheck, BsPeople, BsKanban
 } from 'react-icons/bs';
 
 export const portfolioData = {

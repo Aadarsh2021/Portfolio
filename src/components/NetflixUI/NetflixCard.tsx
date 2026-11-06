@@ -47,7 +47,7 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
     title = item.name;
     subtitle = item.headline || (item.items || []).join(' • ');
     desc = item.summary || (item.items || []).join(' • ');
-    tags = item.items || [];
+    tags = item.featured || item.items || [];
     badge = item.categoryName || 'TECH STACK';
     badgeType = item.badgeType || 'violet';
     rating = item.proficiency || 'Core Expertise';
@@ -105,7 +105,7 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
 
   return (
     <div
-      className={`netflix-card netflix-card-${badgeType}`}
+      className={`netflix-card netflix-card-${badgeType} ${category === 'skill' ? 'is-skill' : ''}`}
       onClick={() => onSelect(item, category)}
       role="button"
       tabIndex={0}

@@ -96,18 +96,24 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
     relatedItems = portfolioData.experience.filter((e: any) => e.role !== title).slice(0, 3);
   } else if (currentCat === 'skill') {
     title = current.name || title;
-    subtitle = current.headline || subtitle;
+    subtitle = current.headline ? `Core Stack: ${current.headline}` : subtitle;
     badgeText = current.categoryName || 'CORE COMPETENCY';
     badgeColor = current.badgeType === 'cyan' ? '#00E5FF' : current.badgeType === 'ruby' ? '#FF2A54' : current.badgeType === 'emerald' ? '#00E676' : current.badgeType === 'gold' ? '#FFB300' : '#B388FF';
     durationScale = current.proficiency || 'Production Grade';
     releaseYear = current.level || 'Expertise';
-    statusBadge = 'Verified Domain';
+    statusBadge = 'Verified Stack';
     image = current.img || '/assets/netflix/skills_tech.webp';
     desc = current.summary || desc;
-    deepArchitecture = current.highlights ? current.highlights.join(' ') : desc;
+    deepArchitecture = current.summary || desc;
     metrics = current.highlights || [];
     tags = current.items || [];
-    relatedItems = (portfolioData.skills || []).filter((s: any) => s.name !== title).slice(0, 3);
+    
+    // Connect to actual production projects built with this stack
+    const usedProjects = current.usedIn || [];
+    const matched = (portfolioData.projects || []).filter((p: any) =>
+      usedProjects.some((u: string) => p.title.toLowerCase().includes(u.toLowerCase()) || u.toLowerCase().includes(p.title.toLowerCase()))
+    );
+    relatedItems = matched.length > 0 ? matched : (portfolioData.projects || []).slice(0, 3);
   } else if (currentCat === 'certification') {
     badgeColor = '#FFB300';
     badgeText = current.issuer && current.issuer.includes('Patent') ? 'PUBLISHED PATENT' : 'HONOR & AWARD';
@@ -317,7 +323,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
               {metrics.length > 0 && (
                 <div className="netflix-modal-metrics" style={{ borderLeftColor: badgeColor }}>
                   <strong style={{ color: '#FFFFFF', fontSize: '14px', marginBottom: '4px' }}>
-                    Key Engineering Highlights &amp; Metrics:
+                    {currentCat === 'skill' ? 'Architectural Capabilities & Standards:' : 'Key Engineering Highlights & Metrics:'}
                   </strong>
                   {metrics.map((m, idx) => (
                     <div key={idx} className="netflix-metric-item">
@@ -325,6 +331,33 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                       <span>{m}</span>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Technologies & Frameworks list for Skills */}
+              {currentCat === 'skill' && tags.length > 0 && (
+                <div style={{ marginTop: '20px', marginBottom: '10px' }}>
+                  <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#FFFFFF', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Included Technologies &amp; Languages:
+                  </h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {tags.map((tool, idx) => (
+                      <span
+                        key={idx}
+                        className="netflix-badge-pill"
+                        style={{
+                          fontSize: '12px',
+                          padding: '6px 12px',
+                          background: 'rgba(255,255,255,0.06)',
+                          borderColor: badgeColor,
+                          color: '#FFFFFF',
+                          fontWeight: 600
+                        }}
+                      >
+                        &#9670; {tool}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -400,13 +433,23 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
           {relatedItems.length > 0 && (
             <div className="netflix-more-like-this">
               <h3 className="netflix-more-title">
-                <span style={{ color: 'var(--netflix-red)' }}>&#9646;</span> Related Work &amp; Highlights
+                <span style={{ color: 'var(--netflix-red)' }}>&#9646;</span>{' '}
+                {currentCat === 'skill' ? 'Production Projects Built With This Stack' : 'Related Work & Highlights'}
               </h3>
               <div className="netflix-more-grid">
                 {relatedItems.map((rel, idx) => {
                   const relTitle = rel.title || rel.name || rel.role;
-                  const relDesc = rel.desc || rel.details || rel.content || rel.detail || '';
-                  const relImg = rel.img || (currentCat === 'profile' || currentCat === 'experience' ? '/assets/netflix/cloud_backend.jpg' : currentCat === 'certification' ? '/assets/netflix/gps_patent.jpg' : '/assets/projects/clothez.png');
+                  const relDesc = rel.desc || rel.details || rel.content || rel.detail || rel.summary || '';
+                  const relImg = rel.img || (currentCat === 'profile' || currentCat === 'experience' ? '/assets/netflix/cloud_backend.jpg' : currentCat === 'certification' ? '/assets/netflix/gps_patent.jpg' : '/assets/projects/escrow_bms.webp');
+                  const targetCategory = (rel.links || rel.metrics || rel.deepArchitecture)
+                    ? 'project'
+                    : rel.issuer
+                    ? 'certification'
+                    : rel.company
+                    ? 'experience'
+                    : rel.items
+                    ? 'skill'
+                    : 'project';
 
                   return (
                     <div
@@ -414,7 +457,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                       className="netflix-mini-card"
                       onClick={() => {
                         setActiveItem(rel);
-                        setActiveCategory(currentCat === 'profile' ? 'experience' : currentCat);
+                        setActiveCategory(targetCategory);
                         const box = document.querySelector('.netflix-modal-box');
                         if (box) box.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
@@ -424,7 +467,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                         style={{ backgroundImage: `url("${(relImg || '').replace(/\.(png|jpg|jpeg)$/i, '.webp')}")` }}
                       >
                         <span className="netflix-card-rating" style={{ top: '6px', right: '6px', fontSize: '10px' }}>
-                          EXPLORE
+                          {targetCategory === 'project' ? 'VIEW PROJECT' : 'EXPLORE'}
                         </span>
                       </div>
                       <div className="netflix-mini-card-body">

@@ -687,6 +687,13 @@
   text-overflow: ellipsis;
 }
 
+.netflix-card.is-skill .netflix-card-desc {
+  color: #00E5FF;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.2px;
+}
+
 .netflix-card-tags {
   display: flex;
   align-items: center;

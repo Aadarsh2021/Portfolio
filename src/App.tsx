@@ -74,7 +74,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const targetTheme = showNetflixUI ? 'dark' : 'light';
     themeContext?.setTheme(targetTheme);
-  }, [showNetflixUI]);
+  }, [showNetflixUI, themeContext]);
 
   useSmoothScroll();
 

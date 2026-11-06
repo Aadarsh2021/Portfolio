@@ -43,7 +43,7 @@ const NetflixRow: React.FC<NetflixRowProps> = ({ title, subtitle, children }) =>
   return (
     <div className="netflix-row">
       <div className="netflix-row-header">
-        <h3 className="netflix-row-title">{title}</h3>
+        <h2 className="netflix-row-title">{title}</h2>
         {subtitle && <span className="netflix-explore-all">{subtitle}</span>}
       </div>
 

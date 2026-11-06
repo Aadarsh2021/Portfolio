@@ -63,10 +63,7 @@ export const useAccessibility = () => {
     const cleanupFocusRing = handleFocusRing();
     const cleanupKeyboardNav = handleKeyboardNav();
     
-    // Add necessary ARIA landmarks
-    document.body.setAttribute('role', 'application');
-    
-    // Add high contrast detection
+    // High contrast detection
     const highContrastQuery = window.matchMedia('(forced-colors: active)');
     const handleHighContrastChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
@@ -82,7 +79,6 @@ export const useAccessibility = () => {
       cleanupFocusRing();
       cleanupKeyboardNav();
       highContrastQuery.removeEventListener('change', handleHighContrastChange);
-      document.body.removeAttribute('role');
     };
   }, [handleFocusRing, handleKeyboardNav]);
 

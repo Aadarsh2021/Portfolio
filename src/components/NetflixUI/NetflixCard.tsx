@@ -110,6 +110,8 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
     rating = '5.0 ★ Endorsement';
   }
 
+  const optimizedImage = (image || '').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+
   return (
     <div
       className={`netflix-card netflix-card-${badgeType}`}
@@ -125,7 +127,7 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
     >
       <div
         className="netflix-card-media"
-        style={{ backgroundImage: `url("${image}")` }}
+        style={{ backgroundImage: `url("${optimizedImage}")` }}
       >
         <div className="netflix-card-media-overlay" />
         {badge && <span className={`netflix-card-top-badge badge-${badgeType}`}>{badge}</span>}
@@ -134,7 +136,7 @@ const NetflixCard: React.FC<NetflixCardProps> = ({ item, category, rank, onSelec
 
       <div className="netflix-card-body">
         <div>
-          <h4 className="netflix-card-title">{title}</h4>
+          <h3 className="netflix-card-title">{title}</h3>
           <p className="netflix-card-desc">{subtitle || desc}</p>
         </div>
 

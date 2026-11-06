@@ -617,6 +617,7 @@
 .badge-violet {
   background: linear-gradient(135deg, #B388FF 0%, #7C4DFF 100%);
   box-shadow: 0 2px 8px var(--netflix-violet-glow);
+  color: #050608;
 }
 
 .netflix-card-rating {

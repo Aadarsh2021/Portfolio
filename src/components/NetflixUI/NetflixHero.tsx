@@ -15,7 +15,7 @@ const NetflixHero: React.FC<NetflixHeroProps> = ({ onPlayFeatured, onMoreInfo, o
       id="home"
       className="netflix-hero"
       style={{
-        backgroundImage: 'url("/assets/banner.png")',
+        backgroundImage: 'url("/assets/banner.webp")',
         backgroundPosition: 'center 35%',
         backgroundSize: 'cover'
       }}
@@ -26,8 +26,12 @@ const NetflixHero: React.FC<NetflixHeroProps> = ({ onPlayFeatured, onMoreInfo, o
       <div className="netflix-hero-content">
         <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '16px', flexWrap: 'wrap' }}>
           <img
-            src="/assets/profile.png"
+            src="/assets/profile.webp"
             alt={personalInfo.name}
+            width={74}
+            height={74}
+            loading="eager"
+            fetchPriority="high"
             style={{
               width: '74px',
               height: '74px',

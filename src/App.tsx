@@ -15,7 +15,6 @@ import EnhancedSkills from './components/EnhancedSkills';
 import EnhancedContact from './components/EnhancedContact';
 import { AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Analytics } from '@vercel/analytics/react';
 import CommandPalette from './components/CommandPalette';
 import { useTheme } from './contexts/ThemeContext';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
@@ -211,8 +210,6 @@ const App: React.FC = () => {
             <ThemeRadialWipe active={isWiping} x={wipePos.x} y={wipePos.y} />
           </>
         )}
-
-        <Analytics />
       </>
     </ErrorBoundary>
   );

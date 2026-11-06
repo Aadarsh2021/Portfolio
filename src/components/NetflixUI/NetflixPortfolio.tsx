@@ -45,7 +45,7 @@ const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNet
       {/* Hero Billboard */}
       <NetflixHero
         onPlayFeatured={() => openModal(projects[0], 'project')}
-        onMoreInfo={() => openModal({ ...personalInfo, title: personalInfo.name, subtitle: personalInfo.role, img: '/assets/banner.png', desc: personalInfo.bio }, 'profile')}
+        onMoreInfo={() => openModal({ ...personalInfo, title: personalInfo.name, subtitle: personalInfo.role, img: '/assets/banner.webp', desc: personalInfo.bio }, 'profile')}
         onToggleMode={onToggleMode}
       />
 
@@ -152,8 +152,11 @@ const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNet
         >
           <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
             <img
-              src="/assets/profile.png"
+              src="/assets/profile.webp"
               alt={personalInfo.name}
+              width={90}
+              height={90}
+              loading="lazy"
               style={{
                 width: '90px',
                 height: '90px',
@@ -275,7 +278,7 @@ const NetflixPortfolio: React.FC<NetflixPortfolioProps> = ({ onToggleMode, isNet
           <p style={{ margin: '0 0 6px 0', fontSize: '12px' }}>
             &copy; {new Date().getFullYear()} {personalInfo.name}. Engineered with React &amp; Modern Web Technologies.
           </p>
-          <p style={{ margin: 0, fontSize: '11px', color: '#666' }}>
+          <p style={{ margin: 0, fontSize: '11px', color: '#9ca3af' }}>
             M.Tech in AI &amp; Data Science candidate at IIT Patna.
           </p>
         </div>

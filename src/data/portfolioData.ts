@@ -12,8 +12,8 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/aadarsh-thakur-1bbb29230/",
     github: "https://github.com/Aadarsh2021",
     location: "Delhi, India",
-    profileImage: "/assets/profile.png",
-    bannerImage: "/assets/banner.png",
+    profileImage: "/assets/profile.webp",
+    bannerImage: "/assets/banner.webp",
     bio: "Full Stack Developer with 1+ year of experience building and deploying web applications and backend services using React.js, Node.js, Express.js, PostgreSQL, Firebase, and Supabase. Skilled in REST API development, cloud backend system design, AI service integration, JWT/Firebase authentication, and Role-Based Access Control (RBAC). M.Tech candidate in AI & Data Science at IIT Patna.",
     identity: {
       title: "Identity",
@@ -45,7 +45,7 @@ export const portfolioData = {
       tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Firebase Hosting", "Framer Motion"],
       links: { github: "https://github.com/Helpawave/Escrow-BMS", live: "https://escrow-bms-6fdeb.web.app" },
       icon: BsCodeSlash,
-      img: "/assets/projects/escrow_bms.png",
+      img: "/assets/projects/escrow_bms.webp",
       featured: true,
       metrics: [
         "6 interconnected enterprise modules in a single unified SaaS workspace",
@@ -61,7 +61,7 @@ export const portfolioData = {
       tags: ["Vite", "React", "TypeScript", "Supabase", "PostgreSQL", "Firebase Auth", "Tailwind CSS"],
       links: { github: "https://github.com/Aadarsh2021/Escrow-Account-Ledger", live: "https://esrow-ledger.web.app" },
       icon: BsJournalCheck,
-      img: "/assets/projects/escrow_ledger.png",
+      img: "/assets/projects/escrow_ledger.webp",
       featured: true,
       metrics: [
         "Keyboard-first double-entry ledger navigation with auto-completion overlays",
@@ -77,7 +77,7 @@ export const portfolioData = {
       tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Auth", "Radix UI", "TanStack Query"],
       links: { github: "https://github.com/escrowbms/Escrow-Payroll", live: "https://escrow-payroll.web.app" },
       icon: BsPeople,
-      img: "/assets/projects/escrow_payroll.png",
+      img: "/assets/projects/escrow_payroll.webp",
       featured: true,
       metrics: [
         "Automated monthly payroll cycles with wage, allowance, and tax computation",
@@ -93,7 +93,7 @@ export const portfolioData = {
       tags: ["React 19", "TypeScript", "Tailwind CSS v4", "Supabase", "Chart.js", "Lucide Icons", "Vite"],
       links: { github: "https://github.com/Rokella-Medias/CRM", live: "https://crm-f35c0.web.app" },
       icon: BsKanban,
-      img: "/assets/projects/apexcrm.png",
+      img: "/assets/projects/apexcrm.webp",
       featured: true,
       metrics: [
         "Interactive Lead Kanban pipeline with real-time status transitions & priority scoring",
@@ -109,7 +109,7 @@ export const portfolioData = {
       tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Hosting", "Vite"],
       links: { github: "https://github.com/escrowbms/escrow-invoice", live: "https://escrow-bill.web.app" },
       icon: BsReceiptCutoff,
-      img: "/assets/projects/escrowbill.png",
+      img: "/assets/projects/escrowbill.webp",
       metrics: [
         "10+ customizable GST invoice templates including Classic, Export, and Thermal POS",
         "Automobile showroom module with VIN/Chassis tracking & token advance invoicing",
@@ -124,7 +124,7 @@ export const portfolioData = {
       tags: ["React.js", "AI Integration", "Firebase Auth", "Supabase PostgreSQL", "REST APIs"],
       links: { github: "https://github.com/ChinmayShringi/career-compass-launchpad", live: "https://taliwo.com" },
       icon: BsCloudFill,
-      img: "/assets/projects/taliwo.png",
+      img: "/assets/projects/taliwo.webp",
       featured: true,
       metrics: [
         "AI-powered resume & LinkedIn analysis using generative AI models",
@@ -140,9 +140,9 @@ export const portfolioData = {
       tags: ["React.js", "Node.js", "PostgreSQL", "Supabase", "QR Scanner", "Tailwind CSS"],
       links: { github: "https://github.com/Ghuge01-Cover/escrow-inventory", live: "https://escrow-inventory.web.app" },
       icon: BsBoxSeam,
-      img: "/assets/projects/inventory.png",
+      img: "/assets/projects/inventory.webp",
       metrics: [
-        "Sub-second camera-based barcode & QR product catalog scanning",
+        "Sub-second barcode & QR product catalog scanning",
         "Automated low-stock alerts & dynamic reorder point calculations",
         "20–30% database query optimization via composite Postgres indexing"
       ],
@@ -155,7 +155,7 @@ export const portfolioData = {
       tags: ["React", "Supabase", "Tailwind CSS", "Framer Motion"],
       links: { github: "https://github.com/Aadarsh2021", live: "https://clothez-4c565.web.app/" },
       icon: BsLaptop,
-      img: "/assets/projects/clothez.png",
+      img: "/assets/projects/clothez.webp",
       metrics: [
         "Real-time inventory synchronization with Supabase backend",
         "Frictionless multi-step checkout with cart persistence",
@@ -170,7 +170,7 @@ export const portfolioData = {
       tags: ["React", "PostgreSQL", "Analytics", "Financial APIs", "Supabase"],
       links: { github: "https://github.com/Aadarsh2021", live: "https://www.revest.co.in/" },
       icon: BsGlobe,
-      img: "/assets/projects/Revest.png",
+      img: "/assets/projects/Revest.webp",
       metrics: [
         "Multi-asset portfolio tracking across equities, mutual funds, and cash",
         "Algorithmic risk evaluation and asset rebalancing suggestions",
@@ -185,7 +185,7 @@ export const portfolioData = {
       tags: ["React", "Three.js", "Framer Motion", "TypeScript", "Tailwind CSS"],
       links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
       icon: BsGlobe,
-      img: "/assets/projects/Portfolio.png",
+      img: "/assets/projects/Portfolio.webp",
       metrics: [
         "Lighthouse 95+ performance score with zero cumulative layout shift",
         "Instant toggle between Cinematic Netflix view and interactive Bento Grid",

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schemas/v1/ai-catalog.json",
+  "schema_version": "1.0.0",
+  "name": "Aadarsh Thakur Portfolio",
+  "description": "Agentic discovery manifest for Aadarsh Thakur's software engineering portfolio and API resources.",
+  "publisher": {
+    "name": "Aadarsh Thakur",
+    "url": "https://aadarsh-portfolio-49ac6.web.app/"
+  },
+  "resources": [
+    {
+      "id": "portfolio-overview",
+      "name": "Portfolio Overview & Projects",
+      "type": "documentation",
+      "url": "https://aadarsh-portfolio-49ac6.web.app/llms.txt",
+      "description": "LLM documentation providing complete technical breakdown of projects, patents, and developer background."
+    },
+    {
+      "id": "portfolio-app",
+      "name": "Interactive Web Portfolio",
+      "type": "web-application",
+      "url": "https://aadarsh-portfolio-49ac6.web.app/",
+      "description": "Dual-mode web portfolio featuring Netflix OTT and Bento Grid modes."
+    }
+  ]
+}

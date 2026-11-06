@@ -111,26 +111,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
       
-      {/* Preconnect to external domains */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://api.emailjs.com" />
-      
-      {/* DNS Prefetch */}
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-      <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      <link rel="dns-prefetch" href="//api.emailjs.com" />
-      
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
-      
-      {/* Fonts */}
-      <link 
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" 
-        rel="stylesheet" 
-      />
       
       {/* Favicon and Icons */}
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -141,12 +125,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       
       {/* PWA Manifest */}
       <link rel="manifest" href="/manifest.json" />
-      
-      {/* Security Headers */}
-      <meta httpEquiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;" />
-      <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-      <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-      <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
       
       {/* Additional Meta Tags */}
       <meta name="format-detection" content="telephone=no" />

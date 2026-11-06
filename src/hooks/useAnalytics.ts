@@ -1,8 +1,6 @@
 import { useCallback } from 'react';
-import { inject } from '@vercel/analytics';
-
-// Initialize Vercel Analytics
-inject();
+import { analytics as firebaseAnalytics } from '../config/firebase';
+import { logEvent } from 'firebase/analytics';
 
 interface SessionData {
   pageViews: Record<string, number>;
@@ -32,6 +30,10 @@ export const useAnalytics = () => {
 
   const trackPageView = useCallback((page: string) => {
     try {
+      if (firebaseAnalytics) {
+        logEvent(firebaseAnalytics, 'page_view', { page_title: page });
+      }
+
       // Store in local analytics
       const analytics = JSON.parse(localStorage.getItem('portfolio_analytics') || '{}');
       const pageViews = analytics.pageViews || {};
@@ -57,6 +59,10 @@ export const useAnalytics = () => {
 
   const trackUserInteraction = useCallback((action: string, category: string) => {
     try {
+      if (firebaseAnalytics) {
+        logEvent(firebaseAnalytics, 'select_content', { content_type: category, item_id: action });
+      }
+
       // Store in local analytics
       const analytics = JSON.parse(localStorage.getItem('portfolio_analytics') || '{}');
       const interactions = analytics.interactions || [];

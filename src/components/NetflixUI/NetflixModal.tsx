@@ -213,7 +213,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
         {/* Modal Header with Backdrop */}
         <div
           className="netflix-modal-header"
-          style={{ backgroundImage: `url("${image}")` }}
+          style={{ backgroundImage: `url("${(image || '').replace(/\.(png|jpg|jpeg)$/i, '.webp')}")` }}
         >
           <div className="netflix-modal-header-gradient" />
           <div className="netflix-modal-header-content">
@@ -405,7 +405,7 @@ const NetflixModal: React.FC<NetflixModalProps> = ({ isOpen, onClose, item, cate
                     >
                       <div
                         className="netflix-mini-card-img"
-                        style={{ backgroundImage: `url("${relImg}")` }}
+                        style={{ backgroundImage: `url("${(relImg || '').replace(/\.(png|jpg|jpeg)$/i, '.webp')}")` }}
                       >
                         <span className="netflix-card-rating" style={{ top: '6px', right: '6px', fontSize: '10px' }}>
                           EXPLORE

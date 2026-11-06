@@ -26,6 +26,11 @@ export default defineConfig(({ mode }) => {
       outDir: 'build',
       sourcemap: false,
       chunkSizeWarningLimit: 1200,
+      modulePreload: {
+        resolveDependencies(url, deps, context) {
+          return deps.filter(dep => !dep.includes('vendor-three'));
+        },
+      },
       rollupOptions: {
         output: {
           manualChunks(id) {

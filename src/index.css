@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-/* Noise Texture Overlay - Simplified for Performance */
+/* Ambient Texture Overlay - Lightweight Pure CSS */
 body::before {
   content: "";
   position: fixed;
@@ -22,8 +22,8 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.03; /* Reduced opacity for better blend without filters */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
   pointer-events: none;
   z-index: 9999;
 }

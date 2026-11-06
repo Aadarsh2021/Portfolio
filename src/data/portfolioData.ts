@@ -71,22 +71,6 @@ export const portfolioData = {
       deepArchitecture: "Built with Vite, React, and TypeScript paired with Supabase PostgreSQL and Firebase Auth. Features automated database triggers that enforce weekly Monday Final transaction cutoffs, multi-party ledger synchronization, cascading account purges, and instant dark/light glassmorphic UI toggling."
     },
     {
-      id: "escrow-payroll",
-      title: "Escrow Payroll",
-      desc: "Automated enterprise payroll processing and HRMS platform featuring one-click monthly salary disbursements, tax deduction computation, daily attendance check-ins, leave approvals, and dynamic PDF payslip generation.",
-      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Auth", "Radix UI", "TanStack Query"],
-      links: { github: "https://github.com/escrowbms/Escrow-Payroll", live: "https://escrow-payroll.web.app" },
-      icon: BsPeople,
-      img: "/assets/projects/escrow_payroll.webp",
-      featured: true,
-      metrics: [
-        "Automated monthly payroll cycles with wage, allowance, and tax computation",
-        "One-click printable payslip generation with automated employee deduction breakdown",
-        "Integrated employee directory, leave management workflows, and attendance analytics"
-      ],
-      deepArchitecture: "Architected using React 18, TypeScript, Tailwind CSS, and TanStack Query with Supabase PostgreSQL and Firebase Auth. Implements robust attendance aggregation algorithms, automated tax and deduction calculating engines, and client-side PDF payslip compilation with real-time HRMS analytics."
-    },
-    {
       id: "apexcrm",
       title: "ApexCRM",
       desc: "High-fidelity enterprise Client Relationship Management suite engineered for sales velocity, featuring interactive Drag-and-Drop Task Kanban boards, full CRUD lead pipelines, automated contacts registry synced from won deals, and Chart.js analytics.",
@@ -103,26 +87,27 @@ export const portfolioData = {
       deepArchitecture: "Engineered on React 19 and Tailwind CSS v4 with Supabase backend and Row Level Security (RLS). Features multi-role authentication (Sales Agent, Director, Manager), interactive task Kanban boards, live lead modification activity logs, and real-time database syncing."
     },
     {
-      id: "escrow-bill",
-      title: "Escrow Bill",
-      desc: "Enterprise-grade GST billing, invoicing, and ERP platform with 10+ industry invoice templates (Rule 46 compliant), automobile showroom vehicle booking advances, automated HSN lookup, and UPI instant checkout.",
-      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Hosting", "Vite"],
-      links: { github: "https://github.com/escrowbms/escrow-invoice", live: "https://escrow-bill.web.app" },
-      icon: BsReceiptCutoff,
-      img: "/assets/projects/escrowbill.webp",
+      id: "escrow-payroll",
+      title: "Escrow Payroll",
+      desc: "Automated enterprise payroll processing and HRMS platform featuring one-click monthly salary disbursements, tax deduction computation, daily attendance check-ins, leave approvals, and dynamic PDF payslip generation.",
+      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Auth", "Radix UI", "TanStack Query"],
+      links: { github: "https://github.com/escrowbms/Escrow-Payroll", live: "https://escrow-payroll.web.app" },
+      icon: BsPeople,
+      img: "/assets/projects/escrow_payroll.webp",
+      featured: true,
       metrics: [
-        "10+ customizable GST invoice templates including Classic, Export, and Thermal POS",
-        "Automobile showroom module with VIN/Chassis tracking & token advance invoicing",
-        "Rule 46 tax breakup computation (CGST, SGST, IGST) with real HSN/SAC code mapping"
+        "Automated monthly payroll cycles with wage, allowance, and tax computation",
+        "One-click printable payslip generation with automated employee deduction breakdown",
+        "Integrated employee directory, leave management workflows, and attendance analytics"
       ],
-      deepArchitecture: "High-performance billing engine with dual-tenant role routing, integrated UPI payment QR generators, WhatsApp Cloud API billing distribution, and sub-second HSN search."
+      deepArchitecture: "Architected using React 18, TypeScript, Tailwind CSS, and TanStack Query with Supabase PostgreSQL and Firebase Auth. Implements robust attendance aggregation algorithms, automated tax and deduction calculating engines, and client-side PDF payslip compilation with real-time HRMS analytics."
     },
     {
       id: "taliwo",
       title: "Taliwo.com",
       desc: "AI-powered career platform for automated resume analysis, LinkedIn profile optimization, and career recommendations by integrating third-party AI services.",
       tags: ["React.js", "AI Integration", "Firebase Auth", "Supabase PostgreSQL", "REST APIs"],
-      links: { github: "https://github.com/ChinmayShringi/career-compass-launchpad", live: "https://taliwo.com" },
+      links: { github: "https://github.com/Aadarsh2021", live: "https://taliwo.com" },
       icon: BsCloudFill,
       img: "/assets/projects/taliwo.webp",
       featured: true,
@@ -134,19 +119,20 @@ export const portfolioData = {
       deepArchitecture: "Full-stack AI integration utilizing external LLM inference pipelines, serverless cloud functions, secure profile scraping, and structured career readiness indexing."
     },
     {
-      id: "escrow-inventory",
-      title: "Escrow Inventory",
-      desc: "High-throughput warehouse inventory system featuring sub-second barcode & QR scanning, automated low-stock threshold triggers, and real-time inventory ledger syncing.",
-      tags: ["React.js", "Node.js", "PostgreSQL", "Supabase", "QR Scanner", "Tailwind CSS"],
-      links: { github: "https://github.com/Ghuge01-Cover/escrow-inventory", live: "https://escrow-inventory.web.app" },
-      icon: BsBoxSeam,
-      img: "/assets/projects/inventory.webp",
+      id: "revest",
+      title: "Revest",
+      desc: "A comprehensive portfolio advisor platform offering a complete suite of financial tools and intelligent investment insights.",
+      tags: ["React", "PostgreSQL", "Analytics", "Financial APIs", "Supabase"],
+      links: { github: "https://github.com/Aadarsh2021", live: "https://www.revest.co.in/" },
+      icon: BsGlobe,
+      img: "/assets/projects/Revest.webp",
+      featured: true,
       metrics: [
-        "Sub-second barcode & QR product catalog scanning",
-        "Automated low-stock alerts & dynamic reorder point calculations",
-        "20–30% database query optimization via composite Postgres indexing"
+        "Multi-asset portfolio tracking across equities, mutual funds, and cash",
+        "Algorithmic risk evaluation and asset rebalancing suggestions",
+        "Secure cloud-native data architecture with enterprise privacy standards"
       ],
-      deepArchitecture: "Architected with optimized SQL schemas, connection pooling, and sub-second scanner processing to handle high-frequency warehouse barcode lookups without latency spikes."
+      deepArchitecture: "Engineered with modular financial calculation utilities, real-time charting components, and PostgreSQL financial schemas handling transactions and compounding returns."
     },
     {
       id: "clothez",
@@ -162,36 +148,6 @@ export const portfolioData = {
         "High-performance responsive luxury storefront UI"
       ],
       deepArchitecture: "Designed with responsive UI components, optimistic UI state updates for instant cart operations, and Supabase PostgreSQL with real-time stock availability subscriptions."
-    },
-    {
-      id: "revest",
-      title: "Revest",
-      desc: "A comprehensive portfolio advisor platform offering a complete suite of financial tools and intelligent investment insights.",
-      tags: ["React", "PostgreSQL", "Analytics", "Financial APIs", "Supabase"],
-      links: { github: "https://github.com/Aadarsh2021", live: "https://www.revest.co.in/" },
-      icon: BsGlobe,
-      img: "/assets/projects/Revest.webp",
-      metrics: [
-        "Multi-asset portfolio tracking across equities, mutual funds, and cash",
-        "Algorithmic risk evaluation and asset rebalancing suggestions",
-        "Secure cloud-native data architecture with enterprise privacy standards"
-      ],
-      deepArchitecture: "Engineered with modular financial calculation utilities, real-time charting components, and PostgreSQL financial schemas handling transactions and compounding returns."
-    },
-    {
-      id: "portfolio",
-      title: "Portfolio 2.0",
-      desc: "Modern high-performance developer showcase featuring dual-mode Netflix cinematic streaming view and interactive Bento Grid architecture.",
-      tags: ["React", "Three.js", "Framer Motion", "TypeScript", "Tailwind CSS"],
-      links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
-      icon: BsGlobe,
-      img: "/assets/projects/Portfolio.webp",
-      metrics: [
-        "Lighthouse 95+ performance score with zero cumulative layout shift",
-        "Instant toggle between Cinematic Netflix view and interactive Bento Grid",
-        "Keyboard-navigable rows, responsive glassmorphic cards, and fluid modals"
-      ],
-      deepArchitecture: "Crafted with React, Framer Motion, and custom glassmorphism styling. Features dual presentation modes, responsive touch & keyboard row sliders, and optimized WebP visual asset delivery."
     }
   ],
   experience: [

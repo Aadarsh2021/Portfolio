@@ -9,13 +9,13 @@
 - Cloud & DevOps: Google Cloud Platform (GCP), Firebase Hosting, Supabase RLS, Git, CI/CD
 
 ## Featured Engineering Projects
-- [Escrow BMS](https://esrow-ledger.web.app): Production double-entry accounting ledger with Monday-final immutable transaction cutoffs and keyboard-first workflow.
+- [Escrow BMS](https://escrow-bms-6fdeb.web.app): Unified SaaS ERP suite uniting GST invoicing, automated payroll, double-entry Khaata ledger, CRM, and daily cash counter reconciliation.
+- [Escrow Account Ledger](https://esrow-ledger.web.app): Production double-entry accounting ledger with Monday-final immutable transaction cutoffs and keyboard-first workflow.
 - [ApexCRM](https://crm-f35c0.web.app): Enterprise CRM with interactive Drag-and-Drop Task Kanban boards, lead pipeline tracking, and won-deals auto-sync.
 - [Escrow Payroll](https://escrow-payroll.web.app): Enterprise payroll computation engine with automated tax deductions, attendance aggregation, and PDF payslips.
-- [Escrow Bill](https://escrow-bill.web.app): Rule 46 compliant GST invoicing platform with HSN directory lookup and UPI QR instant checkout.
 - [Taliwo](https://taliwo.com): AI-powered resume and LinkedIn career optimization platform with automated scoring.
-- [Revest](https://revest-e6d0a.web.app): Real-time peer-to-peer real estate discovery portal with geolocation and map overlays.
-- [Clothez](https://clothez-store.web.app): High-performance e-commerce storefront with client-side state caching and instant checkout.
+- [Revest](https://www.revest.co.in/): Multi-asset portfolio advisor suite with algorithmic risk rebalancing and PostgreSQL compounding analytics.
+- [Clothez](https://clothez-4c565.web.app/): High-performance e-commerce storefront with client-side state caching and instant checkout.
 
 ## Intellectual Property & Patents
 - Indian Patent Application (202411032824): IoT and AI-Enabled Real-Time Luggage Tracking & Geo-Fencing Security System.

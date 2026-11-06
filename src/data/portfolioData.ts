@@ -1,6 +1,6 @@
 import { 
   BsLaptop, BsGlobe, BsCodeSlash, BsCloudFill, BsAward, BsPatchCheck, BsTrophy,
-  BsJournalCheck, BsPeople, BsKanban
+  BsJournalCheck, BsPeople, BsKanban, BsReceiptCutoff
 } from 'react-icons/bs';
 
 export const portfolioData = {
@@ -103,6 +103,22 @@ export const portfolioData = {
       deepArchitecture: "Architected using React 18, TypeScript, Tailwind CSS, and TanStack Query with Supabase PostgreSQL and Firebase Auth. Implements robust attendance aggregation algorithms, automated tax and deduction calculating engines, and client-side PDF payslip compilation with real-time HRMS analytics."
     },
     {
+      id: "escrow-bill",
+      title: "Escrow Bill",
+      desc: "Enterprise-grade GST billing, invoicing, and ERP platform with 10+ industry invoice templates (Rule 46 compliant), automobile showroom vehicle booking advances, automated HSN lookup, and UPI instant checkout.",
+      tags: ["React 18", "TypeScript", "Tailwind CSS", "Supabase", "Firebase Hosting", "Vite"],
+      links: { github: "https://github.com/Aadarsh2021", live: "https://www.bill.escrowbms.in/" },
+      icon: BsReceiptCutoff,
+      img: "/assets/projects/escrowbill.webp",
+      featured: true,
+      metrics: [
+        "10+ customizable GST invoice templates including Classic, Export, and Thermal POS",
+        "Automobile showroom module with VIN/Chassis tracking & token advance invoicing",
+        "Rule 46 tax breakup computation (CGST, SGST, IGST) with real HSN/SAC code mapping"
+      ],
+      deepArchitecture: "High-performance billing engine with dual-tenant role routing, integrated UPI payment QR generators, WhatsApp Cloud API billing distribution, and sub-second HSN search."
+    },
+    {
       id: "taliwo",
       title: "Taliwo.com",
       desc: "AI-powered career platform for automated resume analysis, LinkedIn profile optimization, and career recommendations by integrating third-party AI services.",
@@ -148,6 +164,21 @@ export const portfolioData = {
         "High-performance responsive luxury storefront UI"
       ],
       deepArchitecture: "Designed with responsive UI components, optimistic UI state updates for instant cart operations, and Supabase PostgreSQL with real-time stock availability subscriptions."
+    },
+    {
+      id: "portfolio",
+      title: "Portfolio 2.0",
+      desc: "High-performance developer showcase featuring dual-mode Netflix OTT streaming view and interactive 3D Bento Grid architecture with Lighthouse 95+ score.",
+      tags: ["React 18", "TypeScript", "Vite", "Firebase Hosting", "Framer Motion", "Tailwind CSS"],
+      links: { github: "https://github.com/Aadarsh2021/Portfolio", live: "https://aadarsh-portfolio-49ac6.web.app/" },
+      icon: BsGlobe,
+      img: "/assets/projects/Portfolio.webp",
+      metrics: [
+        "Lighthouse 95+ Performance, 100 Accessibility, 100 Best Practices, 100 SEO",
+        "Dual UX presentation modes: Netflix OTT Streaming UI and Interactive Bento Grid",
+        "Agentic AI discovery support via llms.txt and ai-catalog.json (ARD standard)"
+      ],
+      deepArchitecture: "Engineered with React 18, TypeScript, and Vite with WebP asset compression, passive event handlers, and optimized manual chunks. Full Firebase Hosting configuration with strict CSP, COOP origin isolation, and immutable caching."
     }
   ],
   experience: [
